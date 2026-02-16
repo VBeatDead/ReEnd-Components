@@ -35,11 +35,17 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
             >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 bg-primary clip-corner-sm flex items-center justify-center">
-                <span className="font-display text-xs font-bold text-primary-foreground">EF</span>
+                <span className="font-display text-xs font-bold text-primary-foreground">
+                  EF
+                </span>
               </div>
               <div>
                 <h1 className="font-display text-sm font-bold tracking-[0.08em] uppercase text-foreground">
@@ -53,9 +59,15 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
           </div>
 
           <div className="hidden md:flex items-center gap-1">
-            {["DOCS", "COMPONENTS", "TOKENS", "PATTERNS"].map((label) => (
+            {[
+              { label: "DOCS", target: "design-philosophy" },
+              { label: "COMPONENTS", target: "buttons" },
+              { label: "TOKENS", target: "color-system" },
+              { label: "PATTERNS", target: "page-templates" },
+            ].map(({ label, target }) => (
               <button
                 key={label}
+                onClick={() => onNavigate(target)}
                 className="font-display text-xs font-semibold tracking-[0.08em] uppercase text-muted-foreground hover:text-primary px-4 py-2 transition-colors"
               >
                 {label}
@@ -73,8 +85,14 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
               className="relative p-2 text-muted-foreground hover:text-primary transition-colors overflow-hidden"
               aria-label="Toggle theme"
             >
-              <span className={`block transition-all duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)] ${isAnimating ? "rotate-[360deg] scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}`}>
-                {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+              <span
+                className={`block transition-all duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)] ${isAnimating ? "rotate-[360deg] scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}`}
+              >
+                {theme === "dark" ? (
+                  <Sun className="w-4 h-4" />
+                ) : (
+                  <Moon className="w-4 h-4" />
+                )}
               </span>
             </button>
             <button
@@ -83,19 +101,28 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
             >
               <Search className="w-3.5 h-3.5" />
               <span>Search...</span>
-              <kbd className="font-mono text-[10px] bg-surface-2 px-1.5 py-0.5 border border-border">⌘K</kbd>
+              <kbd className="font-mono text-[10px] bg-surface-2 px-1.5 py-0.5 border border-border">
+                ⌘K
+              </kbd>
             </button>
           </div>
         </div>
       </header>
 
       {/* Command Palette */}
-      <CommandPalette open={cmdOpen} onOpenChange={setCmdOpen} onNavigate={onNavigate} />
+      <CommandPalette
+        open={cmdOpen}
+        onOpenChange={setCmdOpen}
+        onNavigate={onNavigate}
+      />
 
       {/* Mobile sidebar overlay */}
       {mobileOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-background/95" onClick={() => setMobileOpen(false)} />
+          <div
+            className="absolute inset-0 bg-background/95"
+            onClick={() => setMobileOpen(false)}
+          />
           <div className="relative w-[280px] h-full bg-surface-0 border-r border-border overflow-y-auto pt-20 px-4">
             {sidebarData.map((section) => (
               <div key={section.title} className="mb-4">
@@ -106,7 +133,10 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
                   {section.items.map((item) => (
                     <li key={item.id}>
                       <button
-                        onClick={() => { onNavigate(item.id); setMobileOpen(false); }}
+                        onClick={() => {
+                          onNavigate(item.id);
+                          setMobileOpen(false);
+                        }}
                         className="w-full text-left text-sm py-1.5 px-3 text-muted-foreground hover:text-primary transition-colors"
                       >
                         {item.label}

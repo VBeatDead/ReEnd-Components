@@ -17,4 +17,17 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules/react-dom")) return "vendor";
+          if (id.includes("node_modules/react/")) return "vendor";
+          if (id.includes("node_modules/react-router")) return "router";
+          if (id.includes("node_modules/framer-motion")) return "motion";
+          if (id.includes("node_modules/shiki")) return "shiki";
+        },
+      },
+    },
+  },
 }));

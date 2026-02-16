@@ -4,13 +4,33 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Arknights: Endfield — Design System v2.0</title>
-    <meta name="description" content="Complete Design System Reference — Sci-Fi Industrial Futurism component library." />
+    <meta
+      name="description"
+      content="Complete Design System Reference — Sci-Fi Industrial Futurism component library."
+    />
     <meta property="og:title" content="Endfield Design System v2.0" />
-    <meta property="og:description" content="Component Explorer for Arknights: Endfield Design System" />
+    <meta
+      property="og:description"
+      content="Component Explorer for Arknights: Endfield Design System"
+    />
     <meta property="og:type" content="website" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="theme-color" content="#0a0a0f" />
+    <script>
+      (function () {
+        var t = localStorage.getItem("ef-theme");
+        var root = document.documentElement;
+        if (t === "light") {
+          root.classList.remove("dark");
+          root.classList.add("light");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
