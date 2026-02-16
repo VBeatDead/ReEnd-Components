@@ -13,6 +13,10 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
   const [cmdOpen, setCmdOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [isAnimating, setIsAnimating] = useState(false);
+  const animTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // Cleanup animation timer on unmount
+  useEffect(() => () => clearTimeout(animTimerRef.current), []);
 
   // ⌘K / Ctrl+K shortcut
   useEffect(() => {
@@ -34,6 +38,7 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
             >
               {mobileOpen ? (
                 <X className="w-5 h-5" />
@@ -80,7 +85,8 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
               onClick={() => {
                 setIsAnimating(true);
                 toggleTheme();
-                setTimeout(() => setIsAnimating(false), 500);
+                const t = setTimeout(() => setIsAnimating(false), 500);
+                animTimerRef.current = t;
               }}
               className="relative p-2 text-muted-foreground hover:text-primary transition-colors overflow-hidden"
               aria-label="Toggle theme"
@@ -98,6 +104,7 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
             <button
               onClick={() => setCmdOpen(true)}
               className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-surface-1 border border-border text-muted-foreground text-xs hover:border-primary/30 hover:text-foreground transition-colors cursor-pointer"
+              aria-label="Open command palette"
             >
               <Search className="w-3.5 h-3.5" />
               <span>Search...</span>

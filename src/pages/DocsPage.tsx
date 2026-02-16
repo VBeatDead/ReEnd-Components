@@ -128,9 +128,11 @@ const DocsPage = () => {
 
   useEffect(() => {
     const hash = window.location.hash.slice(1);
+    let timer: ReturnType<typeof setTimeout>;
     if (hash) {
-      setTimeout(() => handleNavigate(hash), 300);
+      timer = setTimeout(() => handleNavigate(hash), 300);
     }
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -189,10 +191,17 @@ const DocsPage = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Skip navigation link */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:font-display focus:text-xs focus:tracking-[0.1em] focus:uppercase"
+      >
+        Skip to main content
+      </a>
       <DocsHeader onNavigate={handleNavigate} />
       <DocsSidebar activeId={activeId} onNavigate={handleNavigate} />
 
-      <main className="lg:ml-[280px] pt-[64px]">
+      <main id="main-content" className="lg:ml-[280px] pt-[64px]">
         <div className="max-w-4xl mx-auto px-6 py-12">
           {/* Hero */}
           <div className="mb-16">

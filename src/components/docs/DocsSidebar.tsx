@@ -22,13 +22,18 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
     return sidebarData
       .map((section) => ({
         ...section,
-        items: section.items.filter((item) => item.label.toLowerCase().includes(q)),
+        items: section.items.filter((item) =>
+          item.label.toLowerCase().includes(q),
+        ),
       }))
       .filter((section) => section.items.length > 0);
   }, [searchQuery]);
 
   return (
-    <aside className="fixed top-[64px] left-0 bottom-0 w-[280px] bg-surface-0 border-r border-border overflow-y-auto py-4 px-4 hidden lg:block z-10">
+    <aside
+      className="fixed top-[64px] left-0 bottom-0 w-[280px] bg-surface-0 border-r border-border overflow-y-auto py-4 px-4 hidden lg:block z-10"
+      aria-label="Documentation sidebar"
+    >
       {/* Search filter */}
       <div className="relative mb-4">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
@@ -42,18 +47,21 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
           <button
             onClick={() => setSearchQuery("")}
             className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+            aria-label="Clear filter"
           >
             <X className="w-3.5 h-3.5" />
           </button>
         )}
       </div>
 
-      <nav>
+      <nav role="tree" aria-label="Documentation sections">
         {filteredData.map((section) => (
           <div key={section.title} className="mb-4">
             <button
               onClick={() => toggle(section.title)}
               className="w-full flex items-center justify-between py-2 px-2 group"
+              role="treeitem"
+              aria-expanded={!collapsed[section.title]}
             >
               <span className="font-display text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
                 {section.title}
@@ -63,9 +71,9 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
               </span>
             </button>
             {!collapsed[section.title] && (
-              <ul className="mt-1 space-y-0.5">
+              <ul role="group" className="mt-1 space-y-0.5">
                 {section.items.map((item) => (
-                  <li key={item.id}>
+                  <li key={item.id} role="treeitem">
                     <button
                       onClick={() => onNavigate(item.id)}
                       className={`w-full text-left text-sm py-1.5 px-3 transition-all border-l-2 ${
@@ -83,7 +91,9 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
           </div>
         ))}
         {filteredData.length === 0 && (
-          <p className="text-xs text-muted-foreground text-center py-4">No results</p>
+          <p className="text-xs text-muted-foreground text-center py-4">
+            No results
+          </p>
         )}
       </nav>
     </aside>
