@@ -136,4 +136,8 @@ export const sidebarData: SidebarSection[] = [
       { id: "naming-conventions", label: "Naming Conventions" },
     ],
   },
+  {
+    title: "SYSTEM",
+    items: [{ id: "changelog", label: "Changelog" }],
+  },
 ];

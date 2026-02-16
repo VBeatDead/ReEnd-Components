@@ -83,6 +83,26 @@ Success: border #2ED573`}
           description: "Change handler for controlled input",
         },
       ]}
+      keyboard={[
+        { key: "Tab", description: "Move focus to the next form field" },
+        {
+          key: "Shift + Tab",
+          description: "Move focus to the previous form field",
+        },
+        { key: "Enter", description: "Submit the form or toggle checkbox" },
+        {
+          key: "Space",
+          description: "Toggle checkbox/switch, open select dropdown",
+        },
+        { key: "Escape", description: "Close dropdown / cancel edit" },
+        { key: "Arrow ↑/↓", description: "Navigate select dropdown options" },
+      ]}
+      install={{
+        importPath:
+          'import { Input } from "@/components/ui/input";\nimport { Label } from "@/components/ui/label";\nimport { Switch } from "@/components/ui/switch";',
+        usage:
+          '<div>\n  <Label htmlFor="callsign">CALLSIGN</Label>\n  <Input id="callsign" placeholder="Enter designation" />\n</div>',
+      }}
       api={[
         {
           name: "focus:border-primary",

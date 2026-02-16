@@ -1,5 +1,12 @@
 import { ReactNode, useState, useMemo, useRef, useEffect } from "react";
-import { RotateCcw, Copy, Check } from "lucide-react";
+import {
+  RotateCcw,
+  Copy,
+  Check,
+  Monitor,
+  Tablet,
+  Smartphone,
+} from "lucide-react";
 import { CodeBlock } from "./CodeBlock";
 import PlaygroundControlField from "./PlaygroundControlField";
 import PropsPanel from "./PropsPanel";
@@ -16,6 +23,17 @@ export interface ApiDefinition {
   name: string;
   signature: string;
   description: string;
+}
+
+export interface KeyboardInteraction {
+  key: string;
+  description: string;
+}
+
+export interface InstallGuide {
+  importPath: string;
+  usage: string;
+  dependencies?: string[];
 }
 
 export interface PlaygroundControl {
@@ -37,6 +55,8 @@ interface ComponentPreviewProps {
   id: string;
   props?: PropDefinition[];
   api?: ApiDefinition[];
+  keyboard?: KeyboardInteraction[];
+  install?: InstallGuide;
   playground?: {
     controls: PlaygroundControl[];
     render: (values: Record<string, any>) => ReactNode;
@@ -45,7 +65,14 @@ interface ComponentPreviewProps {
   };
 }
 
-type TabKey = "preview" | "playground" | "code" | "props" | "api";
+type TabKey =
+  | "preview"
+  | "playground"
+  | "code"
+  | "props"
+  | "api"
+  | "keyboard"
+  | "install";
 
 export const ComponentPreview = ({
   title,
@@ -55,6 +82,8 @@ export const ComponentPreview = ({
   id,
   props: propDefs,
   api,
+  keyboard,
+  install,
   playground,
 }: ComponentPreviewProps) => {
   const [activeTab, setActiveTab] = useState<TabKey>(
@@ -69,6 +98,9 @@ export const ComponentPreview = ({
     ) ?? {};
   const [pgValues, setPgValues] = useState<Record<string, any>>(defaultValues);
   const [codeCopied, setCodeCopied] = useState(false);
+  const [viewport, setViewport] = useState<"full" | "tablet" | "mobile">(
+    "full",
+  );
   const copyTimerRef = useRef<ReturnType<typeof setTimeout>>();
   useEffect(() => () => clearTimeout(copyTimerRef.current), []);
 
@@ -104,6 +136,8 @@ export const ComponentPreview = ({
     { key: "code", label: "Code", available: !!code },
     { key: "props", label: "Props", available: !!propDefs?.length },
     { key: "api", label: "API", available: !!api?.length },
+    { key: "keyboard", label: "Keys", available: !!keyboard?.length },
+    { key: "install", label: "Install", available: !!install },
   ];
 
   const updatePg = (name: string, value: any) =>
@@ -238,9 +272,51 @@ export const ComponentPreview = ({
             role="tabpanel"
             id={`${id}-panel-preview`}
             aria-labelledby={`${id}-tab-preview`}
-            className="bg-surface-1 p-6 sm:p-10"
+            className="bg-surface-1"
           >
-            {children}
+            {/* Responsive viewport toggle */}
+            <div className="flex items-center justify-end gap-1 px-4 py-2 border-b border-border bg-surface-0">
+              <span className="font-ui text-[9px] tracking-[0.1em] uppercase text-muted-foreground mr-2">
+                Viewport
+              </span>
+              {(
+                [
+                  { key: "full", icon: Monitor, label: "Desktop" },
+                  { key: "tablet", icon: Tablet, label: "Tablet (768px)" },
+                  { key: "mobile", icon: Smartphone, label: "Mobile (375px)" },
+                ] as const
+              ).map(({ key, icon: Icon, label }) => (
+                <button
+                  key={key}
+                  onClick={() => setViewport(key)}
+                  aria-label={label}
+                  title={label}
+                  className={`p-1.5 rounded transition-colors ${
+                    viewport === key
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  <Icon className="w-3.5 h-3.5" />
+                </button>
+              ))}
+            </div>
+            {/* Responsive container */}
+            <div className="flex justify-center p-6 sm:p-10">
+              <div
+                className="w-full transition-all duration-300"
+                style={{
+                  maxWidth:
+                    viewport === "mobile"
+                      ? "375px"
+                      : viewport === "tablet"
+                        ? "768px"
+                        : "100%",
+                }}
+              >
+                {children}
+              </div>
+            </div>
           </div>
         )}
 
@@ -286,6 +362,88 @@ export const ComponentPreview = ({
                 </p>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Keyboard interaction panel */}
+        {activeTab === "keyboard" && keyboard?.length && (
+          <div
+            role="tabpanel"
+            id={`${id}-panel-keyboard`}
+            aria-labelledby={`${id}-tab-keyboard`}
+            className="bg-surface-1 p-5 sm:p-6"
+          >
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground pb-3 pr-4 w-40">
+                    Key
+                  </th>
+                  <th className="text-left font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground pb-3">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {keyboard.map((k) => (
+                  <tr
+                    key={k.key}
+                    className="border-b border-border/50 last:border-0"
+                  >
+                    <td className="py-2.5 pr-4">
+                      <kbd className="font-mono text-xs bg-surface-2 border border-border px-2 py-0.5 text-primary">
+                        {k.key}
+                      </kbd>
+                    </td>
+                    <td className="py-2.5 text-xs text-muted-foreground">
+                      {k.description}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* Install panel */}
+        {activeTab === "install" && install && (
+          <div
+            role="tabpanel"
+            id={`${id}-panel-install`}
+            aria-labelledby={`${id}-tab-install`}
+            className="bg-surface-1 p-5 sm:p-6 space-y-5"
+          >
+            {/* Import */}
+            <div>
+              <span className="font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground block mb-2">
+                Import
+              </span>
+              <CodeBlock
+                code={install.importPath}
+                language="tsx"
+                title="Import"
+              />
+            </div>
+            {/* Usage */}
+            <div>
+              <span className="font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground block mb-2">
+                Usage
+              </span>
+              <CodeBlock code={install.usage} language="tsx" title="Usage" />
+            </div>
+            {/* Dependencies */}
+            {install.dependencies?.length ? (
+              <div>
+                <span className="font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground block mb-2">
+                  Dependencies
+                </span>
+                <CodeBlock
+                  code={`npm install ${install.dependencies.join(" ")}`}
+                  language="bash"
+                  title="Install"
+                />
+              </div>
+            ) : null}
           </div>
         )}
       </div>

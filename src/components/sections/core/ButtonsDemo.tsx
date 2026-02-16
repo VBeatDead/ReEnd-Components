@@ -63,6 +63,21 @@ const ButtonsDemo = () => (
         description: "Button label content",
       },
     ]}
+    keyboard={[
+      { key: "Enter", description: "Activate the focused button" },
+      { key: "Space", description: "Activate the focused button" },
+      { key: "Tab", description: "Move focus to the next focusable element" },
+      {
+        key: "Shift + Tab",
+        description: "Move focus to the previous focusable element",
+      },
+    ]}
+    install={{
+      importPath: 'import { Button } from "@/components/ui/button";',
+      usage:
+        '<Button variant="primary" size="md" onClick={handleClick}>\n  DEPLOY ◆\n</Button>',
+      dependencies: ["class-variance-authority", "clsx", "tailwind-merge"],
+    }}
     api={[
       {
         name: "clip-corner",

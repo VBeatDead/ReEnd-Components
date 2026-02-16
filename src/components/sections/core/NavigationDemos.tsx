@@ -225,6 +225,12 @@ const NavigationDemos = () => {
         title="13. Navigation — Tabs"
         description="Orbitron 13px, uppercase. Active: yellow text + yellow bottom border."
         code={`.tab.active { color: #FFD429; border-bottom-color: #FFD429; }`}
+        keyboard={[
+          { key: "Arrow ←/→", description: "Move focus between tabs" },
+          { key: "Enter / Space", description: "Activate the focused tab" },
+          { key: "Home", description: "Move focus to the first tab" },
+          { key: "End", description: "Move focus to the last tab" },
+        ]}
         props={[
           {
             name: "tabs",

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="100%" style="stop-color:#111118"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c8a560"/>
+      <stop offset="100%" style="stop-color:#e8c878"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  
+  <!-- Grid lines -->
+  <g stroke="#1a1a25" stroke-width="0.5" opacity="0.5">
+    <line x1="0" y1="0" x2="1200" y2="630"/>
+    <line x1="1200" y1="0" x2="0" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+  </g>
+  
+  <!-- Corner brackets -->
+  <g stroke="#c8a560" stroke-width="2" fill="none" opacity="0.6">
+    <!-- Top-left -->
+    <path d="M 40,40 L 40,80 M 40,40 L 80,40"/>
+    <!-- Top-right -->
+    <path d="M 1160,40 L 1160,80 M 1160,40 L 1120,40"/>
+    <!-- Bottom-left -->
+    <path d="M 40,590 L 40,550 M 40,590 L 80,590"/>
+    <!-- Bottom-right -->
+    <path d="M 1160,590 L 1160,550 M 1160,590 L 1120,590"/>
+  </g>
+  
+  <!-- Diamond marker -->
+  <polygon points="600,180 616,200 600,220 584,200" fill="#c8a560"/>
+  
+  <!-- System label -->
+  <text x="600" y="265" text-anchor="middle" font-family="monospace" font-size="12" letter-spacing="6" fill="#c8a560" opacity="0.8">EF-SYS // DESIGN SYSTEM</text>
+  
+  <!-- Title -->
+  <text x="600" y="330" text-anchor="middle" font-family="sans-serif" font-size="56" font-weight="bold" letter-spacing="4" fill="#f0f0f0">ENDFIELD</text>
+  <text x="600" y="385" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="bold" letter-spacing="8" fill="#c8a560">DESIGN SYSTEM</text>
+  
+  <!-- Version -->
+  <text x="600" y="430" text-anchor="middle" font-family="monospace" font-size="16" letter-spacing="4" fill="#666" opacity="0.8">v2.0 — COMPLETE EDITION</text>
+  
+  <!-- Description -->
+  <text x="600" y="480" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#888">Sci-Fi Industrial Futurism · 87+ Components · React + TypeScript</text>
+  
+  <!-- Bottom line -->
+  <line x1="200" y1="540" x2="1000" y2="540" stroke="url(#accent)" stroke-width="1" opacity="0.3"/>
+  
+  <!-- Bottom label -->
+  <text x="600" y="570" text-anchor="middle" font-family="monospace" font-size="10" letter-spacing="4" fill="#555">ARKNIGHTS: ENDFIELD — COMPONENT EXPLORER</text>
+</svg>

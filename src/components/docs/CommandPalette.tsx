@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { Search } from "lucide-react";
+import Fuse from "fuse.js";
 import { sidebarData } from "./sidebarData";
 import { HighlightText } from "./HighlightText";
 
@@ -13,6 +14,13 @@ const allItems = sidebarData.flatMap((section) =>
   section.items.map((item) => ({ ...item, section: section.title })),
 );
 
+const fuse = new Fuse(allItems, {
+  keys: ["label", "section"],
+  threshold: 0.4,
+  includeScore: true,
+  minMatchCharLength: 1,
+});
+
 export const CommandPalette = ({
   open,
   onOpenChange,
@@ -24,13 +32,10 @@ export const CommandPalette = ({
   const listRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
 
-  const filtered = query.trim()
-    ? allItems.filter(
-        (item) =>
-          item.label.toLowerCase().includes(query.toLowerCase()) ||
-          item.section.toLowerCase().includes(query.toLowerCase()),
-      )
-    : allItems;
+  const filtered = useMemo(
+    () => (query.trim() ? fuse.search(query).map((r) => r.item) : allItems),
+    [query],
+  );
 
   // Group results by section
   const grouped = filtered.reduce<Record<string, typeof allItems>>(

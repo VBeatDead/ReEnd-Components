@@ -57,6 +57,23 @@ export const OverlayUtilitySection = () => {
             description: "Hook with ⌘K shortcut binding and focus management.",
           },
         ]}
+        keyboard={[
+          { key: "⌘K / Ctrl+K", description: "Open command palette" },
+          { key: "Escape", description: "Close palette" },
+          { key: "Arrow ↑/↓", description: "Navigate through results" },
+          { key: "Enter", description: "Select the highlighted result" },
+          {
+            key: "Tab",
+            description: "Cycle focus within the dialog (focus trap)",
+          },
+        ]}
+        install={{
+          importPath:
+            'import { CommandPalette } from "@/components/docs/CommandPalette";',
+          usage:
+            "<CommandPalette\n  open={isOpen}\n  onOpenChange={setIsOpen}\n  onNavigate={(id) => scrollTo(id)}\n/>",
+          dependencies: ["fuse.js"],
+        }}
       >
         <div className="max-w-[500px] mx-auto bg-surface-2 border border-border shadow-[0_24px_64px_rgba(0,0,0,0.6)]">
           <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
