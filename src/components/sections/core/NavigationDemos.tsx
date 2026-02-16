@@ -59,6 +59,7 @@ const NavigationDemos = () => {
       <ComponentPreview
         id="nav-header"
         title="11. Navigation — Header"
+        showViewport
         description="Fixed, blur backdrop, 64px height. Nav link: Orbitron, uppercase, diamond indicator on active."
         code={`.header {
   position: fixed; top: 0; left: 0; right: 0;
@@ -141,6 +142,7 @@ const NavigationDemos = () => {
       <ComponentPreview
         id="nav-sidebar"
         title="12. Navigation — Sidebar (Docs)"
+        showViewport
         description="Width 280px, fixed. Section label: Orbitron 11px uppercase. Active: yellow left border."
         props={[
           {

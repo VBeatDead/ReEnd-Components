@@ -57,6 +57,7 @@ interface ComponentPreviewProps {
   api?: ApiDefinition[];
   keyboard?: KeyboardInteraction[];
   install?: InstallGuide;
+  showViewport?: boolean;
   playground?: {
     controls: PlaygroundControl[];
     render: (values: Record<string, any>) => ReactNode;
@@ -84,6 +85,7 @@ export const ComponentPreview = ({
   api,
   keyboard,
   install,
+  showViewport = false,
   playground,
 }: ComponentPreviewProps) => {
   const [activeTab, setActiveTab] = useState<TabKey>(
@@ -91,11 +93,14 @@ export const ComponentPreview = ({
   );
 
   // Playground state
-  const defaultValues =
-    playground?.controls.reduce(
-      (acc, c) => ({ ...acc, [c.name]: c.default }),
-      {} as Record<string, any>,
-    ) ?? {};
+  const defaultValues = useMemo(
+    () =>
+      playground?.controls.reduce(
+        (acc, c) => ({ ...acc, [c.name]: c.default }),
+        {} as Record<string, any>,
+      ) ?? {},
+    [playground?.controls],
+  );
   const [pgValues, setPgValues] = useState<Record<string, any>>(defaultValues);
   const [codeCopied, setCodeCopied] = useState(false);
   const [viewport, setViewport] = useState<"full" | "tablet" | "mobile">(
@@ -274,44 +279,51 @@ export const ComponentPreview = ({
             aria-labelledby={`${id}-tab-preview`}
             className="bg-surface-1"
           >
-            {/* Responsive viewport toggle */}
-            <div className="flex items-center justify-end gap-1 px-4 py-2 border-b border-border bg-surface-0">
-              <span className="font-ui text-[9px] tracking-[0.1em] uppercase text-muted-foreground mr-2">
-                Viewport
-              </span>
-              {(
-                [
-                  { key: "full", icon: Monitor, label: "Desktop" },
-                  { key: "tablet", icon: Tablet, label: "Tablet (768px)" },
-                  { key: "mobile", icon: Smartphone, label: "Mobile (375px)" },
-                ] as const
-              ).map(({ key, icon: Icon, label }) => (
-                <button
-                  key={key}
-                  onClick={() => setViewport(key)}
-                  aria-label={label}
-                  title={label}
-                  className={`p-1.5 rounded transition-colors ${
-                    viewport === key
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
-                >
-                  <Icon className="w-3.5 h-3.5" />
-                </button>
-              ))}
-            </div>
+            {/* Responsive viewport toggle — only when showViewport is true */}
+            {showViewport && (
+              <div className="flex items-center justify-end gap-1 px-4 py-2 border-b border-border bg-surface-0">
+                <span className="font-ui text-[9px] tracking-[0.1em] uppercase text-muted-foreground mr-2">
+                  Viewport
+                </span>
+                {(
+                  [
+                    { key: "full", icon: Monitor, label: "Desktop" },
+                    { key: "tablet", icon: Tablet, label: "Tablet (768px)" },
+                    {
+                      key: "mobile",
+                      icon: Smartphone,
+                      label: "Mobile (375px)",
+                    },
+                  ] as const
+                ).map(({ key, icon: Icon, label }) => (
+                  <button
+                    key={key}
+                    onClick={() => setViewport(key)}
+                    aria-label={label}
+                    title={label}
+                    className={`p-1.5 rounded transition-colors ${
+                      viewport === key
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                  </button>
+                ))}
+              </div>
+            )}
             {/* Responsive container */}
             <div className="flex justify-center p-6 sm:p-10">
               <div
-                className="w-full transition-all duration-300"
+                className="w-full transition-all duration-300 overflow-hidden"
                 style={{
-                  maxWidth:
-                    viewport === "mobile"
+                  maxWidth: showViewport
+                    ? viewport === "mobile"
                       ? "375px"
                       : viewport === "tablet"
                         ? "768px"
-                        : "100%",
+                        : "100%"
+                    : "100%",
                 }}
               >
                 {children}

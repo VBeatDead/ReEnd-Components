@@ -8,6 +8,7 @@ const SignatureCoreSection = () => (
     <ComponentPreview
       id="tactical-panel"
       title="Tactical Panel"
+      showViewport
       description="Panel HUD dengan scanline overlay, corner accent 4-sisi, dan status indicator. Cocok untuk dashboard atau monitoring UI."
       code={`<TacticalPanel title="UNIT STATUS" status="online">
   <div>Panel content with scanline overlay
@@ -118,6 +119,7 @@ const SignatureCoreSection = () => (
     <ComponentPreview
       id="holo-card"
       title="Holo Card"
+      showViewport
       description="Card dengan efek holographic scan line — garis cahaya bergerak vertikal saat hover. Clip-corner + shimmer gradient."
       code={`<HoloCard title="DEFENSE GRID" subtitle="Automated perimeter scan" icon={Shield} value="A+" />`}
       props={[

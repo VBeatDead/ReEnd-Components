@@ -120,6 +120,7 @@ export const OverlayUtilitySection = () => {
       <ComponentPreview
         id="cookie-consent"
         title="49. Cookie Consent"
+        showViewport
         description="Fixed bottom, surface-2 bg, border-top. Accept All primary + Customize ghost."
         props={[
           {
@@ -142,7 +143,7 @@ export const OverlayUtilitySection = () => {
           },
         ]}
       >
-        <div className="bg-surface-2 border-t border-border px-6 py-4 flex items-center justify-between gap-4 -m-8 mt-0">
+        <div className="bg-surface-2 border-t border-border px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 -m-8 mt-0">
           <p className="text-sm text-muted-foreground">
             We use cookies to enhance your experience. By continuing, you agree
             to our cookie policy.

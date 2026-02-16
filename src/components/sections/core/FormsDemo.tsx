@@ -11,6 +11,7 @@ const FormsDemo = () => {
     <ComponentPreview
       id="forms-input"
       title="10. Forms & Input"
+      showViewport
       description="Label: Orbitron 12px uppercase. Focus: yellow border + glow ring. Error: red border."
       code={`/* Input States */
 Default: border rgba(255,255,255,0.12)

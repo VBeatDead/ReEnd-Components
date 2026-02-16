@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -15,7 +20,7 @@ export default {
         display: ["Orbitron", "monospace"],
         ui: ["Orbitron", "monospace"],
         mono: ["JetBrains Mono", "Courier New", "monospace"],
-        body: ["Inter", "Source Han Sans", "Noto Sans SC", "sans-serif"],
+        body: ["Inter", "Noto Sans SC", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -285,7 +285,7 @@ input:focus-visible {
           },
         ]}
       >
-        <div className="flex gap-6 items-start">
+        <div className="flex flex-wrap gap-6 items-start">
           <div className="border-2 border-dashed border-ef-gray px-6 py-4 text-sm text-muted-foreground cursor-grab active:cursor-grabbing active:opacity-50 active:border-primary transition-all">
             ⠿ Drag me
           </div>

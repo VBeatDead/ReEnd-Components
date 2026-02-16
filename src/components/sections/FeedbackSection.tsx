@@ -20,6 +20,7 @@ export const FeedbackSection = () => {
       <ComponentPreview
         id="toast-notification"
         title="25. Notification & Toast"
+        showViewport
         description="Left border 3px semantic color. Auto-dismiss progress bar. Position: top-right."
         props={[
           {
@@ -158,6 +159,7 @@ export const FeedbackSection = () => {
       <ComponentPreview
         id="modal-dialog"
         title="26. Modal & Dialog"
+        showViewport
         description="Backdrop: blur(4px). Container: surface-3. Title: Orbitron 16px uppercase. Close: ✕."
         props={[
           {
@@ -359,7 +361,7 @@ export const FeedbackSection = () => {
           },
         ]}
       >
-        <div className="flex gap-8 items-start">
+        <div className="flex flex-wrap gap-8 items-start">
           <div className="space-y-2">
             <p className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground">
               TOOLTIP
@@ -488,6 +490,7 @@ export const FeedbackSection = () => {
       <ComponentPreview
         id="empty-state"
         title="29. Empty State"
+        showViewport
         description="Icon 48px, title Orbitron 18px uppercase. CTA button. Context-specific variants."
         props={[
           {
@@ -562,6 +565,7 @@ export const FeedbackSection = () => {
       <ComponentPreview
         id="error-pages"
         title="30. Error Pages"
+        showViewport
         description="Error code: Orbitron 120px glitch animation. Color-coded by error type."
         props={[
           {

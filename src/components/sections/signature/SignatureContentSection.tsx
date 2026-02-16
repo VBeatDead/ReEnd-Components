@@ -111,6 +111,7 @@ const SignatureContentSection = () => (
     <ComponentPreview
       id="hud-overlay"
       title="HUD Overlay"
+      showViewport
       description="Heads-Up Display overlay dengan corner brackets, crosshair, status bar, dan koordinat real-time."
       code={`<HUDOverlay><YourContent /></HUDOverlay>`}
       props={[
