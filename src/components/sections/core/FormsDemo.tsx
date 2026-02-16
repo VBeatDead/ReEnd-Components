@@ -278,7 +278,7 @@ Success: border #2ED573`}
         </div>
 
         {/* Checkbox & Radio */}
-        <div className="flex gap-8">
+        <div className="flex flex-wrap gap-8">
           <div className="space-y-3">
             <p className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
               CHECKBOX

@@ -259,7 +259,7 @@ export const DataDisplaySection = () => {
           },
         ]}
       >
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { label: "TOTAL OPS", value: "12,847", trend: "+12.5%", up: true },
             { label: "ACTIVE UNITS", value: "342", trend: "+3.2%", up: true },
@@ -268,12 +268,12 @@ export const DataDisplaySection = () => {
           ].map((s) => (
             <div
               key={s.label}
-              className="corner-brackets bg-surface-1 border border-border p-5"
+              className="corner-brackets bg-surface-1 border border-border p-5 overflow-hidden"
             >
               <p className="font-display text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground mb-2">
                 {s.label}
               </p>
-              <p className="font-display text-3xl lg:text-4xl font-bold text-primary">
+              <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-primary truncate">
                 {s.value}
               </p>
               <p
@@ -716,7 +716,7 @@ export const DataDisplaySection = () => {
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-6">
               STEPPER
             </h4>
-            <div className="flex items-center gap-0 max-w-lg">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-0 max-w-lg">
               {["Step 1", "Step 2", "Step 3", "Step 4"].map((step, i) => (
                 <div
                   key={step}

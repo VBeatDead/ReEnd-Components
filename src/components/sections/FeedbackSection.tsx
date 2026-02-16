@@ -432,7 +432,7 @@ export const FeedbackSection = () => {
         ]}
       >
         <div className="space-y-8">
-          <div className="flex items-center gap-8">
+          <div className="flex flex-wrap items-center gap-8">
             {/* Diamond spinner */}
             <div className="flex flex-col items-center gap-2">
               <div className="w-6 h-6 border-2 border-primary border-t-transparent clip-corner-sm animate-diamond-spin" />
@@ -588,7 +588,7 @@ export const FeedbackSection = () => {
           },
         ]}
       >
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
             {
               code: "404",

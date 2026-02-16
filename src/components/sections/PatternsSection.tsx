@@ -240,7 +240,7 @@ export const PatternsSection = () => {
                 { pair: "#999 on #0A0A0A", ratio: "7.0:1", grade: "AA Large" },
               ].map((c) => (
                 <div key={c.pair} className="flex items-center gap-4 text-xs">
-                  <span className="font-mono text-muted-foreground w-44">
+                  <span className="font-mono text-muted-foreground w-full sm:w-44 shrink-0">
                     {c.pair}
                   </span>
                   <span className="font-display text-primary font-bold">
@@ -259,7 +259,7 @@ export const PatternsSection = () => {
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3">
               ARIA REQUIREMENTS
             </h4>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               {[
                 ["Modal", 'role="dialog", aria-modal'],
                 ["Tab", 'role="tablist", aria-selected'],

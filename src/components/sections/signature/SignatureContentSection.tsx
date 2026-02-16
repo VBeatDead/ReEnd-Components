@@ -29,7 +29,7 @@ const SignatureContentSection = () => (
       ]}
     >
       <div className="flex flex-col items-center gap-8 py-8">
-        <GlitchText className="font-display text-4xl font-bold tracking-[0.08em] uppercase text-foreground">
+        <GlitchText className="font-display text-2xl sm:text-4xl font-bold tracking-[0.08em] uppercase text-foreground">
           ENDFIELD
         </GlitchText>
         <GlitchText className="font-display text-lg font-bold tracking-[0.12em] uppercase text-primary">

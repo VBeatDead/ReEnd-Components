@@ -198,7 +198,7 @@ const DocsPage = () => {
       >
         Skip to main content
       </a>
-      <DocsHeader onNavigate={handleNavigate} />
+      <DocsHeader onNavigate={handleNavigate} activeId={activeId} />
       <DocsSidebar activeId={activeId} onNavigate={handleNavigate} />
 
       <main id="main-content" className="lg:ml-[280px] pt-[64px]">

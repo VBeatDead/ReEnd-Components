@@ -13,14 +13,34 @@ export const FoundationsSection = () => {
           {/* Identity */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { title: "DARK-FIRST", desc: "Seluruh interface berbasis gelap, nuansa terminal operasi" },
-              { title: "GEOMETRIC PRECISION", desc: "Garis tajam, sudut tegas (clip-path bukan border-radius)" },
-              { title: "UTILITARIAN ELEGANCE", desc: "Fungsional dan teknis namun elegan — dashboard kontrol misi" },
-              { title: "GLITCH & TECH", desc: "Efek glitch, scanline, noise sebagai dekorasi sci-fi" },
-              { title: "HIGH CONTRAST", desc: "Teks terang di permukaan gelap, aksen warna untuk hierarki" },
+              {
+                title: "DARK-FIRST",
+                desc: "Seluruh interface berbasis gelap, nuansa terminal operasi",
+              },
+              {
+                title: "GEOMETRIC PRECISION",
+                desc: "Garis tajam, sudut tegas (clip-path bukan border-radius)",
+              },
+              {
+                title: "UTILITARIAN ELEGANCE",
+                desc: "Fungsional dan teknis namun elegan — dashboard kontrol misi",
+              },
+              {
+                title: "GLITCH & TECH",
+                desc: "Efek glitch, scanline, noise sebagai dekorasi sci-fi",
+              },
+              {
+                title: "HIGH CONTRAST",
+                desc: "Teks terang di permukaan gelap, aksen warna untuk hierarki",
+              },
             ].map((item) => (
-              <div key={item.title} className="corner-brackets border border-border bg-surface-1 p-5">
-                <h4 className="font-display text-xs font-bold tracking-[0.1em] text-primary mb-2">{item.title}</h4>
+              <div
+                key={item.title}
+                className="corner-brackets border border-border bg-surface-1 p-5"
+              >
+                <h4 className="font-display text-xs font-bold tracking-[0.1em] text-primary mb-2">
+                  {item.title}
+                </h4>
                 <p className="text-sm text-muted-foreground">{item.desc}</p>
               </div>
             ))}
@@ -28,26 +48,49 @@ export const FoundationsSection = () => {
 
           {/* Principles */}
           <div>
-            <h3 className="font-display text-sm font-bold tracking-[0.08em] uppercase text-foreground mb-4">◆ PRINSIP DESAIN</h3>
+            <h3 className="font-display text-sm font-bold tracking-[0.08em] uppercase text-foreground mb-4">
+              ◆ PRINSIP DESAIN
+            </h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border">
-                    <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left">PRINSIP</th>
-                    <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left">DESKRIPSI</th>
+                    <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left">
+                      PRINSIP
+                    </th>
+                    <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left">
+                      DESKRIPSI
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   {[
                     ["Function-First", "Setiap elemen visual memiliki tujuan"],
-                    ["Data Density", "Informasi padat namun terorganisir — HUD style"],
-                    ["Progressive Disclosure", "Informasi bertahap, tidak sekaligus"],
-                    ["Immersive Consistency", "Semua elemen terasa di 'dunia' yang sama"],
-                    ["Tactile Feedback", "Setiap interaksi ada respons visual jelas"],
+                    [
+                      "Data Density",
+                      "Informasi padat namun terorganisir — HUD style",
+                    ],
+                    [
+                      "Progressive Disclosure",
+                      "Informasi bertahap, tidak sekaligus",
+                    ],
+                    [
+                      "Immersive Consistency",
+                      "Semua elemen terasa di 'dunia' yang sama",
+                    ],
+                    [
+                      "Tactile Feedback",
+                      "Setiap interaksi ada respons visual jelas",
+                    ],
                     ["Respectful Restraint", "Animasi dan efek secukupnya"],
                   ].map(([p, d]) => (
-                    <tr key={p} className="border-b border-border hover:bg-primary/[0.03] transition-colors">
-                      <td className="py-3 px-4 font-semibold text-foreground">{p}</td>
+                    <tr
+                      key={p}
+                      className="border-b border-border hover:bg-primary/[0.03] transition-colors"
+                    >
+                      <td className="py-3 px-4 font-semibold text-foreground">
+                        {p}
+                      </td>
                       <td className="py-3 px-4 text-muted-foreground">{d}</td>
                     </tr>
                   ))}
@@ -59,7 +102,9 @@ export const FoundationsSection = () => {
           {/* Do's and Don'ts */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="border border-ef-green/30 bg-ef-green/[0.05] p-5">
-              <h4 className="font-display text-xs font-bold tracking-[0.1em] text-ef-green mb-3">✅ DO</h4>
+              <h4 className="font-display text-xs font-bold tracking-[0.1em] text-ef-green mb-3">
+                ✅ DO
+              </h4>
               <ul className="space-y-2 text-sm text-card-foreground">
                 {[
                   "clip-path untuk sudut terpotong",
@@ -78,7 +123,9 @@ export const FoundationsSection = () => {
               </ul>
             </div>
             <div className="border border-ef-red/30 bg-ef-red/[0.05] p-5">
-              <h4 className="font-display text-xs font-bold tracking-[0.1em] text-ef-red mb-3">❌ DON'T</h4>
+              <h4 className="font-display text-xs font-bold tracking-[0.1em] text-ef-red mb-3">
+                ❌ DON'T
+              </h4>
               <ul className="space-y-2 text-sm text-card-foreground">
                 {[
                   "border-radius besar (rounded)",
@@ -119,26 +166,89 @@ export const FoundationsSection = () => {
         <div className="space-y-8">
           {/* Grayscale */}
           <div>
-            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">PRIMARY PALETTE (GRAYSCALE)</h3>
+            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
+              PRIMARY PALETTE (GRAYSCALE)
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
               {[
-                { name: "Black", hex: "#0A0A0A", cls: "bg-[#0A0A0A]", light: true },
-                { name: "Soft", hex: "#111111", cls: "bg-[#111111]", light: true },
-                { name: "Muted", hex: "#1A1A1A", cls: "bg-[#1A1A1A]", light: true },
-                { name: "Dark Gray", hex: "#222222", cls: "bg-[#222222]", light: true },
-                { name: "Gray", hex: "#333333", cls: "bg-[#333333]", light: true },
-                { name: "Gray Mid", hex: "#666666", cls: "bg-[#666666]", light: true },
-                { name: "Gray Light", hex: "#999999", cls: "bg-[#999999]", light: false },
-                { name: "White Muted", hex: "#CCCCCC", cls: "bg-[#CCCCCC]", light: false },
-                { name: "White Soft", hex: "#E0E0E0", cls: "bg-[#E0E0E0]", light: false },
-                { name: "White", hex: "#F0F0F0", cls: "bg-[#F0F0F0]", light: false },
-                { name: "Pure White", hex: "#FFFFFF", cls: "bg-[#FFFFFF]", light: false },
+                {
+                  name: "Black",
+                  hex: "#0A0A0A",
+                  cls: "bg-[#0A0A0A]",
+                  light: true,
+                },
+                {
+                  name: "Soft",
+                  hex: "#111111",
+                  cls: "bg-[#111111]",
+                  light: true,
+                },
+                {
+                  name: "Muted",
+                  hex: "#1A1A1A",
+                  cls: "bg-[#1A1A1A]",
+                  light: true,
+                },
+                {
+                  name: "Dark Gray",
+                  hex: "#222222",
+                  cls: "bg-[#222222]",
+                  light: true,
+                },
+                {
+                  name: "Gray",
+                  hex: "#333333",
+                  cls: "bg-[#333333]",
+                  light: true,
+                },
+                {
+                  name: "Gray Mid",
+                  hex: "#666666",
+                  cls: "bg-[#666666]",
+                  light: true,
+                },
+                {
+                  name: "Gray Light",
+                  hex: "#999999",
+                  cls: "bg-[#999999]",
+                  light: false,
+                },
+                {
+                  name: "White Muted",
+                  hex: "#CCCCCC",
+                  cls: "bg-[#CCCCCC]",
+                  light: false,
+                },
+                {
+                  name: "White Soft",
+                  hex: "#E0E0E0",
+                  cls: "bg-[#E0E0E0]",
+                  light: false,
+                },
+                {
+                  name: "White",
+                  hex: "#F0F0F0",
+                  cls: "bg-[#F0F0F0]",
+                  light: false,
+                },
+                {
+                  name: "Pure White",
+                  hex: "#FFFFFF",
+                  cls: "bg-[#FFFFFF]",
+                  light: false,
+                },
               ].map((c) => (
                 <div key={c.name} className="space-y-2">
                   <div className={`h-16 border border-border ${c.cls}`} />
                   <div>
-                    <p className={`text-xs font-semibold ${c.light ? "text-foreground" : "text-foreground"}`}>{c.name}</p>
-                    <p className="font-mono text-[10px] text-muted-foreground">{c.hex}</p>
+                    <p
+                      className={`text-xs font-semibold ${c.light ? "text-foreground" : "text-foreground"}`}
+                    >
+                      {c.name}
+                    </p>
+                    <p className="font-mono text-[10px] text-muted-foreground">
+                      {c.hex}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -147,7 +257,9 @@ export const FoundationsSection = () => {
 
           {/* Accents */}
           <div>
-            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">ACCENT COLORS</h3>
+            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
+              ACCENT COLORS
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
               {[
                 { name: "Yellow", hex: "#FFD429", cls: "bg-primary" },
@@ -161,8 +273,12 @@ export const FoundationsSection = () => {
                 <div key={c.name} className="space-y-2">
                   <div className={`h-16 clip-corner-sm ${c.cls}`} />
                   <div>
-                    <p className="text-xs font-semibold text-foreground">{c.name}</p>
-                    <p className="font-mono text-[10px] text-muted-foreground">{c.hex}</p>
+                    <p className="text-xs font-semibold text-foreground">
+                      {c.name}
+                    </p>
+                    <p className="font-mono text-[10px] text-muted-foreground">
+                      {c.hex}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -171,23 +287,51 @@ export const FoundationsSection = () => {
 
           {/* Gradients */}
           <div>
-            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">GRADIENTS</h3>
+            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
+              GRADIENTS
+            </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <div className="h-16 bg-gradient-to-r from-primary to-ef-orange clip-corner" />
-                <p className="text-xs text-muted-foreground">Primary Gradient: #FFD429 → #FFA502</p>
+                <p className="text-xs text-muted-foreground">
+                  Primary Gradient: #FFD429 → #FFA502
+                </p>
               </div>
               <div className="space-y-2">
-                <div className="h-16" style={{ background: "linear-gradient(90deg, transparent 0%, #FFD429 50%, transparent 100%)" }} />
-                <p className="text-xs text-muted-foreground">Line Gradient: transparent → #FFD429 → transparent</p>
+                <div
+                  className="h-16"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent 0%, #FFD429 50%, transparent 100%)",
+                  }}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Line Gradient: transparent → #FFD429 → transparent
+                </p>
               </div>
               <div className="space-y-2">
-                <div className="h-16" style={{ background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px)" }} />
-                <p className="text-xs text-muted-foreground">Scanline Gradient</p>
+                <div
+                  className="h-16"
+                  style={{
+                    background:
+                      "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px)",
+                  }}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Scanline Gradient
+                </p>
               </div>
               <div className="space-y-2">
-                <div className="h-16" style={{ background: "linear-gradient(145deg, rgba(255,212,41,0.05) 0%, transparent 60%), #141414" }} />
-                <p className="text-xs text-muted-foreground">Card Hover Gradient</p>
+                <div
+                  className="h-16"
+                  style={{
+                    background:
+                      "linear-gradient(145deg, rgba(255,212,41,0.05) 0%, transparent 60%), #141414",
+                  }}
+                />
+                <p className="text-xs text-muted-foreground">
+                  Card Hover Gradient
+                </p>
               </div>
             </div>
           </div>
@@ -208,50 +352,93 @@ export const FoundationsSection = () => {
         <div className="space-y-6">
           <div className="space-y-4">
             <div className="border-b border-border pb-3">
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">DISPLAY XL — 72px / 700 / UPPERCASE</p>
-              <p className="font-display text-5xl lg:text-7xl font-bold tracking-[0.05em] uppercase text-foreground">ENDFIELD</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                DISPLAY XL — 72px / 700 / UPPERCASE
+              </p>
+              <p className="font-display text-3xl sm:text-5xl lg:text-7xl font-bold tracking-[0.05em] uppercase text-foreground">
+                ENDFIELD
+              </p>
             </div>
             <div className="border-b border-border pb-3">
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">H1 — 40px / 700 / UPPERCASE</p>
-              <p className="font-display text-4xl font-bold tracking-[0.03em] uppercase text-foreground">HEADING ONE</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                H1 — 40px / 700 / UPPERCASE
+              </p>
+              <p className="font-display text-4xl font-bold tracking-[0.03em] uppercase text-foreground">
+                HEADING ONE
+              </p>
             </div>
             <div className="border-b border-border pb-3">
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">H2 — 32px / 600 / UPPERCASE</p>
-              <p className="font-display text-3xl font-semibold tracking-[0.02em] uppercase text-foreground">HEADING TWO</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                H2 — 32px / 600 / UPPERCASE
+              </p>
+              <p className="font-display text-3xl font-semibold tracking-[0.02em] uppercase text-foreground">
+                HEADING TWO
+              </p>
             </div>
             <div className="border-b border-border pb-3">
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">H3 — 24px / 600 / UPPERCASE</p>
-              <p className="font-display text-2xl font-semibold tracking-[0.02em] uppercase text-foreground">HEADING THREE</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                H3 — 24px / 600 / UPPERCASE
+              </p>
+              <p className="font-display text-2xl font-semibold tracking-[0.02em] uppercase text-foreground">
+                HEADING THREE
+              </p>
             </div>
             <div className="border-b border-border pb-3">
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">H4 — 20px / 600 / UPPERCASE</p>
-              <p className="font-display text-xl font-semibold tracking-[0.01em] uppercase text-foreground">HEADING FOUR</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                H4 — 20px / 600 / UPPERCASE
+              </p>
+              <p className="font-display text-xl font-semibold tracking-[0.01em] uppercase text-foreground">
+                HEADING FOUR
+              </p>
             </div>
             <div className="border-b border-border pb-3">
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">BODY — 16px / 400</p>
-              <p className="text-base text-card-foreground leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                BODY — 16px / 400
+              </p>
+              <p className="text-base text-card-foreground leading-relaxed">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              </p>
             </div>
             <div className="border-b border-border pb-3">
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">BODY SM — 14px / 400</p>
-              <p className="text-sm text-muted-foreground">Secondary body text for descriptions and metadata.</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                BODY SM — 14px / 400
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Secondary body text for descriptions and metadata.
+              </p>
             </div>
             <div className="border-b border-border pb-3">
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">OVERLINE — 11px / 700 / 0.15em / UPPERCASE</p>
-              <p className="font-ui text-[11px] font-bold tracking-[0.15em] uppercase text-primary">OVERLINE TEXT</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                OVERLINE — 11px / 700 / 0.15em / UPPERCASE
+              </p>
+              <p className="font-ui text-[11px] font-bold tracking-[0.15em] uppercase text-primary">
+                OVERLINE TEXT
+              </p>
             </div>
             <div className="border-b border-border pb-3">
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">CODE — JetBrains Mono 14px</p>
-              <p className="font-mono text-sm text-card-foreground">const endfield = "Talos-II";</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                CODE — JetBrains Mono 14px
+              </p>
+              <p className="font-mono text-sm text-card-foreground">
+                const endfield = "Talos-II";
+              </p>
             </div>
             <div>
-              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">STAT NUMBER — Orbitron 48px / 700</p>
-              <p className="font-display text-5xl font-bold text-primary">12,847</p>
+              <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
+                STAT NUMBER — Orbitron 48px / 700
+              </p>
+              <p className="font-display text-5xl font-bold text-primary">
+                12,847
+              </p>
             </div>
           </div>
 
           {/* Text Colors */}
           <div>
-            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">TEXT COLOR ASSIGNMENT</h3>
+            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
+              TEXT COLOR ASSIGNMENT
+            </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {[
                 { label: "Heading", color: "#F0F0F0", token: "--text-primary" },
@@ -261,14 +448,29 @@ export const FoundationsSection = () => {
                 { label: "Link", color: "#4DA8DA", token: "--text-link" },
                 { label: "Error", color: "#FF4757", token: "--text-error" },
                 { label: "Success", color: "#2ED573", token: "--text-success" },
-                { label: "Placeholder", color: "#666666", token: "--text-placeholder" },
-                { label: "Disabled", color: "#444444", token: "--text-disabled" },
+                {
+                  label: "Placeholder",
+                  color: "#666666",
+                  token: "--text-placeholder",
+                },
+                {
+                  label: "Disabled",
+                  color: "#444444",
+                  token: "--text-disabled",
+                },
               ].map((t) => (
                 <div key={t.label} className="flex items-center gap-2">
-                  <div className="w-3 h-3 border border-border" style={{ backgroundColor: t.color }} />
+                  <div
+                    className="w-3 h-3 border border-border"
+                    style={{ backgroundColor: t.color }}
+                  />
                   <div>
-                    <p className="text-xs" style={{ color: t.color }}>{t.label}</p>
-                    <p className="font-mono text-[9px] text-muted-foreground">{t.token}</p>
+                    <p className="text-xs" style={{ color: t.color }}>
+                      {t.label}
+                    </p>
+                    <p className="font-mono text-[9px] text-muted-foreground">
+                      {t.token}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -300,9 +502,16 @@ export const FoundationsSection = () => {
               { label: "space-16", val: "64px" },
             ].map((s) => (
               <div key={s.label} className="flex items-center gap-4">
-                <span className="font-mono text-xs text-muted-foreground w-20">{s.label}</span>
-                <div className="bg-primary/30 border border-primary/50 h-4" style={{ width: s.val }} />
-                <span className="font-mono text-[10px] text-muted-foreground">{s.val}</span>
+                <span className="font-mono text-xs text-muted-foreground w-20">
+                  {s.label}
+                </span>
+                <div
+                  className="bg-primary/30 border border-primary/50 h-4"
+                  style={{ width: s.val }}
+                />
+                <span className="font-mono text-[10px] text-muted-foreground">
+                  {s.val}
+                </span>
               </div>
             ))}
           </div>
@@ -328,21 +537,31 @@ export const FoundationsSection = () => {
             ].map((s) => (
               <div key={s.name} className="space-y-2">
                 <div className={`h-20 border border-border ${s.bg}`} />
-                <p className="text-xs font-semibold text-foreground">{s.name}</p>
-                <p className="font-mono text-[10px] text-muted-foreground">{s.hex}</p>
+                <p className="text-xs font-semibold text-foreground">
+                  {s.name}
+                </p>
+                <p className="font-mono text-[10px] text-muted-foreground">
+                  {s.hex}
+                </p>
               </div>
             ))}
           </div>
 
           {/* Decorations */}
           <div>
-            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">BACKGROUND DECORATIONS</h3>
+            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
+              BACKGROUND DECORATIONS
+            </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="corner-brackets bg-surface-1 p-6 h-32 flex items-center justify-center">
-                <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">CORNER BRACKETS</span>
+                <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
+                  CORNER BRACKETS
+                </span>
               </div>
               <div className="scanline-overlay bg-surface-1 p-6 h-32 flex items-center justify-center">
-                <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">SCANLINE OVERLAY</span>
+                <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
+                  SCANLINE OVERLAY
+                </span>
               </div>
             </div>
           </div>
@@ -356,7 +575,9 @@ export const FoundationsSection = () => {
         description="Outlined blueprint aesthetic. Stroke 1.5px at 24px, currentColor."
       >
         <div>
-          <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">ICON SIZES</h3>
+          <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
+            ICON SIZES
+          </h3>
           <div className="flex items-end gap-6 flex-wrap">
             {[
               { size: "xs", px: 16, use: "Inline" },
@@ -367,11 +588,23 @@ export const FoundationsSection = () => {
               { size: "2xl", px: 64, use: "Hero" },
             ].map((i) => (
               <div key={i.size} className="flex flex-col items-center gap-2">
-                <div className="border border-border bg-surface-2 flex items-center justify-center" style={{ width: i.px, height: i.px }}>
-                  <span className="text-primary" style={{ fontSize: i.px * 0.5 }}>◆</span>
+                <div
+                  className="border border-border bg-surface-2 flex items-center justify-center"
+                  style={{ width: i.px, height: i.px }}
+                >
+                  <span
+                    className="text-primary"
+                    style={{ fontSize: i.px * 0.5 }}
+                  >
+                    ◆
+                  </span>
                 </div>
-                <span className="font-display text-[10px] font-bold text-muted-foreground uppercase">{i.size}</span>
-                <span className="font-mono text-[9px] text-muted-foreground">{i.px}px</span>
+                <span className="font-display text-[10px] font-bold text-muted-foreground uppercase">
+                  {i.size}
+                </span>
+                <span className="font-mono text-[9px] text-muted-foreground">
+                  {i.px}px
+                </span>
               </div>
             ))}
           </div>
@@ -392,8 +625,12 @@ export const FoundationsSection = () => {
             { ratio: "1:1", label: "Avatar", cls: "aspect-square" },
           ].map((r) => (
             <div key={r.ratio} className="space-y-2">
-              <div className={`${r.cls} bg-surface-2 border border-border flex items-center justify-center`}>
-                <span className="font-display text-sm font-bold text-muted-foreground">{r.ratio}</span>
+              <div
+                className={`${r.cls} bg-surface-2 border border-border flex items-center justify-center`}
+              >
+                <span className="font-display text-sm font-bold text-muted-foreground">
+                  {r.ratio}
+                </span>
               </div>
               <p className="text-xs text-muted-foreground">{r.label}</p>
             </div>

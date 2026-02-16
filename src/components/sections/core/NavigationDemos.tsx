@@ -285,7 +285,7 @@ const NavigationDemos = () => {
         }}
       >
         <div>
-          <div className="flex border-b border-border">
+          <div className="flex flex-wrap border-b border-border">
             {["OVERVIEW", "USAGE", "API", "EXAMPLES"].map((tab, i) => (
               <button
                 key={tab}
@@ -381,7 +381,7 @@ const NavigationDemos = () => {
           },
         ]}
       >
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <button className="font-display text-xs uppercase text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 bg-transparent">
             ◆ PREV
           </button>

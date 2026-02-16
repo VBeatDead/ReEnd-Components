@@ -68,11 +68,11 @@ export const ContentMediaSection = () => {
             <p className="text-lg text-muted-foreground max-w-lg mb-8">
               Comprehensive design system for the frontier of web development.
             </p>
-            <div className="flex gap-4">
-              <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 hover:brightness-110 hover:shadow-[0_0_20px_hsl(47_100%_56%/0.3)] transition-all">
+            <div className="flex flex-wrap gap-4 w-full max-w-md justify-center">
+              <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 sm:px-8 py-3.5 flex-1 min-w-[140px] hover:brightness-110 hover:shadow-[0_0_20px_hsl(47_100%_56%/0.3)] transition-all">
                 GET STARTED
               </button>
-              <button className="clip-corner border border-foreground/25 text-card-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 hover:border-primary hover:text-primary transition-all bg-transparent">
+              <button className="clip-corner border border-foreground/25 text-card-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 sm:px-8 py-3.5 flex-1 min-w-[140px] hover:border-primary hover:text-primary transition-all bg-transparent">
                 VIEW DOCS
               </button>
             </div>

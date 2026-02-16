@@ -38,8 +38,11 @@ const RadarChart = ({
   const dataPath = dataPoints.map((p) => `${p.x},${p.y}`).join(" ");
 
   return (
-    <div ref={ref} className="flex flex-col items-center">
-      <svg width={size} height={size} className="overflow-visible">
+    <div ref={ref} className="flex flex-col items-center w-full">
+      <svg
+        viewBox={`0 0 ${size} ${size}`}
+        className="w-full max-w-[260px] h-auto overflow-visible"
+      >
         {/* Grid */}
         {gridPolygons.map((pts, i) => (
           <polygon

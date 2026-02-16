@@ -228,7 +228,7 @@ input:focus-visible {
         ]}
       >
         <div className="space-y-4">
-          <div className="flex gap-4">
+          <div className="flex flex-wrap gap-4">
             <button className="bg-primary text-primary-foreground clip-corner font-display text-xs font-bold uppercase px-6 py-2.5 tracking-[0.1em] ring-2 ring-primary ring-offset-2 ring-offset-background">
               FOCUS STATE
             </button>
@@ -338,7 +338,7 @@ input:focus-visible {
         ]}
       >
         <div className="space-y-4">
-          <div className="grid grid-cols-3 gap-3 max-w-md">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-md">
             {["Option A", "Option B", "Option C"].map((o, i) => (
               <button
                 key={o}

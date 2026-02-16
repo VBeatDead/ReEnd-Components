@@ -1,12 +1,13 @@
-import { ReactNode, useState, useMemo, useRef, useEffect } from "react";
 import {
-  RotateCcw,
-  Copy,
-  Check,
-  Monitor,
-  Tablet,
-  Smartphone,
-} from "lucide-react";
+  ReactNode,
+  useState,
+  useMemo,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
+import { createPortal } from "react-dom";
+import { RotateCcw, Copy, Check, Monitor, Smartphone } from "lucide-react";
 import { CodeBlock } from "./CodeBlock";
 import PlaygroundControlField from "./PlaygroundControlField";
 import PropsPanel from "./PropsPanel";
@@ -75,6 +76,107 @@ type TabKey =
   | "keyboard"
   | "install";
 
+/**
+ * Renders children inside an iframe so CSS media-queries respond to the
+ * iframe's physical width rather than the browser viewport.
+ */
+const ViewportFrame = ({
+  children,
+  width,
+}: {
+  children: ReactNode;
+  width: number;
+}) => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
+  const [height, setHeight] = useState(200);
+
+  const syncStyles = useCallback((doc: Document) => {
+    doc.head.querySelectorAll("[data-vp-style]").forEach((el) => el.remove());
+    document
+      .querySelectorAll('style, link[rel="stylesheet"]')
+      .forEach((node) => {
+        const clone = node.cloneNode(true) as HTMLElement;
+        clone.setAttribute("data-vp-style", "");
+        doc.head.appendChild(clone);
+      });
+    doc.documentElement.className = document.documentElement.className;
+  }, []);
+
+  useEffect(() => {
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+    let resizeObs: ResizeObserver | undefined;
+    let styleObs: MutationObserver | undefined;
+    let themeObs: MutationObserver | undefined;
+
+    const setup = () => {
+      const doc = iframe.contentDocument;
+      if (!doc?.body) return;
+
+      syncStyles(doc);
+      doc.body.style.margin = "0";
+      doc.body.style.background = "transparent";
+      doc.body.style.overflowX = "hidden";
+      doc.body.style.overflowY = "auto";
+
+      let root = doc.getElementById("vp-root");
+      if (!root) {
+        root = doc.createElement("div");
+        root.id = "vp-root";
+        // Match parent preview panel's mobile padding (p-6 = 1.5rem)
+        // overflow:hidden clips any -m-8 bleed that exceeds the padding
+        root.style.padding = "1.5rem";
+        root.style.overflow = "hidden";
+        doc.body.appendChild(root);
+      }
+      setMountNode(root);
+
+      resizeObs = new ResizeObserver(() => {
+        const h = doc.body.scrollHeight;
+        if (h > 0) setHeight(h);
+      });
+      resizeObs.observe(root);
+
+      styleObs = new MutationObserver(() => syncStyles(doc));
+      styleObs.observe(document.head, { childList: true, subtree: true });
+
+      themeObs = new MutationObserver(() => {
+        doc.documentElement.className = document.documentElement.className;
+      });
+      themeObs.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
+    };
+
+    iframe.addEventListener("load", setup);
+    return () => {
+      iframe.removeEventListener("load", setup);
+      resizeObs?.disconnect();
+      styleObs?.disconnect();
+      themeObs?.disconnect();
+    };
+  }, [syncStyles]);
+
+  return (
+    <>
+      <iframe
+        ref={iframeRef}
+        title="Mobile viewport preview"
+        srcDoc='<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body></body></html>'
+        style={{
+          width: `${width}px`,
+          height: `${height}px`,
+          border: "none",
+          display: "block",
+        }}
+      />
+      {mountNode && createPortal(children, mountNode)}
+    </>
+  );
+};
+
 export const ComponentPreview = ({
   title,
   description,
@@ -103,9 +205,7 @@ export const ComponentPreview = ({
   );
   const [pgValues, setPgValues] = useState<Record<string, any>>(defaultValues);
   const [codeCopied, setCodeCopied] = useState(false);
-  const [viewport, setViewport] = useState<"full" | "tablet" | "mobile">(
-    "full",
-  );
+  const [viewport, setViewport] = useState<"desktop" | "mobile">("desktop");
   const copyTimerRef = useRef<ReturnType<typeof setTimeout>>();
   useEffect(() => () => clearTimeout(copyTimerRef.current), []);
 
@@ -287,8 +387,7 @@ export const ComponentPreview = ({
                 </span>
                 {(
                   [
-                    { key: "full", icon: Monitor, label: "Desktop" },
-                    { key: "tablet", icon: Tablet, label: "Tablet (768px)" },
+                    { key: "desktop", icon: Monitor, label: "Desktop" },
                     {
                       key: "mobile",
                       icon: Smartphone,
@@ -314,20 +413,11 @@ export const ComponentPreview = ({
             )}
             {/* Responsive container */}
             <div className="flex justify-center p-6 sm:p-10">
-              <div
-                className="w-full transition-all duration-300 overflow-hidden"
-                style={{
-                  maxWidth: showViewport
-                    ? viewport === "mobile"
-                      ? "375px"
-                      : viewport === "tablet"
-                        ? "768px"
-                        : "100%"
-                    : "100%",
-                }}
-              >
-                {children}
-              </div>
+              {showViewport && viewport === "mobile" ? (
+                <ViewportFrame width={375}>{children}</ViewportFrame>
+              ) : (
+                <div className="w-full">{children}</div>
+              )}
             </div>
           </div>
         )}

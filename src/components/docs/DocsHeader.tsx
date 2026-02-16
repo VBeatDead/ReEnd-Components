@@ -1,19 +1,44 @@
-import { useState, useEffect, useRef } from "react";
-import { Menu, X, Search, Sun, Moon } from "lucide-react";
+import { useState, useEffect, useRef, useMemo } from "react";
+import { Menu, X, Search, Sun, Moon, ChevronDown } from "lucide-react";
 import { sidebarData } from "./sidebarData";
 import { CommandPalette } from "./CommandPalette";
 import { useTheme } from "./ThemeProvider";
 
 interface DocsHeaderProps {
   onNavigate: (id: string) => void;
+  activeId?: string;
 }
 
-export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
+export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cmdOpen, setCmdOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [isAnimating, setIsAnimating] = useState(false);
   const animTimerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  // Track which sidebar sections are collapsed (by section title)
+  const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
+
+  // Auto-expand section containing activeId
+  const activeSectionTitle = useMemo(() => {
+    if (!activeId) return null;
+    for (const section of sidebarData) {
+      if (section.items.some((item) => item.id === activeId)) {
+        return section.title;
+      }
+    }
+    return null;
+  }, [activeId]);
+
+  useEffect(() => {
+    if (activeSectionTitle) {
+      setCollapsed((prev) => ({ ...prev, [activeSectionTitle]: false }));
+    }
+  }, [activeSectionTitle]);
+
+  const toggleSection = (title: string) => {
+    setCollapsed((prev) => ({ ...prev, [title]: !prev[title] }));
+  };
 
   // Cleanup animation timer on unmount
   useEffect(() => () => clearTimeout(animTimerRef.current), []);
@@ -131,28 +156,65 @@ export const DocsHeader = ({ onNavigate }: DocsHeaderProps) => {
             onClick={() => setMobileOpen(false)}
           />
           <div className="relative w-[280px] h-full bg-surface-0 border-r border-border overflow-y-auto pt-20 px-4">
-            {sidebarData.map((section) => (
-              <div key={section.title} className="mb-4">
-                <span className="font-display text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground px-2 py-2 block">
-                  {section.title}
-                </span>
-                <ul className="mt-1 space-y-0.5">
-                  {section.items.map((item) => (
-                    <li key={item.id}>
-                      <button
-                        onClick={() => {
-                          onNavigate(item.id);
-                          setMobileOpen(false);
-                        }}
-                        className="w-full text-left text-sm py-1.5 px-3 text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {item.label}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {/* Search trigger */}
+            <button
+              onClick={() => {
+                setCmdOpen(true);
+                setMobileOpen(false);
+              }}
+              className="w-full flex items-center gap-2 px-3 py-2 mb-4 bg-surface-1 border border-border text-muted-foreground text-xs hover:border-primary/30 hover:text-foreground transition-colors cursor-pointer"
+              aria-label="Search components"
+            >
+              <Search className="w-3.5 h-3.5" />
+              <span>Search...</span>
+              <kbd className="ml-auto font-mono text-[10px] bg-surface-2 px-1.5 py-0.5 border border-border">
+                ⌘K
+              </kbd>
+            </button>
+
+            {sidebarData.map((section) => {
+              const isCollapsed = collapsed[section.title] ?? false;
+              return (
+                <div key={section.title} className="mb-4">
+                  <button
+                    onClick={() => toggleSection(section.title)}
+                    className="w-full flex items-center justify-between px-2 py-2 group"
+                    aria-expanded={!isCollapsed}
+                  >
+                    <span className="font-display text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
+                      {section.title}
+                    </span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 text-muted-foreground transition-transform duration-200 ${isCollapsed ? "-rotate-90" : ""}`}
+                    />
+                  </button>
+                  {!isCollapsed && (
+                    <ul className="mt-1 space-y-0.5">
+                      {section.items.map((item) => {
+                        const isActive = activeId === item.id;
+                        return (
+                          <li key={item.id}>
+                            <button
+                              onClick={() => {
+                                onNavigate(item.id);
+                                setMobileOpen(false);
+                              }}
+                              className={`w-full text-left text-sm py-1.5 px-3 transition-colors ${
+                                isActive
+                                  ? "text-primary border-l-2 border-primary font-semibold bg-primary/5"
+                                  : "text-muted-foreground hover:text-primary"
+                              }`}
+                            >
+                              {item.label}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       )}
