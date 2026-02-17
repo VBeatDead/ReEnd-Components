@@ -47,7 +47,11 @@ export const ParallaxLayer = ({
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, speed * -100]);
   return (
-    <motion.div ref={ref} style={{ y }} className={className}>
+    <motion.div
+      ref={ref}
+      style={{ y, position: "relative" }}
+      className={className}
+    >
       {children}
     </motion.div>
   );

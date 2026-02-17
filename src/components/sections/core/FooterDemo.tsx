@@ -27,7 +27,7 @@ const FooterDemo = () => (
       },
     ]}
   >
-    <div className="bg-background border-t border-border -m-8 p-8 mt-0">
+    <div className="bg-background border-t border-border -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-6 sm:p-8 mt-0">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-8">
         {[
           {
@@ -56,7 +56,7 @@ const FooterDemo = () => (
           </div>
         ))}
       </div>
-      <div className="border-t border-border pt-4 flex items-center justify-between">
+      <div className="border-t border-border pt-4 flex flex-wrap items-center justify-between gap-2">
         <p className="text-xs text-ef-gray-mid">
           © 2026 Endfield Industries. All rights reserved.
         </p>

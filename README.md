@@ -155,12 +155,12 @@ All colors use CSS custom properties with HSL values for alpha channel support:
 
 ```css
 :root {
-  --ef-yellow: 47 100% 56%;     /* Primary accent */
-  --ef-blue: 200 60% 56%;       /* Info / links */
-  --ef-red: 355 100% 64%;       /* Destructive */
-  --ef-green: 147 71% 51%;      /* Success */
-  --background: 0 0% 4%;        /* Page background */
-  --foreground: 0 0% 94.1%;     /* Text color */
+  --ef-yellow: 47 100% 56%; /* Primary accent */
+  --ef-blue: 200 60% 56%; /* Info / links */
+  --ef-red: 355 100% 64%; /* Destructive */
+  --ef-green: 147 71% 51%; /* Success */
+  --background: 0 0% 4%; /* Page background */
+  --foreground: 0 0% 94.1%; /* Text color */
 }
 ```
 
@@ -181,3 +181,7 @@ Please see our [Security Policy](SECURITY.md) for reporting vulnerabilities.
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+## ⚠️ Disclaimer
+
+This is a community-driven, fan-made project inspired by the sci-fi industrial aesthetics of _Arknights: Endfield_. It is **not** affiliated with, endorsed by, or connected to Hypergryph, Gryphline, or any of their subsidiaries. All game-related trademarks and copyrights belong to their respective owners. The MIT license applies to the source code only.

@@ -77,7 +77,11 @@ const RadarChart = ({
           stroke={`hsl(var(${colorVar}))`}
           strokeWidth={2}
           initial={false}
-          animate={{ points: isInView ? dataPath : undefined }}
+          animate={{
+            points: isInView
+              ? dataPath
+              : data.map(() => `${cx},${cy}`).join(" "),
+          }}
           transition={{ duration: 0.8, ease: [0.25, 0.8, 0.25, 1] }}
           style={{ filter: `drop-shadow(0 0 8px hsl(var(${colorVar}) / 0.3))` }}
         />
@@ -85,14 +89,14 @@ const RadarChart = ({
         {dataPoints.map((p, i) => (
           <motion.circle
             key={i}
-            cx={isInView ? p.x : cx}
-            cy={isInView ? p.y : cy}
+            cx={cx}
+            cy={cy}
             r={4}
             fill={`hsl(var(${colorVar}))`}
             stroke="hsl(var(--background))"
             strokeWidth={2}
             initial={false}
-            animate={isInView ? { cx: p.x, cy: p.y } : {}}
+            animate={{ cx: isInView ? p.x : cx, cy: isInView ? p.y : cy }}
             transition={{ duration: 0.8, delay: i * 0.05 }}
             style={{
               filter: `drop-shadow(0 0 4px hsl(var(${colorVar}) / 0.5))`,

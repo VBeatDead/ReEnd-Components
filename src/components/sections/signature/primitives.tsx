@@ -145,8 +145,12 @@ export const HoloCard = ({
     >
       {/* Scan line */}
       <div
-        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent pointer-events-none transition-all duration-[2000ms]"
-        style={{ top: hovering ? "100%" : "-10%", opacity: hovering ? 1 : 0 }}
+        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent pointer-events-none transition-all"
+        style={{
+          top: hovering ? "100%" : "-10%",
+          opacity: hovering ? 1 : 0,
+          transitionDuration: "2000ms",
+        }}
       />
       {/* Holographic shimmer */}
       <div

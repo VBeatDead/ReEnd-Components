@@ -80,6 +80,9 @@
     /* ═══ LAYOUT ═══ */
     --header-height: 64px;
     --sidebar-width: 280px;
+
+    /* ═══ EASING ═══ */
+    --ease-default: cubic-bezier(0.25, 0.8, 0.25, 1);
   }
 
   /* ═══ LIGHT MODE ═══ */
@@ -149,10 +152,10 @@
   .theme-transitioning *::before,
   .theme-transitioning *::after {
     transition:
-      background-color 0.6s cubic-bezier(0.25, 0.8, 0.25, 1),
-      color 0.4s cubic-bezier(0.25, 0.8, 0.25, 1),
-      border-color 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
-      box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1),
+      background-color 0.6s var(--ease-default),
+      color 0.4s var(--ease-default),
+      border-color 0.5s var(--ease-default),
+      box-shadow 0.5s var(--ease-default),
       fill 0.4s ease,
       stroke 0.4s ease,
       opacity 0.4s ease !important;
@@ -450,7 +453,7 @@
     animation: fadeIn 0.3s ease forwards;
   }
   .animate-fade-in-up {
-    animation: fadeInUp 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+    animation: fadeInUp 0.4s var(--ease-default, ease) forwards;
   }
   .animate-glitch {
     animation: glitch 3s infinite;

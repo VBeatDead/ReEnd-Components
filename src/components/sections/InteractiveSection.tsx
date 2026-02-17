@@ -348,7 +348,7 @@ input:focus-visible {
               </button>
             ))}
           </div>
-          <div className="inline-flex items-center gap-4 bg-surface-3 border border-primary/40 px-6 py-3 shadow-[0_16px_48px_rgba(0,0,0,0.5)]">
+          <div className="inline-flex flex-wrap items-center gap-4 bg-surface-3 border border-primary/40 px-6 py-3 shadow-[0_16px_48px_rgba(0,0,0,0.5)] max-w-full">
             <span className="text-sm text-card-foreground">3 selected</span>
             <button className="clip-corner bg-ef-red text-foreground font-display text-[10px] font-bold uppercase px-4 py-1.5 tracking-[0.1em]">
               DELETE

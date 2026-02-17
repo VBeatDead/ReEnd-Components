@@ -9,10 +9,10 @@ export const AnimationSection = () => {
         title="54. Animation System"
         description="Timing functions, durations, and key animation catalog."
         code={`/* Timing Functions */
---ease-default: cubic-bezier(0.25, 0.8, 0.25, 1);
---ease-bounce:  cubic-bezier(0.68, -0.55, 0.27, 1.55);
---ease-sharp:   cubic-bezier(0.4, 0, 0.2, 1);
---ease-smooth:  cubic-bezier(0.4, 0, 0, 1);
+--ease-default: cubic-bezier(0.25, 0.8, 0.25, 1)${""};
+--ease-bounce:  cubic-bezier(0.68, -0.55, 0.27, 1.55)${""};
+--ease-sharp:   cubic-bezier(0.4, 0, 0.2, 1)${""};
+--ease-smooth:  cubic-bezier(0.4, 0, 0, 1)${""};
 
 /* Durations */
 --duration-instant: 100ms;  --duration-fast: 150ms;

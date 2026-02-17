@@ -167,6 +167,7 @@ const ViewportFrame = ({
         srcDoc='<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body></body></html>'
         style={{
           width: `${width}px`,
+          maxWidth: "100%",
           height: `${height}px`,
           border: "none",
           display: "block",
@@ -264,7 +265,7 @@ export const ComponentPreview = ({
       </div>
 
       {/* Component showcase — tabs + content as one unit (Shadcn/MUI pattern) */}
-      <div className="border border-border">
+      <div className="border border-border overflow-hidden">
         {/* Tab bar */}
         <div
           role="tablist"
@@ -473,7 +474,7 @@ export const ComponentPreview = ({
             role="tabpanel"
             id={`${id}-panel-keyboard`}
             aria-labelledby={`${id}-tab-keyboard`}
-            className="bg-surface-1 p-5 sm:p-6"
+            className="bg-surface-1 p-5 sm:p-6 overflow-x-auto"
           >
             <table className="w-full text-sm">
               <thead>

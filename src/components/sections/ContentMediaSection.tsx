@@ -50,7 +50,7 @@ export const ContentMediaSection = () => {
           },
         ]}
       >
-        <div className="relative scanline-overlay bg-surface-0 -m-8 p-0">
+        <div className="relative scanline-overlay bg-surface-0 -mx-6 sm:-mx-8 -my-6 sm:-my-8 p-0">
           <div
             className="min-h-[50vh] flex flex-col items-center justify-center text-center px-8 py-16"
             style={{

@@ -666,7 +666,7 @@ export const FeedbackSection = () => {
               Anda sedang offline. Beberapa fitur mungkin tidak tersedia.
             </span>
           </div>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6">
             <span className="flex items-center gap-2 font-ui text-[10px] uppercase">
               <span className="w-2 h-2 rounded-full bg-ef-green" /> ONLINE
             </span>

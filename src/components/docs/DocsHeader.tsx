@@ -83,11 +83,11 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
               role="link"
               title="Back to Home"
             >
-              <div className="w-8 h-8 bg-primary clip-corner-sm flex items-center justify-center">
-                <span className="font-display text-xs font-bold text-primary-foreground">
-                  EF
-                </span>
-              </div>
+              <img
+                src="/icon.png"
+                alt="ReEnd"
+                className="w-8 h-8 object-contain"
+              />
               <div>
                 <h1 className="font-display text-sm font-bold tracking-[0.08em] uppercase text-foreground">
                   ENDFIELD
@@ -166,23 +166,7 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
             className="absolute inset-0 bg-background/95"
             onClick={() => setMobileOpen(false)}
           />
-          <div className="relative w-[280px] h-full bg-surface-0 border-r border-border overflow-y-auto pt-20 px-4">
-            {/* Search trigger */}
-            <button
-              onClick={() => {
-                setCmdOpen(true);
-                setMobileOpen(false);
-              }}
-              className="w-full flex items-center gap-2 px-3 py-2 mb-2 bg-surface-1 border border-border text-muted-foreground text-xs hover:border-primary/30 hover:text-foreground transition-colors cursor-pointer"
-              aria-label="Search components"
-            >
-              <Search className="w-3.5 h-3.5" />
-              <span>Search...</span>
-              <kbd className="ml-auto font-mono text-[10px] bg-surface-2 px-1.5 py-0.5 border border-border">
-                ⌘K
-              </kbd>
-            </button>
-
+          <div className="relative w-[min(280px,calc(100vw-48px))] h-full bg-surface-0 border-r border-border overflow-y-auto pt-20 px-4">
             {/* Inline filter */}
             <div className="relative mb-4">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />

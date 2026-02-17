@@ -21,7 +21,7 @@ const TabsPlayground = ({
   return (
     <div>
       <div
-        className={`flex ${variant === "pill" ? "gap-2 p-1 bg-surface-2 border border-border" : "border-b border-border"}`}
+        className={`flex flex-wrap ${variant === "pill" ? "gap-2 p-1 bg-surface-2 border border-border" : "border-b border-border"}`}
       >
         {tabLabels.map((tab, i) => (
           <button
@@ -104,7 +104,7 @@ const NavigationDemos = () => {
           },
         ]}
       >
-        <div className="bg-background/85 backdrop-blur-xl border border-border p-0 -m-8 mb-0">
+        <div className="bg-background/85 backdrop-blur-xl border border-border p-0 -mx-6 sm:-mx-8 -mt-6 sm:-mt-8 mb-0">
           <div className="h-16 flex items-center justify-between px-6">
             <div className="flex items-center gap-3">
               <div className="w-7 h-7 bg-primary clip-corner-sm flex items-center justify-center">

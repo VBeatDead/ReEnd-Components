@@ -215,20 +215,22 @@ export const MiniRadar = ({
           fill={`hsl(var(${color}) / 0.15)`}
           stroke={`hsl(var(${color}))`}
           strokeWidth={2}
-          animate={isInView ? { points: path } : {}}
+          animate={{
+            points: isInView ? path : data.map(() => `${cx},${cy}`).join(" "),
+          }}
           transition={{ duration: 0.8, ease: [0.25, 0.8, 0.25, 1] }}
           style={{ filter: `drop-shadow(0 0 6px hsl(var(${color}) / 0.3))` }}
         />
         {dp.map((p, i) => (
           <motion.circle
             key={i}
-            cx={isInView ? p.x : cx}
-            cy={isInView ? p.y : cy}
+            cx={cx}
+            cy={cy}
             r={3}
             fill={`hsl(var(${color}))`}
             stroke="hsl(var(--background))"
             strokeWidth={2}
-            animate={isInView ? { cx: p.x, cy: p.y } : {}}
+            animate={{ cx: isInView ? p.x : cx, cy: isInView ? p.y : cy }}
             transition={{ duration: 0.8, delay: i * 0.05 }}
             style={{ filter: `drop-shadow(0 0 4px hsl(var(${color}) / 0.5))` }}
           />
@@ -343,8 +345,12 @@ export const HoloCard = ({
       onMouseLeave={() => setHovering(false)}
     >
       <div
-        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent pointer-events-none transition-all duration-[2000ms]"
-        style={{ top: hovering ? "100%" : "-10%", opacity: hovering ? 1 : 0 }}
+        className="absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/60 to-transparent pointer-events-none transition-all"
+        style={{
+          top: hovering ? "100%" : "-10%",
+          opacity: hovering ? 1 : 0,
+          transitionDuration: "2000ms",
+        }}
       />
       <div className="relative z-10">
         <Icon className="w-4 h-4 text-primary mb-3 group-hover:drop-shadow-[0_0_8px_hsl(var(--primary)/0.5)] transition-all" />
