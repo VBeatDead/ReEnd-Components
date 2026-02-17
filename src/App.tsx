@@ -2,10 +2,16 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "@/components/docs/ThemeProvider";
+import { ThemeProvider, useTheme } from "@/components/docs/ThemeProvider";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "@/components/docs/ErrorFallback";
 import { lazy, Suspense } from "react";
+
+// Docs-specific Sonner wrapper that reads theme from context
+const DocsSonner = () => {
+  const { theme } = useTheme();
+  return <Sonner theme={(theme ?? "dark") as "light" | "dark" | "system"} />;
+};
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const DocsLayout = lazy(() => import("./layouts/DocsLayout"));
@@ -15,6 +21,11 @@ const NotFound = lazy(() => import("./pages/NotFound"));
 const DocsNotFound = lazy(() => import("./pages/DocsNotFound"));
 
 // Lazy-loaded section pages
+const InstallationSection = lazy(() =>
+  import("@/components/sections/InstallationSection").then((m) => ({
+    default: m.InstallationSection,
+  })),
+);
 const FoundationsSection = lazy(() =>
   import("@/components/sections/FoundationsSection").then((m) => ({
     default: m.FoundationsSection,
@@ -81,7 +92,7 @@ const App = () => (
   <ThemeProvider>
     <TooltipProvider>
       <Toaster />
-      <Sonner />
+      <DocsSonner />
       <BrowserRouter
         future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
       >
@@ -91,6 +102,7 @@ const App = () => (
               <Route path="/" element={<HomePage />} />
               <Route path="/docs" element={<DocsLayout />}>
                 <Route index element={<DocsOverview />} />
+                <Route path="installation" element={<InstallationSection />} />
                 <Route path="foundations" element={<FoundationsSection />} />
                 <Route
                   path="core-components"

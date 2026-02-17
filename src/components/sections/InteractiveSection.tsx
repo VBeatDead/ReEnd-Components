@@ -236,6 +236,7 @@ input:focus-visible {
               className="bg-surface-1 border border-primary text-card-foreground px-4 py-2.5 text-sm shadow-[0_0_0_3px_hsl(47_100%_56%/0.15)] outline-none"
               value="Focus state"
               readOnly
+              aria-label="Focus state demo"
             />
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">

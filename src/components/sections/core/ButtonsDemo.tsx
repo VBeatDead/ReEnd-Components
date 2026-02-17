@@ -170,7 +170,10 @@ const ButtonsDemo = () => (
           <button className="clip-corner bg-ef-red text-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 hover:brightness-110 transition-all">
             DANGER
           </button>
-          <button className="bg-foreground/5 border border-border text-muted-foreground p-3 hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all">
+          <button
+            className="bg-foreground/5 border border-border text-muted-foreground p-3 hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all"
+            aria-label="Add item"
+          >
             <Plus className="w-5 h-5" />
           </button>
           <button className="text-primary font-display text-xs font-bold tracking-[0.1em] uppercase flex items-center gap-2 hover:gap-3 transition-all group bg-transparent">

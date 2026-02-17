@@ -1,187 +1,149 @@
 # ReEnd-Components
 
+[![npm version](https://img.shields.io/npm/v/reend-components)](https://www.npmjs.com/package/reend-components)
+[![npm downloads](https://img.shields.io/npm/dm/reend-components)](https://www.npmjs.com/package/reend-components)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/VBeatDead/ReEnd-Components)](https://github.com/VBeatDead/ReEnd-Components/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/VBeatDead/ReEnd-Components)](https://github.com/VBeatDead/ReEnd-Components/issues)
 
-**Arknights: Endfield Design System** — A modern React component library and interactive documentation showcase inspired by the UI aesthetics of Arknights: Endfield. Built with Vite, TypeScript, Tailwind CSS, and Radix UI primitives.
+**Arknights: Endfield Design System** — A React component library inspired by the UI aesthetics of Arknights: Endfield. Built with TypeScript, Tailwind CSS, and Radix UI primitives.
 
-## ✨ Features
+[Documentation](https://reend-components.pages.dev) · [GitHub](https://github.com/VBeatDead/ReEnd-Components) · [npm](https://www.npmjs.com/package/reend-components)
 
-- **Interactive Documentation** — Live component previews with editable code examples
-- **70+ UI Demos** — Comprehensive showcase across 11 documentation categories
-- **Dark/Light Theme** — Built-in theme provider with smooth transitions
-- **Command Palette** — Quick navigation with keyboard shortcuts (⌘K / Ctrl+K)
-- **Responsive Design** — Mobile-first approach with fully adaptive layouts
-- **Performance Optimized** — Lazy loading, code splitting, and optimized rendering
-- **Full TypeScript** — Complete type safety and excellent IntelliSense support
-- **Smooth Animations** — Beautiful page transitions powered by Framer Motion
-- **Design Tokens** — CSS custom properties system with Endfield color palette
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- Git
-
-### Installation
+## Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/VBeatDead/ReEnd-Components.git
-cd ReEnd-Components
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
+npm install reend-components
+# or
+pnpm add reend-components
+# or
+yarn add reend-components
+# or
+bun add reend-components
 ```
 
-The app will be available at `http://localhost:8080`
+### Peer Dependencies
 
-## 📦 Available Scripts
+| Package     | Version           |
+| ----------- | ----------------- |
+| react       | ≥18.0.0           |
+| react-dom   | ≥18.0.0           |
+| tailwindcss | ≥3.4.0 (optional) |
 
-```bash
-# Development
-npm run dev          # Start development server
+## Quick Start
 
-# Build
-npm run build        # Production build
-npm run build:dev    # Development build
+### 1. Configure Tailwind (recommended)
 
-# Testing
-npm run test         # Run tests once
-npm run test:watch   # Run tests in watch mode
+```ts
+// tailwind.config.ts
+import reendPreset from "reend-components/tailwind";
 
-# Code Quality
-npm run lint         # Run ESLint
-npm run preview      # Preview production build
+export default {
+  presets: [reendPreset],
+  content: [
+    "./src/**/*.{ts,tsx}",
+    "./node_modules/reend-components/dist/**/*.{js,mjs}",
+  ],
+};
 ```
 
-## 🏗️ Project Structure
-
-```
-src/
-├── components/
-│   ├── docs/                      # Documentation UI components
-│   │   ├── CodeBlock.tsx          # Syntax-highlighted code blocks
-│   │   ├── CommandPalette.tsx     # Command palette navigation
-│   │   ├── ComponentPreview.tsx   # Live component previewer
-│   │   ├── DocsHeader.tsx         # Documentation header
-│   │   ├── DocsSidebar.tsx        # Navigation sidebar
-│   │   ├── HighlightText.tsx      # Text highlighting utility
-│   │   ├── ThemeProvider.tsx      # Theme management
-│   │   └── sidebarData.ts        # Sidebar navigation data
-│   ├── sections/                  # Component documentation sections
-│   │   ├── AnimationSection.tsx
-│   │   ├── CoreComponentsSection.tsx
-│   │   ├── ContentMediaSection.tsx
-│   │   ├── ContentStrategySection.tsx
-│   │   ├── DataDisplaySection.tsx
-│   │   ├── FeedbackSection.tsx
-│   │   ├── FoundationsSection.tsx
-│   │   ├── InteractiveSection.tsx
-│   │   ├── OverlayUtilitySection.tsx
-│   │   └── PatternsSection.tsx
-│   ├── ui/                        # Base UI components
-│   │   ├── sonner.tsx
-│   │   ├── toast.tsx
-│   │   ├── toaster.tsx
-│   │   └── tooltip.tsx
-│   └── NavLink.tsx
-├── hooks/
-│   └── use-toast.ts               # Toast notification hook
-├── lib/
-│   └── utils.ts                   # Utility functions (cn helper)
-├── layouts/
-│   └── DocsLayout.tsx             # Shared docs layout with Outlet
-├── pages/
-│   ├── HomePage.tsx               # Landing page with animations
-│   ├── DocsOverview.tsx           # Docs landing page (section grid)
-│   ├── ChangelogPage.tsx          # Changelog page
-│   └── NotFound.tsx               # 404 page
-├── test/
-│   ├── example.test.ts
-│   └── setup.ts
-├── App.tsx                        # Root component with routing
-├── main.tsx                       # Entry point
-├── index.css                      # Global styles & CSS variables
-└── vite-env.d.ts
-```
-
-## 🛠️ Tech Stack
-
-- **Framework:** [React 18](https://react.dev/) + [TypeScript](https://www.typescriptlang.org/)
-- **Build Tool:** [Vite](https://vitejs.dev/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/) + [tailwindcss-animate](https://github.com/jamiebuilds/tailwindcss-animate)
-- **Animations:** [Framer Motion](https://www.framer.com/motion/)
-- **Routing:** [React Router v6](https://reactrouter.com/)
-- **Icons:** [Lucide React](https://lucide.dev/)
-- **Notifications:** [Sonner](https://sonner.emilkowal.dev/) + [Radix Toast](https://www.radix-ui.com/)
-- **Theme:** [next-themes](https://github.com/pacocoursey/next-themes)
-- **Utilities:** [clsx](https://github.com/lukeed/clsx) + [CVA](https://cva.style/) + [tailwind-merge](https://github.com/dcastil/tailwind-merge)
-- **Testing:** [Vitest](https://vitest.dev/)
-- **Linting:** [ESLint](https://eslint.org/)
-
-## 📚 Documentation Sections
-
-The documentation is organized into 11 comprehensive categories:
-
-1. **Foundations** — Design system basics: colors, typography, spacing, shadows
-2. **Core Components** — Essential UI building blocks: buttons, inputs, labels
-3. **Data Display** — Information presentation: tables, cards, badges, avatars
-4. **Feedback** — User feedback: alerts, toasts, progress indicators
-5. **Interactive** — Interactive content: accordions, tabs, collapsibles, toggles
-6. **Content & Media** — Media handling: carousels, aspect ratios
-7. **Overlay & Utility** — Floating components: dialogs, sheets, tooltips, popovers
-8. **Animation** — Motion and transitions: animated components and effects
-9. **Content Strategy** — Navigation: breadcrumbs, pagination, navigation menus
-10. **Patterns** — Complex UI patterns and pre-built compositions
-11. **Signature** — Unique branding and custom components
-
-## 🎨 Customization
-
-Modify the theme and design system in:
-
-- `src/index.css` — Global styles and CSS variables (494 lines of design tokens)
-- `tailwind.config.ts` — Tailwind configuration and custom colors
-- `src/components/docs/ThemeProvider.tsx` — Theme switching logic
-
-### Design Tokens
-
-All colors use CSS custom properties with HSL values for alpha channel support:
+### 2. Import CSS Variables
 
 ```css
-:root {
-  --ef-yellow: 47 100% 56%; /* Primary accent */
-  --ef-blue: 200 60% 56%; /* Info / links */
-  --ef-red: 355 100% 64%; /* Destructive */
-  --ef-green: 147 71% 51%; /* Success */
-  --background: 0 0% 4%; /* Page background */
-  --foreground: 0 0% 94.1%; /* Text color */
+/* In your global CSS file */
+@import "reend-components/variables.css";
+```
+
+### 3. Use Components
+
+```tsx
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "reend-components";
+
+function App() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>Hover me</TooltipTrigger>
+        <TooltipContent>Styled with Endfield design tokens</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  );
 }
 ```
 
-Override any variable for custom theming:
+### Without Tailwind
 
-```css
-background: hsl(var(--primary) / 0.5); /* 50% opacity */
+If you're not using Tailwind CSS, import the pre-built stylesheet:
+
+```tsx
+import "reend-components/styles.css";
+import { Tooltip } from "reend-components";
 ```
 
-## 🤝 Contributing
+## Components
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before getting started.
+| Component       | Description                             |
+| --------------- | --------------------------------------- |
+| `Tooltip`       | Popup info on hover/focus (Radix-based) |
+| `Toast`         | Notification toasts (Radix-based)       |
+| `Toaster`       | Toast container/renderer                |
+| `SonnerToaster` | Alternative toast (Sonner lib)          |
+| `cn()`          | Utility for merging Tailwind classes    |
+| `useToast()`    | Toast notification hook                 |
 
-## 🔒 Security
+## Theming
 
-Please see our [Security Policy](SECURITY.md) for reporting vulnerabilities.
+ReEnd uses CSS custom properties for all colors. Override any variable:
 
-## 📝 License
+```css
+:root {
+  --ef-yellow: 47 100% 56%;
+  --primary: 47 100% 56%;
+  --background: 0 0% 4%;
+  --foreground: 0 0% 94.1%;
+}
+```
 
-This project is open source and available under the [MIT License](LICENSE).
+Dark/light mode: toggle `.light` class on document root.
 
-## ⚠️ Disclaimer
+> All color variables use **HSL values without `hsl()` wrapper** for alpha support:
+> `background: hsl(var(--primary) / 0.5);`
+
+See [CSS Variable Reference](https://reend-components.pages.dev/docs/foundations) for the complete token list.
+
+## Design Tokens
+
+| Token          | Purpose        | Dark           | Light         |
+| -------------- | -------------- | -------------- | ------------- |
+| `--ef-yellow`  | Primary accent | `48 100% 58%`  | `42 90% 42%`  |
+| `--ef-blue`    | Info / links   | `201 66% 58%`  | —             |
+| `--ef-red`     | Destructive    | `355 100% 64%` | `355 80% 50%` |
+| `--ef-green`   | Success        | `145 67% 51%`  | —             |
+| `--background` | Page bg        | `0 0% 4%`      | `0 0% 97%`    |
+| `--foreground` | Text color     | `0 0% 94.1%`   | `0 0% 8%`     |
+| `--primary`    | Brand color    | `48 100% 58%`  | `42 90% 42%`  |
+
+[Full token reference →](https://reend-components.pages.dev/docs/foundations)
+
+## Development
+
+```bash
+git clone https://github.com/VBeatDead/ReEnd-Components.git
+cd ReEnd-Components
+npm install
+npm run dev        # docs dev server at :8080
+npm run build      # build docs SPA
+npm run build:lib  # build library for npm
+npm run test       # run tests
+```
+
+## License
+
+MIT © [VBeatDead](https://github.com/VBeatDead)
+
+## Disclaimer
 
 This is a community-driven, fan-made project inspired by the sci-fi industrial aesthetics of _Arknights: Endfield_. It is **not** affiliated with, endorsed by, or connected to Hypergryph, Gryphline, or any of their subsidiaries. All game-related trademarks and copyrights belong to their respective owners. The MIT license applies to the source code only.

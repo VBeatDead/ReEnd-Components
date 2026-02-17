@@ -86,7 +86,10 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
             >
               <img
                 src="/icon.png"
-                alt="ReEnd"
+                alt="ReEnd — Endfield Design System"
+                width={32}
+                height={32}
+                loading="eager"
                 className="w-8 h-8 object-contain"
               />
               <div>

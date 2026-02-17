@@ -225,9 +225,12 @@ Success: border #2ED573`}
             type="text"
             value="ab"
             readOnly
+            aria-label="Username"
+            aria-invalid="true"
+            aria-describedby="username-error"
             className="w-full bg-surface-1 border border-ef-red text-card-foreground px-4 py-3 text-sm shadow-[0_0_0_3px_rgba(255,71,87,0.1)] outline-none"
           />
-          <p className="text-xs text-ef-red">
+          <p id="username-error" className="text-xs text-ef-red">
             ✕ Username must be at least 3 characters.
           </p>
         </div>
@@ -241,6 +244,7 @@ Success: border #2ED573`}
             type="text"
             value="Endministrator"
             readOnly
+            aria-label="Callsign"
             className="w-full bg-surface-1 border border-ef-green text-card-foreground px-4 py-3 text-sm outline-none"
           />
           <p className="text-xs text-ef-green">✓ Callsign is available.</p>
@@ -267,7 +271,10 @@ Success: border #2ED573`}
             CATEGORY
           </label>
           <div className="relative">
-            <select className="w-full bg-surface-1 border border-border text-card-foreground px-4 py-3 text-sm appearance-none outline-none focus:border-primary transition-all">
+            <select
+              aria-label="Category"
+              className="w-full bg-surface-1 border border-border text-card-foreground px-4 py-3 text-sm appearance-none outline-none focus:border-primary transition-all"
+            >
               <option>Select category...</option>
               <option>Operations</option>
               <option>Engineering</option>
@@ -328,6 +335,9 @@ Success: border #2ED573`}
           </p>
           <button
             onClick={() => setToggled(!toggled)}
+            role="switch"
+            aria-checked={toggled}
+            aria-label="Toggle switch"
             className={`relative w-11 h-6 rounded-none transition-colors ${toggled ? "bg-primary" : "bg-ef-gray"}`}
           >
             <div

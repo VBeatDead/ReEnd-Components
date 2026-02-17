@@ -2,9 +2,9 @@ const ChangelogPage = () => {
   return (
     <>
       <div id="changelog" className="mb-8 scroll-mt-20">
-        <h2 className="font-display text-xs font-bold tracking-[0.15em] uppercase text-primary mb-1">
+        <h1 className="font-display text-xs font-bold tracking-[0.15em] uppercase text-primary mb-1">
           ◆ CHANGELOG
-        </h2>
+        </h1>
         <div className="h-px bg-border mb-8" />
       </div>
 

@@ -131,7 +131,10 @@ const NavigationDemos = () => {
                 </button>
               ))}
             </div>
-            <button className="sm:hidden text-muted-foreground">
+            <button
+              className="sm:hidden text-muted-foreground"
+              aria-label="Open menu"
+            >
               <Menu className="w-5 h-5" />
             </button>
           </div>

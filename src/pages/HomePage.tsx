@@ -28,6 +28,14 @@ const HomePage = () => {
     // WITHOUT creating a new scroll container (unlike overflow-x-hidden which
     // implicitly sets overflow-y:auto per CSS spec, potentially breaking position:sticky).
     <div className="min-h-screen bg-background text-foreground overflow-x-clip">
+      {/* Skip navigation for keyboard users */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:font-ui focus:text-xs focus:tracking-widest focus:uppercase focus:clip-corner-sm"
+      >
+        Skip to main content
+      </a>
+
       {/* Scroll progress bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] bg-primary z-50 origin-left"
@@ -38,11 +46,13 @@ const HomePage = () => {
       <ChapterIndicator chapters={5} labels={CHAPTER_LABELS} />
 
       {/* ═══ CHAPTERS ═══ */}
-      <ChapterAwakening />
-      <ChapterSystemOnline />
-      <ChapterArsenal />
-      <ChapterModules />
-      <ChapterDeploy />
+      <main id="main-content">
+        <ChapterAwakening />
+        <ChapterSystemOnline />
+        <ChapterArsenal />
+        <ChapterModules />
+        <ChapterDeploy />
+      </main>
 
       {/* ═══ FOOTER ═══ */}
       <footer className="relative border-t border-border py-12">

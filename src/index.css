@@ -213,9 +213,10 @@
   input:focus-visible,
   textarea:focus-visible,
   select:focus-visible {
-    outline: none;
+    outline: 2px solid hsl(var(--ef-yellow));
+    outline-offset: -1px;
     border-color: hsl(48 100% 58%);
-    box-shadow: 0 0 0 3px hsl(48 100% 58% / 0.15);
+    box-shadow: 0 0 0 3px hsl(48 100% 58% / 0.25);
   }
 
   :root {

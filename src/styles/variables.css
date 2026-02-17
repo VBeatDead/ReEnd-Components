@@ -1,0 +1,140 @@
+/**
+ * ReEnd-Components — Endfield Design System
+ * CSS Custom Properties (Design Tokens)
+ *
+ * Usage:
+ *   @import "reend-components/variables.css";
+ *
+ * Dark mode: default (no class needed)
+ * Light mode: add class="light" to <html> or <body>
+ */
+
+:root {
+  /* ═══ ENDFIELD COLORS (HSL) ═══ */
+  --ef-black: 0 0% 4%;
+  --ef-black-soft: 0 0% 6.7%;
+  --ef-black-muted: 0 0% 10%;
+  --ef-dark-gray: 0 0% 13.3%;
+  --ef-gray: 0 0% 20%;
+  --ef-gray-mid: 0 0% 40%;
+  --ef-gray-light: 0 0% 60%;
+  --ef-white-muted: 0 0% 80%;
+  --ef-white-soft: 0 0% 87.8%;
+  --ef-white: 0 0% 94.1%;
+  --ef-pure-white: 0 0% 100%;
+
+  /* Accents */
+  --ef-yellow: 48 100% 58%;
+  --ef-yellow-dark: 48 85% 39%;
+  --ef-yellow-glow: 48 100% 58% / 0.25;
+  --ef-blue: 201 66% 58%;
+  --ef-blue-light: 196 64% 69%;
+  --ef-blue-dark: 202 56% 38%;
+  --ef-cyan: 186 100% 50%;
+  --ef-red: 355 100% 64%;
+  --ef-green: 145 67% 51%;
+  --ef-orange: 39 100% 50%;
+  --ef-purple: 270 77% 64%;
+
+  /* ═══ SEMANTIC TOKENS ═══ */
+  --background: 0 0% 4%;
+  --foreground: 0 0% 94.1%;
+
+  --card: 0 0% 7.8%;
+  --card-foreground: 0 0% 87.8%;
+
+  --popover: 0 0% 10%;
+  --popover-foreground: 0 0% 87.8%;
+
+  --primary: 48 100% 58%;
+  --primary-foreground: 0 0% 4%;
+
+  --secondary: 0 0% 10%;
+  --secondary-foreground: 0 0% 87.8%;
+
+  --muted: 0 0% 13.3%;
+  --muted-foreground: 0 0% 60%;
+
+  --accent: 0 0% 10%;
+  --accent-foreground: 48 100% 58%;
+
+  --destructive: 355 100% 64%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 0 0% 100% / 0.06;
+  --input: 0 0% 100% / 0.1;
+  --ring: 48 100% 58%;
+
+  --radius: 0px;
+
+  /* ═══ SURFACES ═══ */
+  --surface-canvas: 0 0% 4%;
+  --surface-0: 0 0% 5.9%;
+  --surface-1: 0 0% 7.8%;
+  --surface-2: 0 0% 10%;
+  --surface-3: 0 0% 13.3%;
+  --surface-hover: 0 0% 11.8%;
+  --surface-active: 0 0% 14.5%;
+}
+
+/* ═══ LIGHT MODE ═══ */
+.light {
+  --ef-black: 0 0% 96%;
+  --ef-black-soft: 0 0% 93%;
+  --ef-black-muted: 0 0% 90%;
+  --ef-dark-gray: 0 0% 87%;
+  --ef-gray: 0 0% 80%;
+  --ef-gray-mid: 0 0% 50%;
+  --ef-gray-light: 0 0% 35%;
+  --ef-white-muted: 0 0% 25%;
+  --ef-white-soft: 0 0% 15%;
+  --ef-white: 0 0% 8%;
+  --ef-pure-white: 0 0% 0%;
+
+  --ef-yellow: 42 90% 42%;
+  --ef-yellow-dark: 42 85% 30%;
+
+  --background: 0 0% 97%;
+  --foreground: 0 0% 8%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 15%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 15%;
+
+  --primary: 42 90% 42%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 0 0% 93%;
+  --secondary-foreground: 0 0% 15%;
+
+  --muted: 0 0% 93%;
+  --muted-foreground: 0 0% 42%;
+
+  --accent: 0 0% 93%;
+  --accent-foreground: 42 90% 42%;
+
+  --destructive: 355 80% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  --border: 0 0% 0% / 0.1;
+  --input: 0 0% 0% / 0.12;
+  --ring: 42 90% 42%;
+
+  --surface-canvas: 0 0% 97%;
+  --surface-0: 0 0% 95%;
+  --surface-1: 0 0% 100%;
+  --surface-2: 0 0% 97%;
+  --surface-3: 0 0% 93%;
+  --surface-hover: 0 0% 92%;
+  --surface-active: 0 0% 88%;
+}
+
+/* ═══ BASE STYLES ═══ */
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

@@ -7,6 +7,22 @@ export interface SidebarSection {
 
 export const sidebarData: SidebarSection[] = [
   {
+    title: "INSTALLATION",
+    slug: "installation",
+    description:
+      "Getting started, installation guide, configuration, and API reference.",
+    items: [
+      { id: "getting-started", label: "Getting Started" },
+      { id: "install-package", label: "Install Package" },
+      { id: "tailwind-setup", label: "Tailwind Setup" },
+      { id: "import-styles", label: "Import Styles" },
+      { id: "use-components", label: "Use Components" },
+      { id: "api-reference", label: "API Reference" },
+      { id: "theming-guide", label: "Theming & Customization" },
+      { id: "full-example", label: "Full Project Example" },
+    ],
+  },
+  {
     title: "FOUNDATIONS",
     slug: "foundations",
     description:

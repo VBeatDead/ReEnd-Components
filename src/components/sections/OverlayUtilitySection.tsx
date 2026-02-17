@@ -182,7 +182,10 @@ export const OverlayUtilitySection = () => {
         ]}
       >
         <div className="flex items-center gap-4">
-          <button className="bg-surface-2 border border-border p-3 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all">
+          <button
+            className="bg-surface-2 border border-border p-3 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+            aria-label="Scroll to top"
+          >
             <ArrowUp className="w-5 h-5" />
           </button>
           <span className="text-xs text-muted-foreground">
