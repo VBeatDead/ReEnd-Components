@@ -1,8 +1,29 @@
 {
-  "name": "vite_react_shadcn_ts",
-  "private": true,
-  "version": "0.0.0",
+  "name": "reend-components",
+  "version": "0.1.0",
+  "description": "Arknights: Endfield Design System — React component library with Tailwind CSS",
   "type": "module",
+  "license": "MIT",
+  "author": "VBeatDead (https://github.com/VBeatDead)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VBeatDead/ReEnd-Components.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VBeatDead/ReEnd-Components/issues"
+  },
+  "homepage": "https://github.com/VBeatDead/ReEnd-Components#readme",
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "tailwindcss",
+    "design-system",
+    "arknights",
+    "endfield",
+    "typescript",
+    "radix-ui"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",

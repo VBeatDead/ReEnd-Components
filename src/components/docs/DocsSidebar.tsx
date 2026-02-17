@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
 import { sidebarData } from "./sidebarData";
 import { Search, X } from "lucide-react";
 import { HighlightText } from "./HighlightText";
@@ -14,12 +14,40 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const sidebarRef = useRef<HTMLElement>(null);
 
   // Derive active slug from current path
   const activeSlug = useMemo(() => {
     const match = location.pathname.match(/^\/docs\/(.+?)(?:\/|$)/);
     return match?.[1] ?? null;
   }, [location.pathname]);
+
+  // Auto-scroll sidebar to keep active item visible
+  useEffect(() => {
+    if (!activeId || !sidebarRef.current) return;
+
+    // Small delay to ensure DOM is updated after potential section expand
+    const timer = setTimeout(() => {
+      const activeEl = sidebarRef.current?.querySelector(
+        `[data-sidebar-id="${activeId}"]`,
+      );
+      if (activeEl) {
+        const sidebar = sidebarRef.current!;
+        const elRect = activeEl.getBoundingClientRect();
+        const sidebarRect = sidebar.getBoundingClientRect();
+
+        // Only scroll if the active item is outside the visible area of the sidebar
+        const isAbove = elRect.top < sidebarRect.top + 60; // 60px buffer for search
+        const isBelow = elRect.bottom > sidebarRect.bottom - 20;
+
+        if (isAbove || isBelow) {
+          activeEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        }
+      }
+    }, 50);
+
+    return () => clearTimeout(timer);
+  }, [activeId]);
 
   const toggle = (title: string) => {
     setCollapsed((prev) => ({ ...prev, [title]: !prev[title] }));
@@ -40,6 +68,7 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
 
   return (
     <aside
+      ref={sidebarRef}
       className="fixed top-[64px] left-0 bottom-0 w-[280px] bg-surface-0 border-r border-border overflow-y-auto py-4 px-4 hidden lg:block z-10"
       aria-label="Documentation sidebar"
     >
@@ -101,6 +130,7 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
                     <li key={item.id} role="treeitem">
                       <button
                         onClick={() => onNavigate(item.id)}
+                        data-sidebar-id={item.id}
                         className={`w-full text-left text-sm py-1.5 px-3 transition-all border-l-2 flex items-center gap-1.5 ${
                           activeId === item.id
                             ? "text-primary border-primary font-semibold"

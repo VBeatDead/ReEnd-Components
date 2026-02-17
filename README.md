@@ -1,16 +1,22 @@
 # ReEnd-Components
 
-A modern React component library showcase built with Vite, TypeScript, and Tailwind CSS. Features interactive documentation, live code examples, and a cinematic landing page with smooth animations.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/VBeatDead/ReEnd-Components)](https://github.com/VBeatDead/ReEnd-Components/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/VBeatDead/ReEnd-Components)](https://github.com/VBeatDead/ReEnd-Components/issues)
+
+**Arknights: Endfield Design System** — A modern React component library and interactive documentation showcase inspired by the UI aesthetics of Arknights: Endfield. Built with Vite, TypeScript, Tailwind CSS, and Radix UI primitives.
 
 ## ✨ Features
 
 - **Interactive Documentation** — Live component previews with editable code examples
-- **Dark/Light Theme** — Built-in theme provider with seamless switching
+- **70+ UI Demos** — Comprehensive showcase across 11 documentation categories
+- **Dark/Light Theme** — Built-in theme provider with smooth transitions
 - **Command Palette** — Quick navigation with keyboard shortcuts (⌘K / Ctrl+K)
 - **Responsive Design** — Mobile-first approach with fully adaptive layouts
-- **Performance Optimized** — Lazy loading sections and optimized rendering
+- **Performance Optimized** — Lazy loading, code splitting, and optimized rendering
 - **Full TypeScript** — Complete type safety and excellent IntelliSense support
-- **Smooth Animations** — Beautiful transitions powered by Framer Motion
+- **Smooth Animations** — Beautiful page transitions powered by Framer Motion
+- **Design Tokens** — CSS custom properties system with Endfield color palette
 
 ## 🚀 Getting Started
 
@@ -139,10 +145,39 @@ The documentation is organized into 11 comprehensive categories:
 
 Modify the theme and design system in:
 
-- `src/index.css` — Global styles and CSS variables
+- `src/index.css` — Global styles and CSS variables (494 lines of design tokens)
 - `tailwind.config.ts` — Tailwind configuration and custom colors
 - `src/components/docs/ThemeProvider.tsx` — Theme switching logic
 
+### Design Tokens
+
+All colors use CSS custom properties with HSL values for alpha channel support:
+
+```css
+:root {
+  --ef-yellow: 47 100% 56%;     /* Primary accent */
+  --ef-blue: 200 60% 56%;       /* Info / links */
+  --ef-red: 355 100% 64%;       /* Destructive */
+  --ef-green: 147 71% 51%;      /* Success */
+  --background: 0 0% 4%;        /* Page background */
+  --foreground: 0 0% 94.1%;     /* Text color */
+}
+```
+
+Override any variable for custom theming:
+
+```css
+background: hsl(var(--primary) / 0.5); /* 50% opacity */
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) before getting started.
+
+## 🔒 Security
+
+Please see our [Security Policy](SECURITY.md) for reporting vulnerabilities.
+
 ## 📝 License
 
-This project is open source and available under the MIT License.
+This project is open source and available under the [MIT License](LICENSE).
