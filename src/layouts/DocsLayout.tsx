@@ -1,14 +1,16 @@
 import { useEffect, useMemo, useCallback } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { DocsHeader } from "@/components/docs/DocsHeader";
 import { DocsSidebar } from "@/components/docs/DocsSidebar";
 import { TopoBg } from "@/components/home/signature";
-import { sidebarData, idToSlugMap } from "@/components/docs/sidebarData";
+import { getSidebarData, idToSlugMap } from "@/components/docs/sidebarData";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "@/components/docs/ErrorFallback";
 import { SectionHeader } from "@/components/docs/SectionHeader";
 import { SectionNav } from "@/components/docs/SectionNav";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
+import { useLocalizedPath } from "@/hooks/useLocalizedPath";
 import { AnimatePresence, motion } from "framer-motion";
 import { Suspense } from "react";
 
@@ -25,19 +27,25 @@ const SectionLoader = () => (
 );
 
 const DocsLayout = () => {
+  const { t } = useTranslation(["common", "docs"]);
   const location = useLocation();
   const navigate = useNavigate();
+  const lp = useLocalizedPath();
+
+  const sidebarData = useMemo(() => getSidebarData(t), [t]);
 
   // Extract slug from path: /docs/core-components → "core-components"
   const slug = useMemo(() => {
-    const match = location.pathname.match(/^\/docs\/(.+?)(?:\/|$)/);
+    const match = location.pathname.match(
+      /(?:\/(?:en|id))?\/docs\/(.+?)(?:\/|$)/,
+    );
     return match?.[1] ?? null;
   }, [location.pathname]);
 
   // Determine active section from current route
   const activeSection = useMemo(() => {
     return sidebarData.find((s) => s.slug === slug) ?? null;
-  }, [slug]);
+  }, [sidebarData, slug]);
 
   // Determine active item from hash
   const hashActiveId = useMemo(() => {
@@ -72,10 +80,10 @@ const DocsLayout = () => {
         }
       } else {
         // Different section: navigate to route with hash
-        navigate(`/docs/${targetSlug}#${id}`);
+        navigate(lp(`/docs/${targetSlug}#${id}`));
       }
     },
-    [slug, navigate],
+    [slug, navigate, lp],
   );
 
   // Scroll to hash after route change
@@ -103,14 +111,16 @@ const DocsLayout = () => {
   // Update document title per section
   useEffect(() => {
     if (activeSection) {
-      document.title = `${activeSection.title} — Endfield Design System v2.0`;
+      document.title = t("docs:layout.page_title_section", {
+        section: activeSection.title,
+      });
     } else {
-      document.title = "Docs — Endfield Design System v2.0";
+      document.title = t("docs:layout.page_title_default");
     }
     return () => {
-      document.title = "Arknights: Endfield — Design System v2.0";
+      document.title = t("docs:layout.page_title_base");
     };
-  }, [activeSection]);
+  }, [activeSection, t]);
 
   // Backward compat: redirect old /docs#item-id to /docs/slug#item-id
   useEffect(() => {
@@ -118,10 +128,10 @@ const DocsLayout = () => {
       const hash = location.hash.slice(1);
       const targetSlug = idToSlugMap[hash];
       if (targetSlug) {
-        navigate(`/docs/${targetSlug}#${hash}`, { replace: true });
+        navigate(lp(`/docs/${targetSlug}#${hash}`), { replace: true });
       }
     }
-  }, [slug, location.hash, navigate]);
+  }, [slug, location.hash, navigate, lp]);
 
   // Keyboard navigation: Alt+← / Alt+→ for prev/next section
   useEffect(() => {
@@ -132,15 +142,15 @@ const DocsLayout = () => {
 
       if (e.key === "ArrowRight" && currentIndex < sidebarData.length - 1) {
         e.preventDefault();
-        navigate(`/docs/${sidebarData[currentIndex + 1].slug}`);
+        navigate(lp(`/docs/${sidebarData[currentIndex + 1].slug}`));
       } else if (e.key === "ArrowLeft" && currentIndex > 0) {
         e.preventDefault();
-        navigate(`/docs/${sidebarData[currentIndex - 1].slug}`);
+        navigate(lp(`/docs/${sidebarData[currentIndex - 1].slug}`));
       }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
-  }, [slug, navigate]);
+  }, [slug, navigate, sidebarData, lp]);
 
   return (
     <div className="relative min-h-screen bg-background overflow-x-hidden">
@@ -150,7 +160,7 @@ const DocsLayout = () => {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:font-display focus:text-xs focus:tracking-[0.1em] focus:uppercase"
       >
-        Skip to main content
+        {t("common:actions.skip_to_main")}
       </a>
       <DocsHeader onNavigate={handleNavigate} activeId={activeId} />
       <DocsSidebar activeId={activeId} onNavigate={handleNavigate} />
@@ -178,10 +188,10 @@ const DocsLayout = () => {
           {/* Footer */}
           <div className="mt-24 pt-8 border-t border-border text-center">
             <p className="font-mono text-xs text-muted-foreground">
-              Design System v2.0 — Complete Edition — Compiled February 2026
+              {t("common:footer.compiled")}
             </p>
             <p className="font-mono text-[10px] text-ef-gray-mid mt-2">
-              EF-SYS // ENDFIELD INDUSTRIES
+              {t("common:footer.system_id")}
             </p>
           </div>
         </div>

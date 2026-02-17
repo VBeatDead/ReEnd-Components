@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { Menu, X, Search, Sun, Moon, ChevronDown } from "lucide-react";
-import { sidebarData } from "./sidebarData";
+import { getSidebarData } from "./sidebarData";
 import { CommandPalette } from "./CommandPalette";
 import { useTheme } from "./ThemeProvider";
 import { useNavigate, useLocation } from "react-router-dom";
 import { TopoBg } from "@/components/home/signature";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLocalizedPath } from "@/hooks/useLocalizedPath";
 
 interface DocsHeaderProps {
   onNavigate: (id: string) => void;
@@ -20,13 +23,17 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileFilter, setMobileFilter] = useState("");
+  const { t } = useTranslation(["common", "docs"]);
+  const lp = useLocalizedPath();
+
+  const sidebarData = useMemo(() => getSidebarData((key, opts) => t(key, { ns: "docs", ...opts })), [t]);
 
   // Track which sidebar sections are collapsed (by section title)
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
 
   // Derive active slug from path
   const activeSlug = useMemo(() => {
-    const match = location.pathname.match(/^\/docs\/(.+?)(?:\/|$)/);
+    const match = location.pathname.match(/(?:\/(?:en|id))?\/docs\/(.+?)(?:\/|$)/);
     return match?.[1] ?? null;
   }, [location.pathname]);
 
@@ -70,7 +77,7 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-label={mobileOpen ? t("common:aria.close_menu") : t("common:aria.open_menu")}
             >
               {mobileOpen ? (
                 <X className="w-5 h-5" />
@@ -80,13 +87,13 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
             </button>
             <div
               className="flex items-center gap-3 cursor-pointer"
-              onClick={() => navigate("/")}
+              onClick={() => navigate(lp("/"))}
               role="link"
-              title="Back to Home"
+              title={t("common:actions.back_to_home")}
             >
               <img
                 src="/icon.png"
-                alt="ReEnd — Endfield Design System"
+                alt={t("common:header.logo_alt")}
                 width={32}
                 height={32}
                 loading="eager"
@@ -94,10 +101,10 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
               />
               <div>
                 <h1 className="font-display text-sm font-bold tracking-[0.08em] uppercase text-foreground">
-                  ENDFIELD
+                  {t("common:header.title")}
                 </h1>
                 <p className="font-ui text-[9px] tracking-[0.15em] uppercase text-muted-foreground">
-                  DESIGN SYSTEM v2.0
+                  {t("common:header.subtitle")}
                 </p>
               </div>
             </div>
@@ -105,10 +112,10 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
 
           <div className="hidden md:flex items-center gap-1">
             {[
-              { label: "DOCS", target: "/docs" },
-              { label: "COMPONENTS", target: "/docs/core-components" },
-              { label: "TOKENS", target: "/docs/foundations" },
-              { label: "PATTERNS", target: "/docs/patterns" },
+              { label: t("common:nav.docs"), target: lp("/docs") },
+              { label: t("common:nav.components"), target: lp("/docs/core-components") },
+              { label: t("common:nav.tokens"), target: lp("/docs/foundations") },
+              { label: t("common:nav.patterns"), target: lp("/docs/patterns") },
             ].map(({ label, target }) => (
               <button
                 key={label}
@@ -121,15 +128,16 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
           </div>
 
           <div className="flex items-center gap-2">
+            <LanguageSwitcher />
             <button
               onClick={() => {
                 setIsAnimating(true);
                 toggleTheme();
-                const t = setTimeout(() => setIsAnimating(false), 500);
-                animTimerRef.current = t;
+                const tm = setTimeout(() => setIsAnimating(false), 500);
+                animTimerRef.current = tm;
               }}
               className="relative p-2 text-muted-foreground hover:text-primary transition-colors overflow-hidden"
-              aria-label="Toggle theme"
+              aria-label={t("common:theme.toggle")}
             >
               <span
                 className={`block transition-all duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)] ${isAnimating ? "rotate-[360deg] scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}`}
@@ -144,10 +152,10 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
             <button
               onClick={() => setCmdOpen(true)}
               className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-surface-1 border border-border text-muted-foreground text-xs hover:border-primary/30 hover:text-foreground transition-colors cursor-pointer"
-              aria-label="Open command palette"
+              aria-label={t("common:actions.search")}
             >
               <Search className="w-3.5 h-3.5" />
-              <span>Search...</span>
+              <span>{t("common:search.placeholder")}...</span>
               <kbd className="font-mono text-[10px] bg-surface-2 px-1.5 py-0.5 border border-border">
                 ⌘K
               </kbd>
@@ -178,14 +186,14 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
               <input
                 value={mobileFilter}
                 onChange={(e) => setMobileFilter(e.target.value)}
-                placeholder="Filter..."
+                placeholder={t("common:search.filter_placeholder")}
                 className="w-full bg-surface-1 border border-border text-sm text-foreground pl-9 pr-8 py-2 outline-none placeholder:text-muted-foreground focus:border-primary/30 transition-colors font-body"
               />
               {mobileFilter && (
                 <button
                   onClick={() => setMobileFilter("")}
                   className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                  aria-label="Clear filter"
+                  aria-label={t("common:actions.clear_filter")}
                 >
                   <X className="w-3.5 h-3.5" />
                 </button>
@@ -214,7 +222,7 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
                       if (isSectionActive) {
                         toggleSection(section.title);
                       } else {
-                        navigate(`/docs/${section.slug}`);
+                        navigate(lp(`/docs/${section.slug}`));
                         setMobileOpen(false);
                       }
                     }}
@@ -257,7 +265,7 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
                               {item.signature && (
                                 <span
                                   className="text-primary text-[9px] leading-none opacity-60"
-                                  title="Signature Component"
+                                  title={t("common:section_meta.signature")}
                                 >
                                   ◆
                                 </span>

@@ -1,0 +1,184 @@
+{
+  "sidebar": {
+    "sections": {
+      "installation": {
+        "title": "INSTALASI",
+        "description": "Memulai, panduan instalasi, konfigurasi, dan referensi API.",
+        "items": {
+          "getting-started": "Memulai",
+          "install-package": "Instal Paket",
+          "tailwind-setup": "Pengaturan Tailwind",
+          "import-styles": "Import Styles",
+          "use-components": "Gunakan Komponen",
+          "api-reference": "Referensi API",
+          "theming-guide": "Tema & Kustomisasi",
+          "full-example": "Contoh Proyek Lengkap"
+        }
+      },
+      "foundations": {
+        "title": "FOUNDATIONS",
+        "description": "Color system, typography, spacing, surface tokens, dan visual language dasar.",
+        "items": {
+          "design-philosophy": "Filosofi Desain",
+          "color-system": "Sistem Warna",
+          "typography": "Tipografi",
+          "spacing-grid": "Spacing & Grid",
+          "background-surface": "Background & Surface",
+          "iconography": "Ikonografi",
+          "illustration": "Gaya Ilustrasi"
+        }
+      },
+      "core-components": {
+        "title": "KOMPONEN INTI",
+        "description": "Buttons, cards, forms, navigation, dan komponen inti lainnya.",
+        "items": {
+          "buttons": "Tombol",
+          "cards": "Kartu",
+          "forms-input": "Form & Input",
+          "nav-header": "Nav — Header",
+          "nav-sidebar": "Nav — Sidebar",
+          "nav-tabs": "Nav — Tab",
+          "nav-breadcrumb": "Nav — Breadcrumb",
+          "nav-pagination": "Nav — Pagination",
+          "footer": "Footer",
+          "tactical-panel": "Tactical Panel",
+          "holo-card": "Holo Card"
+        }
+      },
+      "data-display": {
+        "title": "TAMPILAN DATA",
+        "description": "Tabel, daftar, chart, badge, timeline, dan komponen visualisasi data.",
+        "items": {
+          "table": "Tabel",
+          "list": "Daftar & Item Daftar",
+          "stat-metric": "Stat & Metrik",
+          "timeline": "Timeline",
+          "accordion": "Accordion",
+          "avatar": "Avatar",
+          "tags-badges": "Tag & Badge",
+          "progress-stepper": "Progress & Stepper",
+          "tactical-badge": "Tactical Badge",
+          "coordinate-tag": "Coordinate Tag",
+          "radar-chart": "Radar Chart"
+        }
+      },
+      "feedback": {
+        "title": "FEEDBACK & STATUS",
+        "description": "Toast, modal, tooltip, loading state, error handling, dan feedback UI.",
+        "items": {
+          "toast-notification": "Toast / Notifikasi",
+          "modal-dialog": "Modal & Dialog",
+          "tooltip-popover": "Tooltip & Popover",
+          "loading-skeleton": "Loading & Skeleton",
+          "empty-state": "Status Kosong",
+          "error-pages": "Halaman Error",
+          "offline-state": "Status Offline",
+          "success-state": "Status Sukses",
+          "inline-validation": "Validasi Inline",
+          "banner-alert": "Banner & Alert",
+          "diamond-loader": "Diamond Loader",
+          "warning-banner": "Warning Banner"
+        }
+      },
+      "interactive": {
+        "title": "STATUS INTERAKTIF",
+        "description": "Hover, focus, drag & drop, selection, dan status micro-interaction.",
+        "items": {
+          "states-matrix": "Matriks Status",
+          "micro-interactions": "Micro-Interactions",
+          "hover-effects": "Efek Hover",
+          "focus-keyboard": "Focus & Keyboard",
+          "drag-drop": "Drag & Drop",
+          "selection": "Seleksi"
+        }
+      },
+      "content-media": {
+        "title": "KONTEN & MEDIA",
+        "description": "Hero section, code block, blog layout, image, video, dan tampilan konten.",
+        "items": {
+          "hero-section": "Hero Section",
+          "code-block-terminal": "Code Block & Terminal",
+          "blog-layout": "Layout Blog",
+          "image-media": "Gambar & Media",
+          "video-player": "Pemutar Video",
+          "dividers": "Pemisah",
+          "scroll-cursor": "Scroll & Cursor",
+          "glitch-text": "Glitch Text",
+          "data-stream": "Data Stream",
+          "scan-divider": "Scan Divider",
+          "topo-pattern": "Pola Topografi",
+          "hud-overlay": "HUD Overlay"
+        }
+      },
+      "overlay-utility": {
+        "title": "OVERLAY & UTILITAS",
+        "description": "Command palette, dropdown, context menu, dan komponen utilitas.",
+        "items": {
+          "command-palette": "Command Palette",
+          "cookie-consent": "Izin Cookie",
+          "back-to-top": "Kembali ke Atas",
+          "copy-clipboard": "Salin ke Clipboard",
+          "dropdown": "Dropdown",
+          "context-menu": "Menu Konteks"
+        }
+      },
+      "animation": {
+        "title": "ANIMASI",
+        "description": "Sistem animasi, transisi halaman, efek scroll, dan sistem partikel.",
+        "items": {
+          "animation-system": "Sistem Animasi",
+          "page-transitions": "Transisi Halaman",
+          "scroll-animations": "Animasi Scroll",
+          "particle-effects": "Efek Partikel"
+        }
+      },
+      "content-strategy": {
+        "title": "STRATEGI KONTEN",
+        "description": "Voice & tone, microcopy, placeholder, pesan error, dan panduan konten.",
+        "items": {
+          "voice-tone": "Voice & Tone",
+          "microcopy": "Microcopy",
+          "placeholder-standards": "Standar Placeholder",
+          "error-message-writing": "Penulisan Pesan Error",
+          "date-time-number": "Tanggal/Waktu/Angka",
+          "truncation-overflow": "Truncation & Overflow"
+        }
+      },
+      "patterns": {
+        "title": "POLA",
+        "description": "Template halaman, pola responsif, aksesibilitas, performa, dan design tokens.",
+        "items": {
+          "page-templates": "Template Halaman",
+          "section-patterns": "Pola Section",
+          "responsive": "Responsif",
+          "accessibility": "Aksesibilitas",
+          "performance": "Performa",
+          "design-tokens": "Design Tokens",
+          "naming-conventions": "Konvensi Penamaan"
+        }
+      },
+      "changelog": {
+        "title": "CHANGELOG",
+        "description": "Riwayat perubahan dan release notes.",
+        "items": {
+          "changelog": "Changelog"
+        }
+      }
+    }
+  },
+  "overview": {
+    "badge": "EDISI LENGKAP",
+    "version": "v2.0.0",
+    "title_prefix": "DESIGN SYSTEM",
+    "title_accent": "v2.0",
+    "subtitle": "Arknights: Endfield — Pustaka komponen Sci-Fi Industrial Futurism. Seluruh 70+ section dengan live preview dan referensi kode.",
+    "items_count": "{{count}} item",
+    "signature_count": "◆ {{count}} signature",
+    "changelog_description": "Riwayat perubahan dan release notes."
+  },
+  "layout": {
+    "page_title_section": "{{section}} — Endfield Design System v2.0",
+    "page_title_default": "Docs — Endfield Design System v2.0",
+    "page_title_base": "Arknights: Endfield — Design System v2.0"
+  }
+}

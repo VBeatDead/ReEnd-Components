@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "title": "Arknights: Endfield — Design System v2.0",
+    "description": "Complete Design System Reference — Sci-Fi Industrial Futurism component library.",
+    "og_title": "ReEnd-Components — Endfield Design System",
+    "og_description": "Arknights: Endfield inspired React component library with Tailwind CSS"
+  },
+  "nav": {
+    "docs": "DOCS",
+    "components": "COMPONENTS",
+    "tokens": "TOKENS",
+    "patterns": "PATTERNS",
+    "github": "GITHUB"
+  },
+  "actions": {
+    "loading": "LOADING",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "retry": "Retry",
+    "cancel": "CANCEL",
+    "delete": "DELETE",
+    "close": "Close",
+    "search": "Search",
+    "previous": "Previous",
+    "next": "Next",
+    "return_home": "RETURN HOME ◆",
+    "open_docs": "OPEN DOCS",
+    "go_to_docs": "GO TO DOCS ◆",
+    "back_to_home": "Back to Home",
+    "skip_to_main": "Skip to main content",
+    "reset": "Reset",
+    "clear_filter": "Clear filter"
+  },
+  "search": {
+    "placeholder": "Search components...",
+    "search_placeholder": "Search...",
+    "filter_placeholder": "Filter...",
+    "no_results": "No results found for \"{{query}}\"",
+    "no_results_short": "No results",
+    "navigate": "navigate",
+    "select": "select",
+    "close": "close"
+  },
+  "errors": {
+    "section_error": "SECTION ERROR",
+    "section_error_desc": "Something went wrong rendering this section.",
+    "not_found_label": "EF-SYS // ERROR",
+    "not_found_title": "404",
+    "not_found_desc": "Route not found",
+    "doc_not_found_label": "EF-SYS // SECTION NOT FOUND",
+    "doc_not_found_title": "INVALID ROUTE",
+    "doc_not_found_desc": "The section <code>/docs/{{slug}}</code> does not exist.",
+    "doc_not_found_redirect": "Redirecting to docs overview in a few seconds...",
+    "page_title_404": "404 — Endfield Design System",
+    "page_title_doc_404": "Section Not Found — Endfield Design System v2.0"
+  },
+  "component_preview": {
+    "tab_playground": "Playground",
+    "tab_preview": "Preview",
+    "tab_code": "Code",
+    "tab_props": "Props",
+    "tab_api": "API",
+    "tab_keys": "Keys",
+    "tab_install": "Install",
+    "playground": "Playground",
+    "preview": "Preview",
+    "code": "Code",
+    "props": "Props",
+    "api": "API",
+    "keys": "Keys",
+    "install": "Install",
+    "mobile_viewport": "Mobile viewport preview",
+    "tabs_label": "{{title}} tabs",
+    "reset": "Reset",
+    "reset_playground": "Reset playground",
+    "controls": "Controls",
+    "generated_code": "Generated Code",
+    "viewport": "Viewport",
+    "desktop": "Desktop",
+    "mobile": "Mobile (375px)",
+    "import": "Import",
+    "usage": "Usage",
+    "dependencies": "Dependencies"
+  },
+  "props_panel": {
+    "prop": "Prop",
+    "type": "Type",
+    "default": "Default",
+    "description": "Description",
+    "filter": "Filter props...",
+    "export_json": "Export as JSON",
+    "export_md": "Export as Markdown",
+    "no_match": "No props matching \"{{query}}\"",
+    "key_col": "Key",
+    "action_col": "Action"
+  },
+  "breadcrumb": {
+    "docs": "Docs"
+  },
+  "section_meta": {
+    "component": "component",
+    "components": "components",
+    "signature": "signature",
+    "items": "items"
+  },
+  "footer": {
+    "compiled": "Design System v2.0 — Complete Edition — Compiled February 2026",
+    "system_id": "EF-SYS // ENDFIELD INDUSTRIES"
+  },
+  "header": {
+    "title": "ENDFIELD",
+    "subtitle": "DESIGN SYSTEM v2.0",
+    "logo_alt": "ReEnd — Endfield Design System"
+  },
+  "aria": {
+    "close_menu": "Close menu",
+    "open_menu": "Open menu",
+    "doc_sidebar": "Documentation sidebar",
+    "doc_sections": "Documentation sections",
+    "search_components": "Search components",
+    "section_nav": "Section navigation"
+  },
+  "theme": {
+    "toggle": "Toggle theme"
+  },
+  "lang": {
+    "switch_en": "Switch to English",
+    "switch_id": "Switch to Bahasa Indonesia"
+  }
+}

@@ -1,3 +1,5 @@
+import type { TFunction } from "i18next";
+
 export interface SidebarSection {
   title: string;
   slug: string;
@@ -5,197 +7,191 @@ export interface SidebarSection {
   items: { id: string; label: string; signature?: boolean }[];
 }
 
-export const sidebarData: SidebarSection[] = [
+interface SectionDef {
+  slug: string;
+  items: { id: string; signature?: boolean }[];
+}
+
+const sectionDefs: SectionDef[] = [
   {
-    title: "INSTALLATION",
     slug: "installation",
-    description:
-      "Getting started, installation guide, configuration, and API reference.",
     items: [
-      { id: "getting-started", label: "Getting Started" },
-      { id: "install-package", label: "Install Package" },
-      { id: "tailwind-setup", label: "Tailwind Setup" },
-      { id: "import-styles", label: "Import Styles" },
-      { id: "use-components", label: "Use Components" },
-      { id: "api-reference", label: "API Reference" },
-      { id: "theming-guide", label: "Theming & Customization" },
-      { id: "full-example", label: "Full Project Example" },
+      { id: "getting-started" },
+      { id: "install-package" },
+      { id: "tailwind-setup" },
+      { id: "import-styles" },
+      { id: "use-components" },
+      { id: "api-reference" },
+      { id: "theming-guide" },
+      { id: "full-example" },
     ],
   },
   {
-    title: "FOUNDATIONS",
     slug: "foundations",
-    description:
-      "Color system, typography, spacing, surface tokens, dan visual language dasar.",
     items: [
-      { id: "design-philosophy", label: "Design Philosophy" },
-      { id: "color-system", label: "Color System" },
-      { id: "typography", label: "Typography" },
-      { id: "spacing-grid", label: "Spacing & Grid" },
-      { id: "background-surface", label: "Background & Surface" },
-      { id: "iconography", label: "Iconography" },
-      { id: "illustration", label: "Illustration Style" },
+      { id: "design-philosophy" },
+      { id: "color-system" },
+      { id: "typography" },
+      { id: "spacing-grid" },
+      { id: "background-surface" },
+      { id: "iconography" },
+      { id: "illustration" },
     ],
   },
   {
-    title: "CORE COMPONENTS",
     slug: "core-components",
-    description:
-      "Buttons, cards, forms, navigation, dan komponen inti lainnya.",
     items: [
-      { id: "buttons", label: "Buttons" },
-      { id: "cards", label: "Cards" },
-      { id: "forms-input", label: "Forms & Input" },
-      { id: "nav-header", label: "Nav — Header" },
-      { id: "nav-sidebar", label: "Nav — Sidebar" },
-      { id: "nav-tabs", label: "Nav — Tabs" },
-      { id: "nav-breadcrumb", label: "Nav — Breadcrumb" },
-      { id: "nav-pagination", label: "Nav — Pagination" },
-      { id: "footer", label: "Footer" },
-      { id: "tactical-panel", label: "Tactical Panel", signature: true },
-      { id: "holo-card", label: "Holo Card", signature: true },
+      { id: "buttons" },
+      { id: "cards" },
+      { id: "forms-input" },
+      { id: "nav-header" },
+      { id: "nav-sidebar" },
+      { id: "nav-tabs" },
+      { id: "nav-breadcrumb" },
+      { id: "nav-pagination" },
+      { id: "footer" },
+      { id: "tactical-panel", signature: true },
+      { id: "holo-card", signature: true },
     ],
   },
   {
-    title: "DATA DISPLAY",
     slug: "data-display",
-    description:
-      "Table, list, chart, badge, timeline, dan komponen visualisasi data.",
     items: [
-      { id: "table", label: "Table" },
-      { id: "list", label: "List & List Item" },
-      { id: "stat-metric", label: "Stat & Metric" },
-      { id: "timeline", label: "Timeline" },
-      { id: "accordion", label: "Accordion" },
-      { id: "avatar", label: "Avatar" },
-      { id: "tags-badges", label: "Tags & Badges" },
-      { id: "progress-stepper", label: "Progress & Stepper" },
-      { id: "tactical-badge", label: "Tactical Badge", signature: true },
-      { id: "coordinate-tag", label: "Coordinate Tag", signature: true },
-      { id: "radar-chart", label: "Radar Chart", signature: true },
+      { id: "table" },
+      { id: "list" },
+      { id: "stat-metric" },
+      { id: "timeline" },
+      { id: "accordion" },
+      { id: "avatar" },
+      { id: "tags-badges" },
+      { id: "progress-stepper" },
+      { id: "tactical-badge", signature: true },
+      { id: "coordinate-tag", signature: true },
+      { id: "radar-chart", signature: true },
     ],
   },
   {
-    title: "FEEDBACK & STATES",
     slug: "feedback",
-    description:
-      "Toast, modal, tooltip, loading state, error handling, dan feedback UI.",
     items: [
-      { id: "toast-notification", label: "Toast / Notification" },
-      { id: "modal-dialog", label: "Modal & Dialog" },
-      { id: "tooltip-popover", label: "Tooltip & Popover" },
-      { id: "loading-skeleton", label: "Loading & Skeleton" },
-      { id: "empty-state", label: "Empty State" },
-      { id: "error-pages", label: "Error Pages" },
-      { id: "offline-state", label: "Offline State" },
-      { id: "success-state", label: "Success State" },
-      { id: "inline-validation", label: "Inline Validation" },
-      { id: "banner-alert", label: "Banner & Alert" },
-      { id: "diamond-loader", label: "Diamond Loader", signature: true },
-      { id: "warning-banner", label: "Warning Banner", signature: true },
+      { id: "toast-notification" },
+      { id: "modal-dialog" },
+      { id: "tooltip-popover" },
+      { id: "loading-skeleton" },
+      { id: "empty-state" },
+      { id: "error-pages" },
+      { id: "offline-state" },
+      { id: "success-state" },
+      { id: "inline-validation" },
+      { id: "banner-alert" },
+      { id: "diamond-loader", signature: true },
+      { id: "warning-banner", signature: true },
     ],
   },
   {
-    title: "INTERACTIVE STATES",
     slug: "interactive",
-    description:
-      "Hover, focus, drag & drop, selection, dan micro-interaction states.",
     items: [
-      { id: "states-matrix", label: "States Matrix" },
-      { id: "micro-interactions", label: "Micro-Interactions" },
-      { id: "hover-effects", label: "Hover Effects" },
-      { id: "focus-keyboard", label: "Focus & Keyboard" },
-      { id: "drag-drop", label: "Drag & Drop" },
-      { id: "selection", label: "Selection" },
+      { id: "states-matrix" },
+      { id: "micro-interactions" },
+      { id: "hover-effects" },
+      { id: "focus-keyboard" },
+      { id: "drag-drop" },
+      { id: "selection" },
     ],
   },
   {
-    title: "CONTENT & MEDIA",
     slug: "content-media",
-    description:
-      "Hero section, code block, blog layout, image, video, dan content display.",
     items: [
-      { id: "hero-section", label: "Hero Section" },
-      { id: "code-block-terminal", label: "Code Block & Terminal" },
-      { id: "blog-layout", label: "Blog Layout" },
-      { id: "image-media", label: "Image & Media" },
-      { id: "video-player", label: "Video Player" },
-      { id: "dividers", label: "Dividers" },
-      { id: "scroll-cursor", label: "Scroll & Cursor" },
-      { id: "glitch-text", label: "Glitch Text", signature: true },
-      { id: "data-stream", label: "Data Stream", signature: true },
-      { id: "scan-divider", label: "Scan Divider", signature: true },
-      { id: "topo-pattern", label: "Topographic Pattern", signature: true },
-      { id: "hud-overlay", label: "HUD Overlay", signature: true },
+      { id: "hero-section" },
+      { id: "code-block-terminal" },
+      { id: "blog-layout" },
+      { id: "image-media" },
+      { id: "video-player" },
+      { id: "dividers" },
+      { id: "scroll-cursor" },
+      { id: "glitch-text", signature: true },
+      { id: "data-stream", signature: true },
+      { id: "scan-divider", signature: true },
+      { id: "topo-pattern", signature: true },
+      { id: "hud-overlay", signature: true },
     ],
   },
   {
-    title: "OVERLAY & UTILITY",
     slug: "overlay-utility",
-    description:
-      "Command palette, dropdown, context menu, dan utility components.",
     items: [
-      { id: "command-palette", label: "Command Palette" },
-      { id: "cookie-consent", label: "Cookie Consent" },
-      { id: "back-to-top", label: "Back to Top" },
-      { id: "copy-clipboard", label: "Copy to Clipboard" },
-      { id: "dropdown", label: "Dropdown" },
-      { id: "context-menu", label: "Context Menu" },
+      { id: "command-palette" },
+      { id: "cookie-consent" },
+      { id: "back-to-top" },
+      { id: "copy-clipboard" },
+      { id: "dropdown" },
+      { id: "context-menu" },
     ],
   },
   {
-    title: "ANIMATION",
     slug: "animation",
-    description:
-      "Animation system, page transitions, scroll effects, dan particle systems.",
     items: [
-      { id: "animation-system", label: "Animation System" },
-      { id: "page-transitions", label: "Page Transitions" },
-      { id: "scroll-animations", label: "Scroll Animations" },
-      { id: "particle-effects", label: "Particle Effects" },
+      { id: "animation-system" },
+      { id: "page-transitions" },
+      { id: "scroll-animations" },
+      { id: "particle-effects" },
     ],
   },
   {
-    title: "CONTENT STRATEGY",
     slug: "content-strategy",
-    description:
-      "Voice & tone, microcopy, placeholder, error messages, dan content guidelines.",
     items: [
-      { id: "voice-tone", label: "Voice & Tone" },
-      { id: "microcopy", label: "Microcopy" },
-      { id: "placeholder-standards", label: "Placeholder Standards" },
-      { id: "error-message-writing", label: "Error Message Writing" },
-      { id: "date-time-number", label: "Date/Time/Number" },
-      { id: "truncation-overflow", label: "Truncation & Overflow" },
+      { id: "voice-tone" },
+      { id: "microcopy" },
+      { id: "placeholder-standards" },
+      { id: "error-message-writing" },
+      { id: "date-time-number" },
+      { id: "truncation-overflow" },
     ],
   },
   {
-    title: "PATTERNS",
     slug: "patterns",
-    description:
-      "Page templates, responsive patterns, accessibility, performance, dan design tokens.",
     items: [
-      { id: "page-templates", label: "Page Templates" },
-      { id: "section-patterns", label: "Section Patterns" },
-      { id: "responsive", label: "Responsive" },
-      { id: "accessibility", label: "Accessibility" },
-      { id: "performance", label: "Performance" },
-      { id: "design-tokens", label: "Design Tokens" },
-      { id: "naming-conventions", label: "Naming Conventions" },
+      { id: "page-templates" },
+      { id: "section-patterns" },
+      { id: "responsive" },
+      { id: "accessibility" },
+      { id: "performance" },
+      { id: "design-tokens" },
+      { id: "naming-conventions" },
     ],
   },
   {
-    title: "CHANGELOG",
     slug: "changelog",
-    description: "Riwayat perubahan dan release notes.",
-    items: [{ id: "changelog", label: "Changelog" }],
+    items: [{ id: "changelog" }],
   },
 ];
 
-// Helper: build id → slug mapping for navigation
+/**
+ * Build translated sidebar sections. `t` must have the "docs" namespace loaded.
+ * Caller should use: `const { t } = useTranslation("docs")`
+ */
+export function getSidebarData(t: TFunction): SidebarSection[] {
+  return sectionDefs.map((def) => ({
+    title: t(`sidebar.sections.${def.slug}.title`, {
+      defaultValue: def.slug.toUpperCase(),
+    }),
+    slug: def.slug,
+    description: t(`sidebar.sections.${def.slug}.description`, {
+      defaultValue: "",
+    }),
+    items: def.items.map((item) => ({
+      id: item.id,
+      label: t(`sidebar.sections.${def.slug}.items.${item.id}`, {
+        defaultValue: item.id,
+      }),
+      ...(item.signature ? { signature: true } : {}),
+    })),
+  }));
+}
+
 export const idToSlugMap: Record<string, string> = {};
-sidebarData.forEach((section) => {
-  section.items.forEach((item) => {
-    idToSlugMap[item.id] = section.slug;
+sectionDefs.forEach((def) => {
+  def.items.forEach((item) => {
+    idToSlugMap[item.id] = def.slug;
   });
 });
+
+export const sectionSlugs = sectionDefs.map((d) => d.slug);

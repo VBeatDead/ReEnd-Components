@@ -1,8 +1,10 @@
 import { useState, useMemo, useEffect, useRef } from "react";
-import { sidebarData } from "./sidebarData";
+import { getSidebarData } from "./sidebarData";
 import { Search, X } from "lucide-react";
 import { HighlightText } from "./HighlightText";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useLocalizedPath } from "@/hooks/useLocalizedPath";
 
 interface DocsSidebarProps {
   activeId: string;
@@ -15,10 +17,14 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const sidebarRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation(["common", "docs"]);
+  const lp = useLocalizedPath();
+
+  const sidebarData = useMemo(() => getSidebarData((key, opts) => t(key, { ns: "docs", ...opts })), [t]);
 
   // Derive active slug from current path
   const activeSlug = useMemo(() => {
-    const match = location.pathname.match(/^\/docs\/(.+?)(?:\/|$)/);
+    const match = location.pathname.match(/(?:\/(?:en|id))?\/docs\/(.+?)(?:\/|$)/);
     return match?.[1] ?? null;
   }, [location.pathname]);
 
@@ -70,7 +76,7 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
     <aside
       ref={sidebarRef}
       className="fixed top-[64px] left-0 bottom-0 w-[280px] bg-surface-0 border-r border-border overflow-y-auto py-4 px-4 hidden lg:block z-10"
-      aria-label="Documentation sidebar"
+      aria-label={t("common:aria.doc_sidebar")}
     >
       {/* Search filter */}
       <div className="relative mb-4">
@@ -78,21 +84,21 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
         <input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Filter..."
+          placeholder={t("common:search.filter_placeholder")}
           className="w-full bg-surface-1 border border-border text-sm text-foreground pl-9 pr-8 py-2 outline-none placeholder:text-muted-foreground focus:border-primary/30 transition-colors font-body"
         />
         {searchQuery && (
           <button
             onClick={() => setSearchQuery("")}
             className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-            aria-label="Clear filter"
+            aria-label={t("common:actions.clear_filter")}
           >
             <X className="w-3.5 h-3.5" />
           </button>
         )}
       </div>
 
-      <nav role="tree" aria-label="Documentation sections">
+      <nav role="tree" aria-label={t("common:aria.doc_sections")}>
         {filteredData.map((section) => {
           const isSectionActive = activeSlug === section.slug;
           return (
@@ -102,7 +108,7 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
                   if (isSectionActive) {
                     toggle(section.title);
                   } else {
-                    navigate(`/docs/${section.slug}`);
+                    navigate(lp(`/docs/${section.slug}`));
                   }
                 }}
                 className={`w-full flex items-center justify-between py-2 px-2 group ${
@@ -141,7 +147,7 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
                         {item.signature && (
                           <span
                             className="text-primary text-[9px] leading-none opacity-60"
-                            title="Signature Component"
+                            title={t("common:section_meta.signature")}
                           >
                             ◆
                           </span>
@@ -156,7 +162,7 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
         })}
         {filteredData.length === 0 && (
           <p className="text-xs text-muted-foreground text-center py-4">
-            No results
+            {t("common:search.no_results")}
           </p>
         )}
       </nav>

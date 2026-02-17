@@ -1,0 +1,4 @@
+/* Cloudflare Pages SPA fallback — lang prefix support */
+/en/*  /index.html  200
+/id/*  /index.html  200
+/*    /index.html  200

@@ -1,0 +1,184 @@
+{
+  "sidebar": {
+    "sections": {
+      "installation": {
+        "title": "INSTALLATION",
+        "description": "Getting started, installation guide, configuration, and API reference.",
+        "items": {
+          "getting-started": "Getting Started",
+          "install-package": "Install Package",
+          "tailwind-setup": "Tailwind Setup",
+          "import-styles": "Import Styles",
+          "use-components": "Use Components",
+          "api-reference": "API Reference",
+          "theming-guide": "Theming & Customization",
+          "full-example": "Full Project Example"
+        }
+      },
+      "foundations": {
+        "title": "FOUNDATIONS",
+        "description": "Color system, typography, spacing, surface tokens, and base visual language.",
+        "items": {
+          "design-philosophy": "Design Philosophy",
+          "color-system": "Color System",
+          "typography": "Typography",
+          "spacing-grid": "Spacing & Grid",
+          "background-surface": "Background & Surface",
+          "iconography": "Iconography",
+          "illustration": "Illustration Style"
+        }
+      },
+      "core-components": {
+        "title": "CORE COMPONENTS",
+        "description": "Buttons, cards, forms, navigation, and other core components.",
+        "items": {
+          "buttons": "Buttons",
+          "cards": "Cards",
+          "forms-input": "Forms & Input",
+          "nav-header": "Nav — Header",
+          "nav-sidebar": "Nav — Sidebar",
+          "nav-tabs": "Nav — Tabs",
+          "nav-breadcrumb": "Nav — Breadcrumb",
+          "nav-pagination": "Nav — Pagination",
+          "footer": "Footer",
+          "tactical-panel": "Tactical Panel",
+          "holo-card": "Holo Card"
+        }
+      },
+      "data-display": {
+        "title": "DATA DISPLAY",
+        "description": "Table, list, chart, badge, timeline, and data visualization components.",
+        "items": {
+          "table": "Table",
+          "list": "List & List Item",
+          "stat-metric": "Stat & Metric",
+          "timeline": "Timeline",
+          "accordion": "Accordion",
+          "avatar": "Avatar",
+          "tags-badges": "Tags & Badges",
+          "progress-stepper": "Progress & Stepper",
+          "tactical-badge": "Tactical Badge",
+          "coordinate-tag": "Coordinate Tag",
+          "radar-chart": "Radar Chart"
+        }
+      },
+      "feedback": {
+        "title": "FEEDBACK & STATES",
+        "description": "Toast, modal, tooltip, loading state, error handling, and feedback UI.",
+        "items": {
+          "toast-notification": "Toast / Notification",
+          "modal-dialog": "Modal & Dialog",
+          "tooltip-popover": "Tooltip & Popover",
+          "loading-skeleton": "Loading & Skeleton",
+          "empty-state": "Empty State",
+          "error-pages": "Error Pages",
+          "offline-state": "Offline State",
+          "success-state": "Success State",
+          "inline-validation": "Inline Validation",
+          "banner-alert": "Banner & Alert",
+          "diamond-loader": "Diamond Loader",
+          "warning-banner": "Warning Banner"
+        }
+      },
+      "interactive": {
+        "title": "INTERACTIVE STATES",
+        "description": "Hover, focus, drag & drop, selection, and micro-interaction states.",
+        "items": {
+          "states-matrix": "States Matrix",
+          "micro-interactions": "Micro-Interactions",
+          "hover-effects": "Hover Effects",
+          "focus-keyboard": "Focus & Keyboard",
+          "drag-drop": "Drag & Drop",
+          "selection": "Selection"
+        }
+      },
+      "content-media": {
+        "title": "CONTENT & MEDIA",
+        "description": "Hero section, code block, blog layout, image, video, and content display.",
+        "items": {
+          "hero-section": "Hero Section",
+          "code-block-terminal": "Code Block & Terminal",
+          "blog-layout": "Blog Layout",
+          "image-media": "Image & Media",
+          "video-player": "Video Player",
+          "dividers": "Dividers",
+          "scroll-cursor": "Scroll & Cursor",
+          "glitch-text": "Glitch Text",
+          "data-stream": "Data Stream",
+          "scan-divider": "Scan Divider",
+          "topo-pattern": "Topographic Pattern",
+          "hud-overlay": "HUD Overlay"
+        }
+      },
+      "overlay-utility": {
+        "title": "OVERLAY & UTILITY",
+        "description": "Command palette, dropdown, context menu, and utility components.",
+        "items": {
+          "command-palette": "Command Palette",
+          "cookie-consent": "Cookie Consent",
+          "back-to-top": "Back to Top",
+          "copy-clipboard": "Copy to Clipboard",
+          "dropdown": "Dropdown",
+          "context-menu": "Context Menu"
+        }
+      },
+      "animation": {
+        "title": "ANIMATION",
+        "description": "Animation system, page transitions, scroll effects, and particle systems.",
+        "items": {
+          "animation-system": "Animation System",
+          "page-transitions": "Page Transitions",
+          "scroll-animations": "Scroll Animations",
+          "particle-effects": "Particle Effects"
+        }
+      },
+      "content-strategy": {
+        "title": "CONTENT STRATEGY",
+        "description": "Voice & tone, microcopy, placeholder, error messages, and content guidelines.",
+        "items": {
+          "voice-tone": "Voice & Tone",
+          "microcopy": "Microcopy",
+          "placeholder-standards": "Placeholder Standards",
+          "error-message-writing": "Error Message Writing",
+          "date-time-number": "Date/Time/Number",
+          "truncation-overflow": "Truncation & Overflow"
+        }
+      },
+      "patterns": {
+        "title": "PATTERNS",
+        "description": "Page templates, responsive patterns, accessibility, performance, and design tokens.",
+        "items": {
+          "page-templates": "Page Templates",
+          "section-patterns": "Section Patterns",
+          "responsive": "Responsive",
+          "accessibility": "Accessibility",
+          "performance": "Performance",
+          "design-tokens": "Design Tokens",
+          "naming-conventions": "Naming Conventions"
+        }
+      },
+      "changelog": {
+        "title": "CHANGELOG",
+        "description": "Change history and release notes.",
+        "items": {
+          "changelog": "Changelog"
+        }
+      }
+    }
+  },
+  "overview": {
+    "badge": "COMPLETE EDITION",
+    "version": "v2.0.0",
+    "title_prefix": "DESIGN SYSTEM",
+    "title_accent": "v2.0",
+    "subtitle": "Arknights: Endfield — Sci-Fi Industrial Futurism component library. All 70+ sections with live preview and code reference.",
+    "items_count": "{{count}} items",
+    "signature_count": "◆ {{count}} signature",
+    "changelog_description": "Change history and release notes."
+  },
+  "layout": {
+    "page_title_section": "{{section}} — Endfield Design System v2.0",
+    "page_title_default": "Docs — Endfield Design System v2.0",
+    "page_title_base": "Arknights: Endfield — Design System v2.0"
+  }
+}

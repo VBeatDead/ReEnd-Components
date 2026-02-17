@@ -6,6 +6,9 @@ import { ThemeProvider, useTheme } from "@/components/docs/ThemeProvider";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "@/components/docs/ErrorFallback";
 import { lazy, Suspense } from "react";
+import { useTranslation } from "react-i18next";
+import { LanguageWrapper } from "@/components/LanguageWrapper";
+import { SEOHead } from "@/components/SEOHead";
 
 // Docs-specific Sonner wrapper that reads theme from context
 const DocsSonner = () => {
@@ -77,16 +80,19 @@ const PatternsSection = lazy(() =>
   })),
 );
 
-const PageLoader = () => (
-  <div className="min-h-screen bg-background flex items-center justify-center">
-    <div className="animate-pulse flex flex-col items-center gap-3">
-      <div className="w-10 h-10 bg-primary clip-corner-sm" />
-      <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
-        LOADING
-      </span>
+const PageLoader = () => {
+  const { t } = useTranslation("common");
+  return (
+    <div className="min-h-screen bg-background flex items-center justify-center">
+      <div className="animate-pulse flex flex-col items-center gap-3">
+        <div className="w-10 h-10 bg-primary clip-corner-sm" />
+        <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
+          {t("actions.loading")}
+        </span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const App = () => (
   <ThemeProvider>
@@ -97,35 +103,79 @@ const App = () => (
         future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
       >
         <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <SEOHead />
           <Suspense fallback={<PageLoader />}>
             <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/docs" element={<DocsLayout />}>
-                <Route index element={<DocsOverview />} />
-                <Route path="installation" element={<InstallationSection />} />
-                <Route path="foundations" element={<FoundationsSection />} />
-                <Route
-                  path="core-components"
-                  element={<CoreComponentsSection />}
-                />
-                <Route path="data-display" element={<DataDisplaySection />} />
-                <Route path="feedback" element={<FeedbackSection />} />
-                <Route path="interactive" element={<InteractiveSection />} />
-                <Route path="content-media" element={<ContentMediaSection />} />
-                <Route
-                  path="overlay-utility"
-                  element={<OverlayUtilitySection />}
-                />
-                <Route path="animation" element={<AnimationSection />} />
-                <Route
-                  path="content-strategy"
-                  element={<ContentStrategySection />}
-                />
-                <Route path="patterns" element={<PatternsSection />} />
-                <Route path="changelog" element={<ChangelogPage />} />
-                <Route path="*" element={<DocsNotFound />} />
+              <Route element={<LanguageWrapper />}>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/docs" element={<DocsLayout />}>
+                  <Route index element={<DocsOverview />} />
+                  <Route
+                    path="installation"
+                    element={<InstallationSection />}
+                  />
+                  <Route path="foundations" element={<FoundationsSection />} />
+                  <Route
+                    path="core-components"
+                    element={<CoreComponentsSection />}
+                  />
+                  <Route path="data-display" element={<DataDisplaySection />} />
+                  <Route path="feedback" element={<FeedbackSection />} />
+                  <Route path="interactive" element={<InteractiveSection />} />
+                  <Route
+                    path="content-media"
+                    element={<ContentMediaSection />}
+                  />
+                  <Route
+                    path="overlay-utility"
+                    element={<OverlayUtilitySection />}
+                  />
+                  <Route path="animation" element={<AnimationSection />} />
+                  <Route
+                    path="content-strategy"
+                    element={<ContentStrategySection />}
+                  />
+                  <Route path="patterns" element={<PatternsSection />} />
+                  <Route path="changelog" element={<ChangelogPage />} />
+                  <Route path="*" element={<DocsNotFound />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
               </Route>
-              <Route path="*" element={<NotFound />} />
+              <Route path="/:lang" element={<LanguageWrapper />}>
+                <Route index element={<HomePage />} />
+                <Route path="docs" element={<DocsLayout />}>
+                  <Route index element={<DocsOverview />} />
+                  <Route
+                    path="installation"
+                    element={<InstallationSection />}
+                  />
+                  <Route path="foundations" element={<FoundationsSection />} />
+                  <Route
+                    path="core-components"
+                    element={<CoreComponentsSection />}
+                  />
+                  <Route path="data-display" element={<DataDisplaySection />} />
+                  <Route path="feedback" element={<FeedbackSection />} />
+                  <Route path="interactive" element={<InteractiveSection />} />
+                  <Route
+                    path="content-media"
+                    element={<ContentMediaSection />}
+                  />
+                  <Route
+                    path="overlay-utility"
+                    element={<OverlayUtilitySection />}
+                  />
+                  <Route path="animation" element={<AnimationSection />} />
+                  <Route
+                    path="content-strategy"
+                    element={<ContentStrategySection />}
+                  />
+                  <Route path="patterns" element={<PatternsSection />} />
+                  <Route path="changelog" element={<ChangelogPage />} />
+                  <Route path="*" element={<DocsNotFound />} />
+                </Route>
+                <Route path="*" element={<NotFound />} />
+              </Route>
             </Routes>
           </Suspense>
         </ErrorBoundary>

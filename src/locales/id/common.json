@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "title": "Arknights: Endfield — Design System v2.0",
+    "description": "Referensi Design System Lengkap — Pustaka komponen Sci-Fi Industrial Futurism.",
+    "og_title": "ReEnd-Components — Endfield Design System",
+    "og_description": "Pustaka komponen React terinspirasi Arknights: Endfield dengan Tailwind CSS"
+  },
+  "nav": {
+    "docs": "DOCS",
+    "components": "KOMPONEN",
+    "tokens": "TOKENS",
+    "patterns": "POLA",
+    "github": "GITHUB"
+  },
+  "actions": {
+    "loading": "MEMUAT",
+    "copy": "Salin",
+    "copied": "Tersalin!",
+    "retry": "Coba Lagi",
+    "cancel": "BATAL",
+    "delete": "HAPUS",
+    "close": "Tutup",
+    "search": "Cari",
+    "previous": "Sebelumnya",
+    "next": "Selanjutnya",
+    "return_home": "KEMBALI KE BERANDA ◆",
+    "open_docs": "BUKA DOCS",
+    "go_to_docs": "KE DOCS ◆",
+    "back_to_home": "Kembali ke Beranda",
+    "skip_to_main": "Langsung ke konten utama",
+    "reset": "Atur Ulang",
+    "clear_filter": "Hapus filter"
+  },
+  "search": {
+    "placeholder": "Cari komponen...",
+    "search_placeholder": "Cari...",
+    "filter_placeholder": "Filter...",
+    "no_results": "Tidak ada hasil untuk \"{{query}}\"",
+    "no_results_short": "Tidak ada hasil",
+    "navigate": "navigasi",
+    "select": "pilih",
+    "close": "tutup"
+  },
+  "errors": {
+    "section_error": "ERROR SECTION",
+    "section_error_desc": "Terjadi kesalahan saat merender section ini.",
+    "not_found_label": "EF-SYS // ERROR",
+    "not_found_title": "404",
+    "not_found_desc": "Halaman tidak ditemukan",
+    "doc_not_found_label": "EF-SYS // SECTION TIDAK DITEMUKAN",
+    "doc_not_found_title": "RUTE TIDAK VALID",
+    "doc_not_found_desc": "Section <code>/docs/{{slug}}</code> tidak ada.",
+    "doc_not_found_redirect": "Mengalihkan ke ringkasan docs dalam beberapa detik...",
+    "page_title_404": "404 — Endfield Design System",
+    "page_title_doc_404": "Section Tidak Ditemukan — Endfield Design System v2.0"
+  },
+  "component_preview": {
+    "tab_playground": "Playground",
+    "tab_preview": "Preview",
+    "tab_code": "Kode",
+    "tab_props": "Props",
+    "tab_api": "API",
+    "tab_keys": "Tombol",
+    "tab_install": "Instalasi",
+    "playground": "Playground",
+    "preview": "Preview",
+    "code": "Kode",
+    "props": "Props",
+    "api": "API",
+    "keys": "Tombol",
+    "install": "Instalasi",
+    "mobile_viewport": "Pratinjau viewport mobile",
+    "tabs_label": "Tab {{title}}",
+    "reset": "Reset",
+    "reset_playground": "Reset playground",
+    "controls": "Kontrol",
+    "generated_code": "Kode yang Dihasilkan",
+    "viewport": "Viewport",
+    "desktop": "Desktop",
+    "mobile": "Mobile (375px)",
+    "import": "Import",
+    "usage": "Penggunaan",
+    "dependencies": "Dependensi"
+  },
+  "props_panel": {
+    "prop": "Prop",
+    "type": "Tipe",
+    "default": "Default",
+    "description": "Deskripsi",
+    "filter": "Filter props...",
+    "export_json": "Ekspor sebagai JSON",
+    "export_md": "Ekspor sebagai Markdown",
+    "no_match": "Tidak ada props yang cocok dengan \"{{query}}\"",
+    "key_col": "Tombol",
+    "action_col": "Aksi"
+  },
+  "breadcrumb": {
+    "docs": "Docs"
+  },
+  "section_meta": {
+    "component": "komponen",
+    "components": "komponen",
+    "signature": "signature",
+    "items": "item"
+  },
+  "footer": {
+    "compiled": "Design System v2.0 — Edisi Lengkap — Dikompilasi Februari 2026",
+    "system_id": "EF-SYS // ENDFIELD INDUSTRIES"
+  },
+  "header": {
+    "title": "ENDFIELD",
+    "subtitle": "DESIGN SYSTEM v2.0",
+    "logo_alt": "ReEnd — Endfield Design System"
+  },
+  "aria": {
+    "close_menu": "Tutup menu",
+    "open_menu": "Buka menu",
+    "doc_sidebar": "Sidebar dokumentasi",
+    "doc_sections": "Bagian dokumentasi",
+    "search_components": "Cari komponen",
+    "section_nav": "Navigasi section"
+  },
+  "theme": {
+    "toggle": "Ganti tema"
+  },
+  "lang": {
+    "switch_en": "Ganti ke English",
+    "switch_id": "Ganti ke Bahasa Indonesia"
+  }
+}

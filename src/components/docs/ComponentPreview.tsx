@@ -11,6 +11,7 @@ import { RotateCcw, Copy, Check, Monitor, Smartphone } from "lucide-react";
 import { CodeBlock } from "./CodeBlock";
 import PlaygroundControlField from "./PlaygroundControlField";
 import PropsPanel from "./PropsPanel";
+import { useTranslation } from "react-i18next";
 
 export interface PropDefinition {
   name: string;
@@ -163,7 +164,7 @@ const ViewportFrame = ({
     <>
       <iframe
         ref={iframeRef}
-        title="Mobile viewport preview"
+        title={t("component_preview.mobile_viewport")}
         srcDoc='<!DOCTYPE html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"></head><body></body></html>'
         style={{
           width: `${width}px`,
@@ -191,6 +192,7 @@ export const ComponentPreview = ({
   showViewport = false,
   playground,
 }: ComponentPreviewProps) => {
+  const { t } = useTranslation("common");
   const [activeTab, setActiveTab] = useState<TabKey>(
     playground ? "playground" : "preview",
   );
@@ -237,13 +239,13 @@ export const ComponentPreview = ({
   }, [pgValues, playground, activeTab, title]);
 
   const tabs: { key: TabKey; label: string; available: boolean }[] = [
-    { key: "playground", label: "Playground", available: !!playground },
-    { key: "preview", label: "Preview", available: true },
-    { key: "code", label: "Code", available: !!code },
-    { key: "props", label: "Props", available: !!propDefs?.length },
-    { key: "api", label: "API", available: !!api?.length },
-    { key: "keyboard", label: "Keys", available: !!keyboard?.length },
-    { key: "install", label: "Install", available: !!install },
+    { key: "playground", label: t("component_preview.playground"), available: !!playground },
+    { key: "preview", label: t("component_preview.preview"), available: true },
+    { key: "code", label: t("component_preview.code"), available: !!code },
+    { key: "props", label: t("component_preview.props"), available: !!propDefs?.length },
+    { key: "api", label: t("component_preview.api"), available: !!api?.length },
+    { key: "keyboard", label: t("component_preview.keys"), available: !!keyboard?.length },
+    { key: "install", label: t("component_preview.install"), available: !!install },
   ];
 
   const updatePg = (name: string, value: any) =>
@@ -269,7 +271,7 @@ export const ComponentPreview = ({
         {/* Tab bar */}
         <div
           role="tablist"
-          aria-label={`${title} tabs`}
+          aria-label={t("component_preview.tabs_label", { title })}
           className="flex flex-wrap bg-surface-0 border-b border-border"
         >
           {tabs
@@ -312,13 +314,13 @@ export const ComponentPreview = ({
               <div className="lg:w-[280px] border-t lg:border-t-0 lg:border-l border-border bg-surface-2 p-4 space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-display text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">
-                    Controls
+                    {t("component_preview.controls")}
                   </span>
                   <button
                     onClick={resetPg}
                     className="p-1 text-muted-foreground hover:text-primary transition-colors"
-                    title="Reset"
-                    aria-label="Reset playground"
+                    title={t("component_preview.reset")}
+                    aria-label={t("component_preview.reset_playground")}
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                   </button>
@@ -337,7 +339,7 @@ export const ComponentPreview = ({
               <div className="border-t border-border">
                 <div className="flex items-center justify-between px-4 py-2 bg-surface-2">
                   <span className="font-display text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">
-                    Generated Code
+                    {t("component_preview.generated_code")}
                   </span>
                   <button
                     onClick={() => {
@@ -354,12 +356,12 @@ export const ComponentPreview = ({
                     {codeCopied ? (
                       <>
                         <Check className="w-3 h-3 text-ef-green" />
-                        <span className="text-ef-green">Copied!</span>
+                        <span className="text-ef-green">{t("actions.copied")}</span>
                       </>
                     ) : (
                       <>
                         <Copy className="w-3 h-3 text-muted-foreground" />
-                        <span className="text-muted-foreground">Copy</span>
+                        <span className="text-muted-foreground">{t("actions.copy")}</span>
                       </>
                     )}
                   </button>
@@ -384,15 +386,15 @@ export const ComponentPreview = ({
             {showViewport && (
               <div className="flex items-center justify-end gap-1 px-4 py-2 border-b border-border bg-surface-0">
                 <span className="font-ui text-[9px] tracking-[0.1em] uppercase text-muted-foreground mr-2">
-                  Viewport
+                  {t("component_preview.viewport")}
                 </span>
                 {(
                   [
-                    { key: "desktop", icon: Monitor, label: "Desktop" },
+                    { key: "desktop", icon: Monitor, label: t("component_preview.desktop") },
                     {
                       key: "mobile",
                       icon: Smartphone,
-                      label: "Mobile (375px)",
+                      label: t("component_preview.mobile"),
                     },
                   ] as const
                 ).map(({ key, icon: Icon, label }) => (
@@ -480,10 +482,10 @@ export const ComponentPreview = ({
               <thead>
                 <tr className="border-b border-border">
                   <th className="text-left font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground pb-3 pr-4 w-40">
-                    Key
+                    {t("props_panel.key_col")}
                   </th>
                   <th className="text-left font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground pb-3">
-                    Action
+                    {t("props_panel.action_col")}
                   </th>
                 </tr>
               </thead>
@@ -519,31 +521,31 @@ export const ComponentPreview = ({
             {/* Import */}
             <div>
               <span className="font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground block mb-2">
-                Import
+                {t("component_preview.import")}
               </span>
               <CodeBlock
                 code={install.importPath}
                 language="tsx"
-                title="Import"
+                title={t("component_preview.import")}
               />
             </div>
             {/* Usage */}
             <div>
               <span className="font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground block mb-2">
-                Usage
+                {t("component_preview.usage")}
               </span>
-              <CodeBlock code={install.usage} language="tsx" title="Usage" />
+              <CodeBlock code={install.usage} language="tsx" title={t("component_preview.usage")} />
             </div>
             {/* Dependencies */}
             {install.dependencies?.length ? (
               <div>
                 <span className="font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground block mb-2">
-                  Dependencies
+                  {t("component_preview.dependencies")}
                 </span>
                 <CodeBlock
                   code={`npm install ${install.dependencies.join(" ")}`}
                   language="bash"
-                  title="Install"
+                  title={t("component_preview.install")}
                 />
               </div>
             ) : null}

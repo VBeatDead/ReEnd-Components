@@ -1,31 +1,18 @@
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { Search } from "lucide-react";
 import Fuse from "fuse.js";
-import { sidebarData } from "./sidebarData";
+import { getSidebarData } from "./sidebarData";
 import { TopoBg } from "@/components/home/signature";
 import { HighlightText } from "./HighlightText";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useLocalizedPath } from "@/hooks/useLocalizedPath";
 
 interface CommandPaletteProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   onNavigate: (id: string) => void;
 }
-
-const allItems = sidebarData.flatMap((section) =>
-  section.items.map((item) => ({
-    ...item,
-    section: section.title,
-    slug: section.slug,
-  })),
-);
-
-const fuse = new Fuse(allItems, {
-  keys: ["label", "section"],
-  threshold: 0.4,
-  includeScore: true,
-  minMatchCharLength: 1,
-});
 
 export const CommandPalette = ({
   open,
@@ -38,6 +25,33 @@ export const CommandPalette = ({
   const listRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const { t } = useTranslation(["common", "docs"]);
+  const lp = useLocalizedPath();
+
+  const sidebarData = useMemo(() => getSidebarData((key, opts) => t(key, { ns: "docs", ...opts })), [t]);
+
+  const allItems = useMemo(
+    () =>
+      sidebarData.flatMap((section) =>
+        section.items.map((item) => ({
+          ...item,
+          section: section.title,
+          slug: section.slug,
+        })),
+      ),
+    [sidebarData],
+  );
+
+  const fuse = useMemo(
+    () =>
+      new Fuse(allItems, {
+        keys: ["label", "section"],
+        threshold: 0.4,
+        includeScore: true,
+        minMatchCharLength: 1,
+      }),
+    [allItems],
+  );
 
   const filtered = useMemo(
     () => (query.trim() ? fuse.search(query).map((r) => r.item) : allItems),
@@ -110,10 +124,10 @@ export const CommandPalette = ({
 
   const handleSelect = useCallback(
     (item: (typeof allItems)[number]) => {
-      navigate(`/docs/${item.slug}#${item.id}`);
+      navigate(lp(`/docs/${item.slug}#${item.id}`));
       onOpenChange(false);
     },
-    [navigate, onOpenChange],
+    [navigate, onOpenChange, lp],
   );
 
   const handleKeyDown = useCallback(
@@ -147,7 +161,7 @@ export const CommandPalette = ({
           ref={dialogRef}
           role="dialog"
           aria-modal="true"
-          aria-label="Search components"
+          aria-label={t("common:aria.search_components")}
           className="w-full max-w-[560px] mx-4 bg-surface-2 border border-border shadow-[0_24px_64px_rgba(0,0,0,0.7)] animate-fade-in"
           onClick={(e) => e.stopPropagation()}
           onKeyDown={handleKeyDown}
@@ -160,7 +174,7 @@ export const CommandPalette = ({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               className="bg-transparent text-base text-foreground outline-none flex-1 placeholder:text-muted-foreground font-body"
-              placeholder="Search components..."
+              placeholder={t("common:search.placeholder")}
               autoComplete="off"
             />
             <kbd className="font-mono text-[10px] bg-surface-3 px-1.5 py-0.5 border border-border text-muted-foreground shrink-0">
@@ -173,7 +187,7 @@ export const CommandPalette = ({
             {flatFiltered.length === 0 ? (
               <div className="px-4 py-8 text-center">
                 <p className="text-sm text-muted-foreground">
-                  No results found for "{query}"
+                  {t("common:search.no_results")} "{query}"
                 </p>
               </div>
             ) : (
@@ -210,9 +224,9 @@ export const CommandPalette = ({
 
           {/* Footer */}
           <div className="border-t border-border px-4 py-2 flex items-center gap-4 text-[10px] text-muted-foreground font-mono">
-            <span>↑↓ navigate</span>
-            <span>↵ select</span>
-            <span>esc close</span>
+            <span>{t("common:search.navigate")}</span>
+            <span>{t("common:search.select")}</span>
+            <span>{t("common:search.close")}</span>
           </div>
         </div>
       </div>
