@@ -4,6 +4,7 @@ import { sidebarData } from "./sidebarData";
 import { CommandPalette } from "./CommandPalette";
 import { useTheme } from "./ThemeProvider";
 import { useNavigate, useLocation } from "react-router-dom";
+import { TopoBg } from "@/components/home/signature";
 
 interface DocsHeaderProps {
   onNavigate: (id: string) => void;
@@ -166,6 +167,7 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
             className="absolute inset-0 bg-background/95"
             onClick={() => setMobileOpen(false)}
           />
+          <TopoBg className="opacity-15" />
           <div className="relative w-[min(280px,calc(100vw-48px))] h-full bg-surface-0 border-r border-border overflow-y-auto pt-20 px-4">
             {/* Inline filter */}
             <div className="relative mb-4">

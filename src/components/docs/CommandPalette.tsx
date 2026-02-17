@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { Search } from "lucide-react";
 import Fuse from "fuse.js";
 import { sidebarData } from "./sidebarData";
+import { TopoBg } from "@/components/home/signature";
 import { HighlightText } from "./HighlightText";
 import { useNavigate } from "react-router-dom";
 
@@ -140,6 +141,7 @@ export const CommandPalette = ({
   return (
     <div className="fixed inset-0 z-[100]" onClick={() => onOpenChange(false)}>
       <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+      <TopoBg className="opacity-20" />
       <div className="relative flex items-start justify-center pt-[15vh]">
         <div
           ref={dialogRef}

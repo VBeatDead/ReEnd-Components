@@ -3,10 +3,10 @@ import { ComponentPreview } from "../docs/ComponentPreview";
 export const ContentStrategySection = () => {
   return (
     <>
-      {/* 58. Voice & Tone */}
+      {/* Voice & Tone */}
       <ComponentPreview
         id="voice-tone"
-        title="58. Voice & Tone"
+        title="Voice & Tone"
         description="Authoritative, concise, technical, calm, forward-looking. User = 'Endministrator'."
       >
         <div className="space-y-6">
@@ -47,10 +47,10 @@ export const ContentStrategySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 59. Microcopy */}
+      {/* Microcopy */}
       <ComponentPreview
         id="microcopy"
-        title="59. Microcopy Guidelines"
+        title="Microcopy Guidelines"
         description="Button labels: specific action. Nav: 1-2 words uppercase. No articles."
       >
         <div className="overflow-x-auto">
@@ -81,10 +81,10 @@ export const ContentStrategySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 60. Placeholder */}
+      {/* Placeholder */}
       <ComponentPreview
         id="placeholder-standards"
-        title="60. Placeholder Text Standards"
+        title="Placeholder Text Standards"
         description="Color #666666. Not italic. Never use as label replacement."
       >
         <div className="max-w-sm space-y-3">
@@ -103,10 +103,10 @@ export const ContentStrategySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 61. Error Messages */}
+      {/* Error Messages */}
       <ComponentPreview
         id="error-message-writing"
-        title="61. Error Message Writing"
+        title="Error Message Writing"
         description="State the problem, explain fix, don't blame user, be specific, stay in-universe."
       >
         <div className="overflow-x-auto">
@@ -138,10 +138,10 @@ export const ContentStrategySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 62. Date/Time/Number */}
+      {/* Date/Time/Number */}
       <ComponentPreview
         id="date-time-number"
-        title="62. Date, Time & Number Formatting"
+        title="Date, Time & Number Formatting"
         description="Font: Orbitron atau JetBrains Mono. Format konsisten."
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -181,10 +181,10 @@ export const ContentStrategySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 63. Truncation */}
+      {/* Truncation */}
       <ComponentPreview
         id="truncation-overflow"
-        title="63. Truncation & Overflow"
+        title="Truncation & Overflow"
         description="Single line ellipsis, multi-line clamp, break-word for long strings."
       >
         <div className="max-w-sm space-y-4">

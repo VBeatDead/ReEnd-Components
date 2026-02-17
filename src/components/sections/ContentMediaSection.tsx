@@ -5,10 +5,10 @@ import SignatureContentSection from "./signature/SignatureContentSection";
 export const ContentMediaSection = () => {
   return (
     <>
-      {/* 41. Hero Section */}
+      {/* Hero Section */}
       <ComponentPreview
         id="hero-section"
-        title="41. Hero / Landing Section"
+        title="Hero / Landing Section"
         showViewport
         description="Min-height 100vh. Overline: Orbitron yellow pill. Heading: 56-72px uppercase."
         props={[
@@ -94,10 +94,10 @@ export const ContentMediaSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 42. Code Block */}
+      {/* Code Block */}
       <ComponentPreview
         id="code-block-terminal"
-        title="42. Code Block & Terminal"
+        title="Code Block & Terminal"
         description="JetBrains Mono 14px. Syntax highlighting. Copy button on hover. Terminal with blinking cursor."
         code={`/* Syntax Highlighting Colors */
 Keyword:   #FF79C6   String:    #F1FA8C
@@ -202,10 +202,10 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
         </div>
       </ComponentPreview>
 
-      {/* 43. Blog Layout */}
+      {/* Blog Layout */}
       <ComponentPreview
         id="blog-layout"
-        title="43. Blog / Content Layout"
+        title="Blog / Content Layout"
         showViewport
         description="Content max-width 680px. Para spacing 24px. Blockquote: 3px left border yellow."
         props={[
@@ -274,10 +274,10 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
         </div>
       </ComponentPreview>
 
-      {/* 44. Image & Media */}
+      {/* Image & Media */}
       <ComponentPreview
         id="image-media"
-        title="44. Image & Media"
+        title="Image & Media"
         description="Container overflow hidden. Border overlay. Hover: img scale(1.05). Caption: 12px italic."
         props={[
           {
@@ -328,10 +328,10 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
         </div>
       </ComponentPreview>
 
-      {/* 45. Video Player */}
+      {/* Video Player */}
       <ComponentPreview
         id="video-player"
-        title="45. Video Player"
+        title="Video Player"
         description="Play button: diamond 64px. Progress: 3px track. Dark overlay when paused."
         props={[
           {
@@ -377,10 +377,10 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
         </div>
       </ComponentPreview>
 
-      {/* 46. Dividers */}
+      {/* Dividers */}
       <ComponentPreview
         id="dividers"
-        title="46. Dividers & Decorative Lines"
+        title="Dividers & Decorative Lines"
         description="Standard, tech glow, with label, corner brackets, diamond bullet."
         props={[
           {
@@ -426,10 +426,10 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
         </div>
       </ComponentPreview>
 
-      {/* 47. Scroll & Cursor */}
+      {/* Scroll & Cursor */}
       <ComponentPreview
         id="scroll-cursor"
-        title="47. Scroll & Cursor"
+        title="Scroll & Cursor"
         description="Scrollbar 6px, thumb square. Scroll progress bar fixed top. Custom cursor optional."
         props={[
           {

@@ -1,50 +1,41 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useCallback } from "react";
+import { generateTopoContours } from "@/components/home/signature";
 
 const TopoPatternDemo = () => {
   const w = 600,
     h = 300;
   const [mouse, setMouse] = useState<{ x: number; y: number } | null>(null);
 
-  const contours = useMemo(() => {
-    const peaks = [
-      { cx: 180, cy: 140, rings: 7, scale: 1.1 },
-      { cx: 420, cy: 180, rings: 6, scale: 1.0 },
-      { cx: 540, cy: 100, rings: 4, scale: 0.75 },
-      { cx: 300, cy: 250, rings: 3, scale: 0.6 },
-    ];
-    const result: {
-      d: string;
-      major: boolean;
-      cx: number;
-      cy: number;
-      r: number;
-    }[] = [];
-    peaks.forEach((peak) => {
-      for (let r = 1; r <= peak.rings; r++) {
-        const radius = r * 22 * peak.scale;
-        const segs = 64;
-        const pts: string[] = [];
-        for (let s = 0; s <= segs; s++) {
-          const a = (s / segs) * Math.PI * 2;
-          const noise =
-            Math.sin(a * 3 + peak.cx * 0.013) * radius * 0.18 +
-            Math.sin(a * 5 + peak.cy * 0.017) * radius * 0.1 +
-            Math.cos(a * 2 + r * 0.7) * radius * 0.14;
-          const x = peak.cx + (radius + noise) * Math.cos(a);
-          const y = peak.cy + (radius + noise) * Math.sin(a) * 0.65;
-          pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
-        }
-        result.push({
-          d: `M ${pts.join(" L ")} Z`,
-          major: r % 3 === 0,
-          cx: peak.cx,
-          cy: peak.cy,
-          r: radius,
-        });
+  const contours = useMemo(() => generateTopoContours(w, h, 16), []);
+
+  // Compute bounding center for each contour path (midpoint of all points)
+  const contoursWithCenter = useMemo(() => {
+    return contours.map((c) => {
+      // Parse path to extract rough center
+      const nums = c.d.match(/-?\d+\.?\d*/g);
+      if (!nums || nums.length < 4) return { ...c, cx: w / 2, cy: h / 2 };
+      let sumX = 0,
+        sumY = 0,
+        count = 0;
+      for (let i = 0; i < nums.length - 1; i += 2) {
+        sumX += parseFloat(nums[i]);
+        sumY += parseFloat(nums[i + 1]);
+        count++;
       }
+      return { ...c, cx: sumX / count, cy: sumY / count };
     });
-    return result;
-  }, []);
+  }, [contours]);
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<SVGSVGElement>) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMouse({
+        x: ((e.clientX - rect.left) / rect.width) * w,
+        y: ((e.clientY - rect.top) / rect.height) * h,
+      });
+    },
+    [w, h],
+  );
 
   return (
     <div className="flex justify-center overflow-hidden py-4">
@@ -53,19 +44,27 @@ const TopoPatternDemo = () => {
         height={h}
         viewBox={`0 0 ${w} ${h}`}
         className="w-full max-w-[600px]"
-        onMouseMove={(e) => {
-          const rect = e.currentTarget.getBoundingClientRect();
-          setMouse({
-            x: ((e.clientX - rect.left) / rect.width) * w,
-            y: ((e.clientY - rect.top) / rect.height) * h,
-          });
-        }}
+        onMouseMove={handleMouseMove}
         onMouseLeave={() => setMouse(null)}
       >
-        {contours.map((c, i) => {
+        {/* Grain texture */}
+        <filter id="demoGrain">
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.65"
+            numOctaves="3"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width={w} height={h} filter="url(#demoGrain)" opacity={0.03} />
+
+        {/* Contour lines */}
+        {contoursWithCenter.map((c, i) => {
           const dist = mouse ? Math.hypot(c.cx - mouse.x, c.cy - mouse.y) : 999;
-          const isNear = dist < c.r + 60;
-          const intensity = isNear ? Math.max(0, 1 - dist / (c.r + 60)) : 0;
+          const radius = 120;
+          const isNear = dist < radius;
+          const intensity = isNear ? Math.max(0, 1 - dist / radius) : 0;
           return (
             <path
               key={i}
@@ -73,7 +72,7 @@ const TopoPatternDemo = () => {
               fill="none"
               stroke={
                 isNear
-                  ? `hsl(var(--primary) / ${(0.15 + intensity * 0.55).toFixed(2)})`
+                  ? `hsl(var(--primary) / ${(0.12 + intensity * 0.5).toFixed(2)})`
                   : `hsl(var(--foreground) / 0.08)`
               }
               strokeWidth={c.major ? 1.2 : 0.5}
@@ -88,10 +87,12 @@ const TopoPatternDemo = () => {
             />
           );
         })}
+
+        {/* Elevation labels */}
         {[
-          { x: 180, y: 140, label: "EL.720" },
-          { x: 420, y: 180, label: "EL.580" },
-          { x: 540, y: 100, label: "EL.440" },
+          { x: 200, y: 120, label: "EL.720" },
+          { x: 400, y: 200, label: "EL.580" },
+          { x: 520, y: 90, label: "EL.440" },
         ].map((l, i) => (
           <text
             key={i}
@@ -105,10 +106,12 @@ const TopoPatternDemo = () => {
             {l.label}
           </text>
         ))}
+
+        {/* Diamond markers at peaks */}
         {[
-          { x: 180, y: 140 },
-          { x: 420, y: 180 },
-          { x: 540, y: 100 },
+          { x: 200, y: 120 },
+          { x: 400, y: 200 },
+          { x: 520, y: 90 },
         ].map((p, i) => (
           <rect
             key={i}

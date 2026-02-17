@@ -96,55 +96,235 @@ export const Counter = ({ value, label }: { value: number; label: string }) => {
   );
 };
 
-export const TopoBg = ({ className = "" }: { className?: string }) => {
-  const paths = useMemo(() => {
-    const peaks = [
-      { cx: 200, cy: 150, rings: 6, scale: 1.2 },
-      { cx: 500, cy: 250, rings: 5, scale: 1.0 },
-      { cx: 700, cy: 120, rings: 4, scale: 0.8 },
-      { cx: 350, cy: 350, rings: 3, scale: 0.7 },
-      { cx: 100, cy: 320, rings: 4, scale: 0.9 },
-    ];
-    const result: { d: string; major: boolean }[] = [];
-    peaks.forEach((peak) => {
-      for (let r = 1; r <= peak.rings; r++) {
-        const radius = r * 28 * peak.scale;
-        const segments = 60;
-        const pts: string[] = [];
-        for (let s = 0; s <= segments; s++) {
-          const angle = (s / segments) * Math.PI * 2;
-          const noise =
-            Math.sin(angle * 3 + peak.cx * 0.01) * radius * 0.15 +
-            Math.sin(angle * 5 + peak.cy * 0.02) * radius * 0.08 +
-            Math.cos(angle * 2 + r) * radius * 0.12;
-          const x = peak.cx + (radius + noise) * Math.cos(angle);
-          const y = peak.cy + (radius + noise) * Math.sin(angle) * 0.7;
-          pts.push(`${x.toFixed(1)},${y.toFixed(1)}`);
+export const generateTopoContours = (
+  vw: number,
+  vh: number,
+  levels: number = 18,
+): { d: string; major: boolean }[] => {
+  // Multi-octave sinusoidal noise → terrain-like height field
+  const noise = (x: number, y: number): number =>
+    Math.sin(x * 0.008 + y * 0.006) * 0.4 +
+    Math.cos(x * 0.005 - y * 0.012 + 2.1) * 0.35 +
+    Math.sin(x * 0.018 + y * 0.015 + 1.3) * 0.2 +
+    Math.cos(x * 0.012 - y * 0.022 + 3.7) * 0.15 +
+    Math.sin(x * 0.035 + y * 0.028 - 0.5) * 0.08 +
+    Math.cos(x * 0.025 - y * 0.038 + 1.9) * 0.06 +
+    Math.sin(x * 0.055 + y * 0.045 + 2.7) * 0.03;
+
+  const step = 6;
+  const cols = Math.ceil(vw / step) + 1;
+  const rows = Math.ceil(vh / step) + 1;
+
+  const field: number[][] = [];
+  let fmin = Infinity,
+    fmax = -Infinity;
+  for (let j = 0; j < rows; j++) {
+    field[j] = [];
+    for (let i = 0; i < cols; i++) {
+      const v = noise(i * step, j * step);
+      field[j][i] = v;
+      if (v < fmin) fmin = v;
+      if (v > fmax) fmax = v;
+    }
+  }
+
+  // Marching squares edge table (16 cases)
+  // Edges: 0=top, 1=right, 2=bottom, 3=left
+  const edgeTable: number[][] = [
+    [],
+    [3, 2],
+    [2, 1],
+    [3, 1],
+    [1, 0],
+    [3, 0, 1, 2],
+    [2, 0],
+    [3, 0],
+    [0, 3],
+    [0, 2],
+    [0, 1, 2, 3],
+    [0, 1],
+    [1, 3],
+    [1, 2],
+    [2, 3],
+    [],
+  ];
+
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+  // Catmull-Rom → cubic bézier for smooth organic curves
+  const smoothPath = (pts: [number, number][]): string => {
+    if (pts.length < 2) return "";
+    if (pts.length === 2)
+      return `M ${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)} L ${pts[1][0].toFixed(1)},${pts[1][1].toFixed(1)}`;
+    let d = `M ${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[Math.max(0, i - 1)];
+      const p1 = pts[i];
+      const p2 = pts[i + 1];
+      const p3 = pts[Math.min(pts.length - 1, i + 2)];
+      const t = 6;
+      d += ` C ${(p1[0] + (p2[0] - p0[0]) / t).toFixed(1)},${(p1[1] + (p2[1] - p0[1]) / t).toFixed(1)} ${(p2[0] - (p3[0] - p1[0]) / t).toFixed(1)},${(p2[1] - (p3[1] - p1[1]) / t).toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+    }
+    return d;
+  };
+
+  const result: { d: string; major: boolean }[] = [];
+
+  for (let l = 0; l < levels; l++) {
+    const threshold = fmin + ((l + 1) * (fmax - fmin)) / (levels + 1);
+    const isMajor = l % 4 === 0;
+
+    // Collect line segments via marching squares
+    const segments: { x1: number; y1: number; x2: number; y2: number }[] = [];
+    for (let j = 0; j < rows - 1; j++) {
+      for (let i = 0; i < cols - 1; i++) {
+        const tl = field[j][i],
+          tr = field[j][i + 1];
+        const br = field[j + 1][i + 1],
+          bl = field[j + 1][i];
+        let idx = 0;
+        if (tl >= threshold) idx |= 8;
+        if (tr >= threshold) idx |= 4;
+        if (br >= threshold) idx |= 2;
+        if (bl >= threshold) idx |= 1;
+        const edges = edgeTable[idx];
+        if (edges.length === 0) continue;
+
+        const getEdgePt = (edge: number): [number, number] => {
+          const x0 = i * step,
+            y0 = j * step;
+          switch (edge) {
+            case 0: {
+              const t = (threshold - tl) / (tr - tl || 1e-10);
+              return [lerp(x0, x0 + step, t), y0];
+            }
+            case 1: {
+              const t = (threshold - tr) / (br - tr || 1e-10);
+              return [x0 + step, lerp(y0, y0 + step, t)];
+            }
+            case 2: {
+              const t = (threshold - bl) / (br - bl || 1e-10);
+              return [lerp(x0, x0 + step, t), y0 + step];
+            }
+            case 3: {
+              const t = (threshold - tl) / (bl - tl || 1e-10);
+              return [x0, lerp(y0, y0 + step, t)];
+            }
+            default:
+              return [0, 0];
+          }
+        };
+
+        for (let e = 0; e < edges.length; e += 2) {
+          const [x1, y1] = getEdgePt(edges[e]);
+          const [x2, y2] = getEdgePt(edges[e + 1]);
+          segments.push({ x1, y1, x2, y2 });
         }
-        result.push({ d: `M ${pts.join(" L ")} Z`, major: r % 3 === 0 });
+      }
+    }
+
+    // Chain segments into continuous contour paths
+    const key = (x: number, y: number) =>
+      `${Math.round(x * 10)},${Math.round(y * 10)}`;
+    const endMap = new Map<string, number[]>();
+    segments.forEach((seg, si) => {
+      for (const k of [key(seg.x1, seg.y1), key(seg.x2, seg.y2)]) {
+        if (!endMap.has(k)) endMap.set(k, []);
+        endMap.get(k)!.push(si);
       }
     });
-    return result;
-  }, []);
+
+    const used = new Set<number>();
+    for (let si = 0; si < segments.length; si++) {
+      if (used.has(si)) continue;
+      used.add(si);
+      const chain: [number, number][] = [
+        [segments[si].x1, segments[si].y1],
+        [segments[si].x2, segments[si].y2],
+      ];
+
+      // Extend forward
+      let extending = true;
+      while (extending) {
+        extending = false;
+        const k = key(chain[chain.length - 1][0], chain[chain.length - 1][1]);
+        for (const ni of endMap.get(k) || []) {
+          if (used.has(ni)) continue;
+          used.add(ni);
+          const ns = segments[ni];
+          chain.push(key(ns.x1, ns.y1) === k ? [ns.x2, ns.y2] : [ns.x1, ns.y1]);
+          extending = true;
+          break;
+        }
+      }
+
+      // Extend backward
+      extending = true;
+      while (extending) {
+        extending = false;
+        const k = key(chain[0][0], chain[0][1]);
+        for (const ni of endMap.get(k) || []) {
+          if (used.has(ni)) continue;
+          used.add(ni);
+          const ns = segments[ni];
+          chain.unshift(
+            key(ns.x1, ns.y1) === k ? [ns.x2, ns.y2] : [ns.x1, ns.y1],
+          );
+          extending = true;
+          break;
+        }
+      }
+
+      if (chain.length < 4) continue;
+      result.push({ d: smoothPath(chain), major: isMajor });
+    }
+  }
+
+  return result;
+};
+
+export const TopoBg = ({ className = "" }: { className?: string }) => {
+  const contours = useMemo(() => generateTopoContours(1200, 600, 20), []);
+  const filterId = useMemo(
+    () => `topoGrain_${Math.random().toString(36).slice(2, 8)}`,
+    [],
+  );
 
   return (
     <div
       className={`absolute inset-0 overflow-hidden pointer-events-none ${className}`}
     >
+      {/* Grain texture overlay */}
+      <svg
+        className="absolute inset-0 w-full h-full opacity-[0.035]"
+        aria-hidden
+      >
+        <filter id={filterId}>
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.65"
+            numOctaves="3"
+            stitchTiles="stitch"
+          />
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+        <rect width="100%" height="100%" filter={`url(#${filterId})`} />
+      </svg>
+      {/* Contour lines */}
       <svg
         width="100%"
         height="100%"
-        className="opacity-[0.04]"
+        className="opacity-[0.07]"
         preserveAspectRatio="xMidYMid slice"
-        viewBox="0 0 800 400"
+        viewBox="0 0 1200 600"
       >
-        {paths.map((p, i) => (
+        {contours.map((c, i) => (
           <path
             key={i}
-            d={p.d}
+            d={c.d}
             fill="none"
             stroke="hsl(var(--foreground))"
-            strokeWidth={p.major ? 1 : 0.5}
+            strokeWidth={c.major ? 1.2 : 0.5}
           />
         ))}
       </svg>
@@ -180,7 +360,10 @@ export const MiniRadar = ({
       .join(" ");
   });
   const dp = data.map((d, i) => pt(i, (d.value / 100) * r));
-  const path = dp.map((p) => `${p.x},${p.y}`).join(" ");
+  // Use path d attribute (CSS-animatable) instead of polygon points
+  const centerD = `M ${data.map(() => `${cx},${cy}`).join(" L ")} Z`;
+  const dataD = `M ${dp.map((p) => `${p.x},${p.y}`).join(" L ")} Z`;
+  const ease = "cubic-bezier(0.25, 0.8, 0.25, 1)";
 
   return (
     <div ref={ref}>
@@ -210,29 +393,31 @@ export const MiniRadar = ({
             />
           );
         })}
-        <motion.polygon
-          points={isInView ? path : data.map(() => `${cx},${cy}`).join(" ")}
+        {/* Data shape — uses <path> with CSS d transition instead of motion.polygon */}
+        <path
+          d={isInView ? dataD : centerD}
           fill={`hsl(var(${color}) / 0.15)`}
           stroke={`hsl(var(${color}))`}
           strokeWidth={2}
-          animate={{
-            points: isInView ? path : data.map(() => `${cx},${cy}`).join(" "),
+          style={{
+            transition: `d 0.8s ${ease}`,
+            filter: `drop-shadow(0 0 6px hsl(var(${color}) / 0.3))`,
           }}
-          transition={{ duration: 0.8, ease: [0.25, 0.8, 0.25, 1] }}
-          style={{ filter: `drop-shadow(0 0 6px hsl(var(${color}) / 0.3))` }}
         />
+        {/* Data points — uses CSS cx/cy transitions instead of motion.circle */}
         {dp.map((p, i) => (
-          <motion.circle
+          <circle
             key={i}
-            cx={cx}
-            cy={cy}
+            cx={isInView ? p.x : cx}
+            cy={isInView ? p.y : cy}
             r={3}
             fill={`hsl(var(${color}))`}
             stroke="hsl(var(--background))"
             strokeWidth={2}
-            animate={{ cx: isInView ? p.x : cx, cy: isInView ? p.y : cy }}
-            transition={{ duration: 0.8, delay: i * 0.05 }}
-            style={{ filter: `drop-shadow(0 0 4px hsl(var(${color}) / 0.5))` }}
+            style={{
+              transition: `cx 0.8s ${ease} ${i * 0.05}s, cy 0.8s ${ease} ${i * 0.05}s`,
+              filter: `drop-shadow(0 0 4px hsl(var(${color}) / 0.5))`,
+            }}
           />
         ))}
         {data.map((d, i) => {

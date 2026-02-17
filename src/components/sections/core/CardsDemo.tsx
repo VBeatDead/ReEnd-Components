@@ -4,7 +4,7 @@ import { Minus } from "lucide-react";
 const CardsDemo = () => (
   <ComponentPreview
     id="cards"
-    title="9. Cards"
+    title="Cards"
     showViewport
     description="Corner brackets signature element. Hover: translateY(-4px), yellow border tint, shadow."
     code={`.card {

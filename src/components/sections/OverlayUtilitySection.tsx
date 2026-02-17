@@ -12,10 +12,10 @@ import { useState, useRef, useEffect } from "react";
 export const OverlayUtilitySection = () => {
   return (
     <>
-      {/* 48. Command Palette */}
+      {/* Command Palette */}
       <ComponentPreview
         id="command-palette"
-        title="48. Command Palette / Quick Search"
+        title="Command Palette / Quick Search"
         description="Trigger: ⌘K. Surface-2 bg. Input 16px. Results with diamond markers."
         props={[
           {
@@ -116,10 +116,10 @@ export const OverlayUtilitySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 49. Cookie Consent */}
+      {/* Cookie Consent */}
       <ComponentPreview
         id="cookie-consent"
-        title="49. Cookie Consent"
+        title="Cookie Consent"
         showViewport
         description="Fixed bottom, surface-2 bg, border-top. Accept All primary + Customize ghost."
         props={[
@@ -159,10 +159,10 @@ export const OverlayUtilitySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 50. Back to Top */}
+      {/* Back to Top */}
       <ComponentPreview
         id="back-to-top"
-        title="50. Back to Top"
+        title="Back to Top"
         description="Fixed bottom-right. Visible after scroll >300px. Icon button style."
         props={[
           {
@@ -191,10 +191,10 @@ export const OverlayUtilitySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 51. Copy to Clipboard */}
+      {/* Copy to Clipboard */}
       <ComponentPreview
         id="copy-clipboard"
-        title="51. Copy to Clipboard"
+        title="Copy to Clipboard"
         description="Idle: Copy icon. Click: ✓ + 'Copied!' green. Reset 2s. Used on code blocks, URLs."
         props={[
           {
@@ -221,10 +221,10 @@ export const OverlayUtilitySection = () => {
         <CopyClipboardDemo />
       </ComponentPreview>
 
-      {/* 52. Dropdown */}
+      {/* Dropdown */}
       <ComponentPreview
         id="dropdown"
-        title="52. Dropdown Menu"
+        title="Dropdown Menu"
         description="surface-2 bg. Hover: yellow bg tint + text. Danger: red variant. Section labels."
         props={[
           {
@@ -275,10 +275,10 @@ export const OverlayUtilitySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 53. Context Menu */}
+      {/* Context Menu */}
       <ComponentPreview
         id="context-menu"
-        title="53. Context Menu"
+        title="Context Menu"
         description="Same styling as Dropdown. Right-click trigger. Keyboard shortcut hints."
         props={[
           {

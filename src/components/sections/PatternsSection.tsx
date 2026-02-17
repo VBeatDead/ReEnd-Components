@@ -3,10 +3,10 @@ import { ComponentPreview } from "../docs/ComponentPreview";
 export const PatternsSection = () => {
   return (
     <>
-      {/* 64. Page Templates */}
+      {/* Page Templates */}
       <ComponentPreview
         id="page-templates"
-        title="64. Page Templates"
+        title="Page Templates"
         showViewport
         description="Homepage, Documentation, Blog List, Blog Post, dan Error Page layouts."
         props={[
@@ -91,10 +91,10 @@ export const PatternsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 65. Section Patterns */}
+      {/* Section Patterns */}
       <ComponentPreview
         id="section-patterns"
-        title="65. Section Patterns"
+        title="Section Patterns"
         showViewport
         description="Overline section, alternating layout, feature grid, testimonial, CTA."
         props={[
@@ -165,10 +165,10 @@ export const PatternsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 66. Responsive */}
+      {/* Responsive */}
       <ComponentPreview
         id="responsive"
-        title="66. Responsive Breakpoints"
+        title="Responsive Breakpoints"
         description="Mobile 480px, Tablet 768px, Laptop 1024px, Desktop 1280px, Wide 1536px."
         props={[
           {
@@ -221,10 +221,10 @@ export const PatternsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 67. Accessibility */}
+      {/* Accessibility */}
       <ComponentPreview
         id="accessibility"
-        title="67. Accessibility"
+        title="Accessibility"
         description="Contrast ratios AAA. ARIA requirements. Skip navigation."
       >
         <div className="space-y-6">
@@ -280,10 +280,10 @@ export const PatternsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 68. Performance */}
+      {/* Performance */}
       <ComponentPreview
         id="performance"
-        title="68. Performance Guidelines"
+        title="Performance Guidelines"
         description="Images: WebP, lazy loading. Fonts: font-display swap, WOFF2. GPU animations."
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -347,10 +347,10 @@ export const PatternsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 69. Design Tokens */}
+      {/* Design Tokens */}
       <ComponentPreview
         id="design-tokens"
-        title="69. Design Tokens (Complete)"
+        title="Design Tokens (Complete)"
         description="Complete CSS variables reference — colors, surfaces, typography, spacing, shadows, transitions, z-index."
         code={`:root {
   /* Colors */
@@ -378,10 +378,10 @@ export const PatternsSection = () => {
         </p>
       </ComponentPreview>
 
-      {/* 70. Naming Conventions */}
+      {/* Naming Conventions */}
       <ComponentPreview
         id="naming-conventions"
-        title="70. Naming Conventions"
+        title="Naming Conventions"
         description="BEM-inspired CSS class naming. Color token naming convention."
         code={`/* CSS Class Naming (BEM-inspired) */
 .component                  →  .card

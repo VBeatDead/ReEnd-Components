@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { TopoBg } from "@/components/home/signature";
 
 /**
  * Catches invalid /docs/* slugs and shows a helpful message
@@ -28,8 +29,9 @@ const DocsNotFound = () => {
   const attemptedSlug = location.pathname.replace(/^\/docs\/?/, "");
 
   return (
-    <div className="py-20 text-center">
-      <span className="font-ui text-[10px] tracking-[0.2em] uppercase text-primary">
+    <div className="relative py-20 text-center">
+      <TopoBg className="opacity-30" />
+      <span className="relative font-ui text-[10px] tracking-[0.2em] uppercase text-primary">
         EF-SYS // SECTION NOT FOUND
       </span>
       <h1 className="font-display text-3xl font-bold text-foreground mt-4 mb-2">

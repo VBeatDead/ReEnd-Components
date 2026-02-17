@@ -2,6 +2,7 @@ import { useEffect, useMemo, useCallback } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { DocsHeader } from "@/components/docs/DocsHeader";
 import { DocsSidebar } from "@/components/docs/DocsSidebar";
+import { TopoBg } from "@/components/home/signature";
 import { sidebarData, idToSlugMap } from "@/components/docs/sidebarData";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorFallback } from "@/components/docs/ErrorFallback";
@@ -142,7 +143,8 @@ const DocsLayout = () => {
   }, [slug, navigate]);
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="relative min-h-screen bg-background overflow-x-hidden">
+      <TopoBg className="opacity-20 fixed inset-0" />
       {/* Skip navigation link */}
       <a
         href="#main-content"

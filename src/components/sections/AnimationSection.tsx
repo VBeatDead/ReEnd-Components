@@ -3,10 +3,10 @@ import { ComponentPreview } from "../docs/ComponentPreview";
 export const AnimationSection = () => {
   return (
     <>
-      {/* 54. Animation System */}
+      {/* Animation System */}
       <ComponentPreview
         id="animation-system"
-        title="54. Animation System"
+        title="Animation System"
         description="Timing functions, durations, and key animation catalog."
         code={`/* Timing Functions */
 --ease-default: cubic-bezier(0.25, 0.8, 0.25, 1)${""};
@@ -123,10 +123,10 @@ export const AnimationSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 55. Page Transitions */}
+      {/* Page Transitions */}
       <ComponentPreview
         id="page-transitions"
-        title="55. Page Transitions"
+        title="Page Transitions"
         description="Cross-fade 300ms. View Transitions API."
         code={`::view-transition-old(root) { animation: fadeOut 0.2s ease forwards; }
 ::view-transition-new(root) { animation: fadeIn 0.3s ease forwards; }`}
@@ -153,10 +153,10 @@ export const AnimationSection = () => {
         </p>
       </ComponentPreview>
 
-      {/* 56. Scroll Animations */}
+      {/* Scroll Animations */}
       <ComponentPreview
         id="scroll-animations"
-        title="56. Scroll-Triggered Animations"
+        title="Scroll-Triggered Animations"
         description="Default: fadeInUp at 10% visibility. Stagger: 100ms delay per sibling."
         props={[
           {
@@ -210,10 +210,10 @@ export const AnimationSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 57. Particle Effects */}
+      {/* Particle Effects */}
       <ComponentPreview
         id="particle-effects"
-        title="57. Particle & Ambient Effects"
+        title="Particle & Ambient Effects"
         description="Floating dots opacity 0.1-0.3, slow drift. Hero-section only. Canvas-based."
         props={[
           {
@@ -250,8 +250,9 @@ export const AnimationSection = () => {
           {Array.from({ length: 12 }, (_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-primary rounded-full animate-pulse"
+              className="absolute w-1 h-1 bg-primary animate-pulse"
               style={{
+                clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                 left: `${10 + ((i * 7) % 80)}%`,
                 top: `${15 + ((i * 13) % 70)}%`,
                 opacity: 0.1 + (i % 3) * 0.1,

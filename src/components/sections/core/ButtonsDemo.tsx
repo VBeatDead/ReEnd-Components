@@ -4,7 +4,7 @@ import { ArrowRight, Plus } from "lucide-react";
 const ButtonsDemo = () => (
   <ComponentPreview
     id="buttons"
-    title="8. Buttons"
+    title="Buttons"
     description="clip-path sudut terpotong, BUKAN border-radius. Uppercase, letter-spacing, Orbitron font."
     code={`.btn-primary {
   background: #FFD429;

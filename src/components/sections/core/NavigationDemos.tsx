@@ -55,10 +55,10 @@ const NavigationDemos = () => {
 
   return (
     <>
-      {/* 11. Nav Header */}
+      {/* Nav Header */}
       <ComponentPreview
         id="nav-header"
-        title="11. Navigation — Header"
+        title="Navigation — Header"
         showViewport
         description="Fixed, blur backdrop, 64px height. Nav link: Orbitron, uppercase, diamond indicator on active."
         code={`.header {
@@ -138,10 +138,10 @@ const NavigationDemos = () => {
         </div>
       </ComponentPreview>
 
-      {/* 12. Nav Sidebar */}
+      {/* Nav Sidebar */}
       <ComponentPreview
         id="nav-sidebar"
-        title="12. Navigation — Sidebar (Docs)"
+        title="Navigation — Sidebar (Docs)"
         showViewport
         description="Width 280px, fixed. Section label: Orbitron 11px uppercase. Active: yellow left border."
         props={[
@@ -221,10 +221,10 @@ const NavigationDemos = () => {
         </div>
       </ComponentPreview>
 
-      {/* 13. Nav Tabs */}
+      {/* Nav Tabs */}
       <ComponentPreview
         id="nav-tabs"
-        title="13. Navigation — Tabs"
+        title="Navigation — Tabs"
         description="Orbitron 13px, uppercase. Active: yellow text + yellow bottom border."
         code={`.tab.active { color: #FFD429; border-bottom-color: #FFD429; }`}
         keyboard={[
@@ -309,10 +309,10 @@ const NavigationDemos = () => {
         </div>
       </ComponentPreview>
 
-      {/* 14. Nav Breadcrumb */}
+      {/* Nav Breadcrumb */}
       <ComponentPreview
         id="nav-breadcrumb"
-        title="14. Navigation — Breadcrumb"
+        title="Navigation — Breadcrumb"
         description="Item: Orbitron, 12px, uppercase. Separator: ›. Current: no link, font-weight 600."
         props={[
           {
@@ -348,10 +348,10 @@ const NavigationDemos = () => {
         </nav>
       </ComponentPreview>
 
-      {/* 15. Nav Pagination */}
+      {/* Nav Pagination */}
       <ComponentPreview
         id="nav-pagination"
-        title="15. Navigation — Pagination"
+        title="Navigation — Pagination"
         description="Diamond markers. Orbitron font. Active: yellow bg, black text."
         props={[
           {

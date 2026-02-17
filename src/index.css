@@ -18,15 +18,17 @@
     --ef-pure-white: 0 0% 100%;
 
     /* Accents */
-    --ef-yellow: 47 100% 56%;
-    --ef-yellow-dark: 42 85% 39%;
-    --ef-blue: 200 60% 56%;
-    --ef-blue-light: 199 62% 69%;
-    --ef-cyan: 189 100% 50%;
+    --ef-yellow: 48 100% 58%;
+    --ef-yellow-dark: 48 85% 39%;
+    --ef-yellow-glow: 48 100% 58% / 0.25;
+    --ef-blue: 201 66% 58%;
+    --ef-blue-light: 196 64% 69%;
+    --ef-blue-dark: 202 56% 38%;
+    --ef-cyan: 186 100% 50%;
     --ef-red: 355 100% 64%;
-    --ef-green: 147 71% 51%;
-    --ef-orange: 38 100% 50%;
-    --ef-purple: 268 77% 57%;
+    --ef-green: 145 67% 51%;
+    --ef-orange: 39 100% 50%;
+    --ef-purple: 270 77% 64%;
 
     /* ═══ SHADCN SEMANTIC MAPPING ═══ */
     --background: 0 0% 4%;
@@ -38,7 +40,7 @@
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 87.8%;
 
-    --primary: 47 100% 56%;
+    --primary: 48 100% 58%;
     --primary-foreground: 0 0% 4%;
 
     --secondary: 0 0% 10%;
@@ -48,25 +50,25 @@
     --muted-foreground: 0 0% 60%;
 
     --accent: 0 0% 10%;
-    --accent-foreground: 47 100% 56%;
+    --accent-foreground: 48 100% 58%;
 
     --destructive: 355 100% 64%;
     --destructive-foreground: 0 0% 100%;
 
     --border: 0 0% 100% / 0.06;
     --input: 0 0% 100% / 0.1;
-    --ring: 47 100% 56%;
+    --ring: 48 100% 58%;
 
     --radius: 0px;
 
     --sidebar-background: 0 0% 5.9%;
     --sidebar-foreground: 0 0% 60%;
-    --sidebar-primary: 47 100% 56%;
+    --sidebar-primary: 48 100% 58%;
     --sidebar-primary-foreground: 0 0% 4%;
     --sidebar-accent: 0 0% 12%;
-    --sidebar-accent-foreground: 47 100% 56%;
+    --sidebar-accent-foreground: 48 100% 58%;
     --sidebar-border: 0 0% 100% / 0.06;
-    --sidebar-ring: 47 100% 56%;
+    --sidebar-ring: 48 100% 58%;
 
     /* ═══ SURFACES ═══ */
     --surface-canvas: 0 0% 4%;
@@ -81,8 +83,45 @@
     --header-height: 64px;
     --sidebar-width: 280px;
 
+    /* ═══ BORDERS ═══ */
+    --border-strong: 0 0% 100% / 0.12;
+    --border-accent: 48 100% 58% / 0.4;
+
+    /* ═══ SHADOWS ═══ */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md:
+      0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg:
+      0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+    --shadow-glow: 0 0 20px hsl(48 100% 58% / 0.2);
+
+    /* ═══ Z-INDEX ═══ */
+    --z-base: 0;
+    --z-dropdown: 10;
+    --z-sticky: 20;
+    --z-overlay: 30;
+    --z-modal: 40;
+    --z-popover: 50;
+    --z-toast: 60;
+    --z-tooltip: 70;
+
     /* ═══ EASING ═══ */
     --ease-default: cubic-bezier(0.25, 0.8, 0.25, 1);
+    --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-sharp: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-smooth: cubic-bezier(0.45, 0, 0.55, 1);
+
+    /* ═══ DURATIONS ═══ */
+    --duration-instant: 100ms;
+    --duration-fast: 150ms;
+    --duration-normal: 250ms;
+    --duration-slow: 400ms;
+    --duration-slower: 700ms;
+
+    /* ═══ RADIUS ═══ */
+    --radius-none: 0px;
+    --radius-sm: 2px;
+    --radius-md: 4px;
   }
 
   /* ═══ LIGHT MODE ═══ */
@@ -165,6 +204,20 @@
     @apply border-border;
   }
 
+  /* ═══ FOCUS-VISIBLE ═══ */
+  :focus-visible {
+    outline: 2px solid hsl(var(--ef-yellow));
+    outline-offset: 2px;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: none;
+    border-color: hsl(48 100% 58%);
+    box-shadow: 0 0 0 3px hsl(48 100% 58% / 0.15);
+  }
+
   :root {
     scrollbar-width: thin;
     scrollbar-color: hsl(0 0% 20%) hsl(0 0% 4%);
@@ -176,7 +229,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: "Inter", "Noto Sans SC", sans-serif;
+    font-family: "Source Han Sans", "Noto Sans SC", "Inter", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -194,6 +247,18 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary));
+  }
+
+  /* ═══ STORYTELLING MODE ═══ */
+  /* Hides scrollbar for immersive scroll-driven experiences.
+     Applied to <html> via JS when on storytelling pages (e.g., HomePage).
+     The page still scrolls — scroll-progress drives pinned animations. */
+  .storytelling-mode {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE / Edge */
+  }
+  .storytelling-mode::-webkit-scrollbar {
+    display: none; /* Chrome / Safari */
   }
 
   /* ═══ SHIKI DUAL-THEME ═══ */
@@ -258,7 +323,7 @@
     font-family: "JetBrains Mono", "Courier New", monospace;
   }
   .font-body {
-    font-family: "Inter", sans-serif;
+    font-family: "Source Han Sans", "Noto Sans SC", "Inter", sans-serif;
   }
 
   /* ═══ CORNER BRACKETS — ENDFIELD SIGNATURE ═══ */
@@ -414,11 +479,11 @@
   }
   @keyframes slideDown {
     from {
-      max-height: 0;
+      transform: scaleY(0);
       opacity: 0;
     }
     to {
-      max-height: 500px;
+      transform: scaleY(1);
       opacity: 1;
     }
   }
@@ -432,10 +497,10 @@
   }
   @keyframes shrink {
     from {
-      width: 100%;
+      transform: scaleX(1);
     }
     to {
-      width: 0%;
+      transform: scaleX(0);
     }
   }
   @keyframes countUp {
@@ -476,6 +541,7 @@
   }
   .animate-slide-down {
     animation: slideDown 0.3s ease forwards;
+    transform-origin: top;
     overflow: hidden;
   }
   .animate-diamond-spin {
@@ -483,6 +549,7 @@
   }
   .animate-shrink {
     animation: shrink 5s linear forwards;
+    transform-origin: left;
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -17,10 +17,10 @@ import SignatureFeedbackSection from "./signature/SignatureFeedbackSection";
 export const FeedbackSection = () => {
   return (
     <>
-      {/* 25. Toast */}
+      {/* Toast */}
       <ComponentPreview
         id="toast-notification"
-        title="25. Notification & Toast"
+        title="Notification & Toast"
         showViewport
         description="Left border 3px semantic color. Auto-dismiss progress bar. Position: top-right."
         props={[
@@ -156,10 +156,10 @@ export const FeedbackSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 26. Modal */}
+      {/* Modal */}
       <ComponentPreview
         id="modal-dialog"
-        title="26. Modal & Dialog"
+        title="Modal & Dialog"
         showViewport
         description="Backdrop: blur(4px). Container: surface-3. Title: Orbitron 16px uppercase. Close: ✕."
         props={[
@@ -321,10 +321,10 @@ export const FeedbackSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 27. Tooltip & Popover */}
+      {/* Tooltip & Popover */}
       <ComponentPreview
         id="tooltip-popover"
-        title="27. Tooltip & Popover"
+        title="Tooltip & Popover"
         description="Tooltip: #222 bg, 12px, non-interactive. Popover: surface-2, shadow-lg, interactive."
         props={[
           {
@@ -396,10 +396,10 @@ export const FeedbackSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 28. Loading */}
+      {/* Loading */}
       <ComponentPreview
         id="loading-skeleton"
-        title="28. Loading, Skeleton & Spinner"
+        title="Loading, Skeleton & Spinner"
         description="Diamond spinner with clip-path. Skeleton shimmer effect. Loading dots."
         props={[
           {
@@ -447,7 +447,10 @@ export const FeedbackSection = () => {
                 {[0, 1, 2].map((i) => (
                   <div
                     key={i}
-                    className="w-1 h-1 bg-primary rounded-full animate-pulse"
+                    className="w-1 h-1 bg-primary animate-pulse"
+                    style={{
+                      clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                    }}
                     style={{ animationDelay: `${i * 200}ms` }}
                   />
                 ))}
@@ -487,10 +490,10 @@ export const FeedbackSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 29. Empty State */}
+      {/* Empty State */}
       <ComponentPreview
         id="empty-state"
-        title="29. Empty State"
+        title="Empty State"
         showViewport
         description="Icon 48px, title Orbitron 18px uppercase. CTA button. Context-specific variants."
         props={[
@@ -562,10 +565,10 @@ export const FeedbackSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 30. Error Pages */}
+      {/* Error Pages */}
       <ComponentPreview
         id="error-pages"
-        title="30. Error Pages"
+        title="Error Pages"
         showViewport
         description="Error code: Orbitron 120px glitch animation. Color-coded by error type."
         props={[
@@ -589,7 +592,7 @@ export const FeedbackSection = () => {
           },
         ]}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {[
             {
               code: "404",
@@ -618,19 +621,21 @@ export const FeedbackSection = () => {
           ].map((e) => (
             <div
               key={e.code}
-              className="text-center py-6 scanline-overlay bg-surface-1 border border-border"
+              className="text-center py-5 px-3 scanline-overlay bg-surface-1 border border-border overflow-hidden flex flex-col items-center justify-center"
             >
               <p
-                className={`font-display text-5xl font-black tracking-[0.2em] ${e.color} animate-glitch`}
-                style={{ textShadow: "0 0 40px currentColor" }}
+                className={`font-display text-4xl sm:text-5xl lg:text-6xl leading-none font-black tracking-[0.08em] sm:tracking-[0.12em] ${e.color} animate-glitch`}
+                style={{ textShadow: "0 0 30px currentColor" }}
               >
                 {e.code}
               </p>
-              <h4 className="font-display text-xs font-bold uppercase mt-3 text-foreground">
+              <h4 className="font-display text-[10px] sm:text-xs font-bold uppercase mt-3 text-foreground">
                 {e.title}
               </h4>
-              <p className="text-xs text-muted-foreground mt-1">{e.desc}</p>
-              <p className="font-mono text-[9px] text-ef-gray-mid mt-3">
+              <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
+                {e.desc}
+              </p>
+              <p className="font-mono text-[10px] sm:text-[11px] text-[#444] mt-2 sm:mt-3">
                 EF-{e.code}-3B2C
               </p>
             </div>
@@ -638,10 +643,10 @@ export const FeedbackSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 31. Offline */}
+      {/* Offline */}
       <ComponentPreview
         id="offline-state"
-        title="31. Offline State"
+        title="Offline State"
         description="Full page dan inline banner variants. Network status indicator."
         props={[
           {
@@ -668,22 +673,40 @@ export const FeedbackSection = () => {
           </div>
           <div className="flex flex-wrap gap-6">
             <span className="flex items-center gap-2 font-ui text-[10px] uppercase">
-              <span className="w-2 h-2 rounded-full bg-ef-green" /> ONLINE
+              <span
+                className="w-2 h-2 bg-ef-green"
+                style={{
+                  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                }}
+              />{" "}
+              ONLINE
             </span>
             <span className="flex items-center gap-2 font-ui text-[10px] uppercase text-ef-red">
-              <span className="w-2 h-2 rounded-full bg-ef-red" /> OFFLINE
+              <span
+                className="w-2 h-2 bg-ef-red"
+                style={{
+                  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                }}
+              />{" "}
+              OFFLINE
             </span>
             <span className="flex items-center gap-2 font-ui text-[10px] uppercase text-ef-orange">
-              <span className="w-2 h-2 rounded-full bg-ef-orange" /> SLOW
+              <span
+                className="w-2 h-2 bg-ef-orange"
+                style={{
+                  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                }}
+              />{" "}
+              SLOW
             </span>
           </div>
         </div>
       </ComponentPreview>
 
-      {/* 32. Success State */}
+      {/* Success State */}
       <ComponentPreview
         id="success-state"
-        title="32. Success State / Confirmation"
+        title="Success State / Confirmation"
         description="Checkmark icon animated. Green accent. Minimal affirming text."
         props={[
           {
@@ -711,10 +734,10 @@ export const FeedbackSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 33. Inline Validation */}
+      {/* Inline Validation */}
       <ComponentPreview
         id="inline-validation"
-        title="33. Inline Validation"
+        title="Inline Validation"
         description="Field-level: icon prefix ✕/✓/⚠. Real-time debounced 300ms, on-blur, on-submit."
         props={[
           {
@@ -778,10 +801,10 @@ export const FeedbackSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 34. Banner & Alert */}
+      {/* Banner & Alert */}
       <ComponentPreview
         id="banner-alert"
-        title="34. Banner & Alert (Persistent)"
+        title="Banner & Alert (Persistent)"
         description="Inline alerts with semantic bg tint. Top-of-page banner: yellow bg, black text."
         props={[
           {

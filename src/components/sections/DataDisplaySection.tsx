@@ -8,10 +8,10 @@ export const DataDisplaySection = () => {
 
   return (
     <>
-      {/* 17. Table */}
+      {/* Table */}
       <ComponentPreview
         id="table"
-        title="17. Table (Data Table)"
+        title="Table (Data Table)"
         showViewport
         description="Header: Orbitron 11px uppercase sticky. Striped rows. Hover: yellow tint."
         code={`.table th {
@@ -79,16 +79,21 @@ export const DataDisplaySection = () => {
           },
         ]}
       >
-        <div className="overflow-x-auto border border-border">
-          <table className="w-full text-sm">
+        <div className="overflow-x-auto border border-border -mx-6 sm:mx-0">
+          <table className="w-full text-sm min-w-0">
             <thead>
               <tr>
                 {["OPERATOR", "CLASS", "RARITY", "STATUS"].map((h) => (
                   <th
                     key={h}
-                    className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left border-b border-border bg-surface-0"
+                    className="font-display text-[10px] sm:text-[11px] font-bold tracking-[0.06em] sm:tracking-[0.12em] uppercase text-muted-foreground py-2.5 sm:py-3 px-2 sm:px-4 text-left border-b border-border bg-surface-0 sticky top-0 z-10 cursor-pointer select-none hover:text-foreground transition-colors whitespace-nowrap"
                   >
-                    {h}
+                    <span className="inline-flex items-center gap-0.5 sm:gap-1">
+                      {h}
+                      <span className="text-[8px] sm:text-[9px] text-muted-foreground/50">
+                        ▲▼
+                      </span>
+                    </span>
                   </th>
                 ))}
               </tr>
@@ -109,16 +114,18 @@ export const DataDisplaySection = () => {
                       i % 2 === 1 ? "rgba(255,255,255,0.015)" : undefined,
                   }}
                 >
-                  <td className="py-3 px-4 text-card-foreground font-medium">
+                  <td className="py-2.5 sm:py-3 px-2 sm:px-4 text-card-foreground font-medium text-xs sm:text-sm whitespace-nowrap">
                     {name}
                   </td>
-                  <td className="py-3 px-4 text-muted-foreground">{cls}</td>
-                  <td className="py-3 px-4 text-primary font-mono text-xs">
+                  <td className="py-2.5 sm:py-3 px-2 sm:px-4 text-muted-foreground text-xs sm:text-sm">
+                    {cls}
+                  </td>
+                  <td className="py-2.5 sm:py-3 px-2 sm:px-4 text-primary font-mono text-[10px] sm:text-xs">
                     {rarity}
                   </td>
-                  <td className="py-3 px-4">
+                  <td className="py-2.5 sm:py-3 px-2 sm:px-4">
                     <span
-                      className={`font-ui text-[10px] tracking-[0.12em] uppercase px-2 py-1 border ${status === "Active" ? "text-ef-green border-ef-green/40 bg-ef-green/[0.08]" : status === "Deployed" ? "text-ef-blue border-ef-blue/40 bg-ef-blue/[0.08]" : "text-muted-foreground border-border bg-foreground/[0.03]"}`}
+                      className={`font-ui text-[9px] sm:text-[10px] tracking-[0.06em] sm:tracking-[0.12em] uppercase px-1.5 sm:px-2 py-0.5 sm:py-1 border whitespace-nowrap ${status === "Active" ? "text-ef-green border-ef-green/40 bg-ef-green/[0.08]" : status === "Deployed" ? "text-ef-blue border-ef-blue/40 bg-ef-blue/[0.08]" : "text-muted-foreground border-border bg-foreground/[0.03]"}`}
                     >
                       {status}
                     </span>
@@ -127,8 +134,8 @@ export const DataDisplaySection = () => {
               ))}
             </tbody>
           </table>
-          <div className="px-4 py-3 border-t border-border flex items-center justify-between bg-surface-0">
-            <span className="text-xs text-muted-foreground">
+          <div className="px-2 sm:px-4 py-2.5 sm:py-3 border-t border-border flex items-center justify-between bg-surface-0">
+            <span className="text-[10px] sm:text-xs text-muted-foreground">
               Showing 1-5 of 124
             </span>
             <div className="flex gap-1">
@@ -145,10 +152,10 @@ export const DataDisplaySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 18. List */}
+      {/* List */}
       <ComponentPreview
         id="list"
-        title="18. List & List Item"
+        title="List & List Item"
         showViewport
         description="Diamond bullet ◆ #FFD429. Numbered: Orbitron, counter leading-zero."
         props={[
@@ -227,10 +234,10 @@ export const DataDisplaySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 19. Stat */}
+      {/* Stat */}
       <ComponentPreview
         id="stat-metric"
-        title="19. Stat & Metric Display"
+        title="Stat & Metric Display"
         showViewport
         description="Value: Orbitron 48px bold yellow. Label: Orbitron 11px uppercase gray. Trend: ▲/▼."
         props={[
@@ -287,10 +294,10 @@ export const DataDisplaySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 20. Timeline */}
+      {/* Timeline */}
       <ComponentPreview
         id="timeline"
-        title="20. Timeline"
+        title="Timeline"
         description="Vertical line 1px. Node: ◆ current yellow, ◇ past gray. Date: Orbitron 11px."
         props={[
           {
@@ -338,7 +345,7 @@ export const DataDisplaySection = () => {
               <p className="font-ui text-[11px] text-muted-foreground tracking-wider mb-1">
                 {item.date}
               </p>
-              <h4 className="font-display text-sm font-bold tracking-[0.02em] uppercase text-foreground">
+              <h4 className="font-display text-base font-bold tracking-[0.02em] uppercase text-foreground">
                 {item.title}
               </h4>
               <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
@@ -347,10 +354,10 @@ export const DataDisplaySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 21. Accordion */}
+      {/* Accordion */}
       <ComponentPreview
         id="accordion"
-        title="21. Accordion / Collapsible"
+        title="Accordion / Collapsible"
         description="Indicator: +/− in yellow (JetBrains Mono). NOT chevron. Content slides down."
         props={[
           {
@@ -390,16 +397,24 @@ export const DataDisplaySection = () => {
               <button
                 onClick={() => setAccordionOpen(accordionOpen === i ? null : i)}
                 className="w-full flex items-center justify-between px-5 py-4 bg-surface-1 hover:bg-surface-hover transition-colors"
+                aria-expanded={accordionOpen === i}
+                aria-controls={`accordion-panel-${i}`}
+                id={`accordion-trigger-${i}`}
               >
                 <span className="font-display text-sm font-semibold tracking-[0.02em] uppercase text-foreground">
                   {q}
                 </span>
-                <span className="font-mono text-primary text-lg">
+                <span className="font-mono text-primary text-base">
                   {accordionOpen === i ? "−" : "+"}
                 </span>
               </button>
               {accordionOpen === i && (
-                <div className="px-5 py-4 border-t border-border text-sm text-muted-foreground animate-fade-in">
+                <div
+                  className="px-5 py-4 border-t border-border text-sm text-muted-foreground animate-fade-in"
+                  role="region"
+                  id={`accordion-panel-${i}`}
+                  aria-labelledby={`accordion-trigger-${i}`}
+                >
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </div>
@@ -409,10 +424,10 @@ export const DataDisplaySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 22. Avatar */}
+      {/* Avatar */}
       <ComponentPreview
         id="avatar"
-        title="22. Avatar & Profile"
+        title="Avatar & Profile"
         description="Shape: Square with clipped corner (clip-path) — NOT circle. Status: diamond shape."
         props={[
           {
@@ -477,10 +492,10 @@ export const DataDisplaySection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 23. Tags & Badges */}
+      {/* Tags & Badges */}
       <ComponentPreview
         id="tags-badges"
-        title="23. Tags, Badges & Labels"
+        title="Tags, Badges & Labels"
         description="Tag font: Orbitron 10px, uppercase. Diamond-shaped badges. Semantic colors."
         props={[
           {
@@ -628,24 +643,40 @@ export const DataDisplaySection = () => {
           {/* Status dots */}
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-2 text-xs">
-              <span className="w-2 h-2 rounded-full bg-ef-green shadow-[0_0_6px_hsl(147_71%_51%/0.5)]" />{" "}
+              <span
+                className="w-2 h-2 bg-ef-green shadow-[0_0_6px_hsl(147_71%_51%/0.5)]"
+                style={{
+                  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                }}
+              />{" "}
               Online
             </span>
             <span className="flex items-center gap-2 text-xs">
-              <span className="w-2 h-2 rounded-full bg-ef-gray-mid" /> Offline
+              <span
+                className="w-2 h-2 bg-ef-gray-mid"
+                style={{
+                  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                }}
+              />{" "}
+              Offline
             </span>
             <span className="flex items-center gap-2 text-xs">
-              <span className="w-2 h-2 rounded-full bg-ef-red shadow-[0_0_6px_hsl(355_100%_64%/0.5)]" />{" "}
+              <span
+                className="w-2 h-2 bg-ef-red shadow-[0_0_6px_hsl(355_100%_64%/0.5)]"
+                style={{
+                  clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                }}
+              />{" "}
               Busy
             </span>
           </div>
         </div>
       </ComponentPreview>
 
-      {/* 24. Progress & Stepper */}
+      {/* Progress & Stepper */}
       <ComponentPreview
         id="progress-stepper"
-        title="24. Progress & Stepper"
+        title="Progress & Stepper"
         description="Progress bar: 4px track. Stepper: Diamond nodes, connector lines."
         props={[
           {

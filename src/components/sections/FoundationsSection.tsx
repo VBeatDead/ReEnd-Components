@@ -3,10 +3,10 @@ import { ComponentPreview } from "../docs/ComponentPreview";
 export const FoundationsSection = () => {
   return (
     <>
-      {/* 1. Design Philosophy */}
+      {/* Design Philosophy */}
       <ComponentPreview
         id="design-philosophy"
-        title="1. Design Philosophy & Principles"
+        title="Design Philosophy & Principles"
         description="Arknights: Endfield mengusung estetika Sci-Fi Industrial Futurism — perpaduan dunia teknologi tinggi yang dingin dengan atmosfer frontier planet Talos-II."
       >
         <div className="space-y-8">
@@ -147,10 +147,10 @@ export const FoundationsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 2. Color System */}
+      {/* Color System */}
       <ComponentPreview
         id="color-system"
-        title="2. Color System"
+        title="Color System"
         description="Primary palette berbasis grayscale dengan aksen kuning sebagai brand color utama."
         code={`/* Primary Accent */
 --ef-yellow: #FFD429;      /* CTA, brand */
@@ -338,10 +338,10 @@ export const FoundationsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 3. Typography */}
+      {/* Typography */}
       <ComponentPreview
         id="typography"
-        title="3. Typography"
+        title="Typography"
         description="Font stack: Orbitron (display/UI), JetBrains Mono (code), Inter (body)."
         code={`/* Font Stack */
 --font-display: 'Orbitron', monospace;
@@ -479,10 +479,10 @@ export const FoundationsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 4. Spacing & Grid */}
+      {/* Spacing & Grid */}
       <ComponentPreview
         id="spacing-grid"
-        title="4. Spacing & Grid"
+        title="Spacing & Grid"
         description="Base 4px spacing scale. Container max 1280px, 12-column grid."
         code={`--space-1: 4px;   --space-2: 8px;    --space-3: 12px;
 --space-4: 16px;  --space-6: 24px;   --space-8: 32px;
@@ -518,10 +518,10 @@ export const FoundationsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 5. Background & Surface */}
+      {/* Background & Surface */}
       <ComponentPreview
         id="background-surface"
-        title="5. Background & Surface"
+        title="Background & Surface"
         description="Surface levels dari Canvas hingga Active, dengan corner brackets sebagai Endfield signature element."
       >
         <div className="space-y-6">
@@ -568,10 +568,10 @@ export const FoundationsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 6. Iconography */}
+      {/* Iconography */}
       <ComponentPreview
         id="iconography"
-        title="6. Iconography"
+        title="Iconography"
         description="Outlined blueprint aesthetic. Stroke 1.5px at 24px, currentColor."
       >
         <div>
@@ -611,10 +611,10 @@ export const FoundationsSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 7. Illustration */}
+      {/* Illustration */}
       <ComponentPreview
         id="illustration"
-        title="7. Illustration & Imagery Style"
+        title="Illustration & Imagery Style"
         description="Photography desaturated, cool-toned. Line art thin geometric, wireframe, blueprint style."
       >
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">

@@ -10,7 +10,7 @@ const FormsDemo = () => {
   return (
     <ComponentPreview
       id="forms-input"
-      title="10. Forms & Input"
+      title="Forms & Input"
       showViewport
       description="Label: Orbitron 12px uppercase. Focus: yellow border + glow ring. Error: red border."
       code={`/* Input States */

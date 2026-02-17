@@ -5,10 +5,10 @@ import { useState, useRef, useEffect } from "react";
 export const InteractiveSection = () => {
   return (
     <>
-      {/* 35. States Matrix */}
+      {/* States Matrix */}
       <ComponentPreview
         id="states-matrix"
-        title="35. Interactive States Matrix"
+        title="Interactive States Matrix"
         description="Comprehensive mapping of all interactive states across components."
         props={[
           {
@@ -99,10 +99,10 @@ export const InteractiveSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 36. Micro-Interactions */}
+      {/* Micro-Interactions */}
       <ComponentPreview
         id="micro-interactions"
-        title="36. Micro-Interactions & Feedback"
+        title="Micro-Interactions & Feedback"
         description="Click ripple, copy feedback, toggle animation, accordion expand."
         props={[
           {
@@ -136,10 +136,10 @@ export const InteractiveSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 37. Hover Effects */}
+      {/* Hover Effects */}
       <ComponentPreview
         id="hover-effects"
-        title="37. Hover Effects Catalog"
+        title="Hover Effects Catalog"
         description="Card lift, button glow, image scale, nav color change, table row tint."
       >
         <div className="overflow-x-auto">
@@ -183,10 +183,10 @@ export const InteractiveSection = () => {
         </div>
       </ComponentPreview>
 
-      {/* 38. Focus & Keyboard */}
+      {/* Focus & Keyboard */}
       <ComponentPreview
         id="focus-keyboard"
-        title="38. Focus & Keyboard Navigation"
+        title="Focus & Keyboard Navigation"
         description="Focus ring: 2px solid #FFD429, offset 2px. Keyboard shortcuts table."
         code={`*:focus-visible {
   outline: 2px solid #FFD429;
@@ -258,10 +258,10 @@ input:focus-visible {
         </div>
       </ComponentPreview>
 
-      {/* 39. Drag & Drop */}
+      {/* Drag & Drop */}
       <ComponentPreview
         id="drag-drop"
-        title="39. Drag & Drop"
+        title="Drag & Drop"
         description="Draggable: cursor grab. Drop zone: dashed border, yellow active state."
         props={[
           {
@@ -298,10 +298,10 @@ input:focus-visible {
         </div>
       </ComponentPreview>
 
-      {/* 40. Selection */}
+      {/* Selection */}
       <ComponentPreview
         id="selection"
-        title="40. Selection & Multi-Select"
+        title="Selection & Multi-Select"
         description="Selected: yellow border + bg tint. Floating action bar for multi-select."
         props={[
           {

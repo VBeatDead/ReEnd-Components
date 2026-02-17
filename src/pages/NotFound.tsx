@@ -1,5 +1,6 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
+import { TopoBg } from "@/components/home/signature";
 
 const NotFound = () => {
   const location = useLocation();
@@ -16,8 +17,9 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
+    <div className="relative flex min-h-screen items-center justify-center bg-background">
+      <TopoBg className="opacity-40" />
+      <div className="relative text-center">
         <span className="font-ui text-[10px] tracking-[0.2em] uppercase text-primary">
           EF-SYS // ERROR
         </span>
@@ -28,7 +30,7 @@ const NotFound = () => {
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
           <Link
             to="/"
-            className="clip-corner bg-primary text-primary-foreground font-ui text-xs tracking-[0.15em] uppercase px-8 py-3 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] transition-shadow"
+            className="clip-corner bg-primary text-primary-foreground font-ui text-xs tracking-[0.15em] uppercase px-8 py-3 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:-translate-y-[1px] transition-all duration-300"
           >
             RETURN HOME ◆
           </Link>

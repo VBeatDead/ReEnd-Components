@@ -3,7 +3,7 @@ import { ComponentPreview } from "../../docs/ComponentPreview";
 const FooterDemo = () => (
   <ComponentPreview
     id="footer"
-    title="16. Footer"
+    title="Footer"
     showViewport
     description="Background canvas, border-top. 3-column grid. Column title: Orbitron 12px uppercase."
     props={[
