@@ -3,6 +3,7 @@ import CardsDemo from "./core/CardsDemo";
 import FormsDemo from "./core/FormsDemo";
 import NavigationDemos from "./core/NavigationDemos";
 import FooterDemo from "./core/FooterDemo";
+import SignatureCoreSection from "./signature/SignatureCoreSection";
 
 export const CoreComponentsSection = () => (
   <>
@@ -11,5 +12,6 @@ export const CoreComponentsSection = () => (
     <FormsDemo />
     <NavigationDemos />
     <FooterDemo />
+    <SignatureCoreSection />
   </>
 );

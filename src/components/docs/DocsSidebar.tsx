@@ -2,6 +2,7 @@ import { useState, useMemo } from "react";
 import { sidebarData } from "./sidebarData";
 import { Search, X } from "lucide-react";
 import { HighlightText } from "./HighlightText";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface DocsSidebarProps {
   activeId: string;
@@ -11,6 +12,14 @@ interface DocsSidebarProps {
 export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Derive active slug from current path
+  const activeSlug = useMemo(() => {
+    const match = location.pathname.match(/^\/docs\/(.+?)(?:\/|$)/);
+    return match?.[1] ?? null;
+  }, [location.pathname]);
 
   const toggle = (title: string) => {
     setCollapsed((prev) => ({ ...prev, [title]: !prev[title] }));
@@ -55,41 +64,66 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
       </div>
 
       <nav role="tree" aria-label="Documentation sections">
-        {filteredData.map((section) => (
-          <div key={section.title} className="mb-4">
-            <button
-              onClick={() => toggle(section.title)}
-              className="w-full flex items-center justify-between py-2 px-2 group"
-              role="treeitem"
-              aria-expanded={!collapsed[section.title]}
-            >
-              <span className="font-display text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground group-hover:text-foreground transition-colors">
-                {section.title}
-              </span>
-              <span className="font-mono text-primary text-sm">
-                {collapsed[section.title] ? "+" : "−"}
-              </span>
-            </button>
-            {!collapsed[section.title] && (
-              <ul role="group" className="mt-1 space-y-0.5">
-                {section.items.map((item) => (
-                  <li key={item.id} role="treeitem">
-                    <button
-                      onClick={() => onNavigate(item.id)}
-                      className={`w-full text-left text-sm py-1.5 px-3 transition-all border-l-2 ${
-                        activeId === item.id
-                          ? "text-primary border-primary font-semibold"
-                          : "text-muted-foreground border-transparent hover:text-card-foreground hover:border-muted-foreground/30"
-                      }`}
-                    >
-                      <HighlightText text={item.label} query={searchQuery} />
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
+        {filteredData.map((section) => {
+          const isSectionActive = activeSlug === section.slug;
+          return (
+            <div key={section.title} className="mb-4">
+              <button
+                onClick={() => {
+                  if (isSectionActive) {
+                    toggle(section.title);
+                  } else {
+                    navigate(`/docs/${section.slug}`);
+                  }
+                }}
+                className={`w-full flex items-center justify-between py-2 px-2 group ${
+                  isSectionActive ? "bg-primary/5" : ""
+                }`}
+                role="treeitem"
+                aria-expanded={!collapsed[section.title]}
+              >
+                <span
+                  className={`font-display text-[11px] font-bold tracking-[0.15em] uppercase transition-colors ${
+                    isSectionActive
+                      ? "text-primary"
+                      : "text-muted-foreground group-hover:text-foreground"
+                  }`}
+                >
+                  {section.title}
+                </span>
+                <span className="font-mono text-primary text-sm">
+                  {collapsed[section.title] ? "+" : "−"}
+                </span>
+              </button>
+              {!collapsed[section.title] && (
+                <ul role="group" className="mt-1 space-y-0.5">
+                  {section.items.map((item) => (
+                    <li key={item.id} role="treeitem">
+                      <button
+                        onClick={() => onNavigate(item.id)}
+                        className={`w-full text-left text-sm py-1.5 px-3 transition-all border-l-2 flex items-center gap-1.5 ${
+                          activeId === item.id
+                            ? "text-primary border-primary font-semibold"
+                            : "text-muted-foreground border-transparent hover:text-card-foreground hover:border-muted-foreground/30"
+                        }`}
+                      >
+                        <HighlightText text={item.label} query={searchQuery} />
+                        {item.signature && (
+                          <span
+                            className="text-primary text-[9px] leading-none opacity-60"
+                            title="Signature Component"
+                          >
+                            ◆
+                          </span>
+                        )}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          );
+        })}
         {filteredData.length === 0 && (
           <p className="text-xs text-muted-foreground text-center py-4">
             No results

@@ -66,7 +66,6 @@ src/
 │   │   ├── DocsHeader.tsx         # Documentation header
 │   │   ├── DocsSidebar.tsx        # Navigation sidebar
 │   │   ├── HighlightText.tsx      # Text highlighting utility
-│   │   ├── LazySection.tsx        # Lazy-loaded sections
 │   │   ├── ThemeProvider.tsx      # Theme management
 │   │   └── sidebarData.ts        # Sidebar navigation data
 │   ├── sections/                  # Component documentation sections
@@ -79,8 +78,7 @@ src/
 │   │   ├── FoundationsSection.tsx
 │   │   ├── InteractiveSection.tsx
 │   │   ├── OverlayUtilitySection.tsx
-│   │   ├── PatternsSection.tsx
-│   │   └── SignatureSection.tsx
+│   │   └── PatternsSection.tsx
 │   ├── ui/                        # Base UI components
 │   │   ├── sonner.tsx
 │   │   ├── toast.tsx
@@ -91,9 +89,12 @@ src/
 │   └── use-toast.ts               # Toast notification hook
 ├── lib/
 │   └── utils.ts                   # Utility functions (cn helper)
+├── layouts/
+│   └── DocsLayout.tsx             # Shared docs layout with Outlet
 ├── pages/
 │   ├── HomePage.tsx               # Landing page with animations
-│   ├── DocsPage.tsx               # Documentation page
+│   ├── DocsOverview.tsx           # Docs landing page (section grid)
+│   ├── ChangelogPage.tsx          # Changelog page
 │   └── NotFound.tsx               # 404 page
 ├── test/
 │   ├── example.test.ts

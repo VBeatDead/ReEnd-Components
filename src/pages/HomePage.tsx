@@ -28,36 +28,42 @@ const features = [
     title: "FOUNDATIONS",
     desc: "Typography, color palette, spacing, dan semantic tokens.",
     count: "12 Tokens",
+    slug: "foundations",
   },
   {
     icon: "⬡",
     title: "CORE COMPONENTS",
     desc: "Button, Card, Input, Dialog dengan Endfield aesthetic.",
     count: "18 Components",
+    slug: "core-components",
   },
   {
     icon: "◇",
     title: "DATA DISPLAY",
     desc: "Tables, charts, badges, dan status indicators.",
     count: "14 Patterns",
+    slug: "data-display",
   },
   {
     icon: "▣",
     title: "ANIMATIONS",
     desc: "Parallax, glitch, glow, dan scroll-triggered animations.",
     count: "8 Systems",
+    slug: "animation",
   },
   {
     icon: "◈",
     title: "PATTERNS",
     desc: "Layout patterns, form patterns, dan navigation blueprints.",
     count: "10 Blueprints",
+    slug: "patterns",
   },
   {
     icon: "⬢",
     title: "INTERACTIVE",
     desc: "Hover states, focus rings, transitions, micro-interactions.",
     count: "16 States",
+    slug: "interactive",
   },
 ];
 
@@ -324,7 +330,10 @@ const HomePage = () => {
             {features.map((f, i) => (
               <Reveal key={f.title} delay={i * 0.1}>
                 <TiltCard className="h-full">
-                  <div className="relative h-full border border-border bg-surface-1 p-8 group hover:border-primary/40 transition-colors duration-500 cursor-default">
+                  <div
+                    onClick={() => navigate(`/docs/${f.slug}`)}
+                    className="relative h-full border border-border bg-surface-1 p-8 group hover:border-primary/40 transition-colors duration-500 cursor-pointer"
+                  >
                     <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-primary/30 group-hover:border-primary/60 transition-colors duration-500" />
                     <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-primary/30 group-hover:border-primary/60 transition-colors duration-500" />
                     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.02] transition-colors duration-500" />
@@ -375,7 +384,7 @@ const HomePage = () => {
                 OPEN DOCUMENTATION ◆
               </motion.button>
               <motion.button
-                onClick={() => navigate("/docs")}
+                onClick={() => navigate("/docs/content-media")}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.98 }}
                 className="clip-corner-lg border border-border bg-surface-1 text-foreground font-ui text-sm tracking-[0.15em] uppercase px-12 py-5 hover:border-primary/50 transition-colors flex items-center gap-2 justify-center"

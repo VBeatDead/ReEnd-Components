@@ -1,5 +1,6 @@
 import { ComponentPreview } from "../docs/ComponentPreview";
 import { ArrowRight, Play } from "lucide-react";
+import SignatureContentSection from "./signature/SignatureContentSection";
 
 export const ContentMediaSection = () => {
   return (
@@ -474,6 +475,7 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
           </div>
         </div>
       </ComponentPreview>
+      <SignatureContentSection />
     </>
   );
 };

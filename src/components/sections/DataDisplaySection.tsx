@@ -1,6 +1,7 @@
 import { ComponentPreview } from "../docs/ComponentPreview";
 import { useState } from "react";
 import { ChevronDown, ArrowRight } from "lucide-react";
+import SignatureDataSection from "./signature/SignatureDataSection";
 
 export const DataDisplaySection = () => {
   const [accordionOpen, setAccordionOpen] = useState<number | null>(0);
@@ -748,6 +749,7 @@ export const DataDisplaySection = () => {
           </div>
         </div>
       </ComponentPreview>
+      <SignatureDataSection />
     </>
   );
 };

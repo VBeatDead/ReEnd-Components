@@ -3,6 +3,7 @@ import { Menu, X, Search, Sun, Moon, ChevronDown } from "lucide-react";
 import { sidebarData } from "./sidebarData";
 import { CommandPalette } from "./CommandPalette";
 import { useTheme } from "./ThemeProvider";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface DocsHeaderProps {
   onNavigate: (id: string) => void;
@@ -15,20 +16,25 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
   const { theme, toggleTheme } = useTheme();
   const [isAnimating, setIsAnimating] = useState(false);
   const animTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [mobileFilter, setMobileFilter] = useState("");
 
   // Track which sidebar sections are collapsed (by section title)
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
 
+  // Derive active slug from path
+  const activeSlug = useMemo(() => {
+    const match = location.pathname.match(/^\/docs\/(.+?)(?:\/|$)/);
+    return match?.[1] ?? null;
+  }, [location.pathname]);
+
   // Auto-expand section containing activeId
   const activeSectionTitle = useMemo(() => {
-    if (!activeId) return null;
-    for (const section of sidebarData) {
-      if (section.items.some((item) => item.id === activeId)) {
-        return section.title;
-      }
-    }
-    return null;
-  }, [activeId]);
+    if (!activeSlug) return null;
+    const section = sidebarData.find((s) => s.slug === activeSlug);
+    return section?.title ?? null;
+  }, [activeSlug]);
 
   useEffect(() => {
     if (activeSectionTitle) {
@@ -71,7 +77,12 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
                 <Menu className="w-5 h-5" />
               )}
             </button>
-            <div className="flex items-center gap-3">
+            <div
+              className="flex items-center gap-3 cursor-pointer"
+              onClick={() => navigate("/")}
+              role="link"
+              title="Back to Home"
+            >
               <div className="w-8 h-8 bg-primary clip-corner-sm flex items-center justify-center">
                 <span className="font-display text-xs font-bold text-primary-foreground">
                   EF
@@ -90,14 +101,14 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
 
           <div className="hidden md:flex items-center gap-1">
             {[
-              { label: "DOCS", target: "design-philosophy" },
-              { label: "COMPONENTS", target: "buttons" },
-              { label: "TOKENS", target: "color-system" },
-              { label: "PATTERNS", target: "page-templates" },
+              { label: "DOCS", target: "/docs" },
+              { label: "COMPONENTS", target: "/docs/core-components" },
+              { label: "TOKENS", target: "/docs/foundations" },
+              { label: "PATTERNS", target: "/docs/patterns" },
             ].map(({ label, target }) => (
               <button
                 key={label}
-                onClick={() => onNavigate(target)}
+                onClick={() => navigate(target)}
                 className="font-display text-xs font-semibold tracking-[0.08em] uppercase text-muted-foreground hover:text-primary px-4 py-2 transition-colors"
               >
                 {label}
@@ -162,7 +173,7 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
                 setCmdOpen(true);
                 setMobileOpen(false);
               }}
-              className="w-full flex items-center gap-2 px-3 py-2 mb-4 bg-surface-1 border border-border text-muted-foreground text-xs hover:border-primary/30 hover:text-foreground transition-colors cursor-pointer"
+              className="w-full flex items-center gap-2 px-3 py-2 mb-2 bg-surface-1 border border-border text-muted-foreground text-xs hover:border-primary/30 hover:text-foreground transition-colors cursor-pointer"
               aria-label="Search components"
             >
               <Search className="w-3.5 h-3.5" />
@@ -172,16 +183,64 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
               </kbd>
             </button>
 
-            {sidebarData.map((section) => {
+            {/* Inline filter */}
+            <div className="relative mb-4">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+              <input
+                value={mobileFilter}
+                onChange={(e) => setMobileFilter(e.target.value)}
+                placeholder="Filter..."
+                className="w-full bg-surface-1 border border-border text-sm text-foreground pl-9 pr-8 py-2 outline-none placeholder:text-muted-foreground focus:border-primary/30 transition-colors font-body"
+              />
+              {mobileFilter && (
+                <button
+                  onClick={() => setMobileFilter("")}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                  aria-label="Clear filter"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+
+            {(mobileFilter.trim()
+              ? sidebarData
+                  .map((s) => ({
+                    ...s,
+                    items: s.items.filter((i) =>
+                      i.label
+                        .toLowerCase()
+                        .includes(mobileFilter.toLowerCase()),
+                    ),
+                  }))
+                  .filter((s) => s.items.length > 0)
+              : sidebarData
+            ).map((section) => {
               const isCollapsed = collapsed[section.title] ?? false;
+              const isSectionActive = activeSlug === section.slug;
               return (
                 <div key={section.title} className="mb-4">
                   <button
-                    onClick={() => toggleSection(section.title)}
-                    className="w-full flex items-center justify-between px-2 py-2 group"
+                    onClick={() => {
+                      if (isSectionActive) {
+                        toggleSection(section.title);
+                      } else {
+                        navigate(`/docs/${section.slug}`);
+                        setMobileOpen(false);
+                      }
+                    }}
+                    className={`w-full flex items-center justify-between px-2 py-2 group ${
+                      isSectionActive ? "bg-primary/5" : ""
+                    }`}
                     aria-expanded={!isCollapsed}
                   >
-                    <span className="font-display text-[11px] font-bold tracking-[0.15em] uppercase text-muted-foreground">
+                    <span
+                      className={`font-display text-[11px] font-bold tracking-[0.15em] uppercase ${
+                        isSectionActive
+                          ? "text-primary"
+                          : "text-muted-foreground"
+                      }`}
+                    >
                       {section.title}
                     </span>
                     <ChevronDown
@@ -199,13 +258,21 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
                                 onNavigate(item.id);
                                 setMobileOpen(false);
                               }}
-                              className={`w-full text-left text-sm py-1.5 px-3 transition-colors ${
+                              className={`w-full text-left text-sm py-1.5 px-3 transition-colors flex items-center gap-1.5 ${
                                 isActive
                                   ? "text-primary border-l-2 border-primary font-semibold bg-primary/5"
                                   : "text-muted-foreground hover:text-primary"
                               }`}
                             >
                               {item.label}
+                              {item.signature && (
+                                <span
+                                  className="text-primary text-[9px] leading-none opacity-60"
+                                  title="Signature Component"
+                                >
+                                  ◆
+                                </span>
+                              )}
                             </button>
                           </li>
                         );

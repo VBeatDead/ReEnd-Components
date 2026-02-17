@@ -3,6 +3,7 @@ import { Search } from "lucide-react";
 import Fuse from "fuse.js";
 import { sidebarData } from "./sidebarData";
 import { HighlightText } from "./HighlightText";
+import { useNavigate } from "react-router-dom";
 
 interface CommandPaletteProps {
   open: boolean;
@@ -11,7 +12,11 @@ interface CommandPaletteProps {
 }
 
 const allItems = sidebarData.flatMap((section) =>
-  section.items.map((item) => ({ ...item, section: section.title })),
+  section.items.map((item) => ({
+    ...item,
+    section: section.title,
+    slug: section.slug,
+  })),
 );
 
 const fuse = new Fuse(allItems, {
@@ -31,6 +36,7 @@ export const CommandPalette = ({
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const filtered = useMemo(
     () => (query.trim() ? fuse.search(query).map((r) => r.item) : allItems),
@@ -102,11 +108,11 @@ export const CommandPalette = ({
   }, [selectedIndex]);
 
   const handleSelect = useCallback(
-    (id: string) => {
-      onNavigate(id);
+    (item: (typeof allItems)[number]) => {
+      navigate(`/docs/${item.slug}#${item.id}`);
       onOpenChange(false);
     },
-    [onNavigate, onOpenChange],
+    [navigate, onOpenChange],
   );
 
   const handleKeyDown = useCallback(
@@ -119,7 +125,7 @@ export const CommandPalette = ({
         setSelectedIndex((i) => Math.max(i - 1, 0));
       } else if (e.key === "Enter" && flatFiltered[selectedIndex]) {
         e.preventDefault();
-        handleSelect(flatFiltered[selectedIndex].id);
+        handleSelect(flatFiltered[selectedIndex]);
       } else if (e.key === "Escape") {
         onOpenChange(false);
       }
@@ -181,7 +187,7 @@ export const CommandPalette = ({
                       <button
                         key={item.id}
                         data-index={idx}
-                        onClick={() => handleSelect(item.id)}
+                        onClick={() => handleSelect(item)}
                         className={`w-full text-left px-4 py-2 text-sm flex items-center gap-3 transition-colors ${
                           idx === selectedIndex
                             ? "bg-primary/[0.08] text-primary"

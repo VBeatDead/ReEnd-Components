@@ -12,6 +12,7 @@ import {
   Mail,
   Filter,
 } from "lucide-react";
+import SignatureFeedbackSection from "./signature/SignatureFeedbackSection";
 
 export const FeedbackSection = () => {
   return (
@@ -872,6 +873,7 @@ export const FeedbackSection = () => {
           </div>
         </div>
       </ComponentPreview>
+      <SignatureFeedbackSection />
     </>
   );
 };
