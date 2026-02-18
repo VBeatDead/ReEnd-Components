@@ -7,6 +7,22 @@
  *
  * Dark mode: default (no class needed)
  * Light mode: add class="light" to <html> or <body>
+ *
+ * ─── Token Reference: Hex ↔ HSL ────────────────────────────────────────────
+ * HSL format is used to enable dynamic opacity modifiers: hsl(var(--token) / 0.3)
+ *
+ * Token              Hex        HSL
+ * --ef-yellow        #FFD429    48 100% 58%
+ * --ef-yellow-dark   #C28C00    48  85% 39%
+ * --ef-blue          #4DA8DA    201  66% 58%
+ * --ef-blue-light    #6BBFE8    196  64% 69%
+ * --ef-blue-dark     #2A6A8F    202  56% 38%
+ * --ef-cyan          #00E5FF    186 100% 50%
+ * --ef-red           #FF4757    355 100% 64%
+ * --ef-green         #2ED573    145  67% 51%
+ * --ef-orange        #FFA502     39 100% 50%
+ * --ef-purple        #A55EEA    270  77% 64%
+ * ───────────────────────────────────────────────────────────────────────────
  */
 
 :root {
@@ -26,7 +42,6 @@
   /* Accents */
   --ef-yellow: 48 100% 58%;
   --ef-yellow-dark: 48 85% 39%;
-  --ef-yellow-glow: 48 100% 58% / 0.25;
   --ef-blue: 201 66% 58%;
   --ef-blue-light: 196 64% 69%;
   --ef-blue-dark: 202 56% 38%;
@@ -62,10 +77,15 @@
   --destructive-foreground: 0 0% 100%;
 
   --border: 0 0% 100% / 0.06;
+  --border-strong: 0 0% 100% / 0.12;
+  --border-accent: 48 100% 58% / 0.4;
   --input: 0 0% 100% / 0.1;
   --ring: 48 100% 58%;
 
   --radius: 0px;
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius-md: 4px;
 
   /* ═══ SURFACES ═══ */
   --surface-canvas: 0 0% 4%;
@@ -75,6 +95,39 @@
   --surface-3: 0 0% 13.3%;
   --surface-hover: 0 0% 11.8%;
   --surface-active: 0 0% 14.5%;
+
+  /* ═══ LAYOUT ═══ */
+  --header-height: 64px;
+  --sidebar-width: 280px;
+
+  /* ═══ SHADOWS ═══ */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.4);
+  --shadow-glow: 0 0 20px hsl(var(--primary) / 0.2);
+
+  /* ═══ Z-INDEX ═══ */
+  --z-base: 0;
+  --z-dropdown: 10;
+  --z-sticky: 20;
+  --z-overlay: 30;
+  --z-modal: 40;
+  --z-popover: 50;
+  --z-toast: 60;
+  --z-tooltip: 70;
+
+  /* ═══ ANIMATION — EASING ═══ */
+  --ease-default: cubic-bezier(0.25, 0.8, 0.25, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-sharp: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-smooth: cubic-bezier(0.45, 0, 0.55, 1);
+
+  /* ═══ ANIMATION — DURATION ═══ */
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
+  --duration-slower: 700ms;
 }
 
 /* ═══ LIGHT MODE ═══ */
@@ -93,6 +146,15 @@
 
   --ef-yellow: 42 90% 42%;
   --ef-yellow-dark: 42 85% 30%;
+
+  /* Accent colors adjusted for light mode readability */
+  --ef-blue-light: 196 50% 55%;
+  --ef-blue-dark: 202 56% 30%;
+  --ef-cyan: 186 80% 35%;
+  --ef-red: 355 85% 48%;
+  --ef-green: 145 60% 38%;
+  --ef-orange: 39 90% 38%;
+  --ef-purple: 270 65% 50%;
 
   --background: 0 0% 97%;
   --foreground: 0 0% 8%;
@@ -119,6 +181,8 @@
   --destructive-foreground: 0 0% 100%;
 
   --border: 0 0% 0% / 0.1;
+  --border-strong: 0 0% 0% / 0.18;
+  --border-accent: 42 90% 42% / 0.4;
   --input: 0 0% 0% / 0.12;
   --ring: 42 90% 42%;
 
@@ -129,6 +193,12 @@
   --surface-3: 0 0% 93%;
   --surface-hover: 0 0% 92%;
   --surface-active: 0 0% 88%;
+
+  /* Shadow adjustments for light mode */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.08);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.08);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.12), 0 4px 6px -4px rgb(0 0 0 / 0.08);
+  --shadow-glow: 0 0 20px hsl(var(--primary) / 0.25);
 }
 
 /* ═══ BASE STYLES ═══ */

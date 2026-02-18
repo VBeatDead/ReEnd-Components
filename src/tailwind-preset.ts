@@ -71,9 +71,9 @@ const reendPreset: Partial<Config> = {
           "white-muted": "hsl(var(--ef-white-muted))",
           "white-soft": "hsl(var(--ef-white-soft))",
           white: "hsl(var(--ef-white))",
+          "pure-white": "hsl(var(--ef-pure-white))",
           yellow: "hsl(var(--ef-yellow))",
           "yellow-dark": "hsl(var(--ef-yellow-dark))",
-          "yellow-glow": "hsl(var(--ef-yellow-glow))",
           blue: "hsl(var(--ef-blue))",
           "blue-light": "hsl(var(--ef-blue-light))",
           "blue-dark": "hsl(var(--ef-blue-dark))",
@@ -98,7 +98,42 @@ const reendPreset: Partial<Config> = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      // ─── Shadows referencing CSS vars ───────────────────────────────────
+      boxShadow: {
+        sm: "var(--shadow-sm)",
+        md: "var(--shadow-md)",
+        lg: "var(--shadow-lg)",
+        glow: "var(--shadow-glow)",
+      },
+      // ─── Z-Index scale matching CSS vars ────────────────────────────────
+      zIndex: {
+        base: "0",
+        dropdown: "10",
+        sticky: "20",
+        overlay: "30",
+        modal: "40",
+        popover: "50",
+        toast: "60",
+        tooltip: "70",
+      },
+      // ─── Transition durations matching CSS vars ──────────────────────────
+      transitionDuration: {
+        instant: "100ms",
+        fast: "150ms",
+        normal: "250ms",
+        slow: "400ms",
+        slower: "700ms",
+      },
+      // ─── Transition easing matching CSS vars ─────────────────────────────
+      transitionTimingFunction: {
+        default: "cubic-bezier(0.25, 0.8, 0.25, 1)",
+        bounce: "cubic-bezier(0.34, 1.56, 0.64, 1)",
+        sharp: "cubic-bezier(0.4, 0, 0.2, 1)",
+        smooth: "cubic-bezier(0.45, 0, 0.55, 1)",
+      },
+      // ─── Keyframes ───────────────────────────────────────────────────────
       keyframes: {
+        // Existing
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -107,14 +142,166 @@ const reendPreset: Partial<Config> = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        // Signature & design system animations
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        fadeInUp: {
+          from: { opacity: "0", transform: "translateY(16px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
+        slideInRight: {
+          from: { opacity: "0", transform: "translateX(-10px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
+        },
+        slideDown: {
+          from: { transform: "scaleY(0)", opacity: "0" },
+          to: { transform: "scaleY(1)", opacity: "1" },
+        },
+        glitch: {
+          "0%, 90%, 100%": { transform: "translate(0)" },
+          "92%": { transform: "translate(-2px, 1px)" },
+          "94%": { transform: "translate(2px, -1px)" },
+          "96%": { transform: "translate(-1px, -1px)" },
+          "98%": { transform: "translate(1px, 1px)" },
+        },
+        cursorBlink: {
+          "0%, 50%": { opacity: "1" },
+          "51%, 100%": { opacity: "0" },
+        },
+        diamondSpin: {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        },
+        pulseGlow: {
+          "0%, 100%": { boxShadow: "0 0 8px hsl(var(--primary) / 0.2)" },
+          "50%": { boxShadow: "0 0 20px hsl(var(--primary) / 0.4)" },
+        },
+        scanLine: {
+          "0%": { top: "-5%" },
+          "100%": { top: "105%" },
+        },
+        skeletonShimmer: {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
+        },
+        shrink: {
+          from: { transform: "scaleX(1)" },
+          to: { transform: "scaleX(0)" },
+        },
+        countUp: {
+          from: { opacity: "0", transform: "translateY(8px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
+      // ─── Animation utilities ─────────────────────────────────────────────
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "fade-in": "fadeIn 0.3s ease forwards",
+        "fade-in-up": "fadeInUp 0.4s var(--ease-default, ease) forwards",
+        "slide-in-right": "slideInRight 0.3s var(--ease-smooth, ease) forwards",
+        "slide-down": "slideDown 0.3s ease forwards",
+        glitch: "glitch 3s infinite",
+        "cursor-blink": "cursorBlink 1s step-end infinite",
+        "diamond-spin": "diamondSpin 0.8s linear infinite",
+        "pulse-glow": "pulseGlow 2s ease-in-out infinite",
+        "scan-line": "scanLine 2s linear infinite",
+        skeleton: "skeletonShimmer 1.5s infinite",
+        shrink: "shrink 5s linear forwards",
+        "count-up": "countUp 0.4s var(--ease-default, ease) forwards",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    require("tailwindcss-animate"),
+    // ─── Endfield Signature Utilities ────────────────────────────────────
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    require("tailwindcss/plugin")(({ addUtilities, addComponents }: {
+      addUtilities: (utilities: Record<string, Record<string, string>>) => void;
+      addComponents: (components: Record<string, Record<string, string>>) => void;
+    }) => {
+      // Clip-corner utilities — Endfield signature cut-corner aesthetic
+      addComponents({
+        ".clip-corner": {
+          "clip-path":
+            "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
+        },
+        ".clip-corner-sm": {
+          "clip-path":
+            "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))",
+        },
+        ".clip-corner-lg": {
+          "clip-path":
+            "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
+        },
+      });
+
+      // Scanline overlay — CRT scan-line texture for HUD panels
+      addComponents({
+        ".scanline-overlay": {
+          position: "relative",
+        },
+        ".scanline-overlay::after": {
+          content: '""',
+          position: "absolute",
+          inset: "0",
+          background:
+            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.015) 2px, rgba(255, 255, 255, 0.015) 4px)",
+          "pointer-events": "none",
+          "z-index": "1",
+        },
+      });
+
+      // Skeleton shimmer — includes background gradient (not just animation)
+      addUtilities({
+        ".animate-skeleton": {
+          background:
+            "linear-gradient(90deg, hsl(var(--surface-1)) 0%, hsl(var(--surface-2)) 50%, hsl(var(--surface-1)) 100%)",
+          "background-size": "200% 100%",
+          animation: "skeletonShimmer 1.5s infinite",
+        },
+      });
+
+      // Slide-down — includes transform-origin and overflow (not just animation)
+      addUtilities({
+        ".animate-slide-down": {
+          animation: "slideDown 0.3s ease forwards",
+          "transform-origin": "top",
+          overflow: "hidden",
+        },
+      });
+
+      // Glow effects
+      addUtilities({
+        ".glow-yellow": {
+          "box-shadow": "0 0 20px hsl(var(--primary) / 0.2)",
+        },
+        ".glow-yellow-strong": {
+          "box-shadow": "0 0 40px hsl(var(--primary) / 0.3)",
+        },
+        ".text-glow-yellow": {
+          "text-shadow": "0 0 20px hsl(var(--primary) / 0.3)",
+        },
+      });
+
+      // Gradient line decorators
+      addUtilities({
+        ".gradient-line-h": {
+          height: "1px",
+          background:
+            "linear-gradient(90deg, transparent 0%, hsl(var(--primary)) 50%, transparent 100%)",
+        },
+        ".gradient-line-v": {
+          width: "1px",
+          background:
+            "linear-gradient(180deg, transparent 0%, hsl(var(--primary)) 50%, transparent 100%)",
+        },
+      });
+    }),
+  ],
 };
 
 export default reendPreset;

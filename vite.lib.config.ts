@@ -37,6 +37,8 @@ export default defineConfig({
         "lucide-react",
         "sonner",
         "tailwindcss-animate",
+        "framer-motion",
+        /^framer-motion\/.*/,
       ],
       output: {
         globals: {

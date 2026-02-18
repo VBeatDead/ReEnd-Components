@@ -20,7 +20,6 @@
     /* Accents */
     --ef-yellow: 48 100% 58%;
     --ef-yellow-dark: 48 85% 39%;
-    --ef-yellow-glow: 48 100% 58% / 0.25;
     --ef-blue: 201 66% 58%;
     --ef-blue-light: 196 64% 69%;
     --ef-blue-dark: 202 56% 38%;
@@ -140,6 +139,15 @@
 
     --ef-yellow: 42 90% 42%;
     --ef-yellow-dark: 42 85% 30%;
+
+    /* Accent colors adjusted for light mode readability */
+    --ef-blue-light: 196 50% 55%;
+    --ef-blue-dark: 202 56% 30%;
+    --ef-cyan: 186 80% 35%;
+    --ef-red: 355 85% 48%;
+    --ef-green: 145 60% 38%;
+    --ef-orange: 39 90% 38%;
+    --ef-purple: 270 65% 50%;
 
     --background: 0 0% 97%;
     --foreground: 0 0% 8%;

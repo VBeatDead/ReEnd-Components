@@ -15,3 +15,6 @@ export { cn } from "../../lib/utils";
 
 // Hooks
 export { useToast, toast as toastAction } from "../../hooks/use-toast";
+
+// Signature Components (Arknights: Endfield exclusives)
+export * from "./signature";

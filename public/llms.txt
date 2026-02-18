@@ -1,0 +1,45 @@
+# ReEnd-Components
+
+> Arknights: Endfield inspired React component library with Tailwind CSS. Sci-Fi Industrial Futurism design system.
+
+**URL**: https://reend-components.pages.dev
+**Version**: 0.1.0
+**License**: MIT
+**Repository**: https://github.com/VBeatDead/ReEnd-Components
+
+## What is this?
+
+ReEnd-Components is a React component library and documentation site inspired by the visual aesthetic of Arknights: Endfield. It provides production-ready UI components with a Sci-Fi Industrial Futurism theme, built with React, TypeScript, Tailwind CSS, and Radix UI primitives.
+
+## Tech Stack
+
+- React 18/19 + TypeScript
+- Tailwind CSS with custom design tokens (ef-* color palette, surface-* layers)
+- Radix UI primitives (accessible headless components)
+- Framer Motion (animation system)
+- i18next (English + Indonesian / Bahasa Indonesia)
+
+## Available Languages
+
+- English: https://reend-components.pages.dev/en/
+- Indonesian (Bahasa Indonesia): https://reend-components.pages.dev/id/
+
+## Documentation Sections
+
+- [Installation](https://reend-components.pages.dev/en/docs/installation) — npm install, Tailwind CSS configuration, CSS variables, and framework setup guides.
+- [Foundations](https://reend-components.pages.dev/en/docs/foundations) — Design tokens: ef-* color palette, typography scale, spacing, and surface layers.
+- [Core Components](https://reend-components.pages.dev/en/docs/core-components) — Buttons, cards, forms, inputs, navigation bars, and footer components.
+- [Data Display](https://reend-components.pages.dev/en/docs/data-display) — Tables, statistics cards, charts, and structured data presentation components.
+- [Feedback](https://reend-components.pages.dev/en/docs/feedback) — Toast notifications, alert banners, progress indicators, and modal dialogs.
+- [Interactive](https://reend-components.pages.dev/en/docs/interactive) — Tabs, accordions, dropdowns, toggles, and other stateful interactive components.
+- [Content & Media](https://reend-components.pages.dev/en/docs/content-media) — Hero sections, media players, carousels, and rich content layout components.
+- [Overlay & Utility](https://reend-components.pages.dev/en/docs/overlay-utility) — Command palette, tooltips, popovers, sheets, and overlay utility components.
+- [Animation](https://reend-components.pages.dev/en/docs/animation) — Motion system, scroll-triggered animations, transitions, and loading states.
+- [Content Strategy](https://reend-components.pages.dev/en/docs/content-strategy) — Voice and tone guidelines, writing patterns, and content design principles.
+- [Patterns](https://reend-components.pages.dev/en/docs/patterns) — Full-page layout templates and reusable composition patterns.
+- [Changelog](https://reend-components.pages.dev/en/docs/changelog) — Version history and release notes for ReEnd-Components.
+
+## npm Package
+
+Install via npm: `npm install reend-components`
+Exports: React components, Tailwind CSS preset (`reend-components/tailwind`), CSS variables (`reend-components/styles.css`).
