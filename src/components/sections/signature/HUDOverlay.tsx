@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
-const HUDOverlay = ({ children }: { children?: React.ReactNode }) => {
+function HUDOverlay({ children }: { children?: React.ReactNode }) {
+  const { t } = useTranslation("signature");
   const [time, setTime] = useState("");
   useEffect(() => {
     const tick = () => setTime(new Date().toLocaleTimeString("en-GB"));
@@ -38,13 +40,13 @@ const HUDOverlay = ({ children }: { children?: React.ReactNode }) => {
       </div>
       {/* Top-left info */}
       <div className="absolute top-4 left-12 font-mono text-[9px] text-muted-foreground/60 space-y-0.5">
-        <div>SYS::ENDFIELD v2.0</div>
+        <div>{t("hud.system_label")}</div>
         <div className="text-primary/60">{time}</div>
       </div>
       {/* Top-right info */}
       <div className="absolute top-4 right-12 font-mono text-[9px] text-muted-foreground/60 text-right space-y-0.5">
-        <div>LAT 37.7749°N</div>
-        <div>LON 122.4194°W</div>
+        <div>{t("hud.lat")}</div>
+        <div>{t("hud.lon")}</div>
       </div>
       {/* Bottom status bar */}
       <div className="absolute bottom-4 left-12 right-12 flex items-center justify-between">
@@ -54,11 +56,11 @@ const HUDOverlay = ({ children }: { children?: React.ReactNode }) => {
             style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
           />
           <span className="font-mono text-[9px] text-ef-green/80">
-            LINK ACTIVE
+            {t("hud.link_active")}
           </span>
         </div>
         <div className="flex gap-4">
-          {["FPS:60", "MEM:47%", "NET:12ms"].map((s) => (
+          {[t("hud.fps"), t("hud.mem"), t("hud.net")].map((s) => (
             <span
               key={s}
               className="font-mono text-[9px] text-muted-foreground/50"
@@ -72,6 +74,6 @@ const HUDOverlay = ({ children }: { children?: React.ReactNode }) => {
       <div className="relative z-10">{children}</div>
     </div>
   );
-};
+}
 
 export default HUDOverlay;

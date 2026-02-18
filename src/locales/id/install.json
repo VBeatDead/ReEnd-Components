@@ -1,1 +1,114 @@
-{}
+{
+  "getting_started": {
+    "title": "Memulai",
+    "description": "Instal ReEnd-Components ke proyek React Anda dalam hitungan menit. Tersedia di npm sebagai paket publik.",
+    "prerequisites_heading": "◆ PRASYARAT",
+    "prereq_react": "<strong>React 18+</strong> atau React 19",
+    "prereq_node": "<strong>Node.js 18+</strong> direkomendasikan",
+    "prereq_tailwind": "<strong>Tailwind CSS 3.4+</strong> (opsional — CSS siap pakai tersedia)",
+    "npm_package_heading": "◆ PAKET NPM",
+    "npm_link_text": "npmjs.com/package/reend-components ↗"
+  },
+  "step1": {
+    "title": "Langkah 1 — Instal Paket",
+    "description": "Instal reend-components beserta peer dependencies menggunakan package manager pilihan Anda.",
+    "npm_heading": "◆ NPM",
+    "pnpm_heading": "◆ PNPM",
+    "yarn_heading": "◆ YARN",
+    "bun_heading": "◆ BUN",
+    "peer_deps_heading": "DEPENDENSI PEER",
+    "peer_deps_note": "Paket-paket ini harus terinstal di proyek Anda (sebagian besar proyek React sudah memilikinya):",
+    "table_package": "PAKET",
+    "table_version": "VERSI",
+    "table_status": "STATUS",
+    "status_required": "Wajib",
+    "status_optional": "Opsional"
+  },
+  "step2": {
+    "title": "Langkah 2 — Konfigurasi Tailwind CSS",
+    "description": "ReEnd menyertakan preset Tailwind dengan token sistem desain Endfield. Tambahkan ke konfigurasi Anda untuk integrasi yang mulus.",
+    "config_heading": "◆ TAILWIND.CONFIG.TS",
+    "preset_includes_heading": "YANG TERMASUK DALAM PRESET",
+    "preset_color_palette": "Palet warna Endfield (ef-yellow, ef-blue, ef-red, ef-green, dll.)",
+    "preset_semantic_tokens": "Token semantik (background, foreground, primary, muted, dll.)",
+    "preset_custom_fonts": "Font kustom (Saira, Chakra Petch, JetBrains Mono)",
+    "preset_animations": "Animasi (accordion, collapsible, fade-in/out, zoom, slide)",
+    "preset_dark_mode": "Dukungan mode gelap melalui strategi class"
+  },
+  "step3": {
+    "title": "Langkah 3 — Impor Gaya",
+    "description": "Impor token desain CSS untuk mendapatkan bahasa visual Endfield. Pilih antara variabel CSS atau stylesheet siap pakai.",
+    "option_a_heading": "◆ OPSI A — VARIABEL CSS (DIREKOMENDASIKAN)",
+    "option_a_desc": "Impor file variabel di CSS global Anda. Berfungsi dengan solusi styling apa pun.",
+    "option_b_heading": "◆ OPSI B — STYLESHEET SIAP PAKAI",
+    "option_b_desc": "Jika Anda <strong>tidak menggunakan Tailwind</strong>, impor CSS siap pakai yang mencakup semua token desain dan gaya dasar.",
+    "note_heading": "⚠ CATATAN",
+    "note_desc": "Semua nilai warna menggunakan <strong>HSL tanpa pembungkus</strong>, memungkinkan dukungan kanal alpha:"
+  },
+  "step4": {
+    "title": "Langkah 4 — Gunakan Komponen",
+    "description": "Impor dan gunakan komponen ReEnd di aplikasi React Anda. Semua komponen mendukung tree-shaking dan sepenuhnya bertipe.",
+    "tooltip_example_heading": "◆ CONTOH TOOLTIP",
+    "toast_heading": "◆ NOTIFIKASI TOAST",
+    "sonner_heading": "◆ SONNER TOAST (ALTERNATIF)"
+  },
+  "api_reference": {
+    "title": "Referensi API",
+    "description": "Daftar lengkap semua komponen, utilitas, dan hook yang diekspor dari reend-components.",
+    "table_export": "EKSPOR",
+    "table_type": "TIPE",
+    "table_description": "DESKRIPSI",
+    "exports": {
+      "Tooltip": "Root Radix Tooltip (terkontrol/tidak terkontrol)",
+      "TooltipTrigger": "Elemen yang memicu tooltip saat hover/fokus",
+      "TooltipContent": "Popup tooltip bergaya dengan animasi",
+      "TooltipProvider": "Penyedia konteks untuk pengaturan delay/skip tooltip",
+      "Toast": "Notifikasi Radix Toast dengan dukungan varian",
+      "ToastAction": "Tombol aksi di dalam toast",
+      "ToastClose": "Tombol tutup untuk menutup toast",
+      "ToastTitle": "Teks judul dalam notifikasi toast",
+      "ToastDescription": "Teks deskripsi dalam toast",
+      "ToastProvider": "Penyedia konteks untuk sistem Radix toast",
+      "ToastViewport": "Kontainer viewport tetap untuk toast",
+      "Toaster": "Kontainer toast yang telah dikonfigurasi (merender semua toast)",
+      "SonnerToaster": "Kontainer toast berbasis Sonner dengan gaya Endfield",
+      "toast": "Fungsi pemicu toast Sonner",
+      "toastAction": "Dispatch Radix toast (pemicu programatik)",
+      "useToast": "Mengembalikan { toasts, toast, dismiss } untuk Radix toast",
+      "cn": "Helper nama kelas clsx + tailwind-merge"
+    },
+    "entry_points_heading": "◆ TITIK MASUK PAKET"
+  },
+  "theming": {
+    "title": "Tema & Kustomisasi",
+    "description": "Timpa token desain untuk menyesuaikan merek Anda sambil mempertahankan bahasa visual Endfield.",
+    "override_heading": "◆ TIMPA VARIABEL CSS",
+    "dark_light_heading": "◆ MODE GELAP / TERANG",
+    "dark_light_desc": "Alihkan kelas <code>.light</code> pada root dokumen Anda untuk berpindah mode. Semua token diperbarui otomatis.",
+    "token_categories_heading": "KATEGORI TOKEN TERSEDIA",
+    "tokens": {
+      "ef_yellow": "Aksen merek utama",
+      "ef_blue": "Info / tautan",
+      "ef_red": "Destruktif / kesalahan",
+      "ef_green": "Sukses / konfirmasi",
+      "background": "Latar belakang halaman",
+      "foreground": "Teks utama",
+      "primary": "Warna merek (tombol, tautan)",
+      "muted": "Latar belakang redup",
+      "border": "Warna tepi/pemisah",
+      "surface": "Permukaan elevasi"
+    }
+  },
+  "full_example": {
+    "title": "Contoh Proyek Lengkap",
+    "description": "Pengaturan lengkap dari awal — proyek Vite + React baru dengan ReEnd-Components terintegrasi.",
+    "step1_heading": "◆ 1. BUAT PROYEK",
+    "step2_heading": "◆ 2. INSTAL DEPENDENSI",
+    "step3_heading": "◆ 3. KONFIGURASI TAILWIND",
+    "step4_heading": "◆ 4. ATUR CSS",
+    "step5_heading": "◆ 5. BANGUN APLIKASI ANDA",
+    "step6_heading": "◆ 6. JALANKAN",
+    "done": "✓ SELESAI",
+    "done_desc": "Aplikasi Anda sekarang berjalan dengan sistem desain Endfield. Semua komponen, token desain, dan animasi tersedia. Kunjungi bagian komponen di sidebar untuk menjelajahi lebih banyak komponen dan pola penggunaan."
+  }
+}

@@ -1,14 +1,17 @@
+import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
 
-export const PatternsSection = () => {
+export function PatternsSection() {
+  const { t } = useTranslation("patterns");
+
   return (
     <>
       {/* Page Templates */}
       <ComponentPreview
         id="page-templates"
-        title="Page Templates"
+        title={t("templates.title")}
         showViewport
-        description="Homepage, Documentation, Blog List, Blog Post, dan Error Page layouts."
+        description={t("templates.description")}
         props={[
           {
             name: "template",
@@ -39,36 +42,36 @@ export const PatternsSection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             {
-              name: "HOMEPAGE",
+              name: t("templates.homepage"),
               blocks: [
-                "Header",
-                "Hero 100vh",
-                "Features 3-col",
-                "Stats 4-grid",
-                "CTA",
-                "Footer",
+                t("templates.header"),
+                t("templates.hero"),
+                t("templates.features"),
+                t("templates.stats"),
+                t("templates.cta"),
+                t("templates.footer"),
               ],
             },
             {
-              name: "DOCUMENTATION",
+              name: t("templates.documentation"),
               blocks: [
-                "Header",
-                "Sidebar 280px",
-                "Breadcrumb",
-                "Content 680px",
-                "TOC",
-                "Footer",
+                t("templates.header"),
+                t("templates.sidebar"),
+                t("templates.breadcrumb"),
+                t("templates.content"),
+                t("templates.toc"),
+                t("templates.footer"),
               ],
             },
             {
-              name: "BLOG LIST",
+              name: t("templates.blog_list"),
               blocks: [
-                "Header",
-                "Title",
-                "Filter Tags",
-                "Post Grid 2-col",
-                "Pagination",
-                "Footer",
+                t("templates.header"),
+                t("templates.title_block"),
+                t("templates.filter"),
+                t("templates.post_grid"),
+                t("templates.pagination"),
+                t("templates.footer"),
               ],
             },
           ].map((t) => (
@@ -94,9 +97,9 @@ export const PatternsSection = () => {
       {/* Section Patterns */}
       <ComponentPreview
         id="section-patterns"
-        title="Section Patterns"
+        title={t("section_patterns.title")}
         showViewport
-        description="Overline section, alternating layout, feature grid, testimonial, CTA."
+        description={t("section_patterns.description")}
         props={[
           {
             name: "overline",
@@ -129,17 +132,17 @@ export const PatternsSection = () => {
           {/* Overline Section Pattern */}
           <div>
             <span className="font-ui text-[11px] tracking-[0.15em] uppercase text-primary">
-              OVERLINE
+              {t("section_patterns.overline")}
             </span>
             <div className="gradient-line-h mt-2 mb-4 opacity-50" />
             <h3 className="font-display text-2xl font-bold uppercase tracking-[0.02em] text-foreground mb-2">
-              SECTION HEADING
+              {t("section_patterns.heading")}
             </h3>
             <p className="text-sm text-muted-foreground mb-4">
-              Description of this section goes here.
+              {t("section_patterns.description_text")}
             </p>
             <button className="text-primary font-display text-xs font-bold tracking-[0.1em] uppercase flex items-center gap-2 bg-transparent">
-              VIEW ALL →
+              {t("section_patterns.view_all")}
             </button>
           </div>
 
@@ -154,10 +157,10 @@ export const PatternsSection = () => {
                   {String(n).padStart(2, "0")}
                 </span>
                 <h4 className="font-display text-xs font-bold uppercase text-foreground mt-2">
-                  FEATURE {n}
+                  {t(`section_patterns.feature_${n}`)}
                 </h4>
                 <p className="text-xs text-muted-foreground mt-1">
-                  Description text.
+                  {t("section_patterns.description_text_short")}
                 </p>
               </div>
             ))}
@@ -168,8 +171,8 @@ export const PatternsSection = () => {
       {/* Responsive */}
       <ComponentPreview
         id="responsive"
-        title="Responsive Breakpoints"
-        description="Mobile 480px, Tablet 768px, Laptop 1024px, Desktop 1280px, Wide 1536px."
+        title={t("responsive.title")}
+        description={t("responsive.description")}
         props={[
           {
             name: "breakpoints",
@@ -183,7 +186,12 @@ export const PatternsSection = () => {
           <table className="w-full text-xs">
             <thead>
               <tr>
-                {["ELEMENT", "<768px", "768-1024px", ">1024px"].map((h) => (
+                {[
+                  t("responsive.headers.element"),
+                  t("responsive.headers.below_768"),
+                  t("responsive.headers.768_1024"),
+                  t("responsive.headers.above_1024"),
+                ].map((h) => (
                   <th
                     key={h}
                     className="font-display text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-2 px-3 text-left border-b border-border"
@@ -195,12 +203,27 @@ export const PatternsSection = () => {
             </thead>
             <tbody>
               {[
-                ["Container pad", "16px", "24px", "24px"],
-                ["H1", "28px", "36px", "40px"],
-                ["Card grid", "1 col", "2 col", "3 col"],
-                ["Nav", "Hamburger", "Hamburger", "Inline"],
-                ["Sidebar", "Overlay", "Overlay", "Fixed"],
-                ["Hero height", "80vh", "90vh", "100vh"],
+                [t("responsive.rows.container_pad"), "16px", "24px", "24px"],
+                [t("responsive.rows.h1"), "28px", "36px", "40px"],
+                [
+                  t("responsive.rows.card_grid"),
+                  t("responsive.values.col_1"),
+                  t("responsive.values.col_2"),
+                  t("responsive.values.col_3"),
+                ],
+                [
+                  t("responsive.rows.nav"),
+                  t("responsive.values.hamburger"),
+                  t("responsive.values.hamburger"),
+                  t("responsive.values.inline"),
+                ],
+                [
+                  t("responsive.rows.sidebar"),
+                  t("responsive.values.overlay"),
+                  t("responsive.values.overlay"),
+                  t("responsive.values.fixed"),
+                ],
+                [t("responsive.rows.hero_height"), "80vh", "90vh", "100vh"],
               ].map(([el, ...vals]) => (
                 <tr key={el} className="border-b border-border">
                   <td className="py-2 px-3 text-card-foreground font-medium">
@@ -224,13 +247,13 @@ export const PatternsSection = () => {
       {/* Accessibility */}
       <ComponentPreview
         id="accessibility"
-        title="Accessibility"
-        description="Contrast ratios AAA. ARIA requirements. Skip navigation."
+        title={t("accessibility.title")}
+        description={t("accessibility.description")}
       >
         <div className="space-y-6">
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3">
-              CONTRAST RATIOS
+              {t("accessibility.contrast_ratios")}
             </h4>
             <div className="space-y-2">
               {[
@@ -257,16 +280,22 @@ export const PatternsSection = () => {
           </div>
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3">
-              ARIA REQUIREMENTS
+              {t("accessibility.aria_requirements")}
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               {[
-                ["Modal", 'role="dialog", aria-modal'],
-                ["Tab", 'role="tablist", aria-selected'],
-                ["Accordion", "aria-expanded, aria-controls"],
-                ["Toast", 'role="alert", aria-live'],
-                ["Icon button", "aria-label (always)"],
-                ["Loading", "aria-busy, aria-live"],
+                [t("accessibility.modal"), t("accessibility.modal_aria")],
+                [t("accessibility.tab"), t("accessibility.tab_aria")],
+                [
+                  t("accessibility.accordion"),
+                  t("accessibility.accordion_aria"),
+                ],
+                [t("accessibility.toast"), t("accessibility.toast_aria")],
+                [
+                  t("accessibility.icon_button"),
+                  t("accessibility.icon_button_aria"),
+                ],
+                [t("accessibility.loading"), t("accessibility.loading_aria")],
               ].map(([comp, req]) => (
                 <div key={comp} className="flex gap-2">
                   <span className="text-card-foreground font-medium">
@@ -283,45 +312,45 @@ export const PatternsSection = () => {
       {/* Performance */}
       <ComponentPreview
         id="performance"
-        title="Performance Guidelines"
-        description="Images: WebP, lazy loading. Fonts: font-display swap, WOFF2. GPU animations."
+        title={t("performance.title")}
+        description={t("performance.description")}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             {
-              title: "IMAGES",
+              title: t("performance.images.title"),
               items: [
-                "WebP + JPEG fallback",
-                'loading="lazy"',
-                "srcset responsive",
-                "Max 2× display",
+                t("performance.images.webp_fallback"),
+                t("performance.images.lazy_loading"),
+                t("performance.images.srcset"),
+                t("performance.images.max_display"),
               ],
             },
             {
-              title: "FONTS",
+              title: t("performance.fonts.title"),
               items: [
-                "font-display: swap",
-                "WOFF2 format",
-                "Critical fonts first",
-                "Subset for CJK",
+                t("performance.fonts.font_display"),
+                t("performance.fonts.woff2"),
+                t("performance.fonts.critical_first"),
+                t("performance.fonts.subset_cjk"),
               ],
             },
             {
-              title: "CSS",
+              title: t("performance.css.title"),
               items: [
-                "Critical CSS inline",
-                "clip-path GPU accelerated",
-                "contain: layout paint",
-                "Non-critical deferred",
+                t("performance.css.critical_inline"),
+                t("performance.css.clip_path_gpu"),
+                t("performance.css.contain"),
+                t("performance.css.non_critical"),
               ],
             },
             {
-              title: "ANIMATION",
+              title: t("performance.animation.title"),
               items: [
-                "transform + opacity only",
-                "Avoid width/height/top/left",
-                "will-change sparingly",
-                "prefers-reduced-motion",
+                t("performance.animation.transform_opacity"),
+                t("performance.animation.avoid_layout"),
+                t("performance.animation.will_change"),
+                t("performance.animation.reduced_motion"),
               ],
             },
           ].map((g) => (
@@ -350,8 +379,8 @@ export const PatternsSection = () => {
       {/* Design Tokens */}
       <ComponentPreview
         id="design-tokens"
-        title="Design Tokens (Complete)"
-        description="Complete CSS variables reference — colors, surfaces, typography, spacing, shadows, transitions, z-index."
+        title={t("tokens.title")}
+        description={t("tokens.description")}
         code={`:root {
   /* Colors */
   --ef-black: #0A0A0A;      --ef-yellow: #FFD429;
@@ -374,15 +403,15 @@ export const PatternsSection = () => {
 }`}
       >
         <p className="text-sm text-muted-foreground">
-          Lihat code block di bawah untuk referensi lengkap semua design tokens.
+          {t("tokens.reference_text")}
         </p>
       </ComponentPreview>
 
       {/* Naming Conventions */}
       <ComponentPreview
         id="naming-conventions"
-        title="Naming Conventions"
-        description="BEM-inspired CSS class naming. Color token naming convention."
+        title={t("naming.title")}
+        description={t("naming.description")}
         code={`/* CSS Class Naming (BEM-inspired) */
 .component                  →  .card
 .component__element         →  .card__title
@@ -398,51 +427,55 @@ export const PatternsSection = () => {
       >
         <div>
           <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3">
-            FILE STRUCTURE
+            {t("naming.file_structure")}
           </h4>
           <div className="font-mono text-xs text-muted-foreground bg-surface-1 border border-border p-4 space-y-1">
             <p>src/</p>
             <p className="pl-4">├── components/</p>
             <p className="pl-8">
               ├── ui/{" "}
-              <span className="text-ef-gray-mid">
-                → Button, Input, Tag, Badge, Avatar
-              </span>
+              <span className="text-ef-gray-mid">{t("naming.arrow_ui")}</span>
             </p>
             <p className="pl-8">
               ├── layout/{" "}
               <span className="text-ef-gray-mid">
-                → Header, Footer, Sidebar
+                {t("naming.arrow_layout")}
               </span>
             </p>
             <p className="pl-8">
               ├── content/{" "}
               <span className="text-ef-gray-mid">
-                → Card, CodeBlock, Timeline
+                {t("naming.arrow_content")}
               </span>
             </p>
             <p className="pl-8">
               ├── feedback/{" "}
-              <span className="text-ef-gray-mid">→ Toast, Modal, Alert</span>
+              <span className="text-ef-gray-mid">
+                {t("naming.arrow_feedback")}
+              </span>
             </p>
             <p className="pl-8">
               └── navigation/{" "}
               <span className="text-ef-gray-mid">
-                → Tabs, Breadcrumb, Pagination
+                {t("naming.arrow_navigation")}
               </span>
             </p>
             <p className="pl-4">├── styles/</p>
             <p className="pl-8">
               ├── tokens.css{" "}
-              <span className="text-ef-gray-mid">→ Design tokens</span>
+              <span className="text-ef-gray-mid">
+                {t("naming.arrow_tokens")}
+              </span>
             </p>
             <p className="pl-8">
               ├── base.css{" "}
-              <span className="text-ef-gray-mid">→ Reset, typography</span>
+              <span className="text-ef-gray-mid">{t("naming.arrow_base")}</span>
             </p>
             <p className="pl-8">
               └── animations.css{" "}
-              <span className="text-ef-gray-mid">→ Keyframes</span>
+              <span className="text-ef-gray-mid">
+                {t("naming.arrow_animations")}
+              </span>
             </p>
             <p className="pl-4">└── assets/</p>
           </div>
@@ -450,4 +483,4 @@ export const PatternsSection = () => {
       </ComponentPreview>
     </>
   );
-};
+}

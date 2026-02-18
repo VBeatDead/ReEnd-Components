@@ -1,47 +1,39 @@
+import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
 
-export const FoundationsSection = () => {
+export function FoundationsSection() {
+  const { t } = useTranslation("foundations");
+
   return (
     <>
       {/* Design Philosophy */}
       <ComponentPreview
         id="design-philosophy"
-        title="Design Philosophy & Principles"
-        description="Arknights: Endfield mengusung estetika Sci-Fi Industrial Futurism — perpaduan dunia teknologi tinggi yang dingin dengan atmosfer frontier planet Talos-II."
+        title={t("philosophy.title")}
+        description={t("philosophy.description")}
       >
         <div className="space-y-8">
           {/* Identity */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              {
-                title: "DARK-FIRST",
-                desc: "Seluruh interface berbasis gelap, nuansa terminal operasi",
-              },
-              {
-                title: "GEOMETRIC PRECISION",
-                desc: "Garis tajam, sudut tegas (clip-path bukan border-radius)",
-              },
-              {
-                title: "UTILITARIAN ELEGANCE",
-                desc: "Fungsional dan teknis namun elegan — dashboard kontrol misi",
-              },
-              {
-                title: "GLITCH & TECH",
-                desc: "Efek glitch, scanline, noise sebagai dekorasi sci-fi",
-              },
-              {
-                title: "HIGH CONTRAST",
-                desc: "Teks terang di permukaan gelap, aksen warna untuk hierarki",
-              },
-            ].map((item) => (
+            {(
+              [
+                "dark_first",
+                "geometric",
+                "utilitarian",
+                "glitch",
+                "contrast",
+              ] as const
+            ).map((key) => (
               <div
-                key={item.title}
+                key={key}
                 className="corner-brackets border border-border bg-surface-1 p-5"
               >
                 <h4 className="font-display text-xs font-bold tracking-[0.1em] text-primary mb-2">
-                  {item.title}
+                  {t(`philosophy.cards.${key}.title`)}
                 </h4>
-                <p className="text-sm text-muted-foreground">{item.desc}</p>
+                <p className="text-sm text-muted-foreground">
+                  {t(`philosophy.cards.${key}.desc`)}
+                </p>
               </div>
             ))}
           </div>
@@ -49,49 +41,36 @@ export const FoundationsSection = () => {
           {/* Principles */}
           <div>
             <h3 className="font-display text-sm font-bold tracking-[0.08em] uppercase text-foreground mb-4">
-              ◆ PRINSIP DESAIN
+              {t("philosophy.principles_heading")}
             </h3>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left">
-                      PRINSIP
+                      {t("philosophy.table_principle")}
                     </th>
                     <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left">
-                      DESKRIPSI
+                      {t("philosophy.table_description")}
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  {[
-                    ["Function-First", "Setiap elemen visual memiliki tujuan"],
-                    [
-                      "Data Density",
-                      "Informasi padat namun terorganisir — HUD style",
-                    ],
-                    [
-                      "Progressive Disclosure",
-                      "Informasi bertahap, tidak sekaligus",
-                    ],
-                    [
-                      "Immersive Consistency",
-                      "Semua elemen terasa di 'dunia' yang sama",
-                    ],
-                    [
-                      "Tactile Feedback",
-                      "Setiap interaksi ada respons visual jelas",
-                    ],
-                    ["Respectful Restraint", "Animasi dan efek secukupnya"],
-                  ].map(([p, d]) => (
+                  {(
+                    t("philosophy.principles", {
+                      returnObjects: true,
+                    }) as Array<{ name: string; desc: string }>
+                  ).map((item) => (
                     <tr
-                      key={p}
+                      key={item.name}
                       className="border-b border-border hover:bg-primary/[0.03] transition-colors"
                     >
                       <td className="py-3 px-4 font-semibold text-foreground">
-                        {p}
+                        {item.name}
                       </td>
-                      <td className="py-3 px-4 text-muted-foreground">{d}</td>
+                      <td className="py-3 px-4 text-muted-foreground">
+                        {item.desc}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -103,39 +82,27 @@ export const FoundationsSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="border border-ef-green/30 bg-ef-green/[0.05] p-5">
               <h4 className="font-display text-xs font-bold tracking-[0.1em] text-ef-green mb-3">
-                ✅ DO
+                {t("philosophy.do_heading")}
               </h4>
               <ul className="space-y-2 text-sm text-card-foreground">
-                {[
-                  "clip-path untuk sudut terpotong",
-                  "Warna gelap sebagai base",
-                  "Uppercase untuk heading & label",
-                  "Diamond ◆ sebagai bullet/marker",
-                  "Monospace untuk data/angka",
-                  "Border tipis semi-transparent",
-                  "Glow effect subtle (opacity < 0.3)",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-ef-green text-[8px] mt-1.5">◆</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
+                {(t("philosophy.dos", { returnObjects: true }) as string[]).map(
+                  (item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="text-ef-green text-[8px] mt-1.5">◆</span>
+                      <span>{item}</span>
+                    </li>
+                  ),
+                )}
               </ul>
             </div>
             <div className="border border-ef-red/30 bg-ef-red/[0.05] p-5">
               <h4 className="font-display text-xs font-bold tracking-[0.1em] text-ef-red mb-3">
-                ❌ DON'T
+                {t("philosophy.dont_heading")}
               </h4>
               <ul className="space-y-2 text-sm text-card-foreground">
-                {[
-                  "border-radius besar (rounded)",
-                  "Light-mode sebagai default",
-                  "Uppercase untuk body text",
-                  "Circle bullet biasa",
-                  "Monospace untuk body",
-                  "Border tebal solid color",
-                  "Glow berlebihan (neon)",
-                ].map((item) => (
+                {(
+                  t("philosophy.donts", { returnObjects: true }) as string[]
+                ).map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <span className="text-ef-red text-[8px] mt-1.5">◆</span>
                     <span>{item}</span>
@@ -150,8 +117,8 @@ export const FoundationsSection = () => {
       {/* Color System */}
       <ComponentPreview
         id="color-system"
-        title="Color System"
-        description="Primary palette berbasis grayscale dengan aksen kuning sebagai brand color utama."
+        title={t("colors.title")}
+        description={t("colors.description")}
         code={`/* Primary Accent */
 --ef-yellow: #FFD429;      /* CTA, brand */
 --ef-yellow-dark: #B8960F;  /* Hover/pressed */
@@ -167,84 +134,84 @@ export const FoundationsSection = () => {
           {/* Grayscale */}
           <div>
             <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
-              PRIMARY PALETTE (GRAYSCALE)
+              {t("colors.primary_heading")}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
               {[
                 {
-                  name: "Black",
+                  nameKey: "black",
                   hex: "#0A0A0A",
                   cls: "bg-[#0A0A0A]",
                   light: true,
                 },
                 {
-                  name: "Soft",
+                  nameKey: "soft",
                   hex: "#111111",
                   cls: "bg-[#111111]",
                   light: true,
                 },
                 {
-                  name: "Muted",
+                  nameKey: "muted",
                   hex: "#1A1A1A",
                   cls: "bg-[#1A1A1A]",
                   light: true,
                 },
                 {
-                  name: "Dark Gray",
+                  nameKey: "dark_gray",
                   hex: "#222222",
                   cls: "bg-[#222222]",
                   light: true,
                 },
                 {
-                  name: "Gray",
+                  nameKey: "gray",
                   hex: "#333333",
                   cls: "bg-[#333333]",
                   light: true,
                 },
                 {
-                  name: "Gray Mid",
+                  nameKey: "gray_mid",
                   hex: "#666666",
                   cls: "bg-[#666666]",
                   light: true,
                 },
                 {
-                  name: "Gray Light",
+                  nameKey: "gray_light",
                   hex: "#999999",
                   cls: "bg-[#999999]",
                   light: false,
                 },
                 {
-                  name: "White Muted",
+                  nameKey: "white_muted",
                   hex: "#CCCCCC",
                   cls: "bg-[#CCCCCC]",
                   light: false,
                 },
                 {
-                  name: "White Soft",
+                  nameKey: "white_soft",
                   hex: "#E0E0E0",
                   cls: "bg-[#E0E0E0]",
                   light: false,
                 },
                 {
-                  name: "White",
+                  nameKey: "white",
                   hex: "#F0F0F0",
                   cls: "bg-[#F0F0F0]",
                   light: false,
                 },
                 {
-                  name: "Pure White",
+                  nameKey: "pure_white",
                   hex: "#FFFFFF",
                   cls: "bg-[#FFFFFF]",
                   light: false,
                 },
               ].map((c) => (
-                <div key={c.name} className="space-y-2">
+                <div key={c.nameKey} className="space-y-2">
                   <div className={`h-16 border border-border ${c.cls}`} />
                   <div>
                     <p
                       className={`text-xs font-semibold ${c.light ? "text-foreground" : "text-foreground"}`}
                     >
-                      {c.name}
+                      {t(`colors.names.${c.nameKey}`)}
                     </p>
                     <p className="font-mono text-[10px] text-muted-foreground">
                       {c.hex}
@@ -258,23 +225,23 @@ export const FoundationsSection = () => {
           {/* Accents */}
           <div>
             <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
-              ACCENT COLORS
+              {t("colors.accent_heading")}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
               {[
-                { name: "Yellow", hex: "#FFD429", cls: "bg-primary" },
-                { name: "Blue", hex: "#4DA8DA", cls: "bg-ef-blue" },
-                { name: "Cyan", hex: "#00E5FF", cls: "bg-ef-cyan" },
-                { name: "Red", hex: "#FF4757", cls: "bg-ef-red" },
-                { name: "Green", hex: "#2ED573", cls: "bg-ef-green" },
-                { name: "Orange", hex: "#FFA502", cls: "bg-ef-orange" },
-                { name: "Purple", hex: "#A55EEA", cls: "bg-ef-purple" },
+                { nameKey: "yellow", hex: "#FFD429", cls: "bg-primary" },
+                { nameKey: "blue", hex: "#4DA8DA", cls: "bg-ef-blue" },
+                { nameKey: "cyan", hex: "#00E5FF", cls: "bg-ef-cyan" },
+                { nameKey: "red", hex: "#FF4757", cls: "bg-ef-red" },
+                { nameKey: "green", hex: "#2ED573", cls: "bg-ef-green" },
+                { nameKey: "orange", hex: "#FFA502", cls: "bg-ef-orange" },
+                { nameKey: "purple", hex: "#A55EEA", cls: "bg-ef-purple" },
               ].map((c) => (
-                <div key={c.name} className="space-y-2">
+                <div key={c.nameKey} className="space-y-2">
                   <div className={`h-16 clip-corner-sm ${c.cls}`} />
                   <div>
                     <p className="text-xs font-semibold text-foreground">
-                      {c.name}
+                      {t(`colors.names.${c.nameKey}`)}
                     </p>
                     <p className="font-mono text-[10px] text-muted-foreground">
                       {c.hex}
@@ -288,13 +255,13 @@ export const FoundationsSection = () => {
           {/* Gradients */}
           <div>
             <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
-              GRADIENTS
+              {t("colors.gradients_heading")}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <div className="h-16 bg-gradient-to-r from-primary to-ef-orange clip-corner" />
                 <p className="text-xs text-muted-foreground">
-                  Primary Gradient: #FFD429 → #FFA502
+                  {t("colors.gradient_primary")}
                 </p>
               </div>
               <div className="space-y-2">
@@ -306,7 +273,7 @@ export const FoundationsSection = () => {
                   }}
                 />
                 <p className="text-xs text-muted-foreground">
-                  Line Gradient: transparent → #FFD429 → transparent
+                  {t("colors.gradient_line")}
                 </p>
               </div>
               <div className="space-y-2">
@@ -318,7 +285,7 @@ export const FoundationsSection = () => {
                   }}
                 />
                 <p className="text-xs text-muted-foreground">
-                  Scanline Gradient
+                  {t("colors.gradient_scanline")}
                 </p>
               </div>
               <div className="space-y-2">
@@ -330,7 +297,7 @@ export const FoundationsSection = () => {
                   }}
                 />
                 <p className="text-xs text-muted-foreground">
-                  Card Hover Gradient
+                  {t("colors.gradient_card_hover")}
                 </p>
               </div>
             </div>
@@ -341,8 +308,8 @@ export const FoundationsSection = () => {
       {/* Typography */}
       <ComponentPreview
         id="typography"
-        title="Typography"
-        description="Font stack: Orbitron (display/UI), JetBrains Mono (code), Inter (body)."
+        title={t("typography.title")}
+        description={t("typography.description")}
         code={`/* Font Stack */
 --font-display: 'Orbitron', monospace;
 --font-ui: 'Orbitron', monospace;
@@ -353,7 +320,7 @@ export const FoundationsSection = () => {
           <div className="space-y-4">
             <div className="border-b border-border pb-3">
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                DISPLAY XL — 72px / 700 / UPPERCASE
+                {t("typography.display_xl")}
               </p>
               <p className="font-display text-3xl sm:text-5xl lg:text-7xl font-bold tracking-[0.05em] uppercase text-foreground">
                 ENDFIELD
@@ -361,7 +328,7 @@ export const FoundationsSection = () => {
             </div>
             <div className="border-b border-border pb-3">
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                H1 — 40px / 700 / UPPERCASE
+                {t("typography.h1")}
               </p>
               <p className="font-display text-4xl font-bold tracking-[0.03em] uppercase text-foreground">
                 HEADING ONE
@@ -369,7 +336,7 @@ export const FoundationsSection = () => {
             </div>
             <div className="border-b border-border pb-3">
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                H2 — 32px / 600 / UPPERCASE
+                {t("typography.h2")}
               </p>
               <p className="font-display text-3xl font-semibold tracking-[0.02em] uppercase text-foreground">
                 HEADING TWO
@@ -377,7 +344,7 @@ export const FoundationsSection = () => {
             </div>
             <div className="border-b border-border pb-3">
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                H3 — 24px / 600 / UPPERCASE
+                {t("typography.h3")}
               </p>
               <p className="font-display text-2xl font-semibold tracking-[0.02em] uppercase text-foreground">
                 HEADING THREE
@@ -385,7 +352,7 @@ export const FoundationsSection = () => {
             </div>
             <div className="border-b border-border pb-3">
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                H4 — 20px / 600 / UPPERCASE
+                {t("typography.h4")}
               </p>
               <p className="font-display text-xl font-semibold tracking-[0.01em] uppercase text-foreground">
                 HEADING FOUR
@@ -393,40 +360,39 @@ export const FoundationsSection = () => {
             </div>
             <div className="border-b border-border pb-3">
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                BODY — 16px / 400
+                {t("typography.body")}
               </p>
               <p className="text-base text-card-foreground leading-relaxed">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                {t("typography.body_sample")}
               </p>
             </div>
             <div className="border-b border-border pb-3">
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                BODY SM — 14px / 400
+                {t("typography.body_sm")}
               </p>
               <p className="text-sm text-muted-foreground">
-                Secondary body text for descriptions and metadata.
+                {t("typography.body_sm_sample")}
               </p>
             </div>
             <div className="border-b border-border pb-3">
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                OVERLINE — 11px / 700 / 0.15em / UPPERCASE
+                {t("typography.overline")}
               </p>
               <p className="font-ui text-[11px] font-bold tracking-[0.15em] uppercase text-primary">
-                OVERLINE TEXT
+                {t("typography.overline_sample")}
               </p>
             </div>
             <div className="border-b border-border pb-3">
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                CODE — JetBrains Mono 14px
+                {t("typography.code")}
               </p>
               <p className="font-mono text-sm text-card-foreground">
-                const endfield = "Talos-II";
+                {t("typography.code_sample")}
               </p>
             </div>
             <div>
               <p className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground mb-1">
-                STAT NUMBER — Orbitron 48px / 700
+                {t("typography.stat_number")}
               </p>
               <p className="font-display text-5xl font-bold text-primary">
                 12,847
@@ -437,39 +403,67 @@ export const FoundationsSection = () => {
           {/* Text Colors */}
           <div>
             <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
-              TEXT COLOR ASSIGNMENT
+              {t("typography.text_colors_heading")}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
               {[
-                { label: "Heading", color: "#F0F0F0", token: "--text-primary" },
-                { label: "Body", color: "#E0E0E0", token: "--text-secondary" },
-                { label: "Caption", color: "#999999", token: "--text-muted" },
-                { label: "Accent", color: "#FFD429", token: "--text-accent" },
-                { label: "Link", color: "#4DA8DA", token: "--text-link" },
-                { label: "Error", color: "#FF4757", token: "--text-error" },
-                { label: "Success", color: "#2ED573", token: "--text-success" },
                 {
-                  label: "Placeholder",
+                  labelKey: "text_color_heading",
+                  color: "#F0F0F0",
+                  token: "--text-primary",
+                },
+                {
+                  labelKey: "text_color_body",
+                  color: "#E0E0E0",
+                  token: "--text-secondary",
+                },
+                {
+                  labelKey: "text_color_caption",
+                  color: "#999999",
+                  token: "--text-muted",
+                },
+                {
+                  labelKey: "text_color_accent",
+                  color: "#FFD429",
+                  token: "--text-accent",
+                },
+                {
+                  labelKey: "text_color_link",
+                  color: "#4DA8DA",
+                  token: "--text-link",
+                },
+                {
+                  labelKey: "text_color_error",
+                  color: "#FF4757",
+                  token: "--text-error",
+                },
+                {
+                  labelKey: "text_color_success",
+                  color: "#2ED573",
+                  token: "--text-success",
+                },
+                {
+                  labelKey: "text_color_placeholder",
                   color: "#666666",
                   token: "--text-placeholder",
                 },
                 {
-                  label: "Disabled",
+                  labelKey: "text_color_disabled",
                   color: "#444444",
                   token: "--text-disabled",
                 },
-              ].map((t) => (
-                <div key={t.label} className="flex items-center gap-2">
+              ].map((tc) => (
+                <div key={tc.labelKey} className="flex items-center gap-2">
                   <div
                     className="w-3 h-3 border border-border"
-                    style={{ backgroundColor: t.color }}
+                    style={{ backgroundColor: tc.color }}
                   />
                   <div>
-                    <p className="text-xs" style={{ color: t.color }}>
-                      {t.label}
+                    <p className="text-xs" style={{ color: tc.color }}>
+                      {t(`typography.${tc.labelKey}`)}
                     </p>
                     <p className="font-mono text-[9px] text-muted-foreground">
-                      {t.token}
+                      {tc.token}
                     </p>
                   </div>
                 </div>
@@ -482,8 +476,8 @@ export const FoundationsSection = () => {
       {/* Spacing & Grid */}
       <ComponentPreview
         id="spacing-grid"
-        title="Spacing & Grid"
-        description="Base 4px spacing scale. Container max 1280px, 12-column grid."
+        title={t("spacing.title")}
+        description={t("spacing.description")}
         code={`--space-1: 4px;   --space-2: 8px;    --space-3: 12px;
 --space-4: 16px;  --space-6: 24px;   --space-8: 32px;
 --space-10: 40px; --space-12: 48px;  --space-16: 64px;
@@ -521,24 +515,24 @@ export const FoundationsSection = () => {
       {/* Background & Surface */}
       <ComponentPreview
         id="background-surface"
-        title="Background & Surface"
-        description="Surface levels dari Canvas hingga Active, dengan corner brackets sebagai Endfield signature element."
+        title={t("surfaces.title")}
+        description={t("surfaces.description")}
       >
         <div className="space-y-6">
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
             {[
-              { name: "Canvas", hex: "#0A0A0A", bg: "bg-background" },
-              { name: "Surface 0", hex: "#0F0F0F", bg: "bg-surface-0" },
-              { name: "Surface 1", hex: "#141414", bg: "bg-surface-1" },
-              { name: "Surface 2", hex: "#1A1A1A", bg: "bg-surface-2" },
-              { name: "Surface 3", hex: "#222222", bg: "bg-surface-3" },
-              { name: "Hover", hex: "#1E1E1E", bg: "bg-surface-hover" },
-              { name: "Active", hex: "#252525", bg: "bg-surface-active" },
+              { nameKey: "canvas", hex: "#0A0A0A", bg: "bg-background" },
+              { nameKey: "surface_0", hex: "#0F0F0F", bg: "bg-surface-0" },
+              { nameKey: "surface_1", hex: "#141414", bg: "bg-surface-1" },
+              { nameKey: "surface_2", hex: "#1A1A1A", bg: "bg-surface-2" },
+              { nameKey: "surface_3", hex: "#222222", bg: "bg-surface-3" },
+              { nameKey: "hover", hex: "#1E1E1E", bg: "bg-surface-hover" },
+              { nameKey: "active", hex: "#252525", bg: "bg-surface-active" },
             ].map((s) => (
-              <div key={s.name} className="space-y-2">
+              <div key={s.nameKey} className="space-y-2">
                 <div className={`h-20 border border-border ${s.bg}`} />
                 <p className="text-xs font-semibold text-foreground">
-                  {s.name}
+                  {t(`surfaces.names.${s.nameKey}`)}
                 </p>
                 <p className="font-mono text-[10px] text-muted-foreground">
                   {s.hex}
@@ -550,17 +544,17 @@ export const FoundationsSection = () => {
           {/* Decorations */}
           <div>
             <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
-              BACKGROUND DECORATIONS
+              {t("surfaces.decorations_heading")}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="corner-brackets bg-surface-1 p-6 h-32 flex items-center justify-center">
                 <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
-                  CORNER BRACKETS
+                  {t("surfaces.corner_brackets")}
                 </span>
               </div>
               <div className="scanline-overlay bg-surface-1 p-6 h-32 flex items-center justify-center">
                 <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
-                  SCANLINE OVERLAY
+                  {t("surfaces.scanline_overlay")}
                 </span>
               </div>
             </div>
@@ -571,21 +565,21 @@ export const FoundationsSection = () => {
       {/* Iconography */}
       <ComponentPreview
         id="iconography"
-        title="Iconography"
-        description="Outlined blueprint aesthetic. Stroke 1.5px at 24px, currentColor."
+        title={t("icons.title")}
+        description={t("icons.description")}
       >
         <div>
           <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
-            ICON SIZES
+            {t("icons.sizes_heading")}
           </h3>
           <div className="flex items-end gap-6 flex-wrap">
             {[
-              { size: "xs", px: 16, use: "Inline" },
-              { size: "sm", px: 20, use: "Button" },
-              { size: "md", px: 24, use: "Nav" },
-              { size: "lg", px: 32, use: "Feature" },
-              { size: "xl", px: 48, use: "Empty state" },
-              { size: "2xl", px: 64, use: "Hero" },
+              { size: "xs", px: 16, useKey: "xs" },
+              { size: "sm", px: 20, useKey: "sm" },
+              { size: "md", px: 24, useKey: "md" },
+              { size: "lg", px: 32, useKey: "lg" },
+              { size: "xl", px: 48, useKey: "xl" },
+              { size: "2xl", px: 64, useKey: "xxl" },
             ].map((i) => (
               <div key={i.size} className="flex flex-col items-center gap-2">
                 <div
@@ -614,15 +608,15 @@ export const FoundationsSection = () => {
       {/* Illustration */}
       <ComponentPreview
         id="illustration"
-        title="Illustration & Imagery Style"
-        description="Photography desaturated, cool-toned. Line art thin geometric, wireframe, blueprint style."
+        title={t("illustration.title")}
+        description={t("illustration.description")}
       >
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { ratio: "16:9", label: "Banner", cls: "aspect-video" },
-            { ratio: "4:3", label: "Feature", cls: "aspect-[4/3]" },
-            { ratio: "3:4", label: "Portrait", cls: "aspect-[3/4]" },
-            { ratio: "1:1", label: "Avatar", cls: "aspect-square" },
+            { ratio: "16:9", labelKey: "aspect_banner", cls: "aspect-video" },
+            { ratio: "4:3", labelKey: "aspect_feature", cls: "aspect-[4/3]" },
+            { ratio: "3:4", labelKey: "aspect_portrait", cls: "aspect-[3/4]" },
+            { ratio: "1:1", labelKey: "aspect_avatar", cls: "aspect-square" },
           ].map((r) => (
             <div key={r.ratio} className="space-y-2">
               <div
@@ -632,11 +626,13 @@ export const FoundationsSection = () => {
                   {r.ratio}
                 </span>
               </div>
-              <p className="text-xs text-muted-foreground">{r.label}</p>
+              <p className="text-xs text-muted-foreground">
+                {t(`illustration.${r.labelKey}`)}
+              </p>
             </div>
           ))}
         </div>
       </ComponentPreview>
     </>
   );
-};
+}

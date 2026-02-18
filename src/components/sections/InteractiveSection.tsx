@@ -1,15 +1,17 @@
 import { ComponentPreview } from "../docs/ComponentPreview";
 import { ArrowRight, Copy, Check, ChevronDown, Search } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
-export const InteractiveSection = () => {
+export function InteractiveSection() {
+  const { t } = useTranslation("interactive");
   return (
     <>
       {/* States Matrix */}
       <ComponentPreview
         id="states-matrix"
-        title="Interactive States Matrix"
-        description="Comprehensive mapping of all interactive states across components."
+        title={t("states_matrix.title")}
+        description={t("states_matrix.description")}
         props={[
           {
             name: "elements",
@@ -24,12 +26,12 @@ export const InteractiveSection = () => {
             <thead>
               <tr>
                 {[
-                  "ELEMENT",
-                  "DEFAULT",
-                  "HOVER",
-                  "ACTIVE",
-                  "FOCUS",
-                  "DISABLED",
+                  t("states_matrix.headers.element"),
+                  t("states_matrix.headers.default"),
+                  t("states_matrix.headers.hover"),
+                  t("states_matrix.headers.active"),
+                  t("states_matrix.headers.focus"),
+                  t("states_matrix.headers.disabled"),
                 ].map((h) => (
                   <th
                     key={h}
@@ -43,7 +45,7 @@ export const InteractiveSection = () => {
             <tbody>
               {[
                 [
-                  "Button",
+                  t("states_matrix.rows.button"),
                   "Standard",
                   "Lighten+glow",
                   "Darken",
@@ -51,7 +53,7 @@ export const InteractiveSection = () => {
                   "Gray 0.38",
                 ],
                 [
-                  "Input",
+                  t("states_matrix.rows.input"),
                   "#111 bg",
                   "Border lighten",
                   "—",
@@ -59,7 +61,7 @@ export const InteractiveSection = () => {
                   "Gray text",
                 ],
                 [
-                  "Card",
+                  t("states_matrix.rows.card"),
                   "surface-1",
                   "Lift+yellow",
                   "surface-active",
@@ -67,15 +69,29 @@ export const InteractiveSection = () => {
                   "opacity:0.5",
                 ],
                 [
-                  "Link",
+                  t("states_matrix.rows.link"),
                   "#4DA8DA",
                   "Underline",
                   "#2A6F97",
                   "Yellow ring",
                   "#444",
                 ],
-                ["Nav item", "#CCC", "#FFD429", "—", "Yellow ring", "#444"],
-                ["Tab", "#999", "#E0E0E0", "—", "Yellow ring", "#FFD429+line"],
+                [
+                  t("states_matrix.rows.nav_item"),
+                  "#CCC",
+                  "#FFD429",
+                  "—",
+                  "Yellow ring",
+                  "#444",
+                ],
+                [
+                  t("states_matrix.rows.tab"),
+                  "#999",
+                  "#E0E0E0",
+                  "—",
+                  "Yellow ring",
+                  "#FFD429+line",
+                ],
               ].map(([el, ...states]) => (
                 <tr
                   key={el}
@@ -102,8 +118,8 @@ export const InteractiveSection = () => {
       {/* Micro-Interactions */}
       <ComponentPreview
         id="micro-interactions"
-        title="Micro-Interactions & Feedback"
-        description="Click ripple, copy feedback, toggle animation, accordion expand."
+        title={t("micro_interactions.title")}
+        description={t("micro_interactions.description")}
         props={[
           {
             name: "type",
@@ -122,16 +138,20 @@ export const InteractiveSection = () => {
         <div className="flex flex-wrap gap-6 items-start">
           <div className="space-y-2 text-center">
             <button className="bg-primary text-primary-foreground clip-corner font-display text-xs font-bold uppercase px-6 py-3 tracking-[0.1em] active:scale-95 transition-transform">
-              CLICK ME
+              {t("micro_interactions.click_me")}
             </button>
-            <p className="text-[10px] text-muted-foreground">Ripple effect</p>
+            <p className="text-[10px] text-muted-foreground">
+              {t("micro_interactions.ripple_effect")}
+            </p>
           </div>
           <CopyDemo />
           <div className="space-y-2 text-center">
             <button className="text-muted-foreground hover:text-ef-red text-2xl transition-colors active:scale-125">
               ♡
             </button>
-            <p className="text-[10px] text-muted-foreground">Favorite</p>
+            <p className="text-[10px] text-muted-foreground">
+              {t("micro_interactions.favorite")}
+            </p>
           </div>
         </div>
       </ComponentPreview>
@@ -139,34 +159,55 @@ export const InteractiveSection = () => {
       {/* Hover Effects */}
       <ComponentPreview
         id="hover-effects"
-        title="Hover Effects Catalog"
-        description="Card lift, button glow, image scale, nav color change, table row tint."
+        title={t("hover_effects.title")}
+        description={t("hover_effects.description")}
       >
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr>
                 <th className="font-display text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-2 px-3 text-left border-b border-border">
-                  ELEMENT
+                  {t("hover_effects.headers.element")}
                 </th>
                 <th className="font-display text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-2 px-3 text-left border-b border-border">
-                  EFFECT
+                  {t("hover_effects.headers.effect")}
                 </th>
               </tr>
             </thead>
             <tbody>
               {[
-                ["Card", "translateY(-4px) + shadow + yellow border tint"],
                 [
-                  "Button Primary",
-                  "translateY(-1px) + lighter bg + glow shadow",
+                  t("hover_effects.rows.card"),
+                  t("hover_effects.rows.card_effect"),
                 ],
-                ["Button Secondary", "Border → yellow, text → yellow"],
-                ["Image", "scale(1.05) smooth ease"],
-                ["Nav link", "Color → yellow, diamond indicator"],
-                ["Table row", "Yellow bg tint 0.03"],
-                ["Code block", "Copy button appears (fade in)"],
-                ["Avatar", "Subtle glow ring"],
+                [
+                  t("hover_effects.rows.button_primary"),
+                  t("hover_effects.rows.button_primary_effect"),
+                ],
+                [
+                  t("hover_effects.rows.button_secondary"),
+                  t("hover_effects.rows.button_secondary_effect"),
+                ],
+                [
+                  t("hover_effects.rows.image"),
+                  t("hover_effects.rows.image_effect"),
+                ],
+                [
+                  t("hover_effects.rows.nav_link"),
+                  t("hover_effects.rows.nav_link_effect"),
+                ],
+                [
+                  t("hover_effects.rows.table_row"),
+                  t("hover_effects.rows.table_row_effect"),
+                ],
+                [
+                  t("hover_effects.rows.code_block"),
+                  t("hover_effects.rows.code_block_effect"),
+                ],
+                [
+                  t("hover_effects.rows.avatar"),
+                  t("hover_effects.rows.avatar_effect"),
+                ],
               ].map(([el, eff]) => (
                 <tr
                   key={el}
@@ -186,8 +227,8 @@ export const InteractiveSection = () => {
       {/* Focus & Keyboard */}
       <ComponentPreview
         id="focus-keyboard"
-        title="Focus & Keyboard Navigation"
-        description="Focus ring: 2px solid #FFD429, offset 2px. Keyboard shortcuts table."
+        title={t("focus_keyboard.title")}
+        description={t("focus_keyboard.description")}
         code={`*:focus-visible {
   outline: 2px solid #FFD429;
   outline-offset: 2px;
@@ -230,7 +271,7 @@ input:focus-visible {
         <div className="space-y-4">
           <div className="flex flex-wrap gap-4">
             <button className="bg-primary text-primary-foreground clip-corner font-display text-xs font-bold uppercase px-6 py-2.5 tracking-[0.1em] ring-2 ring-primary ring-offset-2 ring-offset-background">
-              FOCUS STATE
+              {t("focus_keyboard.focus_state")}
             </button>
             <input
               className="bg-surface-1 border border-primary text-card-foreground px-4 py-2.5 text-sm shadow-[0_0_0_3px_hsl(47_100%_56%/0.15)] outline-none"
@@ -241,12 +282,30 @@ input:focus-visible {
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {[
-              ["Tab", "Navigate forward"],
-              ["Enter / Space", "Activate"],
-              ["Escape", "Close overlay"],
-              ["⌘K", "Command palette"],
-              ["Arrow keys", "Navigate menus"],
-              ["Home / End", "First/last item"],
+              [
+                t("focus_keyboard.shortcuts.tab"),
+                t("focus_keyboard.shortcuts.tab_desc"),
+              ],
+              [
+                t("focus_keyboard.shortcuts.enter"),
+                t("focus_keyboard.shortcuts.enter_desc"),
+              ],
+              [
+                t("focus_keyboard.shortcuts.escape"),
+                t("focus_keyboard.shortcuts.escape_desc"),
+              ],
+              [
+                t("focus_keyboard.shortcuts.cmd_k"),
+                t("focus_keyboard.shortcuts.cmd_k_desc"),
+              ],
+              [
+                t("focus_keyboard.shortcuts.arrows"),
+                t("focus_keyboard.shortcuts.arrows_desc"),
+              ],
+              [
+                t("focus_keyboard.shortcuts.home_end"),
+                t("focus_keyboard.shortcuts.home_end_desc"),
+              ],
             ].map(([key, action]) => (
               <div key={key} className="flex items-center gap-2 text-xs">
                 <kbd className="font-mono text-[10px] bg-surface-2 px-2 py-1 border border-border text-muted-foreground">
@@ -262,8 +321,8 @@ input:focus-visible {
       {/* Drag & Drop */}
       <ComponentPreview
         id="drag-drop"
-        title="Drag & Drop"
-        description="Draggable: cursor grab. Drop zone: dashed border, yellow active state."
+        title={t("drag_drop.title")}
+        description={t("drag_drop.description")}
         props={[
           {
             name: "items",
@@ -288,13 +347,13 @@ input:focus-visible {
       >
         <div className="flex flex-wrap gap-6 items-start">
           <div className="border-2 border-dashed border-ef-gray px-6 py-4 text-sm text-muted-foreground cursor-grab active:cursor-grabbing active:opacity-50 active:border-primary transition-all">
-            ⠿ Drag me
+            {t("drag_drop.drag_me")}
           </div>
           <div className="border-2 border-dashed border-ef-gray px-8 py-8 text-sm text-muted-foreground flex items-center justify-center">
-            Drop zone
+            {t("drag_drop.drop_zone")}
           </div>
           <div className="border-2 border-dashed border-primary bg-primary/5 px-8 py-8 text-sm text-primary flex items-center justify-center">
-            Active zone
+            {t("drag_drop.active_zone")}
           </div>
         </div>
       </ComponentPreview>
@@ -302,8 +361,8 @@ input:focus-visible {
       {/* Selection */}
       <ComponentPreview
         id="selection"
-        title="Selection & Multi-Select"
-        description="Selected: yellow border + bg tint. Floating action bar for multi-select."
+        title={t("selection.title")}
+        description={t("selection.description")}
         props={[
           {
             name: "options",
@@ -340,7 +399,11 @@ input:focus-visible {
       >
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-md">
-            {["Option A", "Option B", "Option C"].map((o, i) => (
+            {[
+              t("selection.option_a"),
+              t("selection.option_b"),
+              t("selection.option_c"),
+            ].map((o, i) => (
               <button
                 key={o}
                 className={`border p-4 text-sm text-center transition-all ${i === 1 ? "border-primary bg-primary/[0.06] text-primary" : "border-border text-muted-foreground hover:border-primary/30"}`}
@@ -350,21 +413,24 @@ input:focus-visible {
             ))}
           </div>
           <div className="inline-flex flex-wrap items-center gap-4 bg-surface-3 border border-primary/40 px-6 py-3 shadow-[0_16px_48px_rgba(0,0,0,0.5)] max-w-full">
-            <span className="text-sm text-card-foreground">3 selected</span>
+            <span className="text-sm text-card-foreground">
+              {t("selection.selected_count")}
+            </span>
             <button className="clip-corner bg-ef-red text-foreground font-display text-[10px] font-bold uppercase px-4 py-1.5 tracking-[0.1em]">
-              DELETE
+              {t("selection.delete_btn")}
             </button>
             <button className="clip-corner border border-border text-card-foreground font-display text-[10px] font-bold uppercase px-4 py-1.5 tracking-[0.1em]">
-              EXPORT
+              {t("selection.export_btn")}
             </button>
           </div>
         </div>
       </ComponentPreview>
     </>
   );
-};
+}
 
 const CopyDemo = () => {
+  const { t } = useTranslation("interactive");
   const [copied, setCopied] = useState(false);
   const copyTimer = useRef<ReturnType<typeof setTimeout>>();
   useEffect(() => () => clearTimeout(copyTimer.current), []);
@@ -383,9 +449,11 @@ const CopyDemo = () => {
         ) : (
           <Copy className="w-4 h-4" />
         )}
-        {copied ? "Copied!" : "Copy"}
+        {copied ? t("micro_interactions.copied") : t("micro_interactions.copy")}
       </button>
-      <p className="text-[10px] text-muted-foreground">Copy feedback</p>
+      <p className="text-[10px] text-muted-foreground">
+        {t("micro_interactions.copy_feedback")}
+      </p>
     </div>
   );
 };

@@ -1,69 +1,92 @@
 import { ComponentPreview } from "../../docs/ComponentPreview";
+import { useTranslation } from "react-i18next";
 
-const FooterDemo = () => (
-  <ComponentPreview
-    id="footer"
-    title="Footer"
-    showViewport
-    description="Background canvas, border-top. 3-column grid. Column title: Orbitron 12px uppercase."
-    props={[
-      {
-        name: "columns",
-        type: "{ title: string; links: { label: string; href: string }[] }[]",
-        required: true,
-        description: "Footer link columns",
-      },
-      {
-        name: "copyright",
-        type: "string",
-        required: false,
-        description: "Copyright text displayed at bottom",
-      },
-      {
-        name: "version",
-        type: "string",
-        required: false,
-        description: "System version displayed bottom-right",
-      },
-    ]}
-  >
-    <div className="bg-background border-t border-border -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-6 sm:p-8 mt-0">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-8">
-        {[
-          {
-            title: "PRODUCT",
-            links: ["Features", "Documentation", "Changelog", "Roadmap"],
-          },
-          {
-            title: "COMMUNITY",
-            links: ["Discord", "GitHub", "Twitter", "Blog"],
-          },
-          { title: "LEGAL", links: ["Privacy", "Terms", "License"] },
-        ].map((col) => (
-          <div key={col.title}>
-            <h4 className="font-display text-xs font-bold tracking-[0.15em] uppercase text-muted-foreground mb-4">
-              {col.title}
-            </h4>
-            <ul className="space-y-2">
-              {col.links.map((link) => (
-                <li key={link}>
-                  <button className="text-sm text-ef-gray-mid hover:text-primary transition-colors bg-transparent">
-                    {link}
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+function FooterDemo() {
+  const { t } = useTranslation("core");
+  return (
+    <ComponentPreview
+      id="footer"
+      title={t("footer.title")}
+      showViewport
+      description={t("footer.description")}
+      props={[
+        {
+          name: "columns",
+          type: "{ title: string; links: { label: string; href: string }[] }[]",
+          required: true,
+          description: t("footer.props.columns"),
+        },
+        {
+          name: "copyright",
+          type: "string",
+          required: false,
+          description: t("footer.props.copyright"),
+        },
+        {
+          name: "version",
+          type: "string",
+          required: false,
+          description: t("footer.props.version"),
+        },
+      ]}
+    >
+      <div className="bg-background border-t border-border -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-6 sm:p-8 mt-0">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-8">
+          {[
+            {
+              title: t("footer.product"),
+              links: [
+                t("footer.features"),
+                t("footer.documentation"),
+                t("footer.changelog"),
+                t("footer.roadmap"),
+              ],
+            },
+            {
+              title: t("footer.community"),
+              links: [
+                t("footer.discord"),
+                t("footer.github"),
+                t("footer.twitter"),
+                t("footer.blog"),
+              ],
+            },
+            {
+              title: t("footer.legal"),
+              links: [
+                t("footer.privacy"),
+                t("footer.terms"),
+                t("footer.license"),
+              ],
+            },
+          ].map((col) => (
+            <div key={col.title}>
+              <h4 className="font-display text-xs font-bold tracking-[0.15em] uppercase text-muted-foreground mb-4">
+                {col.title}
+              </h4>
+              <ul className="space-y-2">
+                {col.links.map((link) => (
+                  <li key={link}>
+                    <button className="text-sm text-ef-gray-mid hover:text-primary transition-colors bg-transparent">
+                      {link}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div className="border-t border-border pt-4 flex flex-wrap items-center justify-between gap-2">
+          <p className="text-xs text-ef-gray-mid">
+            {t("footer.copyright_text")}
+          </p>
+          <p className="font-mono text-[10px] text-ef-gray-mid">
+            {t("footer.version_text")}
+          </p>
+        </div>
       </div>
-      <div className="border-t border-border pt-4 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs text-ef-gray-mid">
-          © 2026 Endfield Industries. All rights reserved.
-        </p>
-        <p className="font-mono text-[10px] text-ef-gray-mid">EF-SYS v2.0.0</p>
-      </div>
-    </div>
-  </ComponentPreview>
-);
+    </ComponentPreview>
+  );
+}
 
 export default FooterDemo;

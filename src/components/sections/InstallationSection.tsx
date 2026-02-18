@@ -1,48 +1,54 @@
+import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
 import { CodeBlock } from "../docs/CodeBlock";
 
-export const InstallationSection = () => {
+export function InstallationSection() {
+  const { t } = useTranslation("install");
+
   return (
     <>
       {/* Getting Started */}
       <ComponentPreview
         id="getting-started"
-        title="Getting Started"
-        description="Install ReEnd-Components into your React project in minutes. Available on npm as a public package."
+        title={t("getting_started.title")}
+        description={t("getting_started.description")}
       >
         <div className="space-y-6">
           <div className="border border-border bg-surface-1 p-6">
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-4">
-              ◆ PREREQUISITES
+              {t("getting_started.prerequisites_heading")}
             </h4>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <ul className="space-y-2 text-sm text-muted-foreground [&_strong]:text-foreground">
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">▸</span>
-                <span>
-                  <strong className="text-foreground">React 18+</strong> or
-                  React 19
-                </span>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("getting_started.prereq_react"),
+                  }}
+                />
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">▸</span>
-                <span>
-                  <strong className="text-foreground">Node.js 18+</strong>{" "}
-                  recommended
-                </span>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("getting_started.prereq_node"),
+                  }}
+                />
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">▸</span>
-                <span>
-                  <strong className="text-foreground">Tailwind CSS 3.4+</strong>{" "}
-                  (optional — pre-built CSS available)
-                </span>
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html: t("getting_started.prereq_tailwind"),
+                  }}
+                />
               </li>
             </ul>
           </div>
 
           <div className="border border-border bg-surface-1 p-6">
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-4">
-              ◆ NPM PACKAGE
+              {t("getting_started.npm_package_heading")}
             </h4>
             <div className="flex items-center gap-3 flex-wrap">
               <a
@@ -51,7 +57,7 @@ export const InstallationSection = () => {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-ef-blue hover:text-ef-blue-light transition-colors underline underline-offset-2"
               >
-                npmjs.com/package/reend-components ↗
+                {t("getting_started.npm_link_text")}
               </a>
               <span className="font-mono text-[10px] bg-primary/10 border border-primary/20 text-primary px-2 py-0.5">
                 v0.1.0
@@ -64,55 +70,54 @@ export const InstallationSection = () => {
       {/* Install Package */}
       <ComponentPreview
         id="install-package"
-        title="Step 1 — Install Package"
-        description="Install reend-components and its peer dependencies using your preferred package manager."
+        title={t("step1.title")}
+        description={t("step1.description")}
       >
         <div className="space-y-6">
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ NPM
+              {t("step1.npm_heading")}
             </h4>
             <CodeBlock code="npm install reend-components" language="bash" />
           </div>
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ PNPM
+              {t("step1.pnpm_heading")}
             </h4>
             <CodeBlock code="pnpm add reend-components" language="bash" />
           </div>
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ YARN
+              {t("step1.yarn_heading")}
             </h4>
             <CodeBlock code="yarn add reend-components" language="bash" />
           </div>
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ BUN
+              {t("step1.bun_heading")}
             </h4>
             <CodeBlock code="bun add reend-components" language="bash" />
           </div>
 
           <div className="border border-border bg-surface-1 p-5">
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-foreground mb-3">
-              PEER DEPENDENCIES
+              {t("step1.peer_deps_heading")}
             </h4>
             <p className="text-sm text-muted-foreground mb-3">
-              These must be installed in your project (most React projects
-              already have them):
+              {t("step1.peer_deps_note")}
             </p>
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border">
                     <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-2 px-3 text-left">
-                      PACKAGE
+                      {t("step1.table_package")}
                     </th>
                     <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-2 px-3 text-left">
-                      VERSION
+                      {t("step1.table_version")}
                     </th>
                     <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-2 px-3 text-left">
-                      STATUS
+                      {t("step1.table_status")}
                     </th>
                   </tr>
                 </thead>
@@ -122,21 +127,27 @@ export const InstallationSection = () => {
                       react
                     </td>
                     <td className="py-2 px-3">≥18.0.0</td>
-                    <td className="py-2 px-3 text-ef-red">Required</td>
+                    <td className="py-2 px-3 text-ef-red">
+                      {t("step1.status_required")}
+                    </td>
                   </tr>
                   <tr className="border-b border-border/50">
                     <td className="py-2 px-3 font-mono text-foreground">
                       react-dom
                     </td>
                     <td className="py-2 px-3">≥18.0.0</td>
-                    <td className="py-2 px-3 text-ef-red">Required</td>
+                    <td className="py-2 px-3 text-ef-red">
+                      {t("step1.status_required")}
+                    </td>
                   </tr>
                   <tr>
                     <td className="py-2 px-3 font-mono text-foreground">
                       tailwindcss
                     </td>
                     <td className="py-2 px-3">≥3.4.0</td>
-                    <td className="py-2 px-3 text-ef-green">Optional</td>
+                    <td className="py-2 px-3 text-ef-green">
+                      {t("step1.status_optional")}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -148,13 +159,13 @@ export const InstallationSection = () => {
       {/* Tailwind Setup */}
       <ComponentPreview
         id="tailwind-setup"
-        title="Step 2 — Configure Tailwind CSS"
-        description="ReEnd ships a Tailwind preset with the Endfield design system tokens. Add it to your config for seamless integration."
+        title={t("step2.title")}
+        description={t("step2.description")}
       >
         <div className="space-y-6">
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ TAILWIND.CONFIG.TS
+              {t("step2.config_heading")}
             </h4>
             <CodeBlock
               code={`import reendPreset from "reend-components/tailwind";
@@ -174,35 +185,28 @@ export default {
 
           <div className="border border-border bg-surface-1 p-5">
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-foreground mb-2">
-              WHAT THE PRESET INCLUDES
+              {t("step2.preset_includes_heading")}
             </h4>
             <ul className="space-y-1.5 text-sm text-muted-foreground">
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">▸</span>
-                <span>
-                  Endfield color palette (ef-yellow, ef-blue, ef-red, ef-green,
-                  etc.)
-                </span>
+                <span>{t("step2.preset_color_palette")}</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">▸</span>
-                <span>
-                  Semantic tokens (background, foreground, primary, muted, etc.)
-                </span>
+                <span>{t("step2.preset_semantic_tokens")}</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">▸</span>
-                <span>Custom fonts (Saira, Chakra Petch, JetBrains Mono)</span>
+                <span>{t("step2.preset_custom_fonts")}</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">▸</span>
-                <span>
-                  Animations (accordion, collapsible, fade-in/out, zoom, slide)
-                </span>
+                <span>{t("step2.preset_animations")}</span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-primary mt-0.5">▸</span>
-                <span>Dark mode support via class strategy</span>
+                <span>{t("step2.preset_dark_mode")}</span>
               </li>
             </ul>
           </div>
@@ -212,17 +216,16 @@ export default {
       {/* Import Styles */}
       <ComponentPreview
         id="import-styles"
-        title="Step 3 — Import Styles"
-        description="Import the CSS design tokens to get the Endfield visual language. Choose between CSS variables or the pre-built stylesheet."
+        title={t("step3.title")}
+        description={t("step3.description")}
       >
         <div className="space-y-6">
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ OPTION A — CSS VARIABLES (RECOMMENDED)
+              {t("step3.option_a_heading")}
             </h4>
             <p className="text-sm text-muted-foreground mb-3">
-              Import the variables file in your global CSS. Works with any
-              styling solution.
+              {t("step3.option_a_desc")}
             </p>
             <CodeBlock
               code={`/* src/index.css or src/globals.css */
@@ -239,12 +242,12 @@ export default {
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ OPTION B — PRE-BUILT STYLESHEET
+              {t("step3.option_b_heading")}
             </h4>
-            <p className="text-sm text-muted-foreground mb-3">
-              If you're <strong>not using Tailwind</strong>, import the
-              pre-built CSS that includes all design tokens and base styles.
-            </p>
+            <p
+              className="text-sm text-muted-foreground mb-3"
+              dangerouslySetInnerHTML={{ __html: t("step3.option_b_desc") }}
+            />
             <CodeBlock
               code={`// In your entry file (main.tsx / App.tsx)
 import "reend-components/styles.css";`}
@@ -255,14 +258,12 @@ import "reend-components/styles.css";`}
 
           <div className="border border-ef-yellow/20 bg-ef-yellow/5 p-5">
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-ef-yellow mb-2">
-              ⚠ NOTE
+              {t("step3.note_heading")}
             </h4>
-            <p className="text-sm text-muted-foreground">
-              All color values use{" "}
-              <strong className="text-foreground">
-                HSL without the wrapper
-              </strong>
-              , enabling alpha channel support:{" "}
+            <p className="text-sm text-muted-foreground [&_strong]:text-foreground">
+              <span
+                dangerouslySetInnerHTML={{ __html: t("step3.note_desc") }}
+              />{" "}
               <code className="text-xs bg-surface-2 px-1.5 py-0.5 text-foreground">
                 background: hsl(var(--primary) / 0.5);
               </code>
@@ -274,13 +275,13 @@ import "reend-components/styles.css";`}
       {/* Use Components */}
       <ComponentPreview
         id="use-components"
-        title="Step 4 — Use Components"
-        description="Import and use ReEnd components in your React application. All components are tree-shakeable and fully typed."
+        title={t("step4.title")}
+        description={t("step4.description")}
       >
         <div className="space-y-6">
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ TOOLTIP EXAMPLE
+              {t("step4.tooltip_example_heading")}
             </h4>
             <CodeBlock
               code={`import {
@@ -313,7 +314,7 @@ function App() {
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ TOAST NOTIFICATION
+              {t("step4.toast_heading")}
             </h4>
             <CodeBlock
               code={`import { useToast, Toaster } from "reend-components";
@@ -345,7 +346,7 @@ function MyComponent() {
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ SONNER TOAST (ALTERNATIVE)
+              {t("step4.sonner_heading")}
             </h4>
             <CodeBlock
               code={`import { SonnerToaster, toast } from "reend-components";
@@ -373,8 +374,8 @@ function App() {
       {/* API Reference */}
       <ComponentPreview
         id="api-reference"
-        title="API Reference"
-        description="Complete list of all exported components, utilities, and hooks available in reend-components."
+        title={t("api_reference.title")}
+        description={t("api_reference.description")}
       >
         <div className="space-y-6">
           <div className="overflow-x-auto">
@@ -382,95 +383,79 @@ function App() {
               <thead>
                 <tr className="border-b border-border">
                   <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left">
-                    EXPORT
+                    {t("api_reference.table_export")}
                   </th>
                   <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left">
-                    TYPE
+                    {t("api_reference.table_type")}
                   </th>
                   <th className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground py-3 px-4 text-left">
-                    DESCRIPTION
+                    {t("api_reference.table_description")}
                   </th>
                 </tr>
               </thead>
               <tbody className="text-muted-foreground">
                 {[
-                  [
-                    "Tooltip",
-                    "Component",
-                    "Radix Tooltip root (controlled/uncontrolled)",
-                  ],
+                  ["Tooltip", "Component", t("api_reference.exports.Tooltip")],
                   [
                     "TooltipTrigger",
                     "Component",
-                    "Element that triggers the tooltip on hover/focus",
+                    t("api_reference.exports.TooltipTrigger"),
                   ],
                   [
                     "TooltipContent",
                     "Component",
-                    "Styled tooltip popup with animations",
+                    t("api_reference.exports.TooltipContent"),
                   ],
                   [
                     "TooltipProvider",
                     "Component",
-                    "Context provider for tooltip delay/skip settings",
+                    t("api_reference.exports.TooltipProvider"),
                   ],
+                  ["Toast", "Component", t("api_reference.exports.Toast")],
                   [
-                    "Toast",
+                    "ToastAction",
                     "Component",
-                    "Radix Toast notification with variant support",
+                    t("api_reference.exports.ToastAction"),
                   ],
-                  ["ToastAction", "Component", "Action button inside a toast"],
                   [
                     "ToastClose",
                     "Component",
-                    "Close button for dismissing toast",
+                    t("api_reference.exports.ToastClose"),
                   ],
                   [
                     "ToastTitle",
                     "Component",
-                    "Title text within a toast notification",
+                    t("api_reference.exports.ToastTitle"),
                   ],
                   [
                     "ToastDescription",
                     "Component",
-                    "Description text within a toast",
+                    t("api_reference.exports.ToastDescription"),
                   ],
                   [
                     "ToastProvider",
                     "Component",
-                    "Context provider for Radix toast system",
+                    t("api_reference.exports.ToastProvider"),
                   ],
                   [
                     "ToastViewport",
                     "Component",
-                    "Fixed viewport container for toasts",
+                    t("api_reference.exports.ToastViewport"),
                   ],
-                  [
-                    "Toaster",
-                    "Component",
-                    "Pre-configured toast container (renders all toasts)",
-                  ],
+                  ["Toaster", "Component", t("api_reference.exports.Toaster")],
                   [
                     "SonnerToaster",
                     "Component",
-                    "Sonner-based toast container with Endfield styling",
+                    t("api_reference.exports.SonnerToaster"),
                   ],
-                  ["toast", "Function", "Sonner toast trigger function"],
+                  ["toast", "Function", t("api_reference.exports.toast")],
                   [
                     "toastAction",
                     "Function",
-                    "Radix toast dispatch (programmatic trigger)",
+                    t("api_reference.exports.toastAction"),
                   ],
-                  [
-                    "useToast()",
-                    "Hook",
-                    "Returns { toasts, toast, dismiss } for Radix toasts",
-                  ],
-                  [
-                    "cn()",
-                    "Utility",
-                    "clsx + tailwind-merge class name helper",
-                  ],
+                  ["useToast()", "Hook", t("api_reference.exports.useToast")],
+                  ["cn()", "Utility", t("api_reference.exports.cn")],
                 ].map(([name, type, desc]) => (
                   <tr key={name} className="border-b border-border/50">
                     <td className="py-2 px-4 font-mono text-foreground">
@@ -500,7 +485,7 @@ function App() {
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ PACKAGE ENTRY POINTS
+              {t("api_reference.entry_points_heading")}
             </h4>
             <CodeBlock
               code={`// Main entry — all components & utilities
@@ -524,13 +509,13 @@ import reendPreset from "reend-components/tailwind";`}
       {/* Theming */}
       <ComponentPreview
         id="theming-guide"
-        title="Theming & Customization"
-        description="Override design tokens to match your brand while keeping the Endfield visual language."
+        title={t("theming.title")}
+        description={t("theming.description")}
       >
         <div className="space-y-6">
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ OVERRIDE CSS VARIABLES
+              {t("theming.override_heading")}
             </h4>
             <CodeBlock
               code={`:root {
@@ -560,16 +545,12 @@ import reendPreset from "reend-components/tailwind";`}
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ DARK / LIGHT MODE
+              {t("theming.dark_light_heading")}
             </h4>
-            <p className="text-sm text-muted-foreground mb-3">
-              Toggle{" "}
-              <code className="text-xs bg-surface-2 px-1.5 py-0.5 text-foreground">
-                .light
-              </code>{" "}
-              class on your document root to switch modes. All tokens
-              auto-update.
-            </p>
+            <p
+              className="text-sm text-muted-foreground mb-3 [&_code]:text-xs [&_code]:bg-surface-2 [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:text-foreground"
+              dangerouslySetInnerHTML={{ __html: t("theming.dark_light_desc") }}
+            />
             <CodeBlock
               code={`// Toggle theme
 document.documentElement.classList.toggle("light");
@@ -584,20 +565,20 @@ document.documentElement.classList.add("light");    // → light`}
 
           <div className="border border-border bg-surface-1 p-5">
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-foreground mb-3">
-              AVAILABLE TOKEN CATEGORIES
+              {t("theming.token_categories_heading")}
             </h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {[
-                { token: "--ef-yellow", desc: "Primary brand accent" },
-                { token: "--ef-blue", desc: "Info / links" },
-                { token: "--ef-red", desc: "Destructive / error" },
-                { token: "--ef-green", desc: "Success / confirm" },
-                { token: "--background", desc: "Page background" },
-                { token: "--foreground", desc: "Primary text" },
-                { token: "--primary", desc: "Brand color (buttons, links)" },
-                { token: "--muted", desc: "Subdued backgrounds" },
-                { token: "--border", desc: "Edge/divider color" },
-                { token: "--surface-0..3", desc: "Elevation surfaces" },
+                { token: "--ef-yellow", desc: t("theming.tokens.ef_yellow") },
+                { token: "--ef-blue", desc: t("theming.tokens.ef_blue") },
+                { token: "--ef-red", desc: t("theming.tokens.ef_red") },
+                { token: "--ef-green", desc: t("theming.tokens.ef_green") },
+                { token: "--background", desc: t("theming.tokens.background") },
+                { token: "--foreground", desc: t("theming.tokens.foreground") },
+                { token: "--primary", desc: t("theming.tokens.primary") },
+                { token: "--muted", desc: t("theming.tokens.muted") },
+                { token: "--border", desc: t("theming.tokens.border") },
+                { token: "--surface-0..3", desc: t("theming.tokens.surface") },
               ].map((item) => (
                 <div
                   key={item.token}
@@ -617,13 +598,13 @@ document.documentElement.classList.add("light");    // → light`}
       {/* Full Example */}
       <ComponentPreview
         id="full-example"
-        title="Full Project Example"
-        description="A complete setup from scratch — new Vite + React project with ReEnd-Components integrated."
+        title={t("full_example.title")}
+        description={t("full_example.description")}
       >
         <div className="space-y-6">
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ 1. CREATE PROJECT
+              {t("full_example.step1_heading")}
             </h4>
             <CodeBlock
               code={`npm create vite@latest my-app -- --template react-ts
@@ -635,7 +616,7 @@ npm install`}
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ 2. INSTALL DEPENDENCIES
+              {t("full_example.step2_heading")}
             </h4>
             <CodeBlock
               code={`npm install reend-components
@@ -647,7 +628,7 @@ npx tailwindcss init -p`}
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ 3. CONFIGURE TAILWIND
+              {t("full_example.step3_heading")}
             </h4>
             <CodeBlock
               code={`// tailwind.config.ts
@@ -668,7 +649,7 @@ export default {
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ 4. SETUP CSS
+              {t("full_example.step4_heading")}
             </h4>
             <CodeBlock
               code={`/* src/index.css */
@@ -684,7 +665,7 @@ export default {
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ 5. BUILD YOUR APP
+              {t("full_example.step5_heading")}
             </h4>
             <CodeBlock
               code={`import {
@@ -730,24 +711,21 @@ export default function App() {
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-primary mb-3">
-              ◆ 6. RUN
+              {t("full_example.step6_heading")}
             </h4>
             <CodeBlock code="npm run dev" language="bash" />
           </div>
 
           <div className="border border-ef-green/20 bg-ef-green/5 p-5">
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-ef-green mb-2">
-              ✓ DONE
+              {t("full_example.done")}
             </h4>
             <p className="text-sm text-muted-foreground">
-              Your app is now running with the Endfield design system. All
-              components, design tokens, and animations are available. Visit the
-              component sections in the sidebar to explore more components and
-              usage patterns.
+              {t("full_example.done_desc")}
             </p>
           </div>
         </div>
       </ComponentPreview>
     </>
   );
-};
+}

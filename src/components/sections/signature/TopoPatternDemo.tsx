@@ -1,7 +1,9 @@
 import { useMemo, useState, useCallback } from "react";
+import { useTranslation } from "react-i18next";
 import { generateTopoContours } from "@/components/home/signature";
 
 const TopoPatternDemo = () => {
+  const { t } = useTranslation("signature");
   const w = 600,
     h = 300;
   const [mouse, setMouse] = useState<{ x: number; y: number } | null>(null);
@@ -90,9 +92,9 @@ const TopoPatternDemo = () => {
 
         {/* Elevation labels */}
         {[
-          { x: 200, y: 120, label: "EL.720" },
-          { x: 400, y: 200, label: "EL.580" },
-          { x: 520, y: 90, label: "EL.440" },
+          { x: 200, y: 120, label: t("demo.topo_el_720") },
+          { x: 400, y: 200, label: t("demo.topo_el_580") },
+          { x: 520, y: 90, label: t("demo.topo_el_440") },
         ].map((l, i) => (
           <text
             key={i}

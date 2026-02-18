@@ -1,1 +1,27 @@
-{}
+{
+  "title": "◆ CHANGELOG",
+  "latest": "LATEST",
+  "v2": {
+    "version": "v2.0.0",
+    "date": "February 2026",
+    "items": [
+      "Complete redesign with Sci-Fi Industrial Futurism theme",
+      "87+ component previews across 11 thematic sections",
+      "Shiki syntax highlighting with dual theme support",
+      "Interactive playgrounds with live code generation",
+      "Fuzzy search command palette (⌘K)",
+      "Full accessibility support — ARIA roles, focus traps, keyboard navigation",
+      "Responsive preview toggle (Desktop / Mobile)",
+      "Keyboard interaction documentation per component"
+    ]
+  },
+  "v1": {
+    "version": "v1.0.0",
+    "date": "January 2025",
+    "items": [
+      "Initial release with basic component library",
+      "Dark mode support with custom ThemeProvider",
+      "Landing page with cinematic animations"
+    ]
+  }
+}

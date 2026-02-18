@@ -140,6 +140,60 @@ npm run build:lib  # build library for npm
 npm run test       # run tests
 ```
 
+## Internationalization (i18n)
+
+The documentation site supports **English** (default) and **Bahasa Indonesia** via [react-i18next](https://react.i18next.com).
+
+### URL Structure
+
+| URL Pattern            | Language   |
+| ---------------------- | ---------- |
+| `/docs/foundations`    | English    |
+| `/id/docs/foundations` | Indonesian |
+
+### Languages
+
+- **English** (`en`) — default, no URL prefix needed
+- **Indonesian** (`id`) — prefix `/id/` in URL
+
+### Translation Files
+
+```
+src/locales/
+├── en/          # English (16 namespace files)
+│   ├── common.json
+│   ├── home.json
+│   ├── docs.json
+│   ├── foundations.json
+│   ├── core.json
+│   ├── ... (12 more)
+│   └── signature.json
+└── id/          # Indonesian (mirrors en/)
+    ├── common.json
+    └── ...
+```
+
+**1,425 translation keys** across 16 namespaces × 2 languages.
+
+### Adding a New Language
+
+1. Create a new directory: `src/locales/{lang}/`
+2. Copy all JSON files from `src/locales/en/`
+3. Translate all values
+4. Add the language code to `SUPPORTED_LANGS` in `src/i18n/index.ts`
+5. Add lazy-load entries in `src/i18n/loadNamespace.ts`
+6. Run tests: `npm test`
+
+### i18n Scripts
+
+```bash
+npm test                                    # includes i18n completeness tests
+npx vitest run src/test/i18n-e2e.test.ts   # full E2E i18n validation (109 tests)
+node scripts/detect-hardcoded-strings.cjs  # find untranslated strings
+npx tsx scripts/generate-sitemap.ts        # regenerate sitemap.xml
+node scripts/bundle-analysis.cjs           # bundle size report
+```
+
 ## License
 
 MIT © [VBeatDead](https://github.com/VBeatDead)

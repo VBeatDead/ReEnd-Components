@@ -1,1 +1,177 @@
-{}
+{
+  "philosophy": {
+    "title": "Filosofi & Prinsip Desain",
+    "description": "Arknights: Endfield mengusung estetika Sci-Fi Industrial Futurism — perpaduan dunia teknologi tinggi yang dingin dengan atmosfer frontier planet Talos-II.",
+    "cards": {
+      "dark_first": {
+        "title": "DARK-FIRST",
+        "desc": "Seluruh interface berbasis gelap, nuansa terminal operasi"
+      },
+      "geometric": {
+        "title": "GEOMETRIC PRECISION",
+        "desc": "Garis tajam, sudut tegas (clip-path bukan border-radius)"
+      },
+      "utilitarian": {
+        "title": "UTILITARIAN ELEGANCE",
+        "desc": "Fungsional dan teknis namun elegan — dashboard kontrol misi"
+      },
+      "glitch": {
+        "title": "GLITCH & TECH",
+        "desc": "Efek glitch, scanline, noise sebagai dekorasi sci-fi"
+      },
+      "contrast": {
+        "title": "HIGH CONTRAST",
+        "desc": "Teks terang di permukaan gelap, aksen warna untuk hierarki"
+      }
+    },
+    "principles_heading": "◆ PRINSIP DESAIN",
+    "table_principle": "PRINSIP",
+    "table_description": "DESKRIPSI",
+    "principles": [
+      {
+        "name": "Function-First",
+        "desc": "Setiap elemen visual memiliki tujuan"
+      },
+      {
+        "name": "Data Density",
+        "desc": "Informasi padat namun terorganisir — HUD style"
+      },
+      {
+        "name": "Progressive Disclosure",
+        "desc": "Informasi bertahap, tidak sekaligus"
+      },
+      {
+        "name": "Immersive Consistency",
+        "desc": "Semua elemen terasa di 'dunia' yang sama"
+      },
+      {
+        "name": "Tactile Feedback",
+        "desc": "Setiap interaksi ada respons visual jelas"
+      },
+      {
+        "name": "Respectful Restraint",
+        "desc": "Animasi dan efek secukupnya"
+      }
+    ],
+    "do_heading": "✅ DO",
+    "dont_heading": "❌ DON'T",
+    "dos": [
+      "clip-path untuk sudut terpotong",
+      "Warna gelap sebagai base",
+      "Uppercase untuk heading & label",
+      "Diamond ◆ sebagai bullet/marker",
+      "Monospace untuk data/angka",
+      "Border tipis semi-transparent",
+      "Glow effect subtle (opacity < 0.3)"
+    ],
+    "donts": [
+      "border-radius besar (rounded)",
+      "Light-mode sebagai default",
+      "Uppercase untuk body text",
+      "Circle bullet biasa",
+      "Monospace untuk body",
+      "Border tebal solid color",
+      "Glow berlebihan (neon)"
+    ]
+  },
+  "colors": {
+    "title": "Sistem Warna",
+    "description": "Palet utama berbasis grayscale dengan aksen kuning sebagai brand color utama.",
+    "primary_heading": "PALET UTAMA (GRAYSCALE)",
+    "accent_heading": "WARNA AKSEN",
+    "gradients_heading": "GRADIEN",
+    "names": {
+      "black": "Hitam",
+      "soft": "Lembut",
+      "muted": "Redup",
+      "dark_gray": "Abu Gelap",
+      "gray": "Abu-abu",
+      "gray_mid": "Abu Sedang",
+      "gray_light": "Abu Terang",
+      "white_muted": "Putih Redup",
+      "white_soft": "Putih Lembut",
+      "white": "Putih",
+      "pure_white": "Putih Murni",
+      "yellow": "Kuning",
+      "blue": "Biru",
+      "cyan": "Sian",
+      "red": "Merah",
+      "green": "Hijau",
+      "orange": "Oranye",
+      "purple": "Ungu"
+    },
+    "gradient_primary": "Gradien Utama: #FFD429 → #FFA502",
+    "gradient_line": "Gradien Garis: transparent → #FFD429 → transparent",
+    "gradient_scanline": "Gradien Scanline",
+    "gradient_card_hover": "Gradien Hover Kartu"
+  },
+  "typography": {
+    "title": "Tipografi",
+    "description": "Font stack: Orbitron (display/UI), JetBrains Mono (kode), Inter (body).",
+    "display_xl": "DISPLAY XL — 72px / 700 / UPPERCASE",
+    "h1": "H1 — 40px / 700 / UPPERCASE",
+    "h2": "H2 — 32px / 600 / UPPERCASE",
+    "h3": "H3 — 24px / 600 / UPPERCASE",
+    "h4": "H4 — 20px / 600 / UPPERCASE",
+    "body": "BODY — 16px / 400",
+    "body_sm": "BODY SM — 14px / 400",
+    "overline": "OVERLINE — 11px / 700 / 0.15em / UPPERCASE",
+    "code": "CODE — JetBrains Mono 14px",
+    "stat_number": "STAT NUMBER — Orbitron 48px / 700",
+    "body_sample": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "body_sm_sample": "Teks body sekunder untuk deskripsi dan metadata.",
+    "overline_sample": "TEKS OVERLINE",
+    "code_sample": "const endfield = \"Talos-II\";",
+    "text_colors_heading": "PENETAPAN WARNA TEKS",
+    "text_color_heading": "Judul",
+    "text_color_body": "Body",
+    "text_color_caption": "Keterangan",
+    "text_color_accent": "Aksen",
+    "text_color_link": "Tautan",
+    "text_color_error": "Error",
+    "text_color_success": "Sukses",
+    "text_color_placeholder": "Placeholder",
+    "text_color_disabled": "Nonaktif"
+  },
+  "spacing": {
+    "title": "Spasi & Grid",
+    "description": "Skala spasi basis 4px. Container maks 1280px, grid 12 kolom."
+  },
+  "surfaces": {
+    "title": "Latar Belakang & Permukaan",
+    "description": "Level permukaan dari Canvas hingga Active, dengan corner brackets sebagai elemen khas Endfield.",
+    "names": {
+      "canvas": "Canvas",
+      "surface_0": "Surface 0",
+      "surface_1": "Surface 1",
+      "surface_2": "Surface 2",
+      "surface_3": "Surface 3",
+      "hover": "Hover",
+      "active": "Active"
+    },
+    "decorations_heading": "DEKORASI LATAR",
+    "corner_brackets": "CORNER BRACKETS",
+    "scanline_overlay": "SCANLINE OVERLAY"
+  },
+  "icons": {
+    "title": "Ikonografi",
+    "description": "Estetika outlined blueprint. Stroke 1.5px pada 24px, currentColor.",
+    "sizes_heading": "UKURAN IKON",
+    "size_uses": {
+      "xs": "Inline",
+      "sm": "Tombol",
+      "md": "Navigasi",
+      "lg": "Fitur",
+      "xl": "Empty state",
+      "xxl": "Hero"
+    }
+  },
+  "illustration": {
+    "title": "Gaya Ilustrasi & Citra",
+    "description": "Fotografi desaturasi, bernuansa dingin. Line art tipis geometris, wireframe, gaya blueprint.",
+    "aspect_banner": "Banner",
+    "aspect_feature": "Fitur",
+    "aspect_portrait": "Potret",
+    "aspect_avatar": "Avatar"
+  }
+}

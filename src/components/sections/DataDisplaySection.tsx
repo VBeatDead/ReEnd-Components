@@ -1,9 +1,11 @@
 import { ComponentPreview } from "../docs/ComponentPreview";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import SignatureDataSection from "./signature/SignatureDataSection";
 
-export const DataDisplaySection = () => {
+export function DataDisplaySection() {
+  const { t } = useTranslation("data");
   const [accordionOpen, setAccordionOpen] = useState<number | null>(0);
 
   return (
@@ -11,9 +13,9 @@ export const DataDisplaySection = () => {
       {/* Table */}
       <ComponentPreview
         id="table"
-        title="Table (Data Table)"
+        title={t("table.title")}
         showViewport
-        description="Header: Orbitron 11px uppercase sticky. Striped rows. Hover: yellow tint."
+        description={t("table.description")}
         code={`.table th {
   font-family: 'Orbitron'; font-size: 11px; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: #999;
@@ -83,7 +85,12 @@ export const DataDisplaySection = () => {
           <table className="w-full text-sm min-w-0">
             <thead>
               <tr>
-                {["OPERATOR", "CLASS", "RARITY", "STATUS"].map((h) => (
+                {[
+                  t("table.headers.operator"),
+                  t("table.headers.class"),
+                  t("table.headers.rarity"),
+                  t("table.headers.status"),
+                ].map((h) => (
                   <th
                     key={h}
                     className="font-display text-[10px] sm:text-[11px] font-bold tracking-[0.06em] sm:tracking-[0.12em] uppercase text-muted-foreground py-2.5 sm:py-3 px-2 sm:px-4 text-left border-b border-border bg-surface-0 sticky top-0 z-10 cursor-pointer select-none hover:text-foreground transition-colors whitespace-nowrap"
@@ -127,7 +134,7 @@ export const DataDisplaySection = () => {
                     <span
                       className={`font-ui text-[9px] sm:text-[10px] tracking-[0.06em] sm:tracking-[0.12em] uppercase px-1.5 sm:px-2 py-0.5 sm:py-1 border whitespace-nowrap ${status === "Active" ? "text-ef-green border-ef-green/40 bg-ef-green/[0.08]" : status === "Deployed" ? "text-ef-blue border-ef-blue/40 bg-ef-blue/[0.08]" : "text-muted-foreground border-border bg-foreground/[0.03]"}`}
                     >
-                      {status}
+                      {t(`table.status_labels.${status.toLowerCase()}`)}
                     </span>
                   </td>
                 </tr>
@@ -136,7 +143,7 @@ export const DataDisplaySection = () => {
           </table>
           <div className="px-2 sm:px-4 py-2.5 sm:py-3 border-t border-border flex items-center justify-between bg-surface-0">
             <span className="text-[10px] sm:text-xs text-muted-foreground">
-              Showing 1-5 of 124
+              {t("table.showing_pagination")}
             </span>
             <div className="flex gap-1">
               {[1, 2, 3].map((n) => (
@@ -155,9 +162,9 @@ export const DataDisplaySection = () => {
       {/* List */}
       <ComponentPreview
         id="list"
-        title="List & List Item"
+        title={t("list.title")}
         showViewport
-        description="Diamond bullet ◆ #FFD429. Numbered: Orbitron, counter leading-zero."
+        description={t("list.description")}
         props={[
           {
             name: "variant",
@@ -177,32 +184,29 @@ export const DataDisplaySection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3">
-              DIAMOND BULLET
+              {t("list.diamond_bullet")}
             </h4>
             <ul className="space-y-2">
-              {["Reconnaissance", "Deployment", "Extraction", "Analysis"].map(
-                (item) => (
-                  <li
-                    key={item}
-                    className="diamond-marker text-sm text-card-foreground"
-                  >
-                    {item}
-                  </li>
-                ),
-              )}
+              {(
+                t("list.diamond_items", { returnObjects: true }) as string[]
+              ).map((item) => (
+                <li
+                  key={item}
+                  className="diamond-marker text-sm text-card-foreground"
+                >
+                  {item}
+                </li>
+              ))}
             </ul>
           </div>
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3">
-              NUMBERED
+              {t("list.numbered")}
             </h4>
             <ol className="space-y-2">
-              {[
-                "Initialize System",
-                "Configure Modules",
-                "Deploy Assets",
-                "Monitor Output",
-              ].map((item, i) => (
+              {(
+                t("list.numbered_items", { returnObjects: true }) as string[]
+              ).map((item, i) => (
                 <li key={item} className="flex items-start gap-3 text-sm">
                   <span className="font-ui text-[11px] text-primary font-bold">
                     {String(i + 1).padStart(2, "0")}
@@ -214,13 +218,22 @@ export const DataDisplaySection = () => {
           </div>
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3">
-              KEY-VALUE
+              {t("list.key_value")}
             </h4>
             <dl className="space-y-3">
               {[
-                ["VERSION", "2.4.1"],
-                ["STATUS", "Operational"],
-                ["UPTIME", "99.97%"],
+                [
+                  t("list.kv_pairs.version.key"),
+                  t("list.kv_pairs.version.value"),
+                ],
+                [
+                  t("list.kv_pairs.status.key"),
+                  t("list.kv_pairs.status.value"),
+                ],
+                [
+                  t("list.kv_pairs.uptime.key"),
+                  t("list.kv_pairs.uptime.value"),
+                ],
               ].map(([k, v]) => (
                 <div key={k}>
                   <dt className="font-display text-[11px] font-bold tracking-[0.1em] uppercase text-muted-foreground">
@@ -237,9 +250,9 @@ export const DataDisplaySection = () => {
       {/* Stat */}
       <ComponentPreview
         id="stat-metric"
-        title="Stat & Metric Display"
+        title={t("stats.title")}
         showViewport
-        description="Value: Orbitron 48px bold yellow. Label: Orbitron 11px uppercase gray. Trend: ▲/▼."
+        description={t("stats.description")}
         props={[
           {
             name: "label",
@@ -269,10 +282,30 @@ export const DataDisplaySection = () => {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
-            { label: "TOTAL OPS", value: "12,847", trend: "+12.5%", up: true },
-            { label: "ACTIVE UNITS", value: "342", trend: "+3.2%", up: true },
-            { label: "ERROR RATE", value: "0.02%", trend: "-8.1%", up: false },
-            { label: "UPTIME", value: "99.97%", trend: "0.0%", up: true },
+            {
+              label: t("stats.labels.total_ops"),
+              value: "12,847",
+              trend: "+12.5%",
+              up: true,
+            },
+            {
+              label: t("stats.labels.active_units"),
+              value: "342",
+              trend: "+3.2%",
+              up: true,
+            },
+            {
+              label: t("stats.labels.error_rate"),
+              value: "0.02%",
+              trend: "-8.1%",
+              up: false,
+            },
+            {
+              label: t("stats.labels.uptime"),
+              value: "99.97%",
+              trend: "0.0%",
+              up: true,
+            },
           ].map((s) => (
             <div
               key={s.label}
@@ -297,8 +330,8 @@ export const DataDisplaySection = () => {
       {/* Timeline */}
       <ComponentPreview
         id="timeline"
-        title="Timeline"
-        description="Vertical line 1px. Node: ◆ current yellow, ◇ past gray. Date: Orbitron 11px."
+        title={t("timeline.title")}
+        description={t("timeline.description")}
         props={[
           {
             name: "items",
@@ -318,21 +351,21 @@ export const DataDisplaySection = () => {
         <div className="max-w-md pl-6 border-l border-ef-dark-gray space-y-8">
           {[
             {
-              date: "2026.02.15",
-              title: "SYSTEM UPDATE V2.0",
-              desc: "Major redesign deployed.",
+              date: t("timeline.entries.system_update.date"),
+              title: t("timeline.entries.system_update.title"),
+              desc: t("timeline.entries.system_update.desc"),
               current: true,
             },
             {
-              date: "2026.01.28",
-              title: "BETA TESTING",
-              desc: "Component library beta released.",
+              date: t("timeline.entries.beta_testing.date"),
+              title: t("timeline.entries.beta_testing.title"),
+              desc: t("timeline.entries.beta_testing.desc"),
               current: false,
             },
             {
-              date: "2025.12.10",
-              title: "PROJECT KICKOFF",
-              desc: "Initial design system created.",
+              date: t("timeline.entries.project_kickoff.date"),
+              title: t("timeline.entries.project_kickoff.title"),
+              desc: t("timeline.entries.project_kickoff.desc"),
               current: false,
             },
           ].map((item) => (
@@ -357,8 +390,8 @@ export const DataDisplaySection = () => {
       {/* Accordion */}
       <ComponentPreview
         id="accordion"
-        title="Accordion / Collapsible"
-        description="Indicator: +/− in yellow (JetBrains Mono). NOT chevron. Content slides down."
+        title={t("accordion.title")}
+        description={t("accordion.description")}
         props={[
           {
             name: "items",
@@ -389,9 +422,9 @@ export const DataDisplaySection = () => {
       >
         <div className="max-w-lg space-y-1">
           {[
-            "WHAT IS ENDFIELD?",
-            "HOW TO INSTALL?",
-            "IS IT PRODUCTION READY?",
+            t("accordion.questions.what_is_endfield"),
+            t("accordion.questions.how_to_install"),
+            t("accordion.questions.is_production_ready"),
           ].map((q, i) => (
             <div key={q} className="border border-border">
               <button
@@ -415,8 +448,7 @@ export const DataDisplaySection = () => {
                   id={`accordion-panel-${i}`}
                   aria-labelledby={`accordion-trigger-${i}`}
                 >
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  {t("accordion.answer_placeholder")}
                 </div>
               )}
             </div>
@@ -427,8 +459,8 @@ export const DataDisplaySection = () => {
       {/* Avatar */}
       <ComponentPreview
         id="avatar"
-        title="Avatar & Profile"
-        description="Shape: Square with clipped corner (clip-path) — NOT circle. Status: diamond shape."
+        title={t("avatar.title")}
+        description={t("avatar.description")}
         props={[
           {
             name: "src",
@@ -495,8 +527,8 @@ export const DataDisplaySection = () => {
       {/* Tags & Badges */}
       <ComponentPreview
         id="tags-badges"
-        title="Tags, Badges & Labels"
-        description="Tag font: Orbitron 10px, uppercase. Diamond-shaped badges. Semantic colors."
+        title={t("tags.title")}
+        description={t("tags.description")}
         props={[
           {
             name: "label",
@@ -583,46 +615,46 @@ export const DataDisplaySection = () => {
           <div className="flex flex-wrap gap-3">
             {[
               {
-                label: "DEFAULT",
+                label: t("tags.labels.default"),
                 cls: "text-muted-foreground border-foreground/15 bg-foreground/[0.03]",
               },
               {
-                label: "PRIMARY",
+                label: t("tags.labels.primary"),
                 cls: "text-primary border-primary/40 bg-primary/[0.08]",
               },
               {
-                label: "INFO",
+                label: t("tags.labels.info"),
                 cls: "text-ef-blue border-ef-blue/40 bg-ef-blue/[0.08]",
               },
               {
-                label: "SUCCESS",
+                label: t("tags.labels.success"),
                 cls: "text-ef-green border-ef-green/40 bg-ef-green/[0.08]",
               },
               {
-                label: "WARNING",
+                label: t("tags.labels.warning"),
                 cls: "text-ef-orange border-ef-orange/40 bg-ef-orange/[0.08]",
               },
               {
-                label: "DANGER",
+                label: t("tags.labels.danger"),
                 cls: "text-ef-red border-ef-red/40 bg-ef-red/[0.08]",
               },
               {
-                label: "RARE",
+                label: t("tags.labels.rare"),
                 cls: "text-ef-purple border-ef-purple/40 bg-ef-purple/[0.08]",
               },
-            ].map((t) => (
+            ].map((tag) => (
               <span
-                key={t.label}
-                className={`font-ui text-[10px] font-semibold tracking-[0.12em] uppercase px-3 py-1 border ${t.cls}`}
+                key={tag.label}
+                className={`font-ui text-[10px] font-semibold tracking-[0.12em] uppercase px-3 py-1 border ${tag.cls}`}
               >
-                {t.label}
+                {tag.label}
               </span>
             ))}
           </div>
           {/* Removable */}
           <div className="flex gap-3">
             <span className="font-ui text-[10px] font-semibold tracking-[0.12em] uppercase px-3 py-1 border text-primary border-primary/40 bg-primary/[0.08] flex items-center gap-2">
-              REMOVABLE{" "}
+              {t("tags.removable")}{" "}
               <button className="text-primary/50 hover:text-primary text-xs">
                 ×
               </button>
@@ -631,7 +663,7 @@ export const DataDisplaySection = () => {
           {/* Badge count */}
           <div className="flex items-center gap-4">
             <span className="font-display text-xs text-muted-foreground">
-              BADGE COUNT:
+              {t("tags.badge_count")}
             </span>
             <span className="clip-corner-sm bg-ef-red text-foreground font-ui text-[10px] font-bold px-2 py-0.5 min-w-[20px] text-center">
               3
@@ -649,7 +681,7 @@ export const DataDisplaySection = () => {
                   clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                 }}
               />{" "}
-              Online
+              {t("tags.status.online")}
             </span>
             <span className="flex items-center gap-2 text-xs">
               <span
@@ -658,7 +690,7 @@ export const DataDisplaySection = () => {
                   clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                 }}
               />{" "}
-              Offline
+              {t("tags.status.offline")}
             </span>
             <span className="flex items-center gap-2 text-xs">
               <span
@@ -667,7 +699,7 @@ export const DataDisplaySection = () => {
                   clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                 }}
               />{" "}
-              Busy
+              {t("tags.status.busy")}
             </span>
           </div>
         </div>
@@ -676,8 +708,8 @@ export const DataDisplaySection = () => {
       {/* Progress & Stepper */}
       <ComponentPreview
         id="progress-stepper"
-        title="Progress & Stepper"
-        description="Progress bar: 4px track. Stepper: Diamond nodes, connector lines."
+        title={t("progress.title")}
+        description={t("progress.description")}
         props={[
           {
             name: "value",
@@ -720,7 +752,7 @@ export const DataDisplaySection = () => {
             <div>
               <div className="flex justify-between mb-1">
                 <span className="text-xs text-muted-foreground">
-                  DEPLOYMENT
+                  {t("progress.deployment")}
                 </span>
                 <span className="font-ui text-[11px] text-muted-foreground">
                   75%
@@ -732,7 +764,9 @@ export const DataDisplaySection = () => {
             </div>
             <div>
               <div className="flex justify-between mb-1">
-                <span className="text-xs text-muted-foreground">DANGER</span>
+                <span className="text-xs text-muted-foreground">
+                  {t("progress.danger")}
+                </span>
                 <span className="font-ui text-[11px] text-muted-foreground">
                   90%
                 </span>
@@ -746,10 +780,12 @@ export const DataDisplaySection = () => {
           {/* Stepper */}
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-6">
-              STEPPER
+              {t("progress.stepper")}
             </h4>
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-0 max-w-lg">
-              {["Step 1", "Step 2", "Step 3", "Step 4"].map((step, i) => (
+              {(
+                t("progress.step_labels", { returnObjects: true }) as string[]
+              ).map((step, i) => (
                 <div
                   key={step}
                   className="flex items-center flex-1 last:flex-none"
@@ -766,7 +802,11 @@ export const DataDisplaySection = () => {
                       {step}
                     </span>
                     <span className="text-[9px] text-muted-foreground">
-                      {i < 1 ? "Complete" : i === 1 ? "Current" : "Upcoming"}
+                      {i < 1
+                        ? t("progress.step_states.complete")
+                        : i === 1
+                          ? t("progress.step_states.current")
+                          : t("progress.step_states.upcoming")}
                     </span>
                   </div>
                   {i < 3 && (
@@ -783,4 +823,4 @@ export const DataDisplaySection = () => {
       <SignatureDataSection />
     </>
   );
-};
+}

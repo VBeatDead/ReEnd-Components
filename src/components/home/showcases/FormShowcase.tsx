@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search, Eye, EyeOff, ChevronDown } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const FormShowcase = () => {
+  const { t } = useTranslation("home");
   const [inputVal, setInputVal] = useState("ReEnd");
   const [showPw, setShowPw] = useState(false);
   const [toggled, setToggled] = useState(true);
@@ -11,7 +13,7 @@ export const FormShowcase = () => {
     <div className="space-y-5">
       <div>
         <label className="font-display text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground block mb-2">
-          OPERATOR NAME
+          {t("showcase.form.operator_name")}
         </label>
         <div className="relative">
           <input
@@ -19,7 +21,7 @@ export const FormShowcase = () => {
             value={inputVal}
             onChange={(e) => setInputVal(e.target.value)}
             className="w-full bg-surface-0 border border-border px-4 py-3 font-body text-sm text-foreground placeholder:text-muted-foreground/50 focus:border-primary focus:shadow-[0_0_0_3px_hsl(var(--primary)/0.1)] outline-none transition-all"
-            placeholder="Enter name..."
+            placeholder={t("showcase.form.enter_name")}
           />
           <div className="absolute right-3 top-1/2 -translate-y-1/2">
             <Search className="w-4 h-4 text-muted-foreground/40" />
@@ -28,7 +30,8 @@ export const FormShowcase = () => {
       </div>
       <div>
         <label className="font-display text-[10px] font-bold tracking-[0.15em] uppercase text-muted-foreground block mb-2">
-          ACCESS CODE <span className="text-ef-red">*</span>
+          {t("showcase.form.access_code")}{" "}
+          <span className="text-ef-red">*</span>
         </label>
         <div className="relative">
           <input
@@ -48,7 +51,8 @@ export const FormShowcase = () => {
           </button>
         </div>
         <p className="font-mono text-[10px] text-ef-green mt-1.5 flex items-center gap-1">
-          <span style={{ fontSize: "6px" }}>◆</span> Verified
+          <span style={{ fontSize: "6px" }}>◆</span>{" "}
+          {t("showcase.form.verified")}
         </p>
       </div>
       <div className="flex items-center gap-6">
@@ -67,15 +71,15 @@ export const FormShowcase = () => {
             />
           </button>
           <span className="font-display text-[10px] font-bold tracking-[0.1em] uppercase text-muted-foreground">
-            {toggled ? "ENABLED" : "DISABLED"}
+            {toggled ? t("showcase.form.enabled") : t("showcase.form.disabled")}
           </span>
         </div>
         <div className="flex-1">
           <div className="relative">
             <select className="w-full bg-surface-0 border border-border px-4 py-2.5 font-body text-sm text-foreground outline-none appearance-none cursor-pointer hover:border-primary/50 transition-colors">
-              <option>ALPHA</option>
-              <option>BETA</option>
-              <option>GAMMA</option>
+              <option>{t("showcase.form.alpha")}</option>
+              <option>{t("showcase.form.beta")}</option>
+              <option>{t("showcase.form.gamma")}</option>
             </select>
             <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
           </div>

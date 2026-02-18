@@ -1,1 +1,163 @@
-{}
+{
+  "hud": {
+    "system_label": "SYS::ENDFIELD v2.0",
+    "lat": "LAT 37.7749°N",
+    "lon": "LON 122.4194°W",
+    "link_active": "LINK ACTIVE",
+    "fps": "FPS:60",
+    "mem": "MEM:47%",
+    "net": "NET:12ms"
+  },
+  "tactical_panel": {
+    "status_online": "ONLINE",
+    "status_caution": "CAUTION",
+    "status_offline": "OFFLINE",
+    "status_scanning": "SCANNING"
+  },
+  "data_stream": {
+    "live_feed": "LIVE FEED",
+    "active": "ACTIVE",
+    "msg_init": "[SYS] Initializing ENDFIELD protocol...",
+    "msg_connection": "[NET] Connection established — latency: 12ms",
+    "msg_auth": "[SEC] Authentication verified ◆ Level: ALPHA",
+    "msg_tokens": "[DAT] Loading design tokens: 94 variables mapped",
+    "msg_gpu": "[GPU] Render pipeline: Optimized (60fps locked)",
+    "msg_registry": "[SYS] Component registry: 70 modules online",
+    "msg_sync": "[NET] Sync complete — all nodes operational",
+    "msg_color": "[DAT] Color system: HSL-based, 9 neutrals, 9 accents",
+    "msg_encrypt": "[SEC] Encryption: AES-256 ◆ Status: ACTIVE",
+    "msg_ready": "[SYS] ENDFIELD DESIGN SYSTEM v2.0 ◆ READY"
+  },
+  "warning_banner": {
+    "label_caution": "CAUTION",
+    "label_alert": "ALERT",
+    "label_critical": "CRITICAL"
+  },
+  "content": {
+    "glitch_text": {
+      "title": "Glitch Text",
+      "description": "Military HUD-style text distortion effect. Cyan + Red chromatic aberration overlay with stutter animation.",
+      "prop_children": "Text displayed with glitch effect",
+      "prop_className": "Additional class"
+    },
+    "data_stream": {
+      "title": "Data Stream",
+      "description": "Real-time terminal feed with auto-scroll. Color-coded messages by category [SYS], [NET], [SEC], [DAT]. Signature cursor blink."
+    },
+    "scan_divider": {
+      "title": "Scan Divider",
+      "description": "Content separator with glowing gradient line and diamond label. An elegant alternative to a plain <hr>.",
+      "prop_label": "Optional label in the center of the divider"
+    },
+    "topo_pattern": {
+      "title": "Topographic Pattern",
+      "description": "Contour-line topographic pattern inspired by Endfield terrain maps. Generative SVG with hover glow effect — ideal for decorative backgrounds or section dividers.",
+      "prop_width": "Pattern width (px)",
+      "prop_height": "Pattern height (px)",
+      "prop_layers": "Number of contour lines"
+    },
+    "hud_overlay": {
+      "title": "HUD Overlay",
+      "description": "Heads-Up Display overlay with corner brackets, crosshair, status bar, and real-time coordinates.",
+      "prop_children": "Main content inside the HUD frame",
+      "prop_showCoords": "Show coordinate labels",
+      "prop_showCrosshair": "Show center crosshair"
+    }
+  },
+  "core": {
+    "tactical_panel": {
+      "title": "Tactical Panel",
+      "description": "HUD panel with scanline overlay, 4-corner accent brackets, and status indicator. Suitable for dashboards or monitoring UIs.",
+      "prop_title": "Panel title in the header bar",
+      "prop_status": "Status indicator with color and label",
+      "prop_children": "Panel content"
+    },
+    "holo_card": {
+      "title": "Holo Card",
+      "description": "Card with holographic scan line effect — a light beam moves vertically on hover. Clip-corner + shimmer gradient.",
+      "prop_title": "Card title",
+      "prop_subtitle": "Short description",
+      "prop_icon": "Lucide icon",
+      "prop_value": "Optional large value/metric"
+    }
+  },
+  "data": {
+    "tactical_badge": {
+      "title": "Tactical Badge",
+      "description": "Badge with clip-corner-sm and diamond marker ◆. Angular Endfield-identity replacement for the standard rounded-pill badge.",
+      "prop_variant": "Badge color and tone",
+      "prop_children": "Badge label"
+    },
+    "coordinate_tag": {
+      "title": "Coordinate Tag",
+      "description": "Compact terminal-style key-value data label. Ideal for metadata, specifications, or brief status info.",
+      "prop_label": "Data key/label",
+      "prop_value": "Data value",
+      "prop_unit": "Optional unit"
+    },
+    "radar_chart": {
+      "title": "Radar Chart",
+      "description": "HUD-style radar chart with polygonal grid, glowing data points, and reveal animation. Pure SVG with no external libraries.",
+      "prop_data": "Data array (value 0-100)",
+      "prop_size": "Chart size (px)",
+      "prop_color": "Fill area color"
+    }
+  },
+  "feedback": {
+    "diamond_loader": {
+      "title": "Diamond Loader",
+      "description": "Stacked diamond-shaped loading spinner with counter-rotation. Signature Endfield replacement for the standard spinner.",
+      "prop_size": "Loader size",
+      "prop_label": "Status text below the loader"
+    },
+    "warning_banner": {
+      "title": "Warning Banner",
+      "description": "Military-style warning banner with three levels: caution (yellow), alert (orange), critical (red). Clip-corner with AlertTriangle icon.",
+      "prop_level": "Warning severity level",
+      "prop_children": "Warning message"
+    }
+  },
+  "demo": {
+    "glitch_endfield": "ENDFIELD",
+    "glitch_system_online": "SYSTEM ONLINE",
+    "glitch_error": "ERROR::CONNECTION_UNSTABLE",
+    "scan_classified": "CLASSIFIED",
+    "scan_end_transmission": "END OF TRANSMISSION",
+    "hud_field": "FIELD",
+    "hud_operative": "OPERATIVE",
+    "hud_clearance": "CLEARANCE LEVEL: ALPHA ◆ STATUS: ACTIVE",
+    "tp_uptime": "UPTIME",
+    "tp_latency": "LATENCY",
+    "tp_sector_alpha": "SECTOR ALPHA",
+    "tp_sector_beta": "SECTOR BETA",
+    "tp_units_deployed": "UNITS DEPLOYED",
+    "tp_all_nominal": "ALL SYSTEMS NOMINAL ◆",
+    "tp_partial_coverage": "PARTIAL COVERAGE ◆",
+    "hc_defense_grid": "DEFENSE GRID",
+    "hc_defense_sub": "Perimeter fully secured",
+    "hc_power_output": "POWER OUTPUT",
+    "hc_power_sub": "Reactor at optimal level",
+    "hc_comms_array": "COMMS ARRAY",
+    "hc_comms_sub": "12 channels active",
+    "hc_vital_signs": "VITAL SIGNS",
+    "hc_vital_sub": "All operators nominal",
+    "hc_network": "NETWORK",
+    "hc_network_sub": "Mesh topology online",
+    "hc_targeting": "TARGETING",
+    "hc_targeting_sub": "Lock-on calibrated",
+    "badge_active": "ACTIVE",
+    "badge_verified": "VERIFIED",
+    "badge_unstable": "UNSTABLE",
+    "badge_critical": "CRITICAL",
+    "badge_scanning": "SCANNING",
+    "loader_buffering": "BUFFERING",
+    "loader_loading": "LOADING",
+    "loader_initializing": "INITIALIZING",
+    "warning_caution_msg": "Routine maintenance scheduled at 0300. Expect intermittent connectivity.",
+    "warning_alert_msg": "Anomaly detected in sector 7-G. Dispatching reconnaissance unit.",
+    "warning_critical_msg": "Perimeter breach detected. All units standby for immediate response.",
+    "topo_el_720": "EL.720",
+    "topo_el_580": "EL.580",
+    "topo_el_440": "EL.440"
+  }
+}

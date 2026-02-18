@@ -8,6 +8,8 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useLocalizedPath } from "@/hooks/useLocalizedPath";
 import {
   Palette,
   Layers,
@@ -23,86 +25,62 @@ import {
 import { TopoBg, TacticalBadge } from "@/components/home/signature";
 import { useStorytellingConfig } from "@/components/home/scroll-storytelling";
 
-const features: {
-  icon: LucideIcon;
-  title: string;
-  desc: string;
-  count: string;
-  slug: string;
-  color: string;
-  status: string;
-}[] = [
+const featureDefs = [
   {
     icon: Palette,
-    title: "FOUNDATIONS",
-    desc: "Typography, color palette, spacing, and semantic design tokens for the Endfield aesthetic.",
+    tKey: "foundations",
     count: "12",
     slug: "foundations",
     color: "text-primary",
-    status: "ACTIVE",
   },
   {
     icon: Layers,
-    title: "CORE COMPONENTS",
-    desc: "Buttons, Cards, Inputs, Dialogs — every element engineered with industrial precision.",
+    tKey: "core",
     count: "18",
     slug: "core-components",
     color: "text-ef-cyan",
-    status: "ACTIVE",
   },
   {
     icon: BarChart3,
-    title: "DATA DISPLAY",
-    desc: "Tables, charts, badges, and status indicators for tactical data visualization.",
+    tKey: "data",
     count: "14",
     slug: "data-display",
     color: "text-ef-blue",
-    status: "ACTIVE",
   },
   {
     icon: Sparkles,
-    title: "ANIMATIONS",
-    desc: "Parallax, glitch, glow, scroll-triggered motion systems — 8 animation primitives.",
+    tKey: "animation",
     count: "8",
     slug: "animation",
     color: "text-ef-green",
-    status: "ACTIVE",
   },
   {
     icon: LayoutGrid,
-    title: "PATTERNS",
-    desc: "Layout blueprints, form patterns, navigation structures for operator interfaces.",
+    tKey: "patterns",
     count: "10",
     slug: "patterns",
     color: "text-ef-orange",
-    status: "ACTIVE",
   },
   {
     icon: MousePointerClick,
-    title: "INTERACTIVE",
-    desc: "Hover states, focus rings, transitions, micro-interactions tuned to 60fps.",
+    tKey: "interactive",
     count: "16",
     slug: "interactive",
     color: "text-ef-purple",
-    status: "ACTIVE",
   },
   {
     icon: MessageSquare,
-    title: "FEEDBACK",
-    desc: "Toast, alert, dialog, loading — notification systems with tactical clarity.",
+    tKey: "feedback",
     count: "9",
     slug: "feedback",
     color: "text-ef-red",
-    status: "ACTIVE",
   },
   {
     icon: MonitorSmartphone,
-    title: "CONTENT & MEDIA",
-    desc: "Image, video, carousel, avatar — media handling with responsive precision.",
+    tKey: "content",
     count: "11",
     slug: "content-media",
     color: "text-ef-cyan",
-    status: "ACTIVE",
   },
 ];
 
@@ -110,6 +88,8 @@ const ChapterModules = () => {
   const { isMobile, prefersReducedMotion } = useStorytellingConfig();
   const containerRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const { t } = useTranslation("home");
+  const lp = useLocalizedPath();
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -140,7 +120,7 @@ const ChapterModules = () => {
       id="chapter-modules"
       className="relative"
       data-chapter
-      aria-label="Chapter 4: Tactical Overview"
+      aria-label={t("modules.aria_label")}
       style={{ height }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
@@ -160,14 +140,16 @@ const ChapterModules = () => {
             className="text-center pt-6 pb-1 flex-shrink-0 relative z-10"
           >
             <span className="font-display text-[10px] font-bold tracking-[0.2em] uppercase text-primary">
-              ◆ TACTICAL MAP
+              {t("modules.tactical_map")}
             </span>
             <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-[0.05em] uppercase text-foreground mt-2">
-              SYSTEM{" "}
-              <span className="text-primary text-glow-yellow">MODULES</span>
+              {t("modules.system")}
+              <span className="text-primary text-glow-yellow">
+                {t("modules.modules_title")}
+              </span>
             </h2>
             <p className="font-mono text-[10px] text-muted-foreground/50 mt-1.5 tracking-[0.15em]">
-              8 SECTORS · 98 COMPONENTS · FIELD READY
+              {t("modules.subtitle")}
             </p>
           </motion.div>
 
@@ -177,10 +159,26 @@ const ChapterModules = () => {
             className="flex items-center justify-center gap-6 py-2 relative z-10"
           >
             {[
-              { label: "TOTAL", value: "98", color: "text-primary" },
-              { label: "SECTORS", value: "8", color: "text-ef-cyan" },
-              { label: "TOKENS", value: "94", color: "text-ef-blue" },
-              { label: "THEMES", value: "2", color: "text-ef-green" },
+              {
+                label: t("modules.stat_total"),
+                value: "98",
+                color: "text-primary",
+              },
+              {
+                label: t("modules.stat_sectors"),
+                value: "8",
+                color: "text-ef-cyan",
+              },
+              {
+                label: t("modules.stat_tokens"),
+                value: "94",
+                color: "text-ef-blue",
+              },
+              {
+                label: t("modules.stat_themes"),
+                value: "2",
+                color: "text-ef-green",
+              },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -201,15 +199,21 @@ const ChapterModules = () => {
           {/* Card grid */}
           <div className="flex-1 flex items-center justify-center px-4 sm:px-8 relative z-10">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-6xl w-full">
-              {features.map((feature, i) => (
+              {featureDefs.map((feature, i) => (
                 <FeatureCard
                   key={feature.slug}
-                  feature={feature}
+                  feature={{
+                    ...feature,
+                    title: t(`modules.features.${feature.tKey}_title`),
+                    desc: t(`modules.features.${feature.tKey}_desc`),
+                    status: t("modules.status_active"),
+                  }}
                   index={i}
                   progress={smoothProgress}
                   isMobile={isMobile}
                   reducedMotion={prefersReducedMotion}
-                  onClick={() => navigate(`/docs/${feature.slug}`)}
+                  onClick={() => navigate(lp(`/docs/${feature.slug}`))}
+                  t={t}
                 />
               ))}
             </div>
@@ -259,13 +263,23 @@ const FeatureCard = ({
   isMobile,
   reducedMotion,
   onClick,
+  t,
 }: {
-  feature: (typeof features)[number];
+  feature: {
+    icon: LucideIcon;
+    title: string;
+    desc: string;
+    count: string;
+    slug: string;
+    color: string;
+    status: string;
+  };
   index: number;
   progress: MotionValue<number>;
   isMobile: boolean;
   reducedMotion: boolean;
   onClick: () => void;
+  t: (key: string) => string;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: false, margin: "-10%" });
@@ -294,7 +308,7 @@ const FeatureCard = ({
             {feature.count}
           </span>
           <p className="font-mono text-[8px] text-muted-foreground/40 tracking-wider">
-            ITEMS
+            {t("modules.items")}
           </p>
         </div>
       </div>
@@ -314,7 +328,7 @@ const FeatureCard = ({
         <TacticalBadge variant="success">{feature.status}</TacticalBadge>
         <div className="flex items-center gap-1 text-primary/60 group-hover:text-primary transition-colors">
           <span className="font-mono text-[8px] tracking-wider uppercase">
-            DEPLOY
+            {t("modules.deploy")}
           </span>
           <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
         </div>

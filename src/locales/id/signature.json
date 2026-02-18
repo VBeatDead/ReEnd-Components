@@ -1,1 +1,163 @@
-{}
+{
+  "hud": {
+    "system_label": "SYS::ENDFIELD v2.0",
+    "lat": "LAT 37.7749°N",
+    "lon": "LON 122.4194°W",
+    "link_active": "LINK AKTIF",
+    "fps": "FPS:60",
+    "mem": "MEM:47%",
+    "net": "NET:12ms"
+  },
+  "tactical_panel": {
+    "status_online": "ONLINE",
+    "status_caution": "PERHATIAN",
+    "status_offline": "OFFLINE",
+    "status_scanning": "MEMINDAI"
+  },
+  "data_stream": {
+    "live_feed": "SIARAN LANGSUNG",
+    "active": "AKTIF",
+    "msg_init": "[SYS] Menginisialisasi protokol ENDFIELD...",
+    "msg_connection": "[NET] Koneksi terhubung — latensi: 12ms",
+    "msg_auth": "[SEC] Autentikasi terverifikasi ◆ Level: ALPHA",
+    "msg_tokens": "[DAT] Memuat design token: 94 variabel dipetakan",
+    "msg_gpu": "[GPU] Render pipeline: Optimal (60fps terkunci)",
+    "msg_registry": "[SYS] Registri komponen: 70 modul online",
+    "msg_sync": "[NET] Sinkronisasi selesai — semua node operasional",
+    "msg_color": "[DAT] Sistem warna: Berbasis HSL, 9 netral, 9 aksen",
+    "msg_encrypt": "[SEC] Enkripsi: AES-256 ◆ Status: AKTIF",
+    "msg_ready": "[SYS] ENDFIELD DESIGN SYSTEM v2.0 ◆ SIAP"
+  },
+  "warning_banner": {
+    "label_caution": "PERHATIAN",
+    "label_alert": "PERINGATAN",
+    "label_critical": "KRITIS"
+  },
+  "content": {
+    "glitch_text": {
+      "title": "Glitch Text",
+      "description": "Efek distorsi teks bergaya HUD militer. Overlay aberasi kromatik Cyan + Merah dengan animasi gagap.",
+      "prop_children": "Teks yang ditampilkan dengan efek glitch",
+      "prop_className": "Kelas tambahan"
+    },
+    "data_stream": {
+      "title": "Data Stream",
+      "description": "Feed terminal real-time dengan auto-scroll. Pesan berkode warna berdasarkan kategori [SYS], [NET], [SEC], [DAT]. Kedipan kursor khas Signature."
+    },
+    "scan_divider": {
+      "title": "Scan Divider",
+      "description": "Pemisah konten dengan garis gradien menyala dan label diamond. Alternatif elegan untuk <hr> biasa.",
+      "prop_label": "Label opsional di tengah divider"
+    },
+    "topo_pattern": {
+      "title": "Topographic Pattern",
+      "description": "Pola topografi garis kontur terinspirasi peta medan Endfield. SVG generatif dengan efek cahaya hover — ideal untuk latar dekoratif atau pemisah bagian.",
+      "prop_width": "Lebar pola (px)",
+      "prop_height": "Tinggi pola (px)",
+      "prop_layers": "Jumlah garis kontur"
+    },
+    "hud_overlay": {
+      "title": "HUD Overlay",
+      "description": "Overlay Heads-Up Display dengan bracket sudut, crosshair, status bar, dan koordinat real-time.",
+      "prop_children": "Konten utama di dalam bingkai HUD",
+      "prop_showCoords": "Tampilkan label koordinat",
+      "prop_showCrosshair": "Tampilkan crosshair tengah"
+    }
+  },
+  "core": {
+    "tactical_panel": {
+      "title": "Tactical Panel",
+      "description": "Panel HUD dengan overlay scanline, bracket aksen 4-sudut, dan indikator status. Cocok untuk dasbor atau UI pemantauan.",
+      "prop_title": "Judul panel di bilah header",
+      "prop_status": "Indikator status dengan warna dan label",
+      "prop_children": "Konten panel"
+    },
+    "holo_card": {
+      "title": "Holo Card",
+      "description": "Kartu dengan efek garis pindai holografis — berkas cahaya bergerak vertikal saat hover. Clip-corner + gradien shimmer.",
+      "prop_title": "Judul kartu",
+      "prop_subtitle": "Deskripsi singkat",
+      "prop_icon": "Ikon Lucide",
+      "prop_value": "Nilai/metrik besar opsional"
+    }
+  },
+  "data": {
+    "tactical_badge": {
+      "title": "Tactical Badge",
+      "description": "Badge dengan clip-corner-sm dan penanda diamond ◆. Pengganti angular beridentitas Endfield untuk badge rounded-pill standar.",
+      "prop_variant": "Warna dan nada badge",
+      "prop_children": "Label badge"
+    },
+    "coordinate_tag": {
+      "title": "Coordinate Tag",
+      "description": "Label data key-value ringkas bergaya terminal. Ideal untuk metadata, spesifikasi, atau info status singkat.",
+      "prop_label": "Key/label data",
+      "prop_value": "Nilai data",
+      "prop_unit": "Satuan opsional"
+    },
+    "radar_chart": {
+      "title": "Radar Chart",
+      "description": "Grafik radar bergaya HUD dengan grid poligonal, titik data menyala, dan animasi reveal. SVG murni tanpa pustaka eksternal.",
+      "prop_data": "Array data (nilai 0-100)",
+      "prop_size": "Ukuran grafik (px)",
+      "prop_color": "Warna area isi"
+    }
+  },
+  "feedback": {
+    "diamond_loader": {
+      "title": "Diamond Loader",
+      "description": "Spinner loading berbentuk diamond bertumpuk dengan rotasi berlawanan. Pengganti khas Endfield untuk spinner standar.",
+      "prop_size": "Ukuran loader",
+      "prop_label": "Teks status di bawah loader"
+    },
+    "warning_banner": {
+      "title": "Warning Banner",
+      "description": "Banner peringatan bergaya militer dengan tiga level: perhatian (kuning), peringatan (oranye), kritis (merah). Clip-corner dengan ikon AlertTriangle.",
+      "prop_level": "Tingkat keparahan peringatan",
+      "prop_children": "Pesan peringatan"
+    }
+  },
+  "demo": {
+    "glitch_endfield": "ENDFIELD",
+    "glitch_system_online": "SISTEM ONLINE",
+    "glitch_error": "ERROR::KONEKSI_TIDAK_STABIL",
+    "scan_classified": "RAHASIA",
+    "scan_end_transmission": "AKHIR TRANSMISI",
+    "hud_field": "FIELD",
+    "hud_operative": "OPERATIF",
+    "hud_clearance": "LEVEL IZIN: ALPHA ◆ STATUS: AKTIF",
+    "tp_uptime": "WAKTU AKTIF",
+    "tp_latency": "LATENSI",
+    "tp_sector_alpha": "SEKTOR ALPHA",
+    "tp_sector_beta": "SEKTOR BETA",
+    "tp_units_deployed": "UNIT DITERJUNKAN",
+    "tp_all_nominal": "SEMUA SISTEM NOMINAL ◆",
+    "tp_partial_coverage": "CAKUPAN PARSIAL ◆",
+    "hc_defense_grid": "GRID PERTAHANAN",
+    "hc_defense_sub": "Perimeter sepenuhnya diamankan",
+    "hc_power_output": "OUTPUT DAYA",
+    "hc_power_sub": "Reaktor pada level optimal",
+    "hc_comms_array": "ARRAY KOMUNIKASI",
+    "hc_comms_sub": "12 kanal aktif",
+    "hc_vital_signs": "TANDA VITAL",
+    "hc_vital_sub": "Semua operator nominal",
+    "hc_network": "JARINGAN",
+    "hc_network_sub": "Topologi mesh online",
+    "hc_targeting": "PENARGETAN",
+    "hc_targeting_sub": "Lock-on terkalibrasi",
+    "badge_active": "AKTIF",
+    "badge_verified": "TERVERIFIKASI",
+    "badge_unstable": "TIDAK STABIL",
+    "badge_critical": "KRITIS",
+    "badge_scanning": "MEMINDAI",
+    "loader_buffering": "BUFFERING",
+    "loader_loading": "MEMUAT",
+    "loader_initializing": "MENGINISIALISASI",
+    "warning_caution_msg": "Pemeliharaan rutin dijadwalkan pukul 03.00. Konektivitas mungkin terganggu sementara.",
+    "warning_alert_msg": "Anomali terdeteksi di sektor 7-G. Mengirim unit pengintaian.",
+    "warning_critical_msg": "Pelanggaran perimeter terdeteksi. Semua unit bersiaga untuk respons segera.",
+    "topo_el_720": "EL.720",
+    "topo_el_580": "EL.580",
+    "topo_el_440": "EL.440"
+  }
+}

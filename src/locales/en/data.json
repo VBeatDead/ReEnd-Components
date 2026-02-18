@@ -1,1 +1,115 @@
-{}
+{
+  "table": {
+    "title": "Table (Data Table)",
+    "description": "Header: Orbitron 11px uppercase sticky. Striped rows. Hover: yellow tint.",
+    "headers": {
+      "operator": "OPERATOR",
+      "class": "CLASS",
+      "rarity": "RARITY",
+      "status": "STATUS"
+    },
+    "status_labels": {
+      "active": "Active",
+      "deployed": "Deployed",
+      "standby": "Standby"
+    },
+    "showing_pagination": "Showing 1-5 of 124"
+  },
+  "list": {
+    "title": "List & List Item",
+    "description": "Diamond bullet ◆ #FFD429. Numbered: Orbitron, counter leading-zero.",
+    "diamond_bullet": "DIAMOND BULLET",
+    "numbered": "NUMBERED",
+    "key_value": "KEY-VALUE",
+    "diamond_items": ["Reconnaissance", "Deployment", "Extraction", "Analysis"],
+    "numbered_items": [
+      "Initialize System",
+      "Configure Modules",
+      "Deploy Assets",
+      "Monitor Output"
+    ],
+    "kv_pairs": {
+      "version": { "key": "VERSION", "value": "2.4.1" },
+      "status": { "key": "STATUS", "value": "Operational" },
+      "uptime": { "key": "UPTIME", "value": "99.97%" }
+    }
+  },
+  "stats": {
+    "title": "Stat & Metric Display",
+    "description": "Value: Orbitron 48px bold yellow. Label: Orbitron 11px uppercase gray. Trend: ▲/▼.",
+    "labels": {
+      "total_ops": "TOTAL OPS",
+      "active_units": "ACTIVE UNITS",
+      "error_rate": "ERROR RATE",
+      "uptime": "UPTIME"
+    }
+  },
+  "timeline": {
+    "title": "Timeline",
+    "description": "Vertical line 1px. Node: ◆ current yellow, ◇ past gray. Date: Orbitron 11px.",
+    "entries": {
+      "system_update": {
+        "date": "2026.02.15",
+        "title": "SYSTEM UPDATE V2.0",
+        "desc": "Major redesign deployed."
+      },
+      "beta_testing": {
+        "date": "2026.01.28",
+        "title": "BETA TESTING",
+        "desc": "Component library beta released."
+      },
+      "project_kickoff": {
+        "date": "2025.12.10",
+        "title": "PROJECT KICKOFF",
+        "desc": "Initial design system created."
+      }
+    }
+  },
+  "accordion": {
+    "title": "Accordion / Collapsible",
+    "description": "Indicator: +/− in yellow (JetBrains Mono). NOT chevron. Content slides down.",
+    "questions": {
+      "what_is_endfield": "WHAT IS ENDFIELD?",
+      "how_to_install": "HOW TO INSTALL?",
+      "is_production_ready": "IS IT PRODUCTION READY?"
+    },
+    "answer_placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  "avatar": {
+    "title": "Avatar & Profile",
+    "description": "Shape: Square with clipped corner (clip-path) — NOT circle. Status: diamond shape."
+  },
+  "tags": {
+    "title": "Tags, Badges & Labels",
+    "description": "Tag font: Orbitron 10px, uppercase. Diamond-shaped badges. Semantic colors.",
+    "labels": {
+      "default": "DEFAULT",
+      "primary": "PRIMARY",
+      "info": "INFO",
+      "success": "SUCCESS",
+      "warning": "WARNING",
+      "danger": "DANGER",
+      "rare": "RARE"
+    },
+    "removable": "REMOVABLE",
+    "badge_count": "BADGE COUNT:",
+    "status": {
+      "online": "Online",
+      "offline": "Offline",
+      "busy": "Busy"
+    }
+  },
+  "progress": {
+    "title": "Progress & Stepper",
+    "description": "Progress bar: 4px track. Stepper: Diamond nodes, connector lines.",
+    "deployment": "DEPLOYMENT",
+    "danger": "DANGER",
+    "stepper": "STEPPER",
+    "step_labels": ["Step 1", "Step 2", "Step 3", "Step 4"],
+    "step_states": {
+      "complete": "Complete",
+      "current": "Current",
+      "upcoming": "Upcoming"
+    }
+  }
+}

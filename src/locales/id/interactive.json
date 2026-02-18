@@ -1,1 +1,94 @@
-{}
+{
+  "states_matrix": {
+    "title": "Matriks Status Interaktif",
+    "description": "Pemetaan komprehensif semua status interaktif di seluruh komponen.",
+    "headers": {
+      "element": "ELEMEN",
+      "default": "DEFAULT",
+      "hover": "HOVER",
+      "active": "ACTIVE",
+      "focus": "FOCUS",
+      "disabled": "DISABLED"
+    },
+    "rows": {
+      "button": "Button",
+      "input": "Input",
+      "card": "Card",
+      "link": "Link",
+      "nav_item": "Item navigasi",
+      "tab": "Tab"
+    }
+  },
+  "micro_interactions": {
+    "title": "Mikro-Interaksi & Umpan Balik",
+    "description": "Ripple klik, umpan balik salin, animasi toggle, ekspansi accordion.",
+    "click_me": "KLIK SAYA",
+    "ripple_effect": "Efek ripple",
+    "favorite": "Favorit",
+    "copied": "Tersalin!",
+    "copy": "Salin",
+    "copy_feedback": "Umpan balik salin"
+  },
+  "hover_effects": {
+    "title": "Katalog Efek Hover",
+    "description": "Angkat kartu, cahaya tombol, skala gambar, perubahan warna navigasi, warna baris tabel.",
+    "headers": {
+      "element": "ELEMEN",
+      "effect": "EFEK"
+    },
+    "rows": {
+      "card": "Card",
+      "card_effect": "translateY(-4px) + shadow + tint border kuning",
+      "button_primary": "Button Primary",
+      "button_primary_effect": "translateY(-1px) + bg lebih terang + glow shadow",
+      "button_secondary": "Button Secondary",
+      "button_secondary_effect": "Border → kuning, teks → kuning",
+      "image": "Gambar",
+      "image_effect": "scale(1.05) smooth ease",
+      "nav_link": "Link navigasi",
+      "nav_link_effect": "Warna → kuning, indikator diamond",
+      "table_row": "Baris tabel",
+      "table_row_effect": "Tint bg kuning 0.03",
+      "code_block": "Blok kode",
+      "code_block_effect": "Tombol salin muncul (fade in)",
+      "avatar": "Avatar",
+      "avatar_effect": "Cincin cahaya halus"
+    }
+  },
+  "focus_keyboard": {
+    "title": "Fokus & Navigasi Keyboard",
+    "description": "Cincin fokus: 2px solid #FFD429, offset 2px. Tabel pintasan keyboard.",
+    "focus_state": "STATUS FOKUS",
+    "shortcuts": {
+      "tab": "Tab",
+      "tab_desc": "Navigasi maju",
+      "enter": "Enter / Space",
+      "enter_desc": "Aktifkan",
+      "escape": "Escape",
+      "escape_desc": "Tutup overlay",
+      "cmd_k": "⌘K",
+      "cmd_k_desc": "Palet perintah",
+      "arrows": "Tombol panah",
+      "arrows_desc": "Navigasi menu",
+      "home_end": "Home / End",
+      "home_end_desc": "Item pertama/terakhir"
+    }
+  },
+  "drag_drop": {
+    "title": "Seret & Lepas",
+    "description": "Dapat diseret: kursor grab. Zona lepas: border putus-putus, status aktif kuning.",
+    "drag_me": "⠿ Seret saya",
+    "drop_zone": "Zona lepas",
+    "active_zone": "Zona aktif"
+  },
+  "selection": {
+    "title": "Seleksi & Multi-Seleksi",
+    "description": "Terpilih: border kuning + tint latar. Bilah aksi mengambang untuk multi-seleksi.",
+    "option_a": "Opsi A",
+    "option_b": "Opsi B",
+    "option_c": "Opsi C",
+    "selected_count": "3 terpilih",
+    "delete_btn": "HAPUS",
+    "export_btn": "EKSPOR"
+  }
+}

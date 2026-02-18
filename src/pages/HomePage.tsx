@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { useLocalizedPath } from "@/hooks/useLocalizedPath";
+import { LanguageSwitcher } from "@/components/docs/LanguageSwitcher";
 import { ChapterIndicator } from "@/components/home/scroll-storytelling";
 import { TopoBg } from "@/components/home/signature";
 import ChapterAwakening from "@/components/home/chapters/ChapterAwakening";
@@ -9,12 +12,20 @@ import ChapterArsenal from "@/components/home/chapters/ChapterArsenal";
 import ChapterModules from "@/components/home/chapters/ChapterModules";
 import ChapterDeploy from "@/components/home/chapters/ChapterDeploy";
 
-const CHAPTER_LABELS = ["AWAKEN", "STATUS", "ARSENAL", "MODULES", "DEPLOY"];
-
 const HomePage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation("home");
+  const lp = useLocalizedPath();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+
+  const CHAPTER_LABELS = [
+    t("chapter_labels.awaken"),
+    t("chapter_labels.status"),
+    t("chapter_labels.arsenal"),
+    t("chapter_labels.modules"),
+    t("chapter_labels.deploy"),
+  ];
 
   // Hide browser scrollbar for immersive storytelling.
   // The page still scrolls — scroll-progress drives pinned-section animations.
@@ -33,7 +44,7 @@ const HomePage = () => {
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:font-ui focus:text-xs focus:tracking-widest focus:uppercase focus:clip-corner-sm"
       >
-        Skip to main content
+        {t("skip_to_main")}
       </a>
 
       {/* Scroll progress bar */}
@@ -61,10 +72,10 @@ const HomePage = () => {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-center sm:text-left">
               <p className="font-display text-xs font-bold tracking-[0.1em] uppercase text-foreground">
-                ReEnd Components
+                {t("footer.brand")}
               </p>
               <p className="font-mono text-[10px] text-muted-foreground mt-1">
-                MIT License — Open Source
+                {t("footer.license")}
               </p>
             </div>
             <div className="flex items-center gap-6">
@@ -74,23 +85,20 @@ const HomePage = () => {
                 rel="noopener noreferrer"
                 className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors uppercase tracking-[0.1em]"
               >
-                GitHub
+                {t("footer.github")}
               </a>
               <button
-                onClick={() => navigate("/docs")}
+                onClick={() => navigate(lp("/docs"))}
                 className="font-mono text-[10px] text-muted-foreground hover:text-primary transition-colors uppercase tracking-[0.1em]"
               >
-                Docs
+                {t("footer.docs")}
               </button>
+              <LanguageSwitcher />
             </div>
           </div>
           <div className="gradient-line-h my-6" />
           <p className="font-mono text-[9px] text-muted-foreground/40 text-center leading-relaxed">
-            This is a community-driven, fan-made project inspired by the sci-fi
-            industrial aesthetics of Arknights: Endfield. Not affiliated with,
-            endorsed by, or connected to Hypergryph, Gryphline, or any of their
-            subsidiaries. All game-related trademarks belong to their respective
-            owners.
+            {t("footer.disclaimer")}
           </p>
         </div>
       </footer>

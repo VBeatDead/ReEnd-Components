@@ -1,1 +1,49 @@
-{}
+{
+  "command_palette": {
+    "title": "Command Palette / Quick Search",
+    "description": "Trigger: ⌘K. Surface-2 bg. Input 16px. Results with diamond markers.",
+    "placeholder": "Type a command...",
+    "recent": "RECENT",
+    "dashboard": "Dashboard",
+    "components": "Components",
+    "settings": "Settings",
+    "actions_label": "ACTIONS",
+    "create_new": "Create New Page",
+    "toggle_theme": "Toggle Theme"
+  },
+  "cookie_consent": {
+    "title": "Cookie Consent",
+    "description": "Fixed bottom, surface-2 bg, border-top. Accept All primary + Customize ghost.",
+    "consent_text": "We use cookies to enhance your experience. By continuing, you agree to our cookie policy.",
+    "customize": "CUSTOMIZE",
+    "accept_all": "ACCEPT ALL"
+  },
+  "back_to_top": {
+    "title": "Back to Top",
+    "description": "Fixed bottom-right. Visible after scroll >300px. Icon button style.",
+    "appears_text": "Appears after scroll >300px",
+    "scroll_to_top": "Scroll to top"
+  },
+  "clipboard": {
+    "title": "Copy to Clipboard",
+    "description": "Idle: Copy icon. Click: ✓ + 'Copied!' green. Reset 2s. Used on code blocks, URLs.",
+    "copied": "Copied!"
+  },
+  "dropdown": {
+    "title": "Dropdown Menu",
+    "description": "surface-2 bg. Hover: yellow bg tint + text. Danger: red variant. Section labels.",
+    "actions_label": "ACTIONS",
+    "edit": "Edit",
+    "duplicate": "Duplicate",
+    "archive": "Archive",
+    "delete": "Delete"
+  },
+  "context_menu": {
+    "title": "Context Menu",
+    "description": "Same styling as Dropdown. Right-click trigger. Keyboard shortcut hints.",
+    "cut": "Cut",
+    "copy": "Copy",
+    "paste": "Paste",
+    "delete": "Delete"
+  }
+}

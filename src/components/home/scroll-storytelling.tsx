@@ -8,6 +8,7 @@ import {
   useMotionValueEvent,
   type MotionValue,
 } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 // ═══ MOTION CONFIG ═══
 export const MOTION_CONFIG = {
@@ -292,6 +293,7 @@ export const ChapterIndicator = ({
   chapters: number;
   labels?: string[];
 }) => {
+  const { t } = useTranslation("home");
   const { scrollYProgress } = useScroll();
   const [active, setActive] = useState(0);
 
@@ -313,7 +315,7 @@ export const ChapterIndicator = ({
             sections[i]?.scrollIntoView({ behavior: "smooth" });
           }}
           className="group relative flex items-center justify-center"
-          aria-label={`Chapter ${i + 1}`}
+          aria-label={t("scroll.chapter_label", { number: i + 1 })}
         >
           {/* Label — positioned absolutely so it doesn't shift the dot */}
           <span
@@ -355,6 +357,7 @@ export const HorizontalScrollSection = ({
   className?: string;
   id?: string;
 }) => {
+  const { t } = useTranslation("home");
   const { isMobile } = useStorytellingConfig();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -399,7 +402,7 @@ export const HorizontalScrollSection = ({
             />
           </div>
           <p className="font-mono text-[9px] text-muted-foreground/50 text-center mt-2 tracking-[0.1em]">
-            SCROLL TO EXPLORE
+            {t("scroll.scroll_to_explore")}
           </p>
         </div>
       </div>

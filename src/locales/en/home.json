@@ -1,1 +1,221 @@
-{}
+{
+  "chapter_labels": {
+    "awaken": "AWAKEN",
+    "status": "STATUS",
+    "arsenal": "ARSENAL",
+    "modules": "MODULES",
+    "deploy": "DEPLOY"
+  },
+  "footer": {
+    "brand": "ReEnd Components",
+    "license": "MIT License — Open Source",
+    "github": "GitHub",
+    "docs": "Docs",
+    "disclaimer": "This is a community-driven, fan-made project inspired by the sci-fi industrial aesthetics of Arknights: Endfield. Not affiliated with, endorsed by, or connected to Hypergryph, Gryphline, or any of their subsidiaries. All game-related trademarks belong to their respective owners."
+  },
+  "skip_to_main": "Skip to main content",
+
+  "awakening": {
+    "aria_label": "Chapter 1: The Awakening",
+    "system_init": "SYSTEM INITIALIZED",
+    "components": "COMPONENTS",
+    "description_accent": "◆",
+    "description_text": "Sci-fi industrial design system inspired by Arknights: Endfield.",
+    "description_highlight": "70+ components",
+    "description_suffix": ", battle-tested UI elements, and operator-grade aesthetics.",
+    "cta_docs": "EXPLORE DOCS ◆",
+    "cta_preview": "PREVIEW ARSENAL ↓",
+    "protocol_label": "— ENDFIELD DESIGN PROTOCOL —",
+    "system_log": "SYSTEM LOG",
+    "boot_log_0": "[SYS] Protocol boot sequence initiated",
+    "boot_log_1": "[AUTH] Operator clearance: VERIFIED",
+    "boot_log_2": "[LOAD] Design tokens: 94 loaded",
+    "boot_log_3": "[LOAD] Components: 70+ online",
+    "boot_log_4": "[GPU] Render pipeline: 60fps locked",
+    "boot_log_5": "[NET] Latency: 12ms ◆ STABLE",
+    "boot_log_6": "[SYS] All systems operational",
+    "scroll_to_deploy": "Scroll to deploy"
+  },
+
+  "system_online": {
+    "aria_label": "Chapter 2: System Online",
+    "philosophy": "Industrial precision meets digital craftsmanship. Every pixel engineered. Every interaction deliberate. Built for operators who demand excellence.",
+    "philosophy_highlights": "precision,engineered,deliberate,operators,excellence",
+    "capabilities": {
+      "tactical_title": "TACTICAL PRECISION",
+      "tactical_desc": "Pixel-perfect components with zero visual noise",
+      "latency_title": "ZERO LATENCY",
+      "latency_desc": "60fps animations, lazy-loaded, tree-shakeable",
+      "dark_title": "DARK-FIRST",
+      "dark_desc": "94 design tokens, full light + dark theme support",
+      "motion_title": "MOTION SYSTEM",
+      "motion_desc": "8 scroll primitives, parallax, glitch, glow effects",
+      "composable_title": "COMPOSABLE",
+      "composable_desc": "Radix UI primitives, fully customizable via Tailwind",
+      "production_title": "PRODUCTION READY",
+      "production_desc": "TypeScript-first, accessible, thoroughly tested"
+    },
+    "diagnostic": "◆ DIAGNOSTIC SCAN",
+    "system": "SYSTEM ",
+    "online": "ONLINE",
+    "all_subsystems": "ALL SUBSYSTEMS OPERATIONAL — SCANNING CAPABILITIES",
+    "counter_components": "Components",
+    "counter_categories": "Categories",
+    "counter_tokens": "Design Tokens",
+    "counter_motions": "Motion Systems",
+    "capability_index": "CAPABILITY INDEX",
+    "subsystem_status": "SUBSYSTEM STATUS",
+    "status_theme_label": "THEME ENGINE",
+    "status_theme_value": "ACTIVE",
+    "status_motion_label": "MOTION PIPELINE",
+    "status_motion_value": "60 FPS",
+    "status_type_label": "TYPE SAFETY",
+    "status_type_value": "STRICT",
+    "status_a11y_label": "ACCESSIBILITY",
+    "status_a11y_value": "WCAG 2.1",
+    "status_bundle_label": "BUNDLE SIZE",
+    "status_bundle_value": "OPTIMAL",
+    "status_tree_label": "TREE SHAKING",
+    "status_tree_value": "ENABLED",
+    "design_principles": "◆ DESIGN PRINCIPLES ◆",
+    "items": "ITEMS"
+  },
+
+  "arsenal": {
+    "aria_label": "Chapter 3: Component Arsenal",
+    "live_preview": "◆ LIVE PREVIEW",
+    "component": "COMPONENT ",
+    "arsenal_title": "ARSENAL",
+    "scroll_explore": "SCROLL TO EXPLORE",
+    "panels": {
+      "buttons": "BUTTONS",
+      "cards": "CARDS",
+      "forms": "FORMS & INPUT",
+      "quick_start": "QUICK START",
+      "design_tokens": "DESIGN TOKENS"
+    }
+  },
+
+  "modules": {
+    "aria_label": "Chapter 4: Tactical Overview",
+    "tactical_map": "◆ TACTICAL MAP",
+    "system": "SYSTEM ",
+    "modules_title": "MODULES",
+    "subtitle": "8 SECTORS · 98 COMPONENTS · FIELD READY",
+    "stat_total": "TOTAL",
+    "stat_sectors": "SECTORS",
+    "stat_tokens": "TOKENS",
+    "stat_themes": "THEMES",
+    "items": "ITEMS",
+    "deploy": "DEPLOY",
+    "features": {
+      "foundations_title": "FOUNDATIONS",
+      "foundations_desc": "Typography, color palette, spacing, and semantic design tokens for the Endfield aesthetic.",
+      "core_title": "CORE COMPONENTS",
+      "core_desc": "Buttons, Cards, Inputs, Dialogs — every element engineered with industrial precision.",
+      "data_title": "DATA DISPLAY",
+      "data_desc": "Tables, charts, badges, and status indicators for tactical data visualization.",
+      "animation_title": "ANIMATIONS",
+      "animation_desc": "Parallax, glitch, glow, scroll-triggered motion systems — 8 animation primitives.",
+      "patterns_title": "PATTERNS",
+      "patterns_desc": "Layout blueprints, form patterns, navigation structures for operator interfaces.",
+      "interactive_title": "INTERACTIVE",
+      "interactive_desc": "Hover states, focus rings, transitions, micro-interactions tuned to 60fps.",
+      "feedback_title": "FEEDBACK",
+      "feedback_desc": "Toast, alert, dialog, loading — notification systems with tactical clarity.",
+      "content_title": "CONTENT & MEDIA",
+      "content_desc": "Image, video, carousel, avatar — media handling with responsive precision."
+    },
+    "status_active": "ACTIVE"
+  },
+
+  "deploy": {
+    "aria_label": "Chapter 5: Deploy",
+    "operation_commence": "OPERATION COMMENCE",
+    "deploy_title": "DEPLOY",
+    "your_interface": "YOUR INTERFACE",
+    "description": "From zero to operator-grade UI in minutes. Install, configure, and deploy with the precision of an Endfield protocol.",
+    "feature_zero": "Zero Config",
+    "feature_ts": "TypeScript",
+    "feature_tree": "Tree-Shake",
+    "feature_theme": "Dark + Light",
+    "documentation": "DOCUMENTATION",
+    "components": "COMPONENTS",
+    "github": "GITHUB",
+    "open_source": "MIT LICENSE · OPEN SOURCE · COMMUNITY DRIVEN",
+    "terminal_title": "ENDFIELD TERMINAL",
+    "copied": "COPIED",
+    "copy": "COPY",
+    "term_detect": "◆ Detecting project configuration...",
+    "term_found": "✓ Found: React 18 + TypeScript + Tailwind CSS",
+    "term_installing": "◆ Installing 70+ components...",
+    "term_tokens": "✓ Design tokens configured (94 tokens)",
+    "term_theme": "✓ Theme engine initialized (dark + light)",
+    "term_motion": "✓ Motion system loaded (8 primitives)",
+    "term_ready": "◆ All systems operational. Deploy when ready.",
+    "ready_deploy": "Ready to deploy"
+  },
+
+  "showcase": {
+    "button": {
+      "variants": "VARIANTS",
+      "primary": "PRIMARY",
+      "secondary": "SECONDARY",
+      "ghost": "GHOST",
+      "danger": "DANGER",
+      "sizes": "SIZES",
+      "states": "STATES",
+      "focus": "FOCUS",
+      "loading": "LOADING",
+      "disabled": "DISABLED",
+      "component_card": "COMPONENT CARD",
+      "card_desc": "Corner brackets, hover lift, border glow transition on interaction.",
+      "view_more": "VIEW MORE",
+      "total_components": "TOTAL COMPONENTS",
+      "categories": "11 Categories",
+      "active": "ACTIVE",
+      "surface_0": "Surface 0",
+      "surface_1": "Surface 1",
+      "surface_2": "Surface 2",
+      "surface_3": "Surface 3"
+    },
+    "form": {
+      "operator_name": "OPERATOR NAME",
+      "enter_name": "Enter name...",
+      "access_code": "ACCESS CODE",
+      "verified": "Verified",
+      "enabled": "ENABLED",
+      "disabled": "DISABLED",
+      "alpha": "ALPHA",
+      "beta": "BETA",
+      "gamma": "GAMMA"
+    },
+    "terminal": {
+      "title": "TERMINAL",
+      "step_1": "[1/4] Resolving packages...",
+      "step_2": "[2/4] Fetching packages...",
+      "step_3": "[3/4] Linking dependencies...",
+      "step_4": "[4/4] Building fresh packages...",
+      "done_1": "✓ Installed 70+ components",
+      "done_2": "✓ Design tokens loaded",
+      "done_3": "✓ Ready to use"
+    }
+  },
+
+  "signature": {
+    "live_feed": "LIVE FEED",
+    "active": "ACTIVE",
+    "log_0": "[SYS] ENDFIELD protocol initialized",
+    "log_1": "[NET] Latency: 12ms ◆ STABLE",
+    "log_2": "[SEC] Auth verified — Level: ALPHA",
+    "log_3": "[DAT] 94 design tokens loaded",
+    "log_4": "[GPU] Render: 60fps locked",
+    "log_5": "[SYS] 70+ modules online",
+    "link_active": "LINK ACTIVE"
+  },
+
+  "scroll": {
+    "scroll_to_explore": "SCROLL TO EXPLORE",
+    "chapter_label": "Chapter {{number}}"
+  }
+}

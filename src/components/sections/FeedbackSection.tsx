@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
 import {
   X,
@@ -14,15 +15,16 @@ import {
 } from "lucide-react";
 import SignatureFeedbackSection from "./signature/SignatureFeedbackSection";
 
-export const FeedbackSection = () => {
+export function FeedbackSection() {
+  const { t } = useTranslation("feedback");
   return (
     <>
       {/* Toast */}
       <ComponentPreview
         id="toast-notification"
-        title="Notification & Toast"
+        title={t("notification.title")}
         showViewport
-        description="Left border 3px semantic color. Auto-dismiss progress bar. Position: top-right."
+        description={t("notification.description")}
         props={[
           {
             name: "type",
@@ -90,62 +92,62 @@ export const FeedbackSection = () => {
               type: "Info",
               border: "border-l-ef-blue",
               icon: <Info className="w-4 h-4 text-ef-blue" />,
-              title: "SYSTEM INFO",
-              msg: "New update available.",
+              title: t("notification.toasts.0.title"),
+              msg: t("notification.toasts.0.message"),
             },
             {
               type: "Success",
               border: "border-l-ef-green",
               icon: <CheckCircle className="w-4 h-4 text-ef-green" />,
-              title: "OPERATION COMPLETE",
-              msg: "Data saved successfully.",
+              title: t("notification.toasts.1.title"),
+              msg: t("notification.toasts.1.message"),
             },
             {
               type: "Warning",
               border: "border-l-ef-orange",
               icon: <AlertTriangle className="w-4 h-4 text-ef-orange" />,
-              title: "CAUTION",
-              msg: "Maintenance scheduled.",
+              title: t("notification.toasts.2.title"),
+              msg: t("notification.toasts.2.message"),
             },
             {
               type: "Error",
               border: "border-l-ef-red",
               icon: <AlertOctagon className="w-4 h-4 text-ef-red" />,
-              title: "ERROR DETECTED",
-              msg: "Connection lost to server.",
+              title: t("notification.toasts.3.title"),
+              msg: t("notification.toasts.3.message"),
             },
             {
               type: "Endfield",
               border: "border-l-primary",
               icon: <span className="text-primary text-sm">◆</span>,
-              title: "ENDFIELD ALERT",
-              msg: "New mission briefing.",
+              title: t("notification.toasts.4.title"),
+              msg: t("notification.toasts.4.message"),
             },
-          ].map((t) => (
+          ].map((item) => (
             <div
-              key={t.type}
-              className={`bg-surface-2 border border-border ${t.border} border-l-[3px] px-4 py-3 flex items-start gap-3 relative overflow-hidden`}
+              key={item.type}
+              className={`bg-surface-2 border border-border ${item.border} border-l-[3px] px-4 py-3 flex items-start gap-3 relative overflow-hidden`}
             >
-              <div className="mt-0.5">{t.icon}</div>
+              <div className="mt-0.5">{item.icon}</div>
               <div className="flex-1">
                 <h4
                   className="font-display text-[13px] font-bold uppercase tracking-[0.05em]"
                   style={{
                     color:
-                      t.type === "Info"
+                      item.type === "Info"
                         ? "#4DA8DA"
-                        : t.type === "Success"
+                        : item.type === "Success"
                           ? "#2ED573"
-                          : t.type === "Warning"
+                          : item.type === "Warning"
                             ? "#FFA502"
-                            : t.type === "Error"
+                            : item.type === "Error"
                               ? "#FF4757"
                               : "#FFD429",
                   }}
                 >
-                  {t.title}
+                  {item.title}
                 </h4>
-                <p className="text-sm text-muted-foreground">{t.msg}</p>
+                <p className="text-sm text-muted-foreground">{item.msg}</p>
               </div>
               <button className="text-muted-foreground hover:text-foreground transition-colors">
                 <X className="w-4 h-4" />
@@ -159,9 +161,9 @@ export const FeedbackSection = () => {
       {/* Modal */}
       <ComponentPreview
         id="modal-dialog"
-        title="Modal & Dialog"
+        title={t("modal.title")}
         showViewport
-        description="Backdrop: blur(4px). Container: surface-3. Title: Orbitron 16px uppercase. Close: ✕."
+        description={t("modal.description")}
         props={[
           {
             name: "open",
@@ -247,13 +249,13 @@ export const FeedbackSection = () => {
             },
             {
               name: "title",
-              label: "Title",
+              label: t("modal.playground.title_label"),
               type: "text",
-              default: "CONFIRM ACTION",
+              default: t("modal.confirm_title"),
             },
             {
               name: "showFooter",
-              label: "Show Footer",
+              label: t("modal.playground.show_footer_label"),
               type: "boolean",
               default: true,
             },
@@ -272,19 +274,20 @@ export const FeedbackSection = () => {
                 </div>
                 <div className="px-6 py-6">
                   <p className="text-sm text-muted-foreground">
-                    This action cannot be undone. All associated data will be
-                    permanently removed from the system.
+                    {t("modal.confirm_body")}
                   </p>
                 </div>
                 {v.showFooter && (
                   <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-border">
                     <button className="text-muted-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-2.5 hover:text-foreground transition-colors bg-transparent">
-                      CANCEL
+                      {t("modal.cancel")}
                     </button>
                     <button
                       className={`clip-corner font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-2.5 hover:brightness-110 transition-all ${v.variant === "danger" ? "bg-ef-red text-foreground" : "bg-primary text-primary-foreground"}`}
                     >
-                      {v.variant === "danger" ? "DELETE" : "CONFIRM"}
+                      {v.variant === "danger"
+                        ? t("modal.delete")
+                        : t("modal.confirm")}
                     </button>
                   </div>
                 )}
@@ -297,7 +300,8 @@ export const FeedbackSection = () => {
           <div className="bg-surface-3 border border-border shadow-[0_24px_64px_rgba(0,0,0,0.6)]">
             <div className="flex items-center justify-between px-6 py-4 border-b border-border">
               <h3 className="font-display text-base font-bold uppercase tracking-[0.02em] text-foreground">
-                ⚠ CONFIRM ACTION
+                {"⚠ "}
+                {t("modal.confirm_title")}
               </h3>
               <button className="text-muted-foreground hover:text-foreground transition-colors">
                 <X className="w-5 h-5" />
@@ -305,16 +309,15 @@ export const FeedbackSection = () => {
             </div>
             <div className="px-6 py-6">
               <p className="text-sm text-muted-foreground">
-                This action cannot be undone. All associated data will be
-                permanently removed from the system.
+                {t("modal.confirm_body")}
               </p>
             </div>
             <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-border">
               <button className="text-muted-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-2.5 hover:text-foreground transition-colors bg-transparent">
-                CANCEL
+                {t("modal.cancel")}
               </button>
               <button className="clip-corner bg-ef-red text-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-2.5 hover:brightness-110 transition-all">
-                DELETE
+                {t("modal.delete")}
               </button>
             </div>
           </div>
@@ -324,8 +327,8 @@ export const FeedbackSection = () => {
       {/* Tooltip & Popover */}
       <ComponentPreview
         id="tooltip-popover"
-        title="Tooltip & Popover"
-        description="Tooltip: #222 bg, 12px, non-interactive. Popover: surface-2, shadow-lg, interactive."
+        title={t("tooltip.title")}
+        description={t("tooltip.description")}
         props={[
           {
             name: "content",
@@ -365,31 +368,31 @@ export const FeedbackSection = () => {
         <div className="flex flex-wrap gap-8 items-start">
           <div className="space-y-2">
             <p className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground">
-              TOOLTIP
+              {t("tooltip.tooltip_label")}
             </p>
             <div className="relative inline-block">
               <button className="bg-surface-2 border border-border px-4 py-2 text-sm text-card-foreground">
-                Hover me
+                {t("tooltip.hover_me")}
               </button>
               <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface-3 border border-border px-3 py-1.5 text-xs text-card-foreground whitespace-nowrap">
-                Tooltip content
+                {t("tooltip.tooltip_content")}
                 <div className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-surface-3 border-b border-r border-border rotate-45 -mt-1" />
               </div>
             </div>
           </div>
           <div className="space-y-2">
             <p className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground">
-              POPOVER
+              {t("tooltip.popover_label")}
             </p>
             <div className="bg-surface-2 border border-border shadow-[0_16px_48px_rgba(0,0,0,0.5)] p-4 min-w-[200px]">
               <h4 className="font-display text-[13px] font-bold uppercase tracking-[0.05em] text-foreground mb-2">
-                POPOVER TITLE
+                {t("tooltip.popover_title")}
               </h4>
               <p className="text-sm text-muted-foreground mb-3">
-                Interactive popover content with actions.
+                {t("tooltip.popover_body")}
               </p>
               <button className="text-primary font-display text-xs font-bold tracking-[0.1em] uppercase bg-transparent">
-                ACTION →
+                {t("tooltip.action_cta")}
               </button>
             </div>
           </div>
@@ -399,8 +402,8 @@ export const FeedbackSection = () => {
       {/* Loading */}
       <ComponentPreview
         id="loading-skeleton"
-        title="Loading, Skeleton & Spinner"
-        description="Diamond spinner with clip-path. Skeleton shimmer effect. Loading dots."
+        title={t("loading.title")}
+        description={t("loading.description")}
         props={[
           {
             name: "variant",
@@ -438,7 +441,7 @@ export const FeedbackSection = () => {
             <div className="flex flex-col items-center gap-2">
               <div className="w-6 h-6 border-2 border-primary border-t-transparent clip-corner-sm animate-diamond-spin" />
               <span className="font-ui text-[10px] text-muted-foreground uppercase">
-                SPINNER
+                {t("loading.spinner")}
               </span>
             </div>
             {/* Loading dots */}
@@ -456,7 +459,7 @@ export const FeedbackSection = () => {
                 ))}
               </div>
               <span className="font-ui text-[10px] text-muted-foreground uppercase">
-                DOTS
+                {t("loading.dots")}
               </span>
             </div>
             {/* Full page style */}
@@ -464,7 +467,7 @@ export const FeedbackSection = () => {
               <div className="text-center">
                 <div className="w-6 h-6 border-2 border-primary border-t-transparent clip-corner-sm animate-diamond-spin mx-auto mb-2" />
                 <p className="font-ui text-[11px] tracking-[0.15em] uppercase text-muted-foreground">
-                  INITIALIZING...
+                  {t("loading.initializing")}
                 </p>
               </div>
             </div>
@@ -472,7 +475,7 @@ export const FeedbackSection = () => {
           {/* Skeleton */}
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
-              SKELETON
+              {t("loading.skeleton")}
             </h4>
             <div className="max-w-sm space-y-3">
               <div className="h-4 w-3/4 animate-skeleton rounded-none" />
@@ -493,9 +496,9 @@ export const FeedbackSection = () => {
       {/* Empty State */}
       <ComponentPreview
         id="empty-state"
-        title="Empty State"
+        title={t("empty_state.title")}
         showViewport
-        description="Icon 48px, title Orbitron 18px uppercase. CTA button. Context-specific variants."
+        description={t("empty_state.description")}
         props={[
           {
             name: "icon",
@@ -527,20 +530,20 @@ export const FeedbackSection = () => {
           {[
             {
               icon: <Search className="w-12 h-12" />,
-              title: "NO RESULTS FOUND",
-              desc: "Coba ubah kata kunci pencarian.",
-              cta: "CLEAR SEARCH",
+              title: t("empty_state.no_results_title"),
+              desc: t("empty_state.no_results_desc"),
+              cta: t("empty_state.clear_search"),
             },
             {
               icon: <Lock className="w-12 h-12" />,
-              title: "ACCESS RESTRICTED",
-              desc: "Anda tidak memiliki akses.",
+              title: t("empty_state.access_restricted_title"),
+              desc: t("empty_state.access_restricted_desc"),
               cta: null,
             },
             {
               icon: <Mail className="w-12 h-12" />,
-              title: "INBOX ZERO",
-              desc: "Semua pesan telah diproses.",
+              title: t("empty_state.inbox_zero_title"),
+              desc: t("empty_state.inbox_zero_desc"),
               cta: null,
             },
           ].map((e) => (
@@ -568,9 +571,9 @@ export const FeedbackSection = () => {
       {/* Error Pages */}
       <ComponentPreview
         id="error-pages"
-        title="Error Pages"
+        title={t("error_pages.title")}
         showViewport
-        description="Error code: Orbitron 120px glitch animation. Color-coded by error type."
+        description={t("error_pages.description")}
         props={[
           {
             name: "code",
@@ -596,27 +599,27 @@ export const FeedbackSection = () => {
           {[
             {
               code: "404",
-              title: "SIGNAL LOST",
+              title: t("error_pages.signal_lost_title"),
               color: "text-primary",
-              desc: "Halaman tidak ditemukan.",
+              desc: t("error_pages.signal_lost_desc"),
             },
             {
               code: "403",
-              title: "ACCESS DENIED",
+              title: t("error_pages.access_denied_title"),
               color: "text-ef-red",
-              desc: "Anda tidak memiliki izin.",
+              desc: t("error_pages.access_denied_desc"),
             },
             {
               code: "500",
-              title: "SYSTEM MALFUNCTION",
+              title: t("error_pages.system_malfunction_title"),
               color: "text-ef-orange",
-              desc: "Kesalahan server.",
+              desc: t("error_pages.system_malfunction_desc"),
             },
             {
               code: "503",
-              title: "MAINTENANCE MODE",
+              title: t("error_pages.maintenance_title"),
               color: "text-ef-blue",
-              desc: "Sistem dalam perbaikan.",
+              desc: t("error_pages.maintenance_desc"),
             },
           ].map((e) => (
             <div
@@ -646,8 +649,8 @@ export const FeedbackSection = () => {
       {/* Offline */}
       <ComponentPreview
         id="offline-state"
-        title="Offline State"
-        description="Full page dan inline banner variants. Network status indicator."
+        title={t("offline.title")}
+        description={t("offline.description")}
         props={[
           {
             name: "variant",
@@ -668,7 +671,7 @@ export const FeedbackSection = () => {
           <div className="bg-ef-orange/[0.08] border border-ef-orange/20 border-l-[3px] border-l-ef-orange px-5 py-3 flex items-center gap-3">
             <WifiOff className="w-4 h-4 text-ef-orange" />
             <span className="text-sm text-ef-orange">
-              Anda sedang offline. Beberapa fitur mungkin tidak tersedia.
+              {t("offline.banner_text")}
             </span>
           </div>
           <div className="flex flex-wrap gap-6">
@@ -679,7 +682,7 @@ export const FeedbackSection = () => {
                   clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                 }}
               />{" "}
-              ONLINE
+              {t("offline.online")}
             </span>
             <span className="flex items-center gap-2 font-ui text-[10px] uppercase text-ef-red">
               <span
@@ -688,7 +691,7 @@ export const FeedbackSection = () => {
                   clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                 }}
               />{" "}
-              OFFLINE
+              {t("offline.offline_label")}
             </span>
             <span className="flex items-center gap-2 font-ui text-[10px] uppercase text-ef-orange">
               <span
@@ -697,7 +700,7 @@ export const FeedbackSection = () => {
                   clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
                 }}
               />{" "}
-              SLOW
+              {t("offline.slow")}
             </span>
           </div>
         </div>
@@ -706,8 +709,8 @@ export const FeedbackSection = () => {
       {/* Success State */}
       <ComponentPreview
         id="success-state"
-        title="Success State / Confirmation"
-        description="Checkmark icon animated. Green accent. Minimal affirming text."
+        title={t("success.title")}
+        description={t("success.description")}
         props={[
           {
             name: "message",
@@ -728,7 +731,7 @@ export const FeedbackSection = () => {
           <div className="flex items-center gap-3 bg-ef-green/[0.08] border border-ef-green/20 px-4 py-3">
             <CheckCircle className="w-5 h-5 text-ef-green" />
             <span className="text-sm text-ef-green">
-              Operation complete. Changes have been saved.
+              {t("success.success_message")}
             </span>
           </div>
         </div>
@@ -737,8 +740,8 @@ export const FeedbackSection = () => {
       {/* Inline Validation */}
       <ComponentPreview
         id="inline-validation"
-        title="Inline Validation"
-        description="Field-level: icon prefix ✕/✓/⚠. Real-time debounced 300ms, on-blur, on-submit."
+        title={t("validation.title")}
+        description={t("validation.description")}
         props={[
           {
             name: "status",
@@ -777,7 +780,7 @@ export const FeedbackSection = () => {
               readOnly
             />
             <p className="text-xs text-ef-red mt-1">
-              ✕ Password must be at least 8 characters.
+              {t("validation.password_error")}
             </p>
           </div>
           <div>
@@ -786,7 +789,9 @@ export const FeedbackSection = () => {
               value="endministrator@endfield.icu"
               readOnly
             />
-            <p className="text-xs text-ef-green mt-1">✓ Email is valid.</p>
+            <p className="text-xs text-ef-green mt-1">
+              {t("validation.email_valid")}
+            </p>
           </div>
           <div>
             <input
@@ -795,7 +800,7 @@ export const FeedbackSection = () => {
               readOnly
             />
             <p className="text-xs text-ef-orange mt-1">
-              ⚠ Consider using a stronger password.
+              {t("validation.password_warning")}
             </p>
           </div>
         </div>
@@ -804,8 +809,8 @@ export const FeedbackSection = () => {
       {/* Banner & Alert */}
       <ComponentPreview
         id="banner-alert"
-        title="Banner & Alert (Persistent)"
-        description="Inline alerts with semantic bg tint. Top-of-page banner: yellow bg, black text."
+        title={t("banner.title")}
+        description={t("banner.description")}
         props={[
           {
             name: "type",
@@ -879,7 +884,7 @@ export const FeedbackSection = () => {
               <span className={a.color}>{a.icon}</span>
               <div className="flex-1">
                 <p className="text-sm text-card-foreground">
-                  {a.type} alert message. Persistent and dismissible.
+                  {t("banner.info_message", { type: a.type })}
                 </p>
               </div>
               <button className="text-muted-foreground/50 hover:text-foreground text-xs">
@@ -889,7 +894,7 @@ export const FeedbackSection = () => {
           ))}
           {/* Top banner */}
           <div className="bg-primary text-primary-foreground px-4 py-2.5 text-center font-display text-xs font-semibold tracking-[0.08em] uppercase flex items-center justify-center gap-4">
-            <span>◆ NEW VERSION AVAILABLE — UPDATE NOW</span>
+            <span>{t("banner.new_version")}</span>
             <button className="text-primary-foreground/70 hover:text-primary-foreground">
               ✕
             </button>
@@ -899,4 +904,4 @@ export const FeedbackSection = () => {
       <SignatureFeedbackSection />
     </>
   );
-};
+}

@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, useMemo } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { Terminal } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const GlitchText = ({
   text,
@@ -442,16 +443,17 @@ export const MiniRadar = ({
 };
 
 export const DataStreamMini = () => {
+  const { t } = useTranslation("home");
   const [lines, setLines] = useState<string[]>([]);
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const msgs = [
-      "[SYS] ENDFIELD protocol initialized",
-      "[NET] Latency: 12ms ◆ STABLE",
-      "[SEC] Auth verified — Level: ALPHA",
-      "[DAT] 94 design tokens loaded",
-      "[GPU] Render: 60fps locked",
-      "[SYS] 70+ modules online",
+      t("signature.log_0"),
+      t("signature.log_1"),
+      t("signature.log_2"),
+      t("signature.log_3"),
+      t("signature.log_4"),
+      t("signature.log_5"),
     ];
     let i = 0;
     const interval = setInterval(() => {
@@ -462,7 +464,7 @@ export const DataStreamMini = () => {
       i++;
     }, 1500);
     return () => clearInterval(interval);
-  }, []);
+  }, [t]);
   useEffect(() => {
     if (ref.current) ref.current.scrollTop = ref.current.scrollHeight;
   }, [lines]);
@@ -471,14 +473,16 @@ export const DataStreamMini = () => {
       <div className="flex items-center gap-2 px-3 py-1.5 border-b border-border bg-surface-0">
         <Terminal className="w-3 h-3 text-primary" />
         <span className="font-mono text-[9px] text-muted-foreground uppercase tracking-[0.1em]">
-          LIVE FEED
+          {t("signature.live_feed")}
         </span>
         <div className="ml-auto flex items-center gap-1">
           <div
             className="w-1.5 h-1.5 bg-ef-green animate-pulse"
             style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
           />
-          <span className="font-mono text-[9px] text-ef-green">ACTIVE</span>
+          <span className="font-mono text-[9px] text-ef-green">
+            {t("signature.active")}
+          </span>
         </div>
       </div>
       <div
@@ -619,7 +623,7 @@ export const HUDFrame = ({ children }: { children: React.ReactNode }) => {
             style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
           />
           <span className="font-mono text-[9px] text-ef-green/80">
-            LINK ACTIVE
+            {t("signature.link_active")}
           </span>
         </div>
         <div className="flex gap-4">

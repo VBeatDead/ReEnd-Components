@@ -1,16 +1,18 @@
+import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
 import { ArrowRight, Play } from "lucide-react";
 import SignatureContentSection from "./signature/SignatureContentSection";
 
-export const ContentMediaSection = () => {
+export function ContentMediaSection() {
+  const { t } = useTranslation("content");
   return (
     <>
       {/* Hero Section */}
       <ComponentPreview
         id="hero-section"
-        title="Hero / Landing Section"
+        title={t("hero.title")}
         showViewport
-        description="Min-height 100vh. Overline: Orbitron yellow pill. Heading: 56-72px uppercase."
+        description={t("hero.description")}
         props={[
           {
             name: "overline",
@@ -59,29 +61,34 @@ export const ContentMediaSection = () => {
             }}
           >
             <span className="font-ui text-[11px] tracking-[0.15em] uppercase text-primary border border-primary/40 bg-primary/[0.08] px-4 py-1 mb-6">
-              VERSION 2.0
+              {t("hero.version_badge")}
             </span>
             <h1 className="font-display text-4xl lg:text-6xl font-bold tracking-[0.04em] uppercase text-foreground mb-4 text-glow-yellow">
-              BUILD BEYOND
-              <br />
-              BOUNDARIES
+              {t("hero.heading")
+                .split("\n")
+                .map((line, i) => (
+                  <span key={i}>
+                    {i > 0 && <br />}
+                    {line}
+                  </span>
+                ))}
             </h1>
             <p className="text-lg text-muted-foreground max-w-lg mb-8">
-              Comprehensive design system for the frontier of web development.
+              {t("hero.subtitle")}
             </p>
             <div className="flex flex-wrap gap-4 w-full max-w-md justify-center">
               <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 sm:px-8 py-3.5 flex-1 min-w-[140px] hover:brightness-110 hover:shadow-[0_0_20px_hsl(47_100%_56%/0.3)] transition-all">
-                GET STARTED
+                {t("hero.get_started")}
               </button>
               <button className="clip-corner border border-foreground/25 text-card-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 sm:px-8 py-3.5 flex-1 min-w-[140px] hover:border-primary hover:text-primary transition-all bg-transparent">
-                VIEW DOCS
+                {t("hero.view_docs")}
               </button>
             </div>
             {/* Terminal box */}
             <div className="mt-10 bg-surface-1 border border-border p-4 text-left max-w-md w-full">
               <div className="flex items-center gap-2 mb-3">
                 <span className="font-ui text-[10px] text-muted-foreground uppercase tracking-widest">
-                  TERMINAL
+                  {t("hero.terminal_label")}
                 </span>
               </div>
               <div className="font-mono text-sm text-ef-green">
@@ -97,8 +104,8 @@ export const ContentMediaSection = () => {
       {/* Code Block */}
       <ComponentPreview
         id="code-block-terminal"
-        title="Code Block & Terminal"
-        description="JetBrains Mono 14px. Syntax highlighting. Copy button on hover. Terminal with blinking cursor."
+        title={t("code_block.title")}
+        description={t("code_block.description")}
         code={`/* Syntax Highlighting Colors */
 Keyword:   #FF79C6   String:    #F1FA8C
 Number:    #BD93F9   Comment:   #6272A4
@@ -183,7 +190,7 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
           <div className="border border-border bg-surface-1">
             <div className="px-4 py-2 border-b border-border">
               <span className="font-ui text-[10px] text-muted-foreground uppercase tracking-widest">
-                TERMINAL
+                {t("code_block.terminal_label")}
               </span>
             </div>
             <div className="p-4 font-mono text-sm">
@@ -191,8 +198,10 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
                 $ <span className="text-ef-green">endfield</span> init
                 my-project
               </p>
-              <p className="text-muted-foreground">Creating project...</p>
-              <p className="text-ef-green">✓ Project created successfully.</p>
+              <p className="text-muted-foreground">
+                {t("code_block.creating_project")}
+              </p>
+              <p className="text-ef-green">{t("code_block.project_created")}</p>
               <p className="text-muted-foreground">
                 ${" "}
                 <span className="inline-block w-2 h-4 bg-primary animate-cursor-blink" />
@@ -205,9 +214,9 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
       {/* Blog Layout */}
       <ComponentPreview
         id="blog-layout"
-        title="Blog / Content Layout"
+        title={t("blog.title")}
         showViewport
-        description="Content max-width 680px. Para spacing 24px. Blockquote: 3px left border yellow."
+        description={t("blog.description")}
         props={[
           {
             name: "title",
@@ -244,29 +253,31 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
         <div className="max-w-[680px] mx-auto">
           <div className="mb-6">
             <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-primary">
-              ENGINEERING
+              {t("blog.category")}
             </span>
             <span className="text-muted-foreground mx-2">·</span>
             <span className="font-mono text-[11px] text-muted-foreground">
               15.02.2026
             </span>
             <span className="text-muted-foreground mx-2">·</span>
-            <span className="text-xs text-muted-foreground">5 min read</span>
+            <span className="text-xs text-muted-foreground">
+              {t("blog.read_time")}
+            </span>
           </div>
           <h2 className="font-display text-2xl font-bold uppercase tracking-[0.02em] text-foreground mb-6">
-            BUILDING THE NEXT FRONTIER
+            {t("blog.blog_heading")}
           </h2>
           <p className="text-sm text-card-foreground leading-relaxed mb-6">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua.
           </p>
           <blockquote className="border-l-[3px] border-primary bg-primary/[0.03] px-5 py-4 mb-6 text-sm text-card-foreground italic">
-            "Design is not just what it looks like. Design is how it works."
+            {t("blog.blockquote")}
           </blockquote>
           <p className="text-sm text-card-foreground leading-relaxed mb-6">
             Ut enim ad minim veniam, quis nostrud exercitation. Read more about{" "}
             <a className="text-ef-blue hover:text-ef-blue-light underline">
-              advanced patterns
+              {t("blog.advanced_patterns")}
             </a>
             .
           </p>
@@ -277,8 +288,8 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
       {/* Image & Media */}
       <ComponentPreview
         id="image-media"
-        title="Image & Media"
-        description="Container overflow hidden. Border overlay. Hover: img scale(1.05). Caption: 12px italic."
+        title={t("image.title")}
+        description={t("image.description")}
         props={[
           {
             name: "src",
@@ -318,12 +329,12 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
           <div className="overflow-hidden bg-surface-1 border border-border group">
             <div className="aspect-video bg-gradient-to-br from-primary/10 to-ef-blue/10 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
               <span className="font-display text-lg text-muted-foreground">
-                16:9 IMAGE
+                {t("image.image_16_9")}
               </span>
             </div>
           </div>
           <p className="text-xs text-muted-foreground mt-2 italic">
-            Caption: Desaturated, cool-toned photography with dark overlay.
+            {t("image.caption_text")}
           </p>
         </div>
       </ComponentPreview>
@@ -331,8 +342,8 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
       {/* Video Player */}
       <ComponentPreview
         id="video-player"
-        title="Video Player"
-        description="Play button: diamond 64px. Progress: 3px track. Dark overlay when paused."
+        title={t("video.title")}
+        description={t("video.description")}
         props={[
           {
             name: "src",
@@ -380,8 +391,8 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
       {/* Dividers */}
       <ComponentPreview
         id="dividers"
-        title="Dividers & Decorative Lines"
-        description="Standard, tech glow, with label, corner brackets, diamond bullet."
+        title={t("dividers.title")}
+        description={t("dividers.description")}
         props={[
           {
             name: "variant",
@@ -400,25 +411,33 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
       >
         <div className="space-y-8">
           <div>
-            <p className="text-xs text-muted-foreground mb-2">Standard</p>
+            <p className="text-xs text-muted-foreground mb-2">
+              {t("dividers.standard")}
+            </p>
             <div className="border-t border-border" />
           </div>
           <div>
-            <p className="text-xs text-muted-foreground mb-2">Tech Glow</p>
+            <p className="text-xs text-muted-foreground mb-2">
+              {t("dividers.tech_glow")}
+            </p>
             <div className="gradient-line-h" />
           </div>
           <div>
-            <p className="text-xs text-muted-foreground mb-2">With Label</p>
+            <p className="text-xs text-muted-foreground mb-2">
+              {t("dividers.with_label")}
+            </p>
             <div className="flex items-center gap-4">
               <div className="flex-1 border-t border-border" />
               <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
-                SECTION
+                {t("dividers.section_label")}
               </span>
               <div className="flex-1 border-t border-border" />
             </div>
           </div>
           <div>
-            <p className="text-xs text-muted-foreground mb-2">Diamond Bullet</p>
+            <p className="text-xs text-muted-foreground mb-2">
+              {t("dividers.diamond_bullet")}
+            </p>
             <div className="flex items-center justify-center">
               <span className="text-primary text-xs">◆</span>
             </div>
@@ -429,8 +448,8 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
       {/* Scroll & Cursor */}
       <ComponentPreview
         id="scroll-cursor"
-        title="Scroll & Cursor"
-        description="Scrollbar 6px, thumb square. Scroll progress bar fixed top. Custom cursor optional."
+        title={t("scroll.title")}
+        description={t("scroll.description")}
         props={[
           {
             name: "showProgress",
@@ -451,7 +470,7 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
         <div className="space-y-4">
           <div>
             <p className="text-xs text-muted-foreground mb-2">
-              Scroll Progress Bar
+              {t("scroll.scroll_progress")}
             </p>
             <div className="h-0.5 bg-ef-dark-gray w-full">
               <div className="h-full bg-primary w-2/3" />
@@ -459,7 +478,7 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-2">
-              Custom Scrollbar (6px, square thumb)
+              {t("scroll.custom_scrollbar")}
             </p>
             <div
               className="h-32 overflow-y-auto bg-surface-1 border border-border p-4 text-sm text-muted-foreground"
@@ -467,8 +486,7 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
             >
               {Array.from({ length: 20 }, (_, i) => (
                 <p key={i} className="py-1">
-                  Line {i + 1}: Scroll content for testing custom scrollbar
-                  style.
+                  {t("scroll.scroll_line_text", { number: i + 1 })}
                 </p>
               ))}
             </div>
@@ -478,4 +496,4 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
       <SignatureContentSection />
     </>
   );
-};
+}

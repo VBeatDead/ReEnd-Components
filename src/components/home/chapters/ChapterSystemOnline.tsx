@@ -1,5 +1,7 @@
 import { motion, useTransform, type MotionValue } from "framer-motion";
 import { Box, Layers, Palette, Sparkles, Shield, Zap } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { type TFunction } from "i18next";
 import {
   ScrollPinSection,
   ParallaxDepth,
@@ -38,41 +40,19 @@ const philosophyWords = [
   "excellence.",
 ];
 
-const designPrinciples = [
-  {
-    icon: Shield,
-    title: "TACTICAL PRECISION",
-    subtitle: "Pixel-perfect components with zero visual noise",
-  },
-  {
-    icon: Zap,
-    title: "ZERO LATENCY",
-    subtitle: "60fps animations, lazy-loaded, tree-shakeable",
-  },
-  {
-    icon: Palette,
-    title: "DARK-FIRST",
-    subtitle: "94 design tokens, full light + dark theme support",
-  },
-  {
-    icon: Sparkles,
-    title: "MOTION SYSTEM",
-    subtitle: "8 scroll primitives, parallax, glitch, glow effects",
-  },
-  {
-    icon: Layers,
-    title: "COMPOSABLE",
-    subtitle: "Radix UI primitives, fully customizable via Tailwind",
-  },
-  {
-    icon: Box,
-    title: "PRODUCTION READY",
-    subtitle: "TypeScript-first, accessible, thoroughly tested",
-  },
-];
+const capabilityIcons = [Shield, Zap, Palette, Sparkles, Layers, Box];
+const capabilityKeys = [
+  "tactical",
+  "latency",
+  "dark",
+  "motion",
+  "composable",
+  "production",
+] as const;
 
 const ChapterSystemOnline = () => {
   const { prefersReducedMotion } = useStorytellingConfig();
+  const { t } = useTranslation("home");
 
   return (
     <ScrollPinSection height="400vh" mobileHeight="250vh" id="chapter-system">
@@ -80,7 +60,7 @@ const ChapterSystemOnline = () => {
         <section
           className="relative h-full flex items-center justify-center overflow-hidden"
           data-chapter
-          aria-label="Chapter 2: System Online"
+          aria-label={t("system_online.aria_label")}
         >
           {/* BG Layer */}
           <ParallaxDepth
@@ -99,16 +79,16 @@ const ChapterSystemOnline = () => {
               <ScrollFade progress={progress} from={0} to={0.06}>
                 <div className="text-center">
                   <span className="font-display text-[10px] font-bold tracking-[0.2em] uppercase text-primary">
-                    ◆ DIAGNOSTIC SCAN
+                    {t("system_online.diagnostic")}
                   </span>
                   <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-[0.05em] uppercase text-foreground mt-3">
-                    SYSTEM{" "}
+                    {t("system_online.system")}
                     <span className="text-primary text-glow-yellow">
-                      ONLINE
+                      {t("system_online.online")}
                     </span>
                   </h2>
                   <p className="font-mono text-[10px] text-muted-foreground/50 mt-2 tracking-[0.15em]">
-                    ALL SUBSYSTEMS OPERATIONAL — SCANNING CAPABILITIES
+                    {t("system_online.all_subsystems")}
                   </p>
                 </div>
               </ScrollFade>
@@ -120,28 +100,28 @@ const ChapterSystemOnline = () => {
                   <CounterReveal
                     progress={progress}
                     value={70}
-                    label="Components"
+                    label={t("system_online.counter_components")}
                     index={0}
                     suffix="+"
                   />
                   <CounterReveal
                     progress={progress}
                     value={11}
-                    label="Categories"
+                    label={t("system_online.counter_categories")}
                     index={1}
                     suffix=""
                   />
                   <CounterReveal
                     progress={progress}
                     value={94}
-                    label="Design Tokens"
+                    label={t("system_online.counter_tokens")}
                     index={2}
                     suffix=""
                   />
                   <CounterReveal
                     progress={progress}
                     value={8}
-                    label="Motion Systems"
+                    label={t("system_online.counter_motions")}
                     index={3}
                     suffix=""
                   />
@@ -155,7 +135,7 @@ const ChapterSystemOnline = () => {
               </div>
 
               {/* Design principles — HoloCards */}
-              <PrinciplesGrid progress={progress} />
+              <PrinciplesGrid progress={progress} t={t} />
 
               {/* Philosophy text */}
               <PhilosophyText
@@ -209,6 +189,7 @@ const CounterReveal = ({
 };
 
 const RadarReveal = ({ progress }: { progress: MotionValue<number> }) => {
+  const { t } = useTranslation("home");
   const opacity = useTransform(progress, [0.1, 0.2], [0, 1]);
   const scale = useTransform(progress, [0.1, 0.2], [0.8, 1]);
 
@@ -218,7 +199,7 @@ const RadarReveal = ({ progress }: { progress: MotionValue<number> }) => {
         <MiniRadar data={radarData} size={220} />
         <div className="absolute -bottom-6 left-1/2 -translate-x-1/2">
           <span className="font-mono text-[8px] text-muted-foreground/40 tracking-[0.15em] uppercase">
-            CAPABILITY INDEX
+            {t("system_online.capability_index")}
           </span>
         </div>
       </div>
@@ -227,16 +208,41 @@ const RadarReveal = ({ progress }: { progress: MotionValue<number> }) => {
 };
 
 const StatusPanel = ({ progress }: { progress: MotionValue<number> }) => {
+  const { t } = useTranslation("home");
   const opacity = useTransform(progress, [0.12, 0.22], [0, 1]);
   const x = useTransform(progress, [0.12, 0.22], [20, 0]);
 
   const statuses = [
-    { label: "THEME ENGINE", status: "ACTIVE", color: "text-ef-green" },
-    { label: "MOTION PIPELINE", status: "60 FPS", color: "text-ef-cyan" },
-    { label: "TYPE SAFETY", status: "STRICT", color: "text-ef-blue" },
-    { label: "ACCESSIBILITY", status: "WCAG 2.1", color: "text-ef-green" },
-    { label: "BUNDLE SIZE", status: "OPTIMAL", color: "text-primary" },
-    { label: "TREE SHAKING", status: "ENABLED", color: "text-ef-green" },
+    {
+      label: t("system_online.status_theme_label"),
+      status: t("system_online.status_theme_value"),
+      color: "text-ef-green",
+    },
+    {
+      label: t("system_online.status_motion_label"),
+      status: t("system_online.status_motion_value"),
+      color: "text-ef-cyan",
+    },
+    {
+      label: t("system_online.status_type_label"),
+      status: t("system_online.status_type_value"),
+      color: "text-ef-blue",
+    },
+    {
+      label: t("system_online.status_a11y_label"),
+      status: t("system_online.status_a11y_value"),
+      color: "text-ef-green",
+    },
+    {
+      label: t("system_online.status_bundle_label"),
+      status: t("system_online.status_bundle_value"),
+      color: "text-primary",
+    },
+    {
+      label: t("system_online.status_tree_label"),
+      status: t("system_online.status_tree_value"),
+      color: "text-ef-green",
+    },
   ];
 
   return (
@@ -252,7 +258,7 @@ const StatusPanel = ({ progress }: { progress: MotionValue<number> }) => {
           }}
         />
         <span className="font-mono text-[9px] text-muted-foreground/60 uppercase tracking-[0.1em]">
-          SUBSYSTEM STATUS
+          {t("system_online.subsystem_status")}
         </span>
       </div>
       <div className="p-3 space-y-2">
@@ -278,14 +284,26 @@ const StatusPanel = ({ progress }: { progress: MotionValue<number> }) => {
   );
 };
 
-const PrinciplesGrid = ({ progress }: { progress: MotionValue<number> }) => {
+const PrinciplesGrid = ({
+  progress,
+  t,
+}: {
+  progress: MotionValue<number>;
+  t: TFunction;
+}) => {
   const opacity = useTransform(progress, [0.28, 0.38], [0, 1]);
+
+  const designPrinciples = capabilityKeys.map((key, i) => ({
+    icon: capabilityIcons[i],
+    title: t(`system_online.capabilities.${key}_title`),
+    subtitle: t(`system_online.capabilities.${key}_desc`),
+  }));
 
   return (
     <motion.div style={{ opacity }}>
       <div className="text-center mb-6">
         <span className="font-mono text-[9px] text-muted-foreground/50 tracking-[0.2em] uppercase">
-          ◆ DESIGN PRINCIPLES ◆
+          {t("system_online.design_principles")}
         </span>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -302,7 +320,7 @@ const PrincipleCard = ({
   index,
   progress,
 }: {
-  principle: (typeof designPrinciples)[number];
+  principle: { icon: typeof Shield; title: string; subtitle: string };
   index: number;
   progress: MotionValue<number>;
 }) => {
@@ -328,18 +346,23 @@ const PhilosophyText = ({
   progress: MotionValue<number>;
   reduced: boolean;
 }) => {
+  const { t } = useTranslation("home");
+  const words = t("system_online.philosophy").split(/\s+/);
+  const highlights = t("system_online.philosophy_highlights").split(",");
+
   return (
     <div className="text-center max-w-2xl mx-auto">
       <div className="gradient-line-h mb-6" />
       <p className="font-body text-base sm:text-lg leading-relaxed">
-        {philosophyWords.map((word, i) => (
+        {words.map((word, i) => (
           <PhilosophyWord
             key={`${word}-${i}`}
             progress={progress}
             word={word}
             index={i}
-            total={philosophyWords.length}
+            total={words.length}
             reduced={reduced}
+            highlights={highlights}
           />
         ))}
       </p>
@@ -354,12 +377,14 @@ const PhilosophyWord = ({
   index,
   total,
   reduced,
+  highlights,
 }: {
   progress: MotionValue<number>;
   word: string;
   index: number;
   total: number;
   reduced: boolean;
+  highlights: string[];
 }) => {
   const start = 0.6 + (index / total) * 0.2;
   const end = start + 0.04;
@@ -368,12 +393,9 @@ const PhilosophyWord = ({
     [start, end],
     reduced ? [1, 1] : [0.15, 1],
   );
-  const isHighlight =
-    word.includes("precision") ||
-    word.includes("engineered") ||
-    word.includes("deliberate") ||
-    word.includes("operators") ||
-    word.includes("excellence");
+  const isHighlight = highlights.some((h) =>
+    word.toLowerCase().includes(h.toLowerCase()),
+  );
   const color = isHighlight ? "text-primary" : "text-muted-foreground";
 
   return (

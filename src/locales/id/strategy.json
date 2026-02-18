@@ -1,1 +1,199 @@
-{}
+{
+  "voice_tone": {
+    "title": "Suara & Nada",
+    "description": "Berwibawa, ringkas, teknis, tenang, berorientasi masa depan. Pengguna = 'Endministrator'.",
+    "headers": {
+      "context": "KONTEKS",
+      "tone": "NADA",
+      "example": "CONTOH"
+    },
+    "rows": {
+      "hero": {
+        "context": "Hero/Pemasaran",
+        "tone": "Inspiratif, berani",
+        "example": "\"BANGUN SITUS WEB LEBIH CEPAT.\""
+      },
+      "documentation": {
+        "context": "Dokumentasi",
+        "tone": "Jelas, instruktif",
+        "example": "\"Instal paket menggunakan npm.\""
+      },
+      "error": {
+        "context": "Error/Umpan Balik",
+        "tone": "Tenang, membantu",
+        "example": "\"Sinyal hilang. Periksa koneksi Anda.\""
+      },
+      "success": {
+        "context": "Berhasil",
+        "tone": "Menegaskan, minimal",
+        "example": "\"Operasi selesai.\""
+      },
+      "onboarding": {
+        "context": "Onboarding",
+        "tone": "Ramah",
+        "example": "\"Selamat datang kembali, Endministrator.\""
+      }
+    },
+    "terminology": "TERMINOLOGI",
+    "user_label": "\"Endministrator\"",
+    "system_label": "\"Endfield System\" / \"EF-SYS\"",
+    "operations_label": "\"Deploy\", \"Execute\", \"Initialize\", \"Scan\""
+  },
+  "microcopy": {
+    "title": "Panduan Mikrokopi",
+    "description": "Label tombol: tindakan spesifik. Navigasi: 1-2 kata huruf besar. Tanpa artikel.",
+    "headers": {
+      "action": "TINDAKAN",
+      "use": "✅ GUNAKAN",
+      "avoid": "❌ HINDARI"
+    },
+    "rows": {
+      "submit": {
+        "action": "Kirim",
+        "use": "KIRIM LAPORAN",
+        "avoid": "\"Kirim\""
+      },
+      "save": {
+        "action": "Simpan",
+        "use": "SIMPAN PERUBAHAN",
+        "avoid": "\"OK\""
+      },
+      "delete": {
+        "action": "Hapus",
+        "use": "HAPUS ITEM",
+        "avoid": "\"Hapus\""
+      },
+      "navigate": {
+        "action": "Navigasi",
+        "use": "LIHAT DETAIL",
+        "avoid": "\"Klik Di Sini\""
+      },
+      "create": {
+        "action": "Buat",
+        "use": "BUAT PROYEK",
+        "avoid": "\"Tambah\""
+      }
+    }
+  },
+  "placeholder": {
+    "title": "Standar Teks Placeholder",
+    "description": "Warna #666666. Tidak miring. Jangan pernah gunakan sebagai pengganti label.",
+    "fields": {
+      "email": {
+        "label": "EMAIL",
+        "placeholder": "endministrator@endfield.icu"
+      },
+      "username": {
+        "label": "NAMA PENGGUNA",
+        "placeholder": "Masukkan callsign Anda..."
+      },
+      "search": {
+        "label": "PENCARIAN",
+        "placeholder": "Cari dokumentasi..."
+      },
+      "url": {
+        "label": "URL",
+        "placeholder": "https://example.com"
+      },
+      "date": {
+        "label": "TANGGAL",
+        "placeholder": "YYYY.MM.DD"
+      }
+    }
+  },
+  "error_messages": {
+    "title": "Penulisan Pesan Error",
+    "description": "Nyatakan masalah, jelaskan solusi, jangan salahkan pengguna, spesifik, tetap dalam universe.",
+    "headers": {
+      "validation": "VALIDASI",
+      "message": "PESAN"
+    },
+    "rows": {
+      "required": {
+        "validation": "Wajib kosong",
+        "message": "[FIELD] wajib diisi."
+      },
+      "invalid_email": {
+        "validation": "Email tidak valid",
+        "message": "Masukkan alamat email yang valid."
+      },
+      "password_short": {
+        "validation": "Kata sandi pendek",
+        "message": "Kata sandi harus minimal 8 karakter."
+      },
+      "rate_limited": {
+        "validation": "Batas permintaan",
+        "message": "Terlalu banyak permintaan. Coba lagi dalam [X] detik."
+      },
+      "network_error": {
+        "validation": "Error jaringan",
+        "message": "Koneksi terputus. Periksa status jaringan Anda."
+      },
+      "server_error": {
+        "validation": "Error server",
+        "message": "Gangguan sistem. Tim kami telah diberitahu."
+      },
+      "permission_denied": {
+        "validation": "Akses ditolak",
+        "message": "Akses dibatasi. Tingkat izin tidak mencukupi."
+      }
+    }
+  },
+  "formatting": {
+    "title": "Format Tanggal, Waktu & Angka",
+    "description": "Font: Orbitron atau JetBrains Mono. Format konsisten.",
+    "date_formats": "FORMAT TANGGAL",
+    "number_formats": "FORMAT ANGKA",
+    "date": {
+      "full": {
+        "label": "Lengkap",
+        "value": "15 Feb 2026"
+      },
+      "compact": {
+        "label": "Ringkas",
+        "value": "2026.02.15"
+      },
+      "timestamp": {
+        "label": "Stempel waktu",
+        "value": "2026.02.15 / 14:32:07 UTC"
+      },
+      "relative": {
+        "label": "Relatif",
+        "value": "3 jam yang lalu"
+      }
+    },
+    "number": {
+      "count": {
+        "label": "Jumlah",
+        "value": "1.247"
+      },
+      "percentage": {
+        "label": "Persentase",
+        "value": "67%"
+      },
+      "version": {
+        "label": "Versi",
+        "value": "2.4.1"
+      },
+      "file_size": {
+        "label": "Ukuran file",
+        "value": "12,4 MB"
+      },
+      "error_code": {
+        "label": "Kode error",
+        "value": "EF-404-3B2C"
+      }
+    },
+    "relative_example": "3 jam yang lalu"
+  },
+  "truncation": {
+    "title": "Pemotongan & Overflow",
+    "description": "Elipsis baris tunggal, clamp multi-baris, break-word untuk string panjang.",
+    "single_line": "Baris tunggal (truncate)",
+    "multi_line": "Multi-baris (line-clamp-2)",
+    "break_word": "Pecah kata",
+    "sample_single": "Ini adalah teks yang sangat panjang yang akan dipotong dengan elipsis di akhir baris.",
+    "sample_multi": "Ini adalah teks yang sangat panjang yang mencakup beberapa baris. Akan di-clamp menjadi tepat 2 baris dengan elipsis. Konten tambahan akan disembunyikan.",
+    "sample_break": "superlongstringwithoutanyspaces_or_breaks_that_needs_to_be_broken_across_lines"
+  }
+}

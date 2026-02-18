@@ -1,1 +1,23 @@
-{}
+{
+  "system": {
+    "title": "Animation System",
+    "description": "Timing functions, durations, and key animation catalog."
+  },
+  "page_transitions": {
+    "title": "Page Transitions",
+    "description": "Cross-fade 300ms. View Transitions API.",
+    "cross_fade_text": "Cross-fade page transition using View Transitions API (300ms duration)."
+  },
+  "scroll_triggered": {
+    "title": "Scroll-Triggered Animations",
+    "description": "Default: fadeInUp at 10% visibility. Stagger: 100ms delay per sibling.",
+    "stagger_label": "STAGGER {{ms}}ms"
+  },
+  "particles": {
+    "title": "Particle & Ambient Effects",
+    "description": "Floating dots opacity 0.1-0.3, slow drift. Hero-section only. Canvas-based.",
+    "ambient_particles": "AMBIENT PARTICLES"
+  },
+  "live_animations": "LIVE ANIMATIONS",
+  "duration_scale": "DURATION SCALE"
+}

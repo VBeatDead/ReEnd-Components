@@ -1,1 +1,49 @@
-{}
+{
+  "command_palette": {
+    "title": "Palet Perintah / Pencarian Cepat",
+    "description": "Pemicu: ⌘K. Latar surface-2. Input 16px. Hasil dengan penanda diamond.",
+    "placeholder": "Ketik perintah...",
+    "recent": "TERBARU",
+    "dashboard": "Dasbor",
+    "components": "Komponen",
+    "settings": "Pengaturan",
+    "actions_label": "TINDAKAN",
+    "create_new": "Buat Halaman Baru",
+    "toggle_theme": "Ganti Tema"
+  },
+  "cookie_consent": {
+    "title": "Persetujuan Cookie",
+    "description": "Fixed bawah, latar surface-2, border atas. Terima Semua primary + Sesuaikan ghost.",
+    "consent_text": "Kami menggunakan cookie untuk meningkatkan pengalaman Anda. Dengan melanjutkan, Anda menyetujui kebijakan cookie kami.",
+    "customize": "SESUAIKAN",
+    "accept_all": "TERIMA SEMUA"
+  },
+  "back_to_top": {
+    "title": "Kembali ke Atas",
+    "description": "Fixed kanan bawah. Terlihat setelah scroll >300px. Gaya tombol ikon.",
+    "appears_text": "Muncul setelah scroll >300px",
+    "scroll_to_top": "Gulir ke atas"
+  },
+  "clipboard": {
+    "title": "Salin ke Clipboard",
+    "description": "Idle: Ikon salin. Klik: ✓ + 'Tersalin!' hijau. Reset 2 detik. Digunakan pada blok kode, URL.",
+    "copied": "Tersalin!"
+  },
+  "dropdown": {
+    "title": "Menu Dropdown",
+    "description": "Latar surface-2. Hover: tint kuning bg + teks. Bahaya: varian merah. Label bagian.",
+    "actions_label": "TINDAKAN",
+    "edit": "Sunting",
+    "duplicate": "Duplikat",
+    "archive": "Arsipkan",
+    "delete": "Hapus"
+  },
+  "context_menu": {
+    "title": "Menu Konteks",
+    "description": "Gaya sama dengan Dropdown. Pemicu klik kanan. Petunjuk pintasan keyboard.",
+    "cut": "Potong",
+    "copy": "Salin",
+    "paste": "Tempel",
+    "delete": "Hapus"
+  }
+}

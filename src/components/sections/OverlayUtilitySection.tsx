@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
 import {
   Search,
@@ -9,14 +10,15 @@ import {
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 
-export const OverlayUtilitySection = () => {
+export function OverlayUtilitySection() {
+  const { t } = useTranslation("overlay");
   return (
     <>
       {/* Command Palette */}
       <ComponentPreview
         id="command-palette"
-        title="Command Palette / Quick Search"
-        description="Trigger: ⌘K. Surface-2 bg. Input 16px. Results with diamond markers."
+        title={t("command_palette.title")}
+        description={t("command_palette.description")}
         props={[
           {
             name: "open",
@@ -80,7 +82,7 @@ export const OverlayUtilitySection = () => {
             <Search className="w-4 h-4 text-muted-foreground" />
             <input
               className="bg-transparent text-base text-card-foreground outline-none flex-1 placeholder:text-ef-gray-mid"
-              placeholder="Type a command..."
+              placeholder={t("command_palette.placeholder")}
               readOnly
             />
             <kbd className="font-mono text-[10px] bg-surface-3 px-1.5 py-0.5 border border-border text-muted-foreground">
@@ -89,9 +91,13 @@ export const OverlayUtilitySection = () => {
           </div>
           <div className="py-2">
             <p className="font-ui text-[10px] tracking-[0.12em] uppercase text-muted-foreground px-4 py-2">
-              RECENT
+              {t("command_palette.recent")}
             </p>
-            {["Dashboard", "Components", "Settings"].map((item, i) => (
+            {[
+              t("command_palette.dashboard"),
+              t("command_palette.components"),
+              t("command_palette.settings"),
+            ].map((item, i) => (
               <button
                 key={item}
                 className={`w-full text-left px-4 py-2 text-sm flex items-center gap-3 transition-colors ${i === 0 ? "bg-primary/[0.06] text-primary" : "text-muted-foreground hover:bg-primary/[0.06] hover:text-primary"}`}
@@ -101,9 +107,12 @@ export const OverlayUtilitySection = () => {
               </button>
             ))}
             <p className="font-ui text-[10px] tracking-[0.12em] uppercase text-muted-foreground px-4 py-2 mt-1">
-              ACTIONS
+              {t("command_palette.actions_label")}
             </p>
-            {["Create New Page", "Toggle Theme"].map((item) => (
+            {[
+              t("command_palette.create_new"),
+              t("command_palette.toggle_theme"),
+            ].map((item) => (
               <button
                 key={item}
                 className="w-full text-left px-4 py-2 text-sm flex items-center gap-3 text-muted-foreground hover:bg-primary/[0.06] hover:text-primary transition-colors"
@@ -119,9 +128,9 @@ export const OverlayUtilitySection = () => {
       {/* Cookie Consent */}
       <ComponentPreview
         id="cookie-consent"
-        title="Cookie Consent"
+        title={t("cookie_consent.title")}
         showViewport
-        description="Fixed bottom, surface-2 bg, border-top. Accept All primary + Customize ghost."
+        description={t("cookie_consent.description")}
         props={[
           {
             name: "onAccept",
@@ -145,15 +154,14 @@ export const OverlayUtilitySection = () => {
       >
         <div className="bg-surface-2 border-t border-border px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 mt-0">
           <p className="text-sm text-muted-foreground">
-            We use cookies to enhance your experience. By continuing, you agree
-            to our cookie policy.
+            {t("cookie_consent.consent_text")}
           </p>
           <div className="flex gap-3 shrink-0">
             <button className="text-muted-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-4 py-2 hover:text-foreground transition-colors bg-transparent">
-              CUSTOMIZE
+              {t("cookie_consent.customize")}
             </button>
             <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-2">
-              ACCEPT ALL
+              {t("cookie_consent.accept_all")}
             </button>
           </div>
         </div>
@@ -162,8 +170,8 @@ export const OverlayUtilitySection = () => {
       {/* Back to Top */}
       <ComponentPreview
         id="back-to-top"
-        title="Back to Top"
-        description="Fixed bottom-right. Visible after scroll >300px. Icon button style."
+        title={t("back_to_top.title")}
+        description={t("back_to_top.description")}
         props={[
           {
             name: "threshold",
@@ -184,12 +192,12 @@ export const OverlayUtilitySection = () => {
         <div className="flex items-center gap-4">
           <button
             className="bg-surface-2 border border-border p-3 text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
-            aria-label="Scroll to top"
+            aria-label={t("back_to_top.scroll_to_top")}
           >
             <ArrowUp className="w-5 h-5" />
           </button>
           <span className="text-xs text-muted-foreground">
-            Appears after scroll &gt;300px
+            {t("back_to_top.appears_text")}
           </span>
         </div>
       </ComponentPreview>
@@ -197,8 +205,8 @@ export const OverlayUtilitySection = () => {
       {/* Copy to Clipboard */}
       <ComponentPreview
         id="copy-clipboard"
-        title="Copy to Clipboard"
-        description="Idle: Copy icon. Click: ✓ + 'Copied!' green. Reset 2s. Used on code blocks, URLs."
+        title={t("clipboard.title")}
+        description={t("clipboard.description")}
         props={[
           {
             name: "text",
@@ -227,8 +235,8 @@ export const OverlayUtilitySection = () => {
       {/* Dropdown */}
       <ComponentPreview
         id="dropdown"
-        title="Dropdown Menu"
-        description="surface-2 bg. Hover: yellow bg tint + text. Danger: red variant. Section labels."
+        title={t("dropdown.title")}
+        description={t("dropdown.description")}
         props={[
           {
             name: "trigger",
@@ -260,9 +268,13 @@ export const OverlayUtilitySection = () => {
         <div className="max-w-[180px] bg-surface-2 border border-border shadow-[0_16px_48px_rgba(0,0,0,0.5)]">
           <div className="py-1">
             <p className="font-ui text-[10px] tracking-[0.12em] uppercase text-muted-foreground px-4 py-2">
-              ACTIONS
+              {t("dropdown.actions_label")}
             </p>
-            {["Edit", "Duplicate", "Archive"].map((item) => (
+            {[
+              t("dropdown.edit"),
+              t("dropdown.duplicate"),
+              t("dropdown.archive"),
+            ].map((item) => (
               <button
                 key={item}
                 className="w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-primary/[0.06] hover:text-primary transition-colors"
@@ -272,7 +284,7 @@ export const OverlayUtilitySection = () => {
             ))}
             <div className="border-t border-border my-1" />
             <button className="w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-ef-red/[0.06] hover:text-ef-red transition-colors">
-              Delete
+              {t("dropdown.delete")}
             </button>
           </div>
         </div>
@@ -281,8 +293,8 @@ export const OverlayUtilitySection = () => {
       {/* Context Menu */}
       <ComponentPreview
         id="context-menu"
-        title="Context Menu"
-        description="Same styling as Dropdown. Right-click trigger. Keyboard shortcut hints."
+        title={t("context_menu.title")}
+        description={t("context_menu.description")}
         props={[
           {
             name: "items",
@@ -303,9 +315,9 @@ export const OverlayUtilitySection = () => {
         <div className="max-w-[220px] bg-surface-2 border border-border shadow-[0_16px_48px_rgba(0,0,0,0.5)]">
           <div className="py-1">
             {[
-              { label: "Cut", key: "⌘X" },
-              { label: "Copy", key: "⌘C" },
-              { label: "Paste", key: "⌘V" },
+              { label: t("context_menu.cut"), key: "⌘X" },
+              { label: t("context_menu.copy"), key: "⌘C" },
+              { label: t("context_menu.paste"), key: "⌘V" },
             ].map((item) => (
               <button
                 key={item.label}
@@ -319,7 +331,7 @@ export const OverlayUtilitySection = () => {
             ))}
             <div className="border-t border-border my-1" />
             <button className="w-full text-left px-4 py-2 text-sm text-muted-foreground hover:bg-ef-red/[0.06] hover:text-ef-red transition-colors flex items-center justify-between">
-              <span>Delete</span>
+              <span>{t("context_menu.delete")}</span>
               <span className="font-mono text-[11px] text-ef-gray-mid">⌫</span>
             </button>
           </div>
@@ -327,9 +339,10 @@ export const OverlayUtilitySection = () => {
       </ComponentPreview>
     </>
   );
-};
+}
 
 const CopyClipboardDemo = () => {
+  const { t } = useTranslation("overlay");
   const [copied, setCopied] = useState(false);
   const copyTimer = useRef<ReturnType<typeof setTimeout>>();
   useEffect(() => () => clearTimeout(copyTimer.current), []);
@@ -355,7 +368,9 @@ const CopyClipboardDemo = () => {
         </button>
       </div>
       {copied && (
-        <span className="text-xs text-ef-green animate-fade-in">Copied!</span>
+        <span className="text-xs text-ef-green animate-fade-in">
+          {t("clipboard.copied")}
+        </span>
       )}
     </div>
   );

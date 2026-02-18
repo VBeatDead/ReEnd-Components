@@ -1,13 +1,16 @@
+import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
 
-export const AnimationSection = () => {
+export function AnimationSection() {
+  const { t } = useTranslation("animation");
+
   return (
     <>
       {/* Animation System */}
       <ComponentPreview
         id="animation-system"
-        title="Animation System"
-        description="Timing functions, durations, and key animation catalog."
+        title={t("system.title")}
+        description={t("system.description")}
         code={`/* Timing Functions */
 --ease-default: cubic-bezier(0.25, 0.8, 0.25, 1)${""};
 --ease-bounce:  cubic-bezier(0.68, -0.55, 0.27, 1.55)${""};
@@ -64,7 +67,7 @@ export const AnimationSection = () => {
         <div className="space-y-8">
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
-              LIVE ANIMATIONS
+              {t("live_animations")}
             </h4>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {[
@@ -95,7 +98,7 @@ export const AnimationSection = () => {
 
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
-              DURATION SCALE
+              {t("duration_scale")}
             </h4>
             <div className="space-y-2">
               {[
@@ -126,8 +129,8 @@ export const AnimationSection = () => {
       {/* Page Transitions */}
       <ComponentPreview
         id="page-transitions"
-        title="Page Transitions"
-        description="Cross-fade 300ms. View Transitions API."
+        title={t("page_transitions.title")}
+        description={t("page_transitions.description")}
         code={`::view-transition-old(root) { animation: fadeOut 0.2s ease forwards; }
 ::view-transition-new(root) { animation: fadeIn 0.3s ease forwards; }`}
         props={[
@@ -148,16 +151,15 @@ export const AnimationSection = () => {
         ]}
       >
         <p className="text-sm text-muted-foreground">
-          Cross-fade transisi antar halaman menggunakan View Transitions API
-          (300ms duration).
+          {t("page_transitions.cross_fade_text")}
         </p>
       </ComponentPreview>
 
       {/* Scroll Animations */}
       <ComponentPreview
         id="scroll-animations"
-        title="Scroll-Triggered Animations"
-        description="Default: fadeInUp at 10% visibility. Stagger: 100ms delay per sibling."
+        title={t("scroll_triggered.title")}
+        description={t("scroll_triggered.description")}
         props={[
           {
             name: "animation",
@@ -203,7 +205,7 @@ export const AnimationSection = () => {
                 {String(i).padStart(2, "0")}
               </span>
               <p className="font-display text-xs uppercase text-muted-foreground mt-2">
-                STAGGER {i * 100}ms
+                {t("scroll_triggered.stagger_label", { ms: i * 100 })}
               </p>
             </div>
           ))}
@@ -213,8 +215,8 @@ export const AnimationSection = () => {
       {/* Particle Effects */}
       <ComponentPreview
         id="particle-effects"
-        title="Particle & Ambient Effects"
-        description="Floating dots opacity 0.1-0.3, slow drift. Hero-section only. Canvas-based."
+        title={t("particles.title")}
+        description={t("particles.description")}
         props={[
           {
             name: "count",
@@ -262,10 +264,10 @@ export const AnimationSection = () => {
             />
           ))}
           <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground relative z-10">
-            AMBIENT PARTICLES
+            {t("particles.ambient_particles")}
           </span>
         </div>
       </ComponentPreview>
     </>
   );
-};
+}

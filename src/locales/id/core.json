@@ -1,1 +1,254 @@
-{}
+{
+  "buttons": {
+    "title": "Tombol",
+    "description": "Sudut terpotong clip-path, BUKAN border-radius. Huruf besar, letter-spacing, font Orbitron.",
+    "props": {
+      "variant": "Varian gaya visual tombol",
+      "size": "Mengontrol padding, font-size, dan min-height",
+      "disabled": "Menonaktifkan interaksi dan menerapkan gaya redup",
+      "loading": "Menampilkan pemuat berlian berputar dan menonaktifkan klik",
+      "icon": "Elemen ikon opsional yang ditampilkan sebelum label",
+      "onClick": "Callback penangan klik",
+      "children": "Konten label tombol"
+    },
+    "keyboard": {
+      "enter": "Mengaktifkan tombol yang difokuskan",
+      "space": "Mengaktifkan tombol yang difokuskan",
+      "tab": "Memindahkan fokus ke elemen berikutnya yang dapat difokuskan",
+      "shift_tab": "Memindahkan fokus ke elemen sebelumnya yang dapat difokuskan"
+    },
+    "api": {
+      "clip_corner": "Menerapkan poligon sudut terpotong khas Endfield melalui clip-path. Gunakan pada elemen persegi panjang apa pun.",
+      "hover_brightness_110": "Pencerahan hover standar untuk tombol primer. Padukan dengan shadow glow untuk efek penuh.",
+      "active_brightness_90": "Efek penggelapan saat ditekan untuk umpan balik taktil."
+    },
+    "playground": {
+      "label_text": "Teks Label",
+      "button_default": "TOMBOL"
+    },
+    "variants_heading": "VARIAN",
+    "sizes_heading": "UKURAN",
+    "states_heading": "STATUS",
+    "primary": "PRIMER",
+    "secondary": "SEKUNDER",
+    "ghost": "HANTU",
+    "danger": "BAHAYA",
+    "add_item": "Tambah item",
+    "link": "TAUTAN",
+    "default": "DEFAULT",
+    "hover": "HOVER",
+    "active": "AKTIF",
+    "focus": "FOKUS",
+    "disabled": "NONAKTIF",
+    "loading": "MEMUAT"
+  },
+  "cards": {
+    "title": "Kartu",
+    "description": "Elemen khas corner brackets. Hover: translateY(-4px), tint border kuning, bayangan.",
+    "props": {
+      "variant": "Varian tata letak dan tujuan kartu",
+      "selected": "Menampilkan status terpilih dengan sorotan border primer",
+      "disabled": "Mengurangi opasitas dan menonaktifkan event pointer",
+      "hoverable": "Mengaktifkan animasi angkat dan cahaya saat hover",
+      "onClick": "Membuat kartu dapat diklik dengan kursor pointer",
+      "children": "Konten isi kartu"
+    },
+    "api": {
+      "corner_brackets": "Menambahkan pseudo-element ::before dan ::after untuk membuat dekorasi corner bracket khas Endfield (24px, warna primer pada opasitas 0.4).",
+      "hover_translate_y": "Mengangkat kartu 4px saat hover untuk efek kedalaman. Kombinasikan dengan bayangan dan transisi warna border."
+    },
+    "playground": {
+      "title_label": "Judul",
+      "card_title_default": "JUDUL KARTU"
+    },
+    "overline": "OVERLINE",
+    "tactical": "TAKTIKAL",
+    "content_card": "KARTU KONTEN",
+    "content_card_desc": "Tata letak konten standar dengan slot media, overline, judul, dan teks isi.",
+    "feature_card": "KARTU FITUR",
+    "feature_card_desc": "Kartu dengan ikon di depan untuk fitur atau kapabilitas. Tanpa blok media.",
+    "uptime": "WAKTU AKTIF",
+    "stat_value": "99,9%",
+    "aspect_ratio": "16:9",
+    "playground_desc": "Teks deskripsi lorem ipsum dolor sit amet.",
+    "playground_feature_desc": "Teks deskripsi fitur dengan detail."
+  },
+  "forms": {
+    "title": "Formulir & Input",
+    "description": "Label: Orbitron 12px huruf besar. Fokus: border kuning + cincin cahaya. Error: border merah.",
+    "props": {
+      "label": "Label field yang ditampilkan dalam Orbitron huruf besar",
+      "type": "Jenis field input",
+      "placeholder": "Teks placeholder yang ditampilkan saat kosong",
+      "required": "Menampilkan tanda bintang merah dan mengaktifkan validasi",
+      "error": "Pesan error — memicu border merah dan cahaya",
+      "success": "Pesan sukses — memicu border hijau",
+      "helperText": "Teks petunjuk halus di bawah input",
+      "disabled": "Menonaktifkan input dengan gaya redup",
+      "value": "Nilai input terkontrol",
+      "onChange": "Penangan perubahan untuk input terkontrol"
+    },
+    "keyboard": {
+      "tab": "Memindahkan fokus ke field formulir berikutnya",
+      "shift_tab": "Memindahkan fokus ke field formulir sebelumnya",
+      "enter": "Mengirim formulir atau mengalihkan checkbox",
+      "space": "Mengalihkan checkbox/switch, membuka dropdown select",
+      "escape": "Menutup dropdown / membatalkan edit",
+      "arrow_up_down": "Menavigasi opsi dropdown select"
+    },
+    "api": {
+      "focus_border_primary": "Menerapkan border kuning saat fokus. Selalu padukan dengan focus:shadow glow ring untuk gaya fokus Endfield yang lengkap.",
+      "border_ef_red": "Border merah untuk error validasi. Kombinasikan dengan shadow-[0_0_0_3px_rgba(255,71,87,0.1)] untuk cahaya error."
+    },
+    "playground": {
+      "state_label": "Status",
+      "label_label": "Label",
+      "field_label_default": "LABEL FIELD",
+      "placeholder_default": "Masukkan nilai...",
+      "error_field": "✕ Field ini memiliki error.",
+      "success_field": "✓ Terlihat bagus!"
+    },
+    "email_address": "ALAMAT EMAIL",
+    "placeholder_email": "endministrator@endfield.icu",
+    "helper_text": "Teks bantuan untuk informasi tambahan",
+    "password": "KATA SANDI",
+    "password_placeholder": "••••••••",
+    "username": "NAMA PENGGUNA",
+    "username_value": "ab",
+    "error_username": "✕ Nama pengguna minimal harus 3 karakter.",
+    "callsign": "KODE PANGGIL",
+    "callsign_value": "Endministrator",
+    "success_callsign": "✓ Kode panggil tersedia.",
+    "message": "PESAN",
+    "optional": "(OPSIONAL)",
+    "placeholder_message": "Ketik pesan Anda di sini...",
+    "category": "KATEGORI",
+    "select_category": "Pilih kategori...",
+    "operations": "Operasi",
+    "engineering": "Teknik",
+    "research": "Riset",
+    "checkbox": "KOTAK CENTANG",
+    "option_a": "Opsi A",
+    "option_b": "Opsi B",
+    "radio_diamond": "RADIO (BERLIAN)",
+    "choice_a": "Pilihan A",
+    "choice_b": "Pilihan B",
+    "toggle": "SAKELAR",
+    "toggle_switch": "Sakelar toggle",
+    "search": "PENCARIAN",
+    "search_placeholder": "Cari dokumentasi...",
+    "keyboard_shortcut": "⌘K",
+    "error_field": "✕ Field ini memiliki error.",
+    "success_field": "✓ Terlihat bagus!"
+  },
+  "navigation": {
+    "header_title": "Navigasi — Header",
+    "header_description": "Tetap, backdrop blur, tinggi 64px. Link nav: Orbitron, huruf besar, indikator berlian pada yang aktif.",
+    "sidebar_title": "Navigasi — Sidebar (Docs)",
+    "sidebar_description": "Lebar 280px, tetap. Label bagian: Orbitron 11px huruf besar. Aktif: border kiri kuning.",
+    "tabs_title": "Navigasi — Tab",
+    "tabs_description": "Orbitron 13px, huruf besar. Aktif: teks kuning + border bawah kuning.",
+    "breadcrumb_title": "Navigasi — Breadcrumb",
+    "breadcrumb_description": "Item: Orbitron, 12px, huruf besar. Pemisah: ›. Saat ini: tanpa link, font-weight 600.",
+    "pagination_title": "Navigasi — Paginasi",
+    "pagination_description": "Penanda berlian. Font Orbitron. Aktif: latar kuning, teks hitam.",
+    "header_props": {
+      "logo": "Elemen logo atau tanda merek",
+      "navItems": "Item link navigasi",
+      "sticky": "Posisi tetap dengan backdrop blur",
+      "actions": "Tombol aksi di sisi kanan (pencarian, pengalih tema)"
+    },
+    "header_api": {
+      "useScrollDirection": "Hook untuk menyembunyikan header otomatis saat scroll ke bawah dan menampilkannya saat scroll ke atas."
+    },
+    "sidebar_props": {
+      "sections": "Bagian navigasi terkelompok dengan item",
+      "activeId": "ID item yang sedang aktif untuk penyorotan",
+      "onNavigate": "Callback saat item nav diklik",
+      "collapsible": "Mengizinkan bagian untuk dilipat/dibuka",
+      "width": "Lebar sidebar dalam piksel"
+    },
+    "tabs_props": {
+      "tabs": "Array definisi tab",
+      "activeIndex": "Indeks tab aktif terkontrol",
+      "onChange": "Callback saat tab berubah",
+      "variant": "Gaya visual indikator tab"
+    },
+    "tabs_keyboard": {
+      "arrow_lr": "Memindahkan fokus antar tab",
+      "enter_space": "Mengaktifkan tab yang difokuskan",
+      "home": "Memindahkan fokus ke tab pertama",
+      "end": "Memindahkan fokus ke tab terakhir"
+    },
+    "tabs_playground": {
+      "tab_count_label": "Jumlah Tab"
+    },
+    "breadcrumb_props": {
+      "items": "Item jalur breadcrumb, item terakhir adalah halaman saat ini",
+      "separator": "Elemen pemisah kustom antar item"
+    },
+    "pagination_props": {
+      "totalPages": "Jumlah total halaman",
+      "currentPage": "Halaman aktif saat ini (indeks mulai dari 1)",
+      "onPageChange": "Callback saat halaman diubah",
+      "siblingCount": "Jumlah halaman di sekitar halaman saat ini yang ditampilkan"
+    },
+    "brand_ef": "EF",
+    "brand_endfield": "ENDFIELD",
+    "home": "BERANDA",
+    "docs": "DOCS",
+    "blog": "BLOG",
+    "about": "TENTANG",
+    "open_menu": "Buka menu",
+    "getting_started": "MEMULAI",
+    "installation": "Instalasi",
+    "quick_start": "Mulai Cepat",
+    "configuration": "Konfigurasi",
+    "components": "KOMPONEN",
+    "button": "Tombol",
+    "card": "Kartu",
+    "input": "Input",
+    "tab_overview": "IKHTISAR",
+    "tab_usage": "PENGGUNAAN",
+    "tab_api": "API",
+    "tab_examples": "CONTOH",
+    "tab_changelog": "RIWAYAT PERUBAHAN",
+    "tab_faq": "FAQ",
+    "content_for_tab": "Konten untuk tab {{tab}}.",
+    "overview_content": "Konten panel tab untuk bagian Ikhtisar. Padding 24px 0.",
+    "usage_content": "Instruksi penggunaan dan panduan implementasi.",
+    "api_content": "Referensi API dan dokumentasi props.",
+    "examples_content": "Contoh kode dan demo langsung.",
+    "breadcrumb_home": "BERANDA",
+    "breadcrumb_docs": "DOCS",
+    "breadcrumb_components": "KOMPONEN",
+    "breadcrumb_buttons": "TOMBOL",
+    "prev": "SEBELUMNYA",
+    "next": "BERIKUTNYA"
+  },
+  "footer": {
+    "title": "Footer",
+    "description": "Latar kanvas, border-top. Grid 3 kolom. Judul kolom: Orbitron 12px huruf besar.",
+    "props": {
+      "columns": "Kolom link footer",
+      "copyright": "Teks hak cipta yang ditampilkan di bagian bawah",
+      "version": "Versi sistem yang ditampilkan di kanan bawah"
+    },
+    "product": "PRODUK",
+    "community": "KOMUNITAS",
+    "legal": "HUKUM",
+    "features": "Fitur",
+    "documentation": "Dokumentasi",
+    "changelog": "Riwayat Perubahan",
+    "roadmap": "Peta Jalan",
+    "discord": "Discord",
+    "github": "GitHub",
+    "twitter": "Twitter",
+    "blog": "Blog",
+    "privacy": "Privasi",
+    "terms": "Ketentuan",
+    "license": "Lisensi",
+    "copyright_text": "© 2026 Endfield Industries. Hak cipta dilindungi.",
+    "version_text": "EF-SYS v2.0.0"
+  }
+}

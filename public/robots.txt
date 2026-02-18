@@ -1,8 +1,12 @@
 User-agent: Googlebot
 Allow: /
+Allow: /en/
+Allow: /id/
 
 User-agent: Bingbot
 Allow: /
+Allow: /en/
+Allow: /id/
 
 User-agent: Twitterbot
 Allow: /
@@ -12,6 +16,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+Allow: /en/
+Allow: /id/
 Disallow: /api/
 
 Sitemap: https://reend-components.pages.dev/sitemap.xml

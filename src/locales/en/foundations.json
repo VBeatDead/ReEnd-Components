@@ -1,1 +1,177 @@
-{}
+{
+  "philosophy": {
+    "title": "Design Philosophy & Principles",
+    "description": "Arknights: Endfield embraces a Sci-Fi Industrial Futurism aesthetic — a blend of cold high-tech world with the frontier atmosphere of planet Talos-II.",
+    "cards": {
+      "dark_first": {
+        "title": "DARK-FIRST",
+        "desc": "Entire interface built on dark base, operational terminal feel"
+      },
+      "geometric": {
+        "title": "GEOMETRIC PRECISION",
+        "desc": "Sharp lines, firm angles (clip-path instead of border-radius)"
+      },
+      "utilitarian": {
+        "title": "UTILITARIAN ELEGANCE",
+        "desc": "Functional and technical yet elegant — mission control dashboard"
+      },
+      "glitch": {
+        "title": "GLITCH & TECH",
+        "desc": "Glitch effects, scanlines, noise as sci-fi decoration"
+      },
+      "contrast": {
+        "title": "HIGH CONTRAST",
+        "desc": "Light text on dark surfaces, accent colors for hierarchy"
+      }
+    },
+    "principles_heading": "◆ DESIGN PRINCIPLES",
+    "table_principle": "PRINCIPLE",
+    "table_description": "DESCRIPTION",
+    "principles": [
+      {
+        "name": "Function-First",
+        "desc": "Every visual element has a purpose"
+      },
+      {
+        "name": "Data Density",
+        "desc": "Dense yet organized information — HUD style"
+      },
+      {
+        "name": "Progressive Disclosure",
+        "desc": "Information revealed gradually, not all at once"
+      },
+      {
+        "name": "Immersive Consistency",
+        "desc": "All elements feel like they belong to the same 'world'"
+      },
+      {
+        "name": "Tactile Feedback",
+        "desc": "Every interaction has clear visual response"
+      },
+      {
+        "name": "Respectful Restraint",
+        "desc": "Animations and effects used sparingly"
+      }
+    ],
+    "do_heading": "✅ DO",
+    "dont_heading": "❌ DON'T",
+    "dos": [
+      "clip-path for clipped corners",
+      "Dark colors as base",
+      "Uppercase for headings & labels",
+      "Diamond ◆ as bullet/marker",
+      "Monospace for data/numbers",
+      "Thin semi-transparent borders",
+      "Subtle glow effect (opacity < 0.3)"
+    ],
+    "donts": [
+      "Large border-radius (rounded)",
+      "Light-mode as default",
+      "Uppercase for body text",
+      "Regular circle bullets",
+      "Monospace for body",
+      "Thick solid color borders",
+      "Excessive glow (neon)"
+    ]
+  },
+  "colors": {
+    "title": "Color System",
+    "description": "Primary palette based on grayscale with yellow accent as the main brand color.",
+    "primary_heading": "PRIMARY PALETTE (GRAYSCALE)",
+    "accent_heading": "ACCENT COLORS",
+    "gradients_heading": "GRADIENTS",
+    "names": {
+      "black": "Black",
+      "soft": "Soft",
+      "muted": "Muted",
+      "dark_gray": "Dark Gray",
+      "gray": "Gray",
+      "gray_mid": "Gray Mid",
+      "gray_light": "Gray Light",
+      "white_muted": "White Muted",
+      "white_soft": "White Soft",
+      "white": "White",
+      "pure_white": "Pure White",
+      "yellow": "Yellow",
+      "blue": "Blue",
+      "cyan": "Cyan",
+      "red": "Red",
+      "green": "Green",
+      "orange": "Orange",
+      "purple": "Purple"
+    },
+    "gradient_primary": "Primary Gradient: #FFD429 → #FFA502",
+    "gradient_line": "Line Gradient: transparent → #FFD429 → transparent",
+    "gradient_scanline": "Scanline Gradient",
+    "gradient_card_hover": "Card Hover Gradient"
+  },
+  "typography": {
+    "title": "Typography",
+    "description": "Font stack: Orbitron (display/UI), JetBrains Mono (code), Inter (body).",
+    "display_xl": "DISPLAY XL — 72px / 700 / UPPERCASE",
+    "h1": "H1 — 40px / 700 / UPPERCASE",
+    "h2": "H2 — 32px / 600 / UPPERCASE",
+    "h3": "H3 — 24px / 600 / UPPERCASE",
+    "h4": "H4 — 20px / 600 / UPPERCASE",
+    "body": "BODY — 16px / 400",
+    "body_sm": "BODY SM — 14px / 400",
+    "overline": "OVERLINE — 11px / 700 / 0.15em / UPPERCASE",
+    "code": "CODE — JetBrains Mono 14px",
+    "stat_number": "STAT NUMBER — Orbitron 48px / 700",
+    "body_sample": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "body_sm_sample": "Secondary body text for descriptions and metadata.",
+    "overline_sample": "OVERLINE TEXT",
+    "code_sample": "const endfield = \"Talos-II\";",
+    "text_colors_heading": "TEXT COLOR ASSIGNMENT",
+    "text_color_heading": "Heading",
+    "text_color_body": "Body",
+    "text_color_caption": "Caption",
+    "text_color_accent": "Accent",
+    "text_color_link": "Link",
+    "text_color_error": "Error",
+    "text_color_success": "Success",
+    "text_color_placeholder": "Placeholder",
+    "text_color_disabled": "Disabled"
+  },
+  "spacing": {
+    "title": "Spacing & Grid",
+    "description": "Base 4px spacing scale. Container max 1280px, 12-column grid."
+  },
+  "surfaces": {
+    "title": "Background & Surface",
+    "description": "Surface levels from Canvas to Active, with corner brackets as the Endfield signature element.",
+    "names": {
+      "canvas": "Canvas",
+      "surface_0": "Surface 0",
+      "surface_1": "Surface 1",
+      "surface_2": "Surface 2",
+      "surface_3": "Surface 3",
+      "hover": "Hover",
+      "active": "Active"
+    },
+    "decorations_heading": "BACKGROUND DECORATIONS",
+    "corner_brackets": "CORNER BRACKETS",
+    "scanline_overlay": "SCANLINE OVERLAY"
+  },
+  "icons": {
+    "title": "Iconography",
+    "description": "Outlined blueprint aesthetic. Stroke 1.5px at 24px, currentColor.",
+    "sizes_heading": "ICON SIZES",
+    "size_uses": {
+      "xs": "Inline",
+      "sm": "Button",
+      "md": "Nav",
+      "lg": "Feature",
+      "xl": "Empty state",
+      "xxl": "Hero"
+    }
+  },
+  "illustration": {
+    "title": "Illustration & Imagery Style",
+    "description": "Photography desaturated, cool-toned. Line art thin geometric, wireframe, blueprint style.",
+    "aspect_banner": "Banner",
+    "aspect_feature": "Feature",
+    "aspect_portrait": "Portrait",
+    "aspect_avatar": "Avatar"
+  }
+}

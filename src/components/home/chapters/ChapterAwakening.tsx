@@ -6,6 +6,8 @@ import {
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useLocalizedPath } from "@/hooks/useLocalizedPath";
 import { Particles } from "@/components/home/animations";
 import { GlitchText, TopoBg, TacticalBadge } from "@/components/home/signature";
 import {
@@ -18,6 +20,8 @@ const EASE = [0.25, 0.8, 0.25, 1] as const;
 
 const ChapterAwakening = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation("home");
+  const lp = useLocalizedPath();
   const { prefersReducedMotion } = useStorytellingConfig();
 
   return (
@@ -35,7 +39,7 @@ const ChapterAwakening = () => {
             <section
               className="relative h-full flex items-center justify-center overflow-hidden"
               data-chapter
-              aria-label="Chapter 1: The Awakening"
+              aria-label={t("awakening.aria_label")}
             >
               {/* BG Layer: TopoBg + gradient */}
               <ParallaxDepth
@@ -76,7 +80,7 @@ const ChapterAwakening = () => {
                   transition={{ duration: 0.5, delay: 0.1 }}
                 >
                   <TacticalBadge variant="success">
-                    SYSTEM INITIALIZED
+                    {t("awakening.system_init")}
                   </TacticalBadge>
                 </motion.div>
 
@@ -97,22 +101,26 @@ const ChapterAwakening = () => {
                   transition={{ duration: 0.8, delay: 0.5, ease: EASE }}
                 >
                   <p className="font-display text-3xl sm:text-5xl lg:text-7xl font-bold tracking-[0.06em] uppercase text-primary text-glow-yellow">
-                    COMPONENTS
+                    {t("awakening.components")}
                   </p>
                 </motion.div>
 
                 {/* Subtitle — Arknights themed */}
                 <DescriptionFade>
                   <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mt-4 font-body leading-relaxed tracking-wide">
-                    <span className="text-primary">◆</span> Sci-fi industrial
-                    design system inspired by Arknights: Endfield.{" "}
-                    <span className="text-foreground">70+ components</span>,
-                    battle-tested UI elements, and operator-grade aesthetics.
+                    <span className="text-primary">
+                      {t("awakening.description_accent")}
+                    </span>{" "}
+                    {t("awakening.description_text")}{" "}
+                    <span className="text-foreground">
+                      {t("awakening.description_highlight")}
+                    </span>
+                    {t("awakening.description_suffix")}
                   </p>
                 </DescriptionFade>
 
                 {/* CTA Buttons */}
-                <CTAButtons navigate={navigate} />
+                <CTAButtons navigate={navigate} lp={lp} t={t} />
 
                 {/* Tech stack — tactical style */}
                 <TechStack />
@@ -226,6 +234,7 @@ const HUDBottomBar = () => {
 };
 
 const InitSequence = ({ reduced }: { reduced: boolean }) => {
+  const { t } = useTranslation("home");
   return (
     <motion.div
       initial={reduced ? undefined : { opacity: 0, y: 10 }}
@@ -234,7 +243,7 @@ const InitSequence = ({ reduced }: { reduced: boolean }) => {
       className="mt-4"
     >
       <span className="font-mono text-[10px] text-muted-foreground/60 tracking-[0.25em] uppercase">
-        — ENDFIELD DESIGN PROTOCOL —
+        {t("awakening.protocol_label")}
       </span>
     </motion.div>
   );
@@ -248,18 +257,19 @@ const BootLog = ({
   reduced: boolean;
 }) => {
   const exitOpacity = useTransform(progress, [0.5, 0.7], [1, 0]);
+  const { t } = useTranslation("home");
   const [lines, setLines] = useState<string[]>([]);
 
   useEffect(() => {
     if (reduced) return;
     const msgs = [
-      "[SYS] Protocol boot sequence initiated",
-      "[AUTH] Operator clearance: VERIFIED",
-      "[LOAD] Design tokens: 94 loaded",
-      "[LOAD] Components: 70+ online",
-      "[GPU] Render pipeline: 60fps locked",
-      "[NET] Latency: 12ms ◆ STABLE",
-      "[SYS] All systems operational",
+      t("awakening.boot_log_0"),
+      t("awakening.boot_log_1"),
+      t("awakening.boot_log_2"),
+      t("awakening.boot_log_3"),
+      t("awakening.boot_log_4"),
+      t("awakening.boot_log_5"),
+      t("awakening.boot_log_6"),
     ];
     let i = 0;
     const interval = setInterval(() => {
@@ -270,7 +280,7 @@ const BootLog = ({
       i++;
     }, 2000);
     return () => clearInterval(interval);
-  }, [reduced]);
+  }, [reduced, t]);
 
   return (
     <motion.div
@@ -291,7 +301,7 @@ const BootLog = ({
               }}
             />
             <span className="font-mono text-[8px] text-muted-foreground/60 uppercase tracking-[0.1em]">
-              SYSTEM LOG
+              {t("awakening.system_log")}
             </span>
           </div>
           <div className="p-2 font-mono text-[10px] space-y-0.5 h-24 overflow-hidden">
@@ -386,8 +396,12 @@ const DescriptionFade = ({ children }: { children: React.ReactNode }) => {
 
 const CTAButtons = ({
   navigate,
+  lp,
+  t,
 }: {
   navigate: ReturnType<typeof useNavigate>;
+  lp: (path: string) => string;
+  t: (key: string) => string;
 }) => {
   return (
     <motion.div
@@ -397,10 +411,10 @@ const CTAButtons = ({
       className="flex flex-col sm:flex-row gap-4 justify-center mt-8"
     >
       <button
-        onClick={() => navigate("/docs")}
+        onClick={() => navigate(lp("/docs"))}
         className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.15em] uppercase px-8 py-4 hover:shadow-[0_0_30px_hsl(var(--primary)/0.4)] hover:brightness-110 hover:-translate-y-[1px] transition-all duration-300"
       >
-        EXPLORE DOCS ◆
+        {t("awakening.cta_docs")}
       </button>
       <button
         onClick={() =>
@@ -410,7 +424,7 @@ const CTAButtons = ({
         }
         className="clip-corner border border-border bg-surface-1 text-foreground font-display text-xs font-bold tracking-[0.15em] uppercase px-8 py-4 hover:border-primary/50 transition-colors duration-300"
       >
-        PREVIEW ARSENAL ↓
+        {t("awakening.cta_preview")}
       </button>
     </motion.div>
   );
@@ -455,6 +469,7 @@ const TechItem = ({
 };
 
 const ScrollIndicator = ({ progress }: { progress: MotionValue<number> }) => {
+  const { t } = useTranslation("home");
   const opacity = useTransform(progress, [0, 0.12], [1, 0]);
 
   return (
@@ -464,7 +479,7 @@ const ScrollIndicator = ({ progress }: { progress: MotionValue<number> }) => {
     >
       <div className="flex flex-col items-center gap-2">
         <span className="font-mono text-[8px] text-muted-foreground/40 tracking-[0.15em] uppercase">
-          Scroll to deploy
+          {t("awakening.scroll_to_deploy")}
         </span>
         <div className="w-5 h-8 border border-muted-foreground/30 rounded-full flex items-start justify-center p-1">
           <motion.div

@@ -1,1 +1,54 @@
-{}
+{
+  "hero": {
+    "title": "Hero / Landing Section",
+    "description": "Min-height 100vh. Overline: Orbitron yellow pill. Heading: 56-72px uppercase.",
+    "version_badge": "VERSION 2.0",
+    "heading": "BUILD BEYOND\nBOUNDARIES",
+    "subtitle": "Comprehensive design system for the frontier of web development.",
+    "get_started": "GET STARTED",
+    "view_docs": "VIEW DOCS",
+    "terminal_label": "TERMINAL"
+  },
+  "code_block": {
+    "title": "Code Block & Terminal",
+    "description": "JetBrains Mono 14px. Syntax highlighting. Copy button on hover. Terminal with blinking cursor.",
+    "terminal_label": "TERMINAL",
+    "creating_project": "Creating project...",
+    "project_created": "✓ Project created successfully."
+  },
+  "blog": {
+    "title": "Blog / Content Layout",
+    "description": "Content max-width 680px. Para spacing 24px. Blockquote: 3px left border yellow.",
+    "category": "ENGINEERING",
+    "read_time": "5 min read",
+    "blog_heading": "BUILDING THE NEXT FRONTIER",
+    "blockquote": "\"Design is not just what it looks like. Design is how it works.\"",
+    "advanced_patterns": "advanced patterns"
+  },
+  "image": {
+    "title": "Image & Media",
+    "description": "Container overflow hidden. Border overlay. Hover: img scale(1.05). Caption: 12px italic.",
+    "image_16_9": "16:9 IMAGE",
+    "caption_text": "Caption: Desaturated, cool-toned photography with dark overlay."
+  },
+  "video": {
+    "title": "Video Player",
+    "description": "Play button: diamond 64px. Progress: 3px track. Dark overlay when paused."
+  },
+  "dividers": {
+    "title": "Dividers & Decorative Lines",
+    "description": "Standard, tech glow, with label, corner brackets, diamond bullet.",
+    "standard": "Standard",
+    "tech_glow": "Tech Glow",
+    "with_label": "With Label",
+    "diamond_bullet": "Diamond Bullet",
+    "section_label": "SECTION"
+  },
+  "scroll": {
+    "title": "Scroll & Cursor",
+    "description": "Scrollbar 6px, thumb square. Scroll progress bar fixed top. Custom cursor optional.",
+    "scroll_progress": "Scroll Progress Bar",
+    "custom_scrollbar": "Custom Scrollbar (6px, square thumb)",
+    "scroll_line_text": "Line {{number}}: Scroll content for testing custom scrollbar style."
+  }
+}

@@ -1,1 +1,114 @@
-{}
+{
+  "getting_started": {
+    "title": "Getting Started",
+    "description": "Install ReEnd-Components into your React project in minutes. Available on npm as a public package.",
+    "prerequisites_heading": "◆ PREREQUISITES",
+    "prereq_react": "<strong>React 18+</strong> or React 19",
+    "prereq_node": "<strong>Node.js 18+</strong> recommended",
+    "prereq_tailwind": "<strong>Tailwind CSS 3.4+</strong> (optional — pre-built CSS available)",
+    "npm_package_heading": "◆ NPM PACKAGE",
+    "npm_link_text": "npmjs.com/package/reend-components ↗"
+  },
+  "step1": {
+    "title": "Step 1 — Install Package",
+    "description": "Install reend-components and its peer dependencies using your preferred package manager.",
+    "npm_heading": "◆ NPM",
+    "pnpm_heading": "◆ PNPM",
+    "yarn_heading": "◆ YARN",
+    "bun_heading": "◆ BUN",
+    "peer_deps_heading": "PEER DEPENDENCIES",
+    "peer_deps_note": "These must be installed in your project (most React projects already have them):",
+    "table_package": "PACKAGE",
+    "table_version": "VERSION",
+    "table_status": "STATUS",
+    "status_required": "Required",
+    "status_optional": "Optional"
+  },
+  "step2": {
+    "title": "Step 2 — Configure Tailwind CSS",
+    "description": "ReEnd ships a Tailwind preset with the Endfield design system tokens. Add it to your config for seamless integration.",
+    "config_heading": "◆ TAILWIND.CONFIG.TS",
+    "preset_includes_heading": "WHAT THE PRESET INCLUDES",
+    "preset_color_palette": "Endfield color palette (ef-yellow, ef-blue, ef-red, ef-green, etc.)",
+    "preset_semantic_tokens": "Semantic tokens (background, foreground, primary, muted, etc.)",
+    "preset_custom_fonts": "Custom fonts (Saira, Chakra Petch, JetBrains Mono)",
+    "preset_animations": "Animations (accordion, collapsible, fade-in/out, zoom, slide)",
+    "preset_dark_mode": "Dark mode support via class strategy"
+  },
+  "step3": {
+    "title": "Step 3 — Import Styles",
+    "description": "Import the CSS design tokens to get the Endfield visual language. Choose between CSS variables or the pre-built stylesheet.",
+    "option_a_heading": "◆ OPTION A — CSS VARIABLES (RECOMMENDED)",
+    "option_a_desc": "Import the variables file in your global CSS. Works with any styling solution.",
+    "option_b_heading": "◆ OPTION B — PRE-BUILT STYLESHEET",
+    "option_b_desc": "If you're <strong>not using Tailwind</strong>, import the pre-built CSS that includes all design tokens and base styles.",
+    "note_heading": "⚠ NOTE",
+    "note_desc": "All color values use <strong>HSL without the wrapper</strong>, enabling alpha channel support:"
+  },
+  "step4": {
+    "title": "Step 4 — Use Components",
+    "description": "Import and use ReEnd components in your React application. All components are tree-shakeable and fully typed.",
+    "tooltip_example_heading": "◆ TOOLTIP EXAMPLE",
+    "toast_heading": "◆ TOAST NOTIFICATION",
+    "sonner_heading": "◆ SONNER TOAST (ALTERNATIVE)"
+  },
+  "api_reference": {
+    "title": "API Reference",
+    "description": "Complete list of all exported components, utilities, and hooks available in reend-components.",
+    "table_export": "EXPORT",
+    "table_type": "TYPE",
+    "table_description": "DESCRIPTION",
+    "exports": {
+      "Tooltip": "Radix Tooltip root (controlled/uncontrolled)",
+      "TooltipTrigger": "Element that triggers the tooltip on hover/focus",
+      "TooltipContent": "Styled tooltip popup with animations",
+      "TooltipProvider": "Context provider for tooltip delay/skip settings",
+      "Toast": "Radix Toast notification with variant support",
+      "ToastAction": "Action button inside a toast",
+      "ToastClose": "Close button for dismissing toast",
+      "ToastTitle": "Title text within a toast notification",
+      "ToastDescription": "Description text within a toast",
+      "ToastProvider": "Context provider for Radix toast system",
+      "ToastViewport": "Fixed viewport container for toasts",
+      "Toaster": "Pre-configured toast container (renders all toasts)",
+      "SonnerToaster": "Sonner-based toast container with Endfield styling",
+      "toast": "Sonner toast trigger function",
+      "toastAction": "Radix toast dispatch (programmatic trigger)",
+      "useToast": "Returns { toasts, toast, dismiss } for Radix toasts",
+      "cn": "clsx + tailwind-merge class name helper"
+    },
+    "entry_points_heading": "◆ PACKAGE ENTRY POINTS"
+  },
+  "theming": {
+    "title": "Theming & Customization",
+    "description": "Override design tokens to match your brand while keeping the Endfield visual language.",
+    "override_heading": "◆ OVERRIDE CSS VARIABLES",
+    "dark_light_heading": "◆ DARK / LIGHT MODE",
+    "dark_light_desc": "Toggle <code>.light</code> class on your document root to switch modes. All tokens auto-update.",
+    "token_categories_heading": "AVAILABLE TOKEN CATEGORIES",
+    "tokens": {
+      "ef_yellow": "Primary brand accent",
+      "ef_blue": "Info / links",
+      "ef_red": "Destructive / error",
+      "ef_green": "Success / confirm",
+      "background": "Page background",
+      "foreground": "Primary text",
+      "primary": "Brand color (buttons, links)",
+      "muted": "Subdued backgrounds",
+      "border": "Edge/divider color",
+      "surface": "Elevation surfaces"
+    }
+  },
+  "full_example": {
+    "title": "Full Project Example",
+    "description": "A complete setup from scratch — new Vite + React project with ReEnd-Components integrated.",
+    "step1_heading": "◆ 1. CREATE PROJECT",
+    "step2_heading": "◆ 2. INSTALL DEPENDENCIES",
+    "step3_heading": "◆ 3. CONFIGURE TAILWIND",
+    "step4_heading": "◆ 4. SETUP CSS",
+    "step5_heading": "◆ 5. BUILD YOUR APP",
+    "step6_heading": "◆ 6. RUN",
+    "done": "✓ DONE",
+    "done_desc": "Your app is now running with the Endfield design system. All components, design tokens, and animations are available. Visit the component sections in the sidebar to explore more components and usage patterns."
+  }
+}

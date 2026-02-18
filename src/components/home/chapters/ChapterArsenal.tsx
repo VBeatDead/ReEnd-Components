@@ -6,6 +6,7 @@ import {
   useSpring,
   type MotionValue,
 } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import {
   HorizontalScrollSection,
   ScrollFade,
@@ -25,31 +26,31 @@ import { TerminalDemo } from "@/components/home/showcases/TerminalDemo";
 const panels = [
   {
     id: "buttons",
-    label: "BUTTONS",
+    labelKey: "buttons",
     tag: "clip-corner",
     Component: ButtonShowcase,
   },
   {
     id: "cards",
-    label: "CARDS",
+    labelKey: "cards",
     tag: "corner-brackets",
     Component: CardShowcase,
   },
   {
     id: "forms",
-    label: "FORMS & INPUT",
+    labelKey: "forms",
     tag: "focus-glow",
     Component: FormShowcase,
   },
   {
     id: "terminal",
-    label: "QUICK START",
+    labelKey: "quick_start",
     tag: "terminal",
     Component: TerminalDemo,
   },
   {
     id: "tokens",
-    label: "DESIGN TOKENS",
+    labelKey: "design_tokens",
     tag: "CSS properties",
     Component: ColorTokenShowcase,
   },
@@ -57,22 +58,25 @@ const panels = [
 
 const ChapterArsenal = () => {
   const { isMobile, enableTiltCard } = useStorytellingConfig();
+  const { t } = useTranslation("home");
 
   if (isMobile) {
     return (
       <section
         id="chapter-arsenal"
         data-chapter
-        aria-label="Chapter 3: Component Arsenal"
+        aria-label={t("arsenal.aria_label")}
         className="py-16 px-4"
       >
         <div className="text-center mb-10">
           <span className="font-display text-[10px] font-bold tracking-[0.2em] uppercase text-primary">
-            ◆ LIVE PREVIEW
+            {t("arsenal.live_preview")}
           </span>
           <h2 className="font-display text-2xl font-bold tracking-[0.05em] uppercase text-foreground mt-3">
-            COMPONENT{" "}
-            <span className="text-primary text-glow-yellow">ARSENAL</span>
+            {t("arsenal.component")}
+            <span className="text-primary text-glow-yellow">
+              {t("arsenal.arsenal_title")}
+            </span>
           </h2>
         </div>
         <div className="space-y-6">
@@ -81,7 +85,10 @@ const ChapterArsenal = () => {
               key={panel.id}
               className="border border-border bg-surface-1 p-5"
             >
-              <PanelHeader label={panel.label} tag={panel.tag} />
+              <PanelHeader
+                label={t(`arsenal.panels.${panel.labelKey}`)}
+                tag={panel.tag}
+              />
               <panel.Component />
             </div>
           ))}
@@ -94,6 +101,7 @@ const ChapterArsenal = () => {
 };
 
 const ArsenalDesktop = ({ enableTiltCard }: { enableTiltCard: boolean }) => {
+  const { t } = useTranslation("home");
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -125,7 +133,7 @@ const ArsenalDesktop = ({ enableTiltCard }: { enableTiltCard: boolean }) => {
       className="relative"
       style={{ height: "400vh" }}
       data-chapter
-      aria-label="Chapter 3: Component Arsenal"
+      aria-label={t("arsenal.aria_label")}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex flex-col">
         <motion.div
@@ -138,11 +146,13 @@ const ArsenalDesktop = ({ enableTiltCard }: { enableTiltCard: boolean }) => {
             className="text-center pt-8 pb-4 flex-shrink-0"
           >
             <span className="font-display text-[10px] font-bold tracking-[0.2em] uppercase text-primary">
-              ◆ LIVE PREVIEW
+              {t("arsenal.live_preview")}
             </span>
             <h2 className="font-display text-2xl sm:text-4xl font-bold tracking-[0.05em] uppercase text-foreground mt-2">
-              COMPONENT{" "}
-              <span className="text-primary text-glow-yellow">ARSENAL</span>
+              {t("arsenal.component")}
+              <span className="text-primary text-glow-yellow">
+                {t("arsenal.arsenal_title")}
+              </span>
             </h2>
           </motion.div>
 
@@ -164,6 +174,7 @@ const ArsenalDesktop = ({ enableTiltCard }: { enableTiltCard: boolean }) => {
                   index={i}
                   progress={smoothProgress}
                   enableTilt={enableTiltCard}
+                  t={t}
                 />
               ))}
             </motion.div>
@@ -178,7 +189,7 @@ const ArsenalDesktop = ({ enableTiltCard }: { enableTiltCard: boolean }) => {
               />
             </div>
             <p className="font-mono text-[9px] text-muted-foreground/50 text-center mt-2 tracking-[0.1em]">
-              SCROLL TO EXPLORE
+              {t("arsenal.scroll_explore")}
             </p>
           </div>
         </motion.div>
@@ -192,11 +203,13 @@ const PanelCard = ({
   index,
   progress,
   enableTilt,
+  t,
 }: {
   panel: (typeof panels)[number];
   index: number;
   progress: MotionValue<number>;
   enableTilt: boolean;
+  t: (key: string) => string;
 }) => {
   // Each panel occupies ~18% of the scroll range (0.08 to 0.92 = 0.84 total / 5 panels)
   const panelWidth = 0.84 / panels.length;
@@ -226,7 +239,10 @@ const PanelCard = ({
       className="flex-shrink-0 w-[75vw] max-w-[900px] h-full flex items-center"
     >
       <div className="border border-border bg-surface-1 p-6 sm:p-8 w-full max-h-[60vh] overflow-y-auto">
-        <PanelHeader label={panel.label} tag={panel.tag} />
+        <PanelHeader
+          label={t(`arsenal.panels.${panel.labelKey}`)}
+          tag={panel.tag}
+        />
         <panel.Component />
       </div>
     </motion.div>
@@ -238,7 +254,10 @@ const PanelCard = ({
         <div className="w-full">
           <motion.div style={{ scale, opacity }}>
             <div className="border border-border bg-surface-1 p-6 sm:p-8 w-full max-h-[60vh] overflow-y-auto">
-              <PanelHeader label={panel.label} tag={panel.tag} />
+              <PanelHeader
+                label={t(`arsenal.panels.${panel.labelKey}`)}
+                tag={panel.tag}
+              />
               <panel.Component />
             </div>
           </motion.div>

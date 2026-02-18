@@ -1,1 +1,54 @@
-{}
+{
+  "hero": {
+    "title": "Bagian Hero / Landing",
+    "description": "Min-height 100vh. Overline: pill kuning Orbitron. Heading: 56-72px huruf besar.",
+    "version_badge": "VERSI 2.0",
+    "heading": "BANGUN MELAMPAUI\nBATASAN",
+    "subtitle": "Sistem desain komprehensif untuk garis depan pengembangan web.",
+    "get_started": "MULAI SEKARANG",
+    "view_docs": "LIHAT DOKUMENTASI",
+    "terminal_label": "TERMINAL"
+  },
+  "code_block": {
+    "title": "Blok Kode & Terminal",
+    "description": "JetBrains Mono 14px. Pewarnaan sintaksis. Tombol salin saat hover. Terminal dengan kursor berkedip.",
+    "terminal_label": "TERMINAL",
+    "creating_project": "Membuat proyek...",
+    "project_created": "✓ Proyek berhasil dibuat."
+  },
+  "blog": {
+    "title": "Tata Letak Blog / Konten",
+    "description": "Lebar maksimum konten 680px. Jarak paragraf 24px. Blockquote: border kiri kuning 3px.",
+    "category": "REKAYASA",
+    "read_time": "5 menit baca",
+    "blog_heading": "MEMBANGUN GARIS DEPAN BERIKUTNYA",
+    "blockquote": "\"Desain bukan hanya tentang tampilan. Desain adalah tentang cara kerjanya.\"",
+    "advanced_patterns": "pola lanjutan"
+  },
+  "image": {
+    "title": "Gambar & Media",
+    "description": "Container overflow hidden. Border overlay. Hover: img scale(1.05). Caption: 12px italic.",
+    "image_16_9": "GAMBAR 16:9",
+    "caption_text": "Keterangan: Fotografi desaturasi, bernuansa dingin dengan overlay gelap."
+  },
+  "video": {
+    "title": "Pemutar Video",
+    "description": "Tombol putar: diamond 64px. Progress: track 3px. Overlay gelap saat dijeda."
+  },
+  "dividers": {
+    "title": "Pembatas & Garis Dekoratif",
+    "description": "Standar, tech glow, dengan label, bracket sudut, diamond bullet.",
+    "standard": "Standar",
+    "tech_glow": "Tech Glow",
+    "with_label": "Dengan Label",
+    "diamond_bullet": "Diamond Bullet",
+    "section_label": "BAGIAN"
+  },
+  "scroll": {
+    "title": "Scroll & Kursor",
+    "description": "Scrollbar 6px, thumb persegi. Progress bar scroll fixed atas. Kursor kustom opsional.",
+    "scroll_progress": "Bar Progres Scroll",
+    "custom_scrollbar": "Scrollbar Kustom (6px, thumb persegi)",
+    "scroll_line_text": "Baris {{number}}: Konten scroll untuk menguji gaya scrollbar kustom."
+  }
+}

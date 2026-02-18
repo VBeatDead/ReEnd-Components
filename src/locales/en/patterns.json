@@ -1,1 +1,130 @@
-{}
+{
+  "templates": {
+    "title": "Page Templates",
+    "description": "Homepage, Documentation, Blog List, Blog Post, and Error Page layouts.",
+    "homepage": "HOMEPAGE",
+    "documentation": "DOCUMENTATION",
+    "blog_list": "BLOG LIST",
+    "header": "Header",
+    "hero": "Hero 100vh",
+    "features": "Features 3-col",
+    "stats": "Stats 4-grid",
+    "cta": "CTA",
+    "footer": "Footer",
+    "sidebar": "Sidebar 280px",
+    "breadcrumb": "Breadcrumb",
+    "content": "Content 680px",
+    "toc": "TOC",
+    "title_block": "Title",
+    "filter": "Filter Tags",
+    "post_grid": "Post Grid 2-col",
+    "pagination": "Pagination"
+  },
+  "section_patterns": {
+    "title": "Section Patterns",
+    "description": "Overline section, alternating layout, feature grid, testimonial, CTA.",
+    "overline": "OVERLINE",
+    "heading": "SECTION HEADING",
+    "description_text": "Description of this section goes here.",
+    "view_all": "VIEW ALL →",
+    "feature_1": "FEATURE 1",
+    "feature_2": "FEATURE 2",
+    "feature_3": "FEATURE 3",
+    "description_text_short": "Description text."
+  },
+  "responsive": {
+    "title": "Responsive Breakpoints",
+    "description": "Mobile 480px, Tablet 768px, Laptop 1024px, Desktop 1280px, Wide 1536px.",
+    "headers": {
+      "element": "ELEMENT",
+      "below_768": "<768px",
+      "768_1024": "768-1024px",
+      "above_1024": ">1024px"
+    },
+    "rows": {
+      "container_pad": "Container pad",
+      "h1": "H1",
+      "card_grid": "Card grid",
+      "nav": "Nav",
+      "sidebar": "Sidebar",
+      "hero_height": "Hero height"
+    },
+    "values": {
+      "col_1": "1 col",
+      "col_2": "2 col",
+      "col_3": "3 col",
+      "hamburger": "Hamburger",
+      "inline": "Inline",
+      "overlay": "Overlay",
+      "fixed": "Fixed"
+    }
+  },
+  "accessibility": {
+    "title": "Accessibility",
+    "description": "Contrast ratios AAA. ARIA requirements. Skip navigation.",
+    "contrast_ratios": "CONTRAST RATIOS",
+    "aria_requirements": "ARIA REQUIREMENTS",
+    "modal": "Modal",
+    "modal_aria": "role=\"dialog\", aria-modal",
+    "tab": "Tab",
+    "tab_aria": "role=\"tablist\", aria-selected",
+    "accordion": "Accordion",
+    "accordion_aria": "aria-expanded, aria-controls",
+    "toast": "Toast",
+    "toast_aria": "role=\"alert\", aria-live",
+    "icon_button": "Icon button",
+    "icon_button_aria": "aria-label (always)",
+    "loading": "Loading",
+    "loading_aria": "aria-busy, aria-live"
+  },
+  "performance": {
+    "title": "Performance Guidelines",
+    "description": "Images: WebP, lazy loading. Fonts: font-display swap, WOFF2. GPU animations.",
+    "images": {
+      "title": "IMAGES",
+      "webp_fallback": "WebP + JPEG fallback",
+      "lazy_loading": "loading=\"lazy\"",
+      "srcset": "srcset responsive",
+      "max_display": "Max 2× display"
+    },
+    "fonts": {
+      "title": "FONTS",
+      "font_display": "font-display: swap",
+      "woff2": "WOFF2 format",
+      "critical_first": "Critical fonts first",
+      "subset_cjk": "Subset for CJK"
+    },
+    "css": {
+      "title": "CSS",
+      "critical_inline": "Critical CSS inline",
+      "clip_path_gpu": "clip-path GPU accelerated",
+      "contain": "contain: layout paint",
+      "non_critical": "Non-critical deferred"
+    },
+    "animation": {
+      "title": "ANIMATION",
+      "transform_opacity": "transform + opacity only",
+      "avoid_layout": "Avoid width/height/top/left",
+      "will_change": "will-change sparingly",
+      "reduced_motion": "prefers-reduced-motion"
+    }
+  },
+  "tokens": {
+    "title": "Design Tokens (Complete)",
+    "description": "Complete CSS variables reference — colors, surfaces, typography, spacing, shadows, transitions, z-index.",
+    "reference_text": "See the code block below for the complete reference of all design tokens."
+  },
+  "naming": {
+    "title": "Naming Conventions",
+    "description": "BEM-inspired CSS class naming. Color token naming convention.",
+    "file_structure": "FILE STRUCTURE",
+    "arrow_ui": "→ Button, Input, Tag, Badge, Avatar",
+    "arrow_layout": "→ Header, Footer, Sidebar",
+    "arrow_content": "→ Card, CodeBlock, Timeline",
+    "arrow_feedback": "→ Toast, Modal, Alert",
+    "arrow_navigation": "→ Tabs, Breadcrumb, Pagination",
+    "arrow_tokens": "→ Design tokens",
+    "arrow_base": "→ Reset, typography",
+    "arrow_animations": "→ Keyframes"
+  }
+}

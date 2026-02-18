@@ -1,1 +1,130 @@
-{}
+{
+  "templates": {
+    "title": "Template Halaman",
+    "description": "Tata letak Beranda, Dokumentasi, Daftar Blog, Posting Blog, dan Halaman Error.",
+    "homepage": "BERANDA",
+    "documentation": "DOKUMENTASI",
+    "blog_list": "DAFTAR BLOG",
+    "header": "Header",
+    "hero": "Hero 100vh",
+    "features": "Fitur 3-kolom",
+    "stats": "Statistik 4-grid",
+    "cta": "CTA",
+    "footer": "Footer",
+    "sidebar": "Sidebar 280px",
+    "breadcrumb": "Breadcrumb",
+    "content": "Konten 680px",
+    "toc": "TOC",
+    "title_block": "Judul",
+    "filter": "Filter Tag",
+    "post_grid": "Grid Posting 2-kolom",
+    "pagination": "Paginasi"
+  },
+  "section_patterns": {
+    "title": "Pola Bagian",
+    "description": "Bagian overline, tata letak bergantian, grid fitur, testimonial, CTA.",
+    "overline": "OVERLINE",
+    "heading": "JUDUL BAGIAN",
+    "description_text": "Deskripsi bagian ini ditaruh di sini.",
+    "view_all": "LIHAT SEMUA →",
+    "feature_1": "FITUR 1",
+    "feature_2": "FITUR 2",
+    "feature_3": "FITUR 3",
+    "description_text_short": "Teks deskripsi."
+  },
+  "responsive": {
+    "title": "Breakpoint Responsif",
+    "description": "Mobile 480px, Tablet 768px, Laptop 1024px, Desktop 1280px, Wide 1536px.",
+    "headers": {
+      "element": "ELEMEN",
+      "below_768": "<768px",
+      "768_1024": "768-1024px",
+      "above_1024": ">1024px"
+    },
+    "rows": {
+      "container_pad": "Padding kontainer",
+      "h1": "H1",
+      "card_grid": "Grid kartu",
+      "nav": "Navigasi",
+      "sidebar": "Sidebar",
+      "hero_height": "Tinggi hero"
+    },
+    "values": {
+      "col_1": "1 kolom",
+      "col_2": "2 kolom",
+      "col_3": "3 kolom",
+      "hamburger": "Hamburger",
+      "inline": "Inline",
+      "overlay": "Overlay",
+      "fixed": "Tetap"
+    }
+  },
+  "accessibility": {
+    "title": "Aksesibilitas",
+    "description": "Rasio kontras AAA. Persyaratan ARIA. Navigasi lewati.",
+    "contrast_ratios": "RASIO KONTRAS",
+    "aria_requirements": "PERSYARATAN ARIA",
+    "modal": "Modal",
+    "modal_aria": "role=\"dialog\", aria-modal",
+    "tab": "Tab",
+    "tab_aria": "role=\"tablist\", aria-selected",
+    "accordion": "Accordion",
+    "accordion_aria": "aria-expanded, aria-controls",
+    "toast": "Toast",
+    "toast_aria": "role=\"alert\", aria-live",
+    "icon_button": "Tombol ikon",
+    "icon_button_aria": "aria-label (selalu)",
+    "loading": "Memuat",
+    "loading_aria": "aria-busy, aria-live"
+  },
+  "performance": {
+    "title": "Pedoman Performa",
+    "description": "Gambar: WebP, lazy loading. Font: font-display swap, WOFF2. Animasi GPU.",
+    "images": {
+      "title": "GAMBAR",
+      "webp_fallback": "WebP + fallback JPEG",
+      "lazy_loading": "loading=\"lazy\"",
+      "srcset": "srcset responsif",
+      "max_display": "Maks 2× tampilan"
+    },
+    "fonts": {
+      "title": "FONT",
+      "font_display": "font-display: swap",
+      "woff2": "Format WOFF2",
+      "critical_first": "Font kritis terlebih dahulu",
+      "subset_cjk": "Subset untuk CJK"
+    },
+    "css": {
+      "title": "CSS",
+      "critical_inline": "CSS kritis inline",
+      "clip_path_gpu": "clip-path akselerasi GPU",
+      "contain": "contain: layout paint",
+      "non_critical": "Non-kritis ditunda"
+    },
+    "animation": {
+      "title": "ANIMASI",
+      "transform_opacity": "Hanya transform + opacity",
+      "avoid_layout": "Hindari width/height/top/left",
+      "will_change": "will-change secukupnya",
+      "reduced_motion": "prefers-reduced-motion"
+    }
+  },
+  "tokens": {
+    "title": "Design Token (Lengkap)",
+    "description": "Referensi lengkap variabel CSS — warna, permukaan, tipografi, spasi, bayangan, transisi, z-index.",
+    "reference_text": "Lihat blok kode di bawah untuk referensi lengkap semua design token."
+  },
+  "naming": {
+    "title": "Konvensi Penamaan",
+    "description": "Penamaan kelas CSS terinspirasi BEM. Konvensi penamaan token warna.",
+    "file_structure": "STRUKTUR FILE",
+    "arrow_ui": "→ Button, Input, Tag, Badge, Avatar",
+    "arrow_layout": "→ Header, Footer, Sidebar",
+    "arrow_content": "→ Card, CodeBlock, Timeline",
+    "arrow_feedback": "→ Toast, Modal, Alert",
+    "arrow_navigation": "→ Tabs, Breadcrumb, Pagination",
+    "arrow_tokens": "→ Design token",
+    "arrow_base": "→ Reset, tipografi",
+    "arrow_animations": "→ Keyframe"
+  }
+}

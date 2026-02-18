@@ -1,1 +1,94 @@
-{}
+{
+  "states_matrix": {
+    "title": "Interactive States Matrix",
+    "description": "Comprehensive mapping of all interactive states across components.",
+    "headers": {
+      "element": "ELEMENT",
+      "default": "DEFAULT",
+      "hover": "HOVER",
+      "active": "ACTIVE",
+      "focus": "FOCUS",
+      "disabled": "DISABLED"
+    },
+    "rows": {
+      "button": "Button",
+      "input": "Input",
+      "card": "Card",
+      "link": "Link",
+      "nav_item": "Nav item",
+      "tab": "Tab"
+    }
+  },
+  "micro_interactions": {
+    "title": "Micro-Interactions & Feedback",
+    "description": "Click ripple, copy feedback, toggle animation, accordion expand.",
+    "click_me": "CLICK ME",
+    "ripple_effect": "Ripple effect",
+    "favorite": "Favorite",
+    "copied": "Copied!",
+    "copy": "Copy",
+    "copy_feedback": "Copy feedback"
+  },
+  "hover_effects": {
+    "title": "Hover Effects Catalog",
+    "description": "Card lift, button glow, image scale, nav color change, table row tint.",
+    "headers": {
+      "element": "ELEMENT",
+      "effect": "EFFECT"
+    },
+    "rows": {
+      "card": "Card",
+      "card_effect": "translateY(-4px) + shadow + yellow border tint",
+      "button_primary": "Button Primary",
+      "button_primary_effect": "translateY(-1px) + lighter bg + glow shadow",
+      "button_secondary": "Button Secondary",
+      "button_secondary_effect": "Border → yellow, text → yellow",
+      "image": "Image",
+      "image_effect": "scale(1.05) smooth ease",
+      "nav_link": "Nav link",
+      "nav_link_effect": "Color → yellow, diamond indicator",
+      "table_row": "Table row",
+      "table_row_effect": "Yellow bg tint 0.03",
+      "code_block": "Code block",
+      "code_block_effect": "Copy button appears (fade in)",
+      "avatar": "Avatar",
+      "avatar_effect": "Subtle glow ring"
+    }
+  },
+  "focus_keyboard": {
+    "title": "Focus & Keyboard Navigation",
+    "description": "Focus ring: 2px solid #FFD429, offset 2px. Keyboard shortcuts table.",
+    "focus_state": "FOCUS STATE",
+    "shortcuts": {
+      "tab": "Tab",
+      "tab_desc": "Navigate forward",
+      "enter": "Enter / Space",
+      "enter_desc": "Activate",
+      "escape": "Escape",
+      "escape_desc": "Close overlay",
+      "cmd_k": "⌘K",
+      "cmd_k_desc": "Command palette",
+      "arrows": "Arrow keys",
+      "arrows_desc": "Navigate menus",
+      "home_end": "Home / End",
+      "home_end_desc": "First/last item"
+    }
+  },
+  "drag_drop": {
+    "title": "Drag & Drop",
+    "description": "Draggable: cursor grab. Drop zone: dashed border, yellow active state.",
+    "drag_me": "⠿ Drag me",
+    "drop_zone": "Drop zone",
+    "active_zone": "Active zone"
+  },
+  "selection": {
+    "title": "Selection & Multi-Select",
+    "description": "Selected: yellow border + bg tint. Floating action bar for multi-select.",
+    "option_a": "Option A",
+    "option_b": "Option B",
+    "option_c": "Option C",
+    "selected_count": "3 selected",
+    "delete_btn": "DELETE",
+    "export_btn": "EXPORT"
+  }
+}

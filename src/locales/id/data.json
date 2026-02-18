@@ -1,1 +1,115 @@
-{}
+{
+  "table": {
+    "title": "Tabel (Tabel Data)",
+    "description": "Header: Orbitron 11px huruf besar lengket. Baris bergaris. Hover: warna kuning.",
+    "headers": {
+      "operator": "OPERATOR",
+      "class": "KELAS",
+      "rarity": "RARITAS",
+      "status": "STATUS"
+    },
+    "status_labels": {
+      "active": "Aktif",
+      "deployed": "Ditempatkan",
+      "standby": "Siaga"
+    },
+    "showing_pagination": "Menampilkan 1-5 dari 124"
+  },
+  "list": {
+    "title": "Daftar & Item Daftar",
+    "description": "Peluru berlian ◆ #FFD429. Bernomor: Orbitron, penghitung awalan nol.",
+    "diamond_bullet": "PELURU BERLIAN",
+    "numbered": "BERNOMOR",
+    "key_value": "KUNCI-NILAI",
+    "diamond_items": ["Pengintaian", "Penempatan", "Ekstraksi", "Analisis"],
+    "numbered_items": [
+      "Inisialisasi Sistem",
+      "Konfigurasi Modul",
+      "Terapkan Aset",
+      "Pantau Keluaran"
+    ],
+    "kv_pairs": {
+      "version": { "key": "VERSI", "value": "2.4.1" },
+      "status": { "key": "STATUS", "value": "Operasional" },
+      "uptime": { "key": "WAKTU AKTIF", "value": "99.97%" }
+    }
+  },
+  "stats": {
+    "title": "Statistik & Tampilan Metrik",
+    "description": "Nilai: Orbitron 48px tebal kuning. Label: Orbitron 11px huruf besar abu-abu. Tren: ▲/▼.",
+    "labels": {
+      "total_ops": "TOTAL OPERASI",
+      "active_units": "UNIT AKTIF",
+      "error_rate": "TINGKAT ERROR",
+      "uptime": "WAKTU AKTIF"
+    }
+  },
+  "timeline": {
+    "title": "Linimasa",
+    "description": "Garis vertikal 1px. Node: ◆ saat ini kuning, ◇ lampau abu-abu. Tanggal: Orbitron 11px.",
+    "entries": {
+      "system_update": {
+        "date": "2026.02.15",
+        "title": "PEMBARUAN SISTEM V2.0",
+        "desc": "Desain ulang besar telah diterapkan."
+      },
+      "beta_testing": {
+        "date": "2026.01.28",
+        "title": "UJI COBA BETA",
+        "desc": "Pustaka komponen beta dirilis."
+      },
+      "project_kickoff": {
+        "date": "2025.12.10",
+        "title": "AWAL PROYEK",
+        "desc": "Sistem desain awal dibuat."
+      }
+    }
+  },
+  "accordion": {
+    "title": "Akordeon / Dapat Dilipat",
+    "description": "Indikator: +/− kuning (JetBrains Mono). BUKAN chevron. Konten meluncur ke bawah.",
+    "questions": {
+      "what_is_endfield": "APA ITU ENDFIELD?",
+      "how_to_install": "CARA INSTALASI?",
+      "is_production_ready": "APAKAH SIAP PRODUKSI?"
+    },
+    "answer_placeholder": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+  },
+  "avatar": {
+    "title": "Avatar & Profil",
+    "description": "Bentuk: Persegi dengan sudut terpotong (clip-path) — BUKAN lingkaran. Status: bentuk berlian."
+  },
+  "tags": {
+    "title": "Tag, Lencana & Label",
+    "description": "Font tag: Orbitron 10px, huruf besar. Lencana berbentuk berlian. Warna semantik.",
+    "labels": {
+      "default": "BAWAAN",
+      "primary": "UTAMA",
+      "info": "INFO",
+      "success": "SUKSES",
+      "warning": "PERINGATAN",
+      "danger": "BAHAYA",
+      "rare": "LANGKA"
+    },
+    "removable": "DAPAT DIHAPUS",
+    "badge_count": "JUMLAH LENCANA:",
+    "status": {
+      "online": "Daring",
+      "offline": "Luring",
+      "busy": "Sibuk"
+    }
+  },
+  "progress": {
+    "title": "Progres & Stepper",
+    "description": "Bilah progres: trek 4px. Stepper: Node berlian, garis penghubung.",
+    "deployment": "PENERAPAN",
+    "danger": "BAHAYA",
+    "stepper": "STEPPER",
+    "step_labels": ["Langkah 1", "Langkah 2", "Langkah 3", "Langkah 4"],
+    "step_states": {
+      "complete": "Selesai",
+      "current": "Saat Ini",
+      "upcoming": "Mendatang"
+    }
+  }
+}

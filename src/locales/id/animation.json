@@ -1,1 +1,23 @@
-{}
+{
+  "system": {
+    "title": "Sistem Animasi",
+    "description": "Fungsi timing, durasi, dan katalog animasi utama."
+  },
+  "page_transitions": {
+    "title": "Transisi Halaman",
+    "description": "Cross-fade 300ms. View Transitions API.",
+    "cross_fade_text": "Transisi cross-fade antar halaman menggunakan View Transitions API (durasi 300ms)."
+  },
+  "scroll_triggered": {
+    "title": "Animasi Dipicu Scroll",
+    "description": "Default: fadeInUp pada visibilitas 10%. Stagger: delay 100ms per elemen saudara.",
+    "stagger_label": "STAGGER {{ms}}ms"
+  },
+  "particles": {
+    "title": "Efek Partikel & Ambient",
+    "description": "Titik mengambang opasitas 0.1-0.3, gerakan lambat. Hanya bagian hero. Berbasis canvas.",
+    "ambient_particles": "PARTIKEL AMBIENT"
+  },
+  "live_animations": "ANIMASI LANGSUNG",
+  "duration_scale": "SKALA DURASI"
+}

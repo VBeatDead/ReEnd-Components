@@ -1,1 +1,95 @@
-{}
+{
+  "notification": {
+    "title": "Notification & Toast",
+    "description": "Left border 3px semantic color. Auto-dismiss progress bar. Position: top-right.",
+    "trigger": "SHOW TOAST",
+    "toasts": [
+      { "title": "SYSTEM INFO", "message": "New update available." },
+      { "title": "OPERATION COMPLETE", "message": "Data saved successfully." },
+      { "title": "CAUTION", "message": "Maintenance scheduled." },
+      { "title": "ERROR DETECTED", "message": "Connection lost to server." },
+      { "title": "ENDFIELD ALERT", "message": "New mission briefing." }
+    ]
+  },
+  "modal": {
+    "title": "Modal & Dialog",
+    "description": "Backdrop: blur(4px). Container: surface-3. Title: Orbitron 16px uppercase. Close: ✕.",
+    "confirm_title": "CONFIRM ACTION",
+    "confirm_body": "This action cannot be undone. All associated data will be permanently removed from the system.",
+    "cancel": "CANCEL",
+    "delete": "DELETE",
+    "confirm": "CONFIRM",
+    "playground": {
+      "title_label": "Title",
+      "show_footer_label": "Show Footer"
+    }
+  },
+  "tooltip": {
+    "title": "Tooltip & Popover",
+    "description": "Tooltip: #222 bg, 12px, non-interactive. Popover: surface-2, shadow-lg, interactive.",
+    "tooltip_label": "TOOLTIP",
+    "hover_me": "Hover me",
+    "tooltip_content": "Tooltip content",
+    "popover_label": "POPOVER",
+    "popover_title": "POPOVER TITLE",
+    "popover_body": "Interactive popover content with actions.",
+    "action_cta": "ACTION →"
+  },
+  "loading": {
+    "title": "Loading, Skeleton & Spinner",
+    "description": "Diamond spinner with clip-path. Skeleton shimmer effect. Loading dots.",
+    "spinner": "SPINNER",
+    "dots": "DOTS",
+    "skeleton": "SKELETON",
+    "initializing": "INITIALIZING..."
+  },
+  "empty_state": {
+    "title": "Empty State",
+    "description": "Icon 48px, title Orbitron 18px uppercase. CTA button. Context-specific variants.",
+    "no_results_title": "NO RESULTS FOUND",
+    "no_results_desc": "Try changing your search keywords.",
+    "clear_search": "CLEAR SEARCH",
+    "access_restricted_title": "ACCESS RESTRICTED",
+    "access_restricted_desc": "You do not have access.",
+    "inbox_zero_title": "INBOX ZERO",
+    "inbox_zero_desc": "All messages have been processed."
+  },
+  "error_pages": {
+    "title": "Error Pages",
+    "description": "Error code: Orbitron 120px glitch animation. Color-coded by error type.",
+    "signal_lost_title": "SIGNAL LOST",
+    "signal_lost_desc": "Page not found.",
+    "access_denied_title": "ACCESS DENIED",
+    "access_denied_desc": "You do not have permission.",
+    "system_malfunction_title": "SYSTEM MALFUNCTION",
+    "system_malfunction_desc": "Server error.",
+    "maintenance_title": "MAINTENANCE MODE",
+    "maintenance_desc": "System under maintenance."
+  },
+  "offline": {
+    "title": "Offline State",
+    "description": "Full page and inline banner variants. Network status indicator.",
+    "banner_text": "You are currently offline. Some features may not be available.",
+    "online": "ONLINE",
+    "offline_label": "OFFLINE",
+    "slow": "SLOW"
+  },
+  "success": {
+    "title": "Success State / Confirmation",
+    "description": "Checkmark icon animated. Green accent. Minimal affirming text.",
+    "success_message": "Operation complete. Changes have been saved."
+  },
+  "validation": {
+    "title": "Inline Validation",
+    "description": "Field-level: icon prefix ✕/✓/⚠. Real-time debounced 300ms, on-blur, on-submit.",
+    "password_error": "✕ Password must be at least 8 characters.",
+    "email_valid": "✓ Email is valid.",
+    "password_warning": "⚠ Consider using a stronger password."
+  },
+  "banner": {
+    "title": "Banner & Alert (Persistent)",
+    "description": "Inline alerts with semantic bg tint. Top-of-page banner: yellow bg, black text.",
+    "info_message": "{type} alert message. Persistent and dismissible.",
+    "new_version": "◆ NEW VERSION AVAILABLE — UPDATE NOW"
+  }
+}

@@ -1,1 +1,95 @@
-{}
+{
+  "notification": {
+    "title": "Notifikasi & Toast",
+    "description": "Border kiri 3px warna semantik. Auto-dismiss progress bar. Posisi: kanan atas.",
+    "trigger": "TAMPILKAN TOAST",
+    "toasts": [
+      { "title": "INFO SISTEM", "message": "Pembaruan baru tersedia." },
+      { "title": "OPERASI SELESAI", "message": "Data berhasil disimpan." },
+      { "title": "PERINGATAN", "message": "Pemeliharaan terjadwal." },
+      { "title": "ERROR TERDETEKSI", "message": "Koneksi ke server terputus." },
+      { "title": "PERINGATAN ENDFIELD", "message": "Briefing misi baru." }
+    ]
+  },
+  "modal": {
+    "title": "Modal & Dialog",
+    "description": "Backdrop: blur(4px). Container: surface-3. Judul: Orbitron 16px huruf besar. Tutup: ✕.",
+    "confirm_title": "KONFIRMASI TINDAKAN",
+    "confirm_body": "Tindakan ini tidak dapat dibatalkan. Semua data terkait akan dihapus secara permanen dari sistem.",
+    "cancel": "BATAL",
+    "delete": "HAPUS",
+    "confirm": "KONFIRMASI",
+    "playground": {
+      "title_label": "Judul",
+      "show_footer_label": "Tampilkan Footer"
+    }
+  },
+  "tooltip": {
+    "title": "Tooltip & Popover",
+    "description": "Tooltip: latar #222, 12px, non-interaktif. Popover: surface-2, shadow-lg, interaktif.",
+    "tooltip_label": "TOOLTIP",
+    "hover_me": "Arahkan kursor",
+    "tooltip_content": "Konten tooltip",
+    "popover_label": "POPOVER",
+    "popover_title": "JUDUL POPOVER",
+    "popover_body": "Konten popover interaktif dengan aksi.",
+    "action_cta": "AKSI →"
+  },
+  "loading": {
+    "title": "Loading, Skeleton & Spinner",
+    "description": "Spinner berlian dengan clip-path. Efek shimmer skeleton. Loading dots.",
+    "spinner": "SPINNER",
+    "dots": "DOTS",
+    "skeleton": "SKELETON",
+    "initializing": "MENGINISIALISASI..."
+  },
+  "empty_state": {
+    "title": "State Kosong",
+    "description": "Ikon 48px, judul Orbitron 18px huruf besar. Tombol CTA. Varian sesuai konteks.",
+    "no_results_title": "HASIL TIDAK DITEMUKAN",
+    "no_results_desc": "Coba ubah kata kunci pencarian.",
+    "clear_search": "HAPUS PENCARIAN",
+    "access_restricted_title": "AKSES DIBATASI",
+    "access_restricted_desc": "Anda tidak memiliki akses.",
+    "inbox_zero_title": "INBOX KOSONG",
+    "inbox_zero_desc": "Semua pesan telah diproses."
+  },
+  "error_pages": {
+    "title": "Halaman Error",
+    "description": "Kode error: Orbitron 120px animasi glitch. Kode warna berdasarkan tipe error.",
+    "signal_lost_title": "SINYAL HILANG",
+    "signal_lost_desc": "Halaman tidak ditemukan.",
+    "access_denied_title": "AKSES DITOLAK",
+    "access_denied_desc": "Anda tidak memiliki izin.",
+    "system_malfunction_title": "KERUSAKAN SISTEM",
+    "system_malfunction_desc": "Kesalahan server.",
+    "maintenance_title": "MODE PEMELIHARAAN",
+    "maintenance_desc": "Sistem dalam perbaikan."
+  },
+  "offline": {
+    "title": "State Offline",
+    "description": "Varian halaman penuh dan banner inline. Indikator status jaringan.",
+    "banner_text": "Anda sedang offline. Beberapa fitur mungkin tidak tersedia.",
+    "online": "ONLINE",
+    "offline_label": "OFFLINE",
+    "slow": "LAMBAT"
+  },
+  "success": {
+    "title": "State Sukses / Konfirmasi",
+    "description": "Ikon centang animasi. Aksen hijau. Teks afirmasi minimal.",
+    "success_message": "Operasi selesai. Perubahan telah disimpan."
+  },
+  "validation": {
+    "title": "Validasi Inline",
+    "description": "Level field: awalan ikon ✕/✓/⚠. Real-time debounce 300ms, on-blur, on-submit.",
+    "password_error": "✕ Password harus minimal 8 karakter.",
+    "email_valid": "✓ Email valid.",
+    "password_warning": "⚠ Pertimbangkan untuk menggunakan password yang lebih kuat."
+  },
+  "banner": {
+    "title": "Banner & Alert (Persisten)",
+    "description": "Alert inline dengan tint bg semantik. Banner atas halaman: bg kuning, teks hitam.",
+    "info_message": "Pesan alert {type}. Persisten dan dapat ditutup.",
+    "new_version": "◆ VERSI BARU TERSEDIA — PERBARUI SEKARANG"
+  }
+}

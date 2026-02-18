@@ -7,6 +7,8 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { useLocalizedPath } from "@/hooks/useLocalizedPath";
 import {
   Code2,
   BookOpen,
@@ -23,6 +25,8 @@ import { useStorytellingConfig } from "@/components/home/scroll-storytelling";
 const ChapterDeploy = () => {
   const { isMobile, prefersReducedMotion } = useStorytellingConfig();
   const navigate = useNavigate();
+  const { t } = useTranslation("home");
+  const lp = useLocalizedPath();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -81,7 +85,7 @@ const ChapterDeploy = () => {
       id="chapter-deploy"
       className="relative"
       data-chapter
-      aria-label="Chapter 5: Deploy"
+      aria-label={t("deploy.aria_label")}
       style={{ height }}
     >
       <div className="sticky top-0 h-screen overflow-hidden flex items-center justify-center">
@@ -130,7 +134,7 @@ const ChapterDeploy = () => {
           <div className="relative z-10 text-center px-4 max-w-3xl mx-auto">
             {/* Badge */}
             <motion.div style={{ opacity: titleOpacity }}>
-              <TacticalBadge>OPERATION COMMENCE</TacticalBadge>
+              <TacticalBadge>{t("deploy.operation_commence")}</TacticalBadge>
             </motion.div>
 
             {/* Title */}
@@ -147,10 +151,12 @@ const ChapterDeploy = () => {
                   filter: prefersReducedMotion ? "none" : titleBlurFilter,
                 }}
               >
-                <span className="text-primary text-glow-yellow">DEPLOY</span>
+                <span className="text-primary text-glow-yellow">
+                  {t("deploy.deploy_title")}
+                </span>
                 <br />
                 <span className="text-lg sm:text-2xl lg:text-3xl font-display tracking-[0.15em] text-muted-foreground">
-                  YOUR INTERFACE
+                  {t("deploy.your_interface")}
                 </span>
               </motion.h2>
             </motion.div>
@@ -160,8 +166,7 @@ const ChapterDeploy = () => {
               style={{ opacity: taglineOpacity, y: taglineY }}
               className="mt-4 font-body text-xs sm:text-sm text-muted-foreground/70 max-w-lg mx-auto leading-relaxed"
             >
-              From zero to operator-grade UI in minutes. Install, configure, and
-              deploy with the precision of an Endfield protocol.
+              {t("deploy.description")}
             </motion.p>
 
             {/* Interactive Install Terminal */}
@@ -178,10 +183,10 @@ const ChapterDeploy = () => {
               className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3"
             >
               {[
-                { label: "Zero Config", icon: "⚡" },
-                { label: "TypeScript", icon: "◈" },
-                { label: "Tree-Shake", icon: "◆" },
-                { label: "Dark + Light", icon: "◇" },
+                { label: t("deploy.feature_zero"), icon: "⚡" },
+                { label: t("deploy.feature_ts"), icon: "◈" },
+                { label: t("deploy.feature_tree"), icon: "◆" },
+                { label: t("deploy.feature_theme"), icon: "◇" },
               ].map((f) => (
                 <div
                   key={f.label}
@@ -199,25 +204,25 @@ const ChapterDeploy = () => {
             <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
                 style={{ opacity: btn1Opacity, y: btn1Y }}
-                onClick={() => navigate("/docs")}
+                onClick={() => navigate(lp("/docs"))}
                 className="group flex items-center justify-center gap-2 bg-primary text-primary-foreground
                            px-6 py-3 font-display text-xs font-bold tracking-[0.15em] uppercase
                            hover:bg-primary/90 hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)] hover:-translate-y-[1px] transition-all duration-300 clip-corner"
               >
                 <BookOpen className="h-4 w-4" />
-                DOCUMENTATION
+                {t("deploy.documentation")}
                 <ArrowRight className="h-3 w-3 group-hover:translate-x-1 transition-transform" />
               </motion.button>
 
               <motion.button
                 style={{ opacity: btn2Opacity, y: btn2Y }}
-                onClick={() => navigate("/docs/core-components")}
+                onClick={() => navigate(lp("/docs/core-components"))}
                 className="group flex items-center justify-center gap-2 border border-primary text-primary
                            px-6 py-3 font-display text-xs font-bold tracking-[0.15em] uppercase
                            hover:bg-primary/10 transition-all duration-300 clip-corner"
               >
                 <Code2 className="h-4 w-4" />
-                COMPONENTS
+                {t("deploy.components")}
               </motion.button>
 
               <motion.a
@@ -230,7 +235,7 @@ const ChapterDeploy = () => {
                            hover:border-primary/50 hover:text-foreground transition-all duration-300 clip-corner"
               >
                 <Github className="h-4 w-4" />
-                GITHUB
+                {t("deploy.github")}
               </motion.a>
             </div>
 
@@ -249,7 +254,7 @@ const ChapterDeploy = () => {
                 <span>RADIX UI</span>
               </div>
               <p className="font-mono text-[8px] text-muted-foreground/25 mt-3 tracking-wider">
-                MIT LICENSE · OPEN SOURCE · COMMUNITY DRIVEN
+                {t("deploy.open_source")}
               </p>
             </motion.div>
           </div>
@@ -261,19 +266,20 @@ const ChapterDeploy = () => {
 
 /** Interactive install terminal with animated typing and copy button */
 const InstallTerminal = () => {
+  const { t } = useTranslation("home");
   const [copied, setCopied] = useState(false);
   const [lines, setLines] = useState<{ text: string; type: string }[]>([]);
   const [step, setStep] = useState(0);
 
   const terminalSteps = [
     { text: "$ npx reend-components init", type: "command" },
-    { text: "◆ Detecting project configuration...", type: "info" },
-    { text: "✓ Found: React 18 + TypeScript + Tailwind CSS", type: "success" },
-    { text: "◆ Installing 70+ components...", type: "info" },
-    { text: "✓ Design tokens configured (94 tokens)", type: "success" },
-    { text: "✓ Theme engine initialized (dark + light)", type: "success" },
-    { text: "✓ Motion system loaded (8 primitives)", type: "success" },
-    { text: "◆ All systems operational. Deploy when ready.", type: "done" },
+    { text: t("deploy.term_detect"), type: "info" },
+    { text: t("deploy.term_found"), type: "success" },
+    { text: t("deploy.term_installing"), type: "info" },
+    { text: t("deploy.term_tokens"), type: "success" },
+    { text: t("deploy.term_theme"), type: "success" },
+    { text: t("deploy.term_motion"), type: "success" },
+    { text: t("deploy.term_ready"), type: "done" },
   ];
 
   useEffect(() => {
@@ -321,7 +327,7 @@ const InstallTerminal = () => {
           <div className="flex items-center gap-1.5 ml-3">
             <Terminal className="w-3 h-3 text-primary/60" />
             <span className="font-mono text-[9px] text-muted-foreground/60 tracking-wider uppercase">
-              ENDFIELD TERMINAL
+              {t("deploy.terminal_title")}
             </span>
           </div>
         </div>
@@ -335,7 +341,7 @@ const InstallTerminal = () => {
             <Copy className="w-3.5 h-3.5" />
           )}
           <span className="font-mono text-[8px] tracking-wider">
-            {copied ? "COPIED" : "COPY"}
+            {copied ? t("deploy.copied") : t("deploy.copy")}
           </span>
         </button>
       </div>
@@ -372,7 +378,7 @@ const InstallTerminal = () => {
             animate={{ opacity: 1 }}
             className="text-primary mt-2 text-xs"
           >
-            <span className="text-ef-green">◆</span> Ready to deploy
+            <span className="text-ef-green">◆</span> {t("deploy.ready_deploy")}
           </motion.div>
         )}
       </div>

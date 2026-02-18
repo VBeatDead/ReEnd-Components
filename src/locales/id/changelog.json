@@ -1,1 +1,27 @@
-{}
+{
+  "title": "◆ LOG PERUBAHAN",
+  "latest": "TERBARU",
+  "v2": {
+    "version": "v2.0.0",
+    "date": "Februari 2026",
+    "items": [
+      "Desain ulang total dengan tema Futurisme Industrial Sci-Fi",
+      "87+ pratinjau komponen di 11 seksi tematik",
+      "Penyorotan sintaks Shiki dengan dukungan tema ganda",
+      "Playground interaktif dengan generasi kode langsung",
+      "Palet perintah pencarian fuzzy (⌘K)",
+      "Dukungan aksesibilitas penuh — peran ARIA, jebakan fokus, navigasi papan ketik",
+      "Toggle pratinjau responsif (Desktop / Mobile)",
+      "Dokumentasi interaksi papan ketik per komponen"
+    ]
+  },
+  "v1": {
+    "version": "v1.0.0",
+    "date": "Januari 2025",
+    "items": [
+      "Rilis awal dengan pustaka komponen dasar",
+      "Dukungan mode gelap dengan ThemeProvider kustom",
+      "Halaman utama dengan animasi sinematik"
+    ]
+  }
+}

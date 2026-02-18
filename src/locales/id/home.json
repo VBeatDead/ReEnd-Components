@@ -1,1 +1,221 @@
-{}
+{
+  "chapter_labels": {
+    "awaken": "BANGKIT",
+    "status": "STATUS",
+    "arsenal": "ARSENAL",
+    "modules": "MODUL",
+    "deploy": "DEPLOY"
+  },
+  "footer": {
+    "brand": "ReEnd Components",
+    "license": "Lisensi MIT — Open Source",
+    "github": "GitHub",
+    "docs": "Docs",
+    "disclaimer": "Ini adalah proyek komunitas yang terinspirasi dari estetika sci-fi industrial Arknights: Endfield. Tidak berafiliasi dengan, didukung oleh, atau terhubung dengan Hypergryph, Gryphline, atau anak perusahaan mereka. Semua merek dagang terkait game milik pemiliknya masing-masing."
+  },
+  "skip_to_main": "Langsung ke konten utama",
+
+  "awakening": {
+    "aria_label": "Chapter 1: Kebangkitan",
+    "system_init": "SISTEM TERINISIALISASI",
+    "components": "KOMPONEN",
+    "description_accent": "◆",
+    "description_text": "Sistem desain industrial sci-fi terinspirasi Arknights: Endfield.",
+    "description_highlight": "70+ komponen",
+    "description_suffix": ", elemen UI teruji, dan estetika kelas operator.",
+    "cta_docs": "JELAJAHI DOCS ◆",
+    "cta_preview": "PRATINJAU ARSENAL ↓",
+    "protocol_label": "— PROTOKOL DESAIN ENDFIELD —",
+    "system_log": "LOG SISTEM",
+    "boot_log_0": "[SYS] Sekuens boot protokol dimulai",
+    "boot_log_1": "[AUTH] Izin operator: TERVERIFIKASI",
+    "boot_log_2": "[LOAD] Token desain: 94 dimuat",
+    "boot_log_3": "[LOAD] Komponen: 70+ online",
+    "boot_log_4": "[GPU] Pipeline render: 60fps terkunci",
+    "boot_log_5": "[NET] Latensi: 12ms ◆ STABIL",
+    "boot_log_6": "[SYS] Semua sistem operasional",
+    "scroll_to_deploy": "Gulir untuk deploy"
+  },
+
+  "system_online": {
+    "aria_label": "Chapter 2: Sistem Online",
+    "philosophy": "Presisi industrial bertemu keahlian digital. Setiap piksel direkayasa. Setiap interaksi disengaja. Dibangun untuk operator yang menuntut keunggulan.",
+    "philosophy_highlights": "presisi,direkayasa,disengaja,operator,keunggulan",
+    "capabilities": {
+      "tactical_title": "PRESISI TAKTIS",
+      "tactical_desc": "Komponen pixel-perfect tanpa noise visual",
+      "latency_title": "ZERO LATENSI",
+      "latency_desc": "Animasi 60fps, lazy-loaded, tree-shakeable",
+      "dark_title": "DARK-FIRST",
+      "dark_desc": "94 token desain, dukungan penuh tema terang + gelap",
+      "motion_title": "SISTEM GERAK",
+      "motion_desc": "8 primitif scroll, parallax, glitch, efek glow",
+      "composable_title": "COMPOSABLE",
+      "composable_desc": "Primitif Radix UI, sepenuhnya bisa dikustomisasi via Tailwind",
+      "production_title": "SIAP PRODUKSI",
+      "production_desc": "TypeScript-first, aksesibel, teruji menyeluruh"
+    },
+    "diagnostic": "◆ PEMINDAIAN DIAGNOSTIK",
+    "system": "SISTEM ",
+    "online": "ONLINE",
+    "all_subsystems": "SEMUA SUBSISTEM OPERASIONAL — MEMINDAI KAPABILITAS",
+    "counter_components": "Komponen",
+    "counter_categories": "Kategori",
+    "counter_tokens": "Token Desain",
+    "counter_motions": "Sistem Gerak",
+    "capability_index": "INDEKS KAPABILITAS",
+    "subsystem_status": "STATUS SUBSISTEM",
+    "status_theme_label": "MESIN TEMA",
+    "status_theme_value": "AKTIF",
+    "status_motion_label": "PIPELINE GERAK",
+    "status_motion_value": "60 FPS",
+    "status_type_label": "KEAMANAN TIPE",
+    "status_type_value": "KETAT",
+    "status_a11y_label": "AKSESIBILITAS",
+    "status_a11y_value": "WCAG 2.1",
+    "status_bundle_label": "UKURAN BUNDLE",
+    "status_bundle_value": "OPTIMAL",
+    "status_tree_label": "TREE SHAKING",
+    "status_tree_value": "AKTIF",
+    "design_principles": "◆ PRINSIP DESAIN ◆",
+    "items": "ITEM"
+  },
+
+  "arsenal": {
+    "aria_label": "Chapter 3: Arsenal Komponen",
+    "live_preview": "◆ PRATINJAU LANGSUNG",
+    "component": "KOMPONEN ",
+    "arsenal_title": "ARSENAL",
+    "scroll_explore": "GULIR UNTUK JELAJAHI",
+    "panels": {
+      "buttons": "TOMBOL",
+      "cards": "KARTU",
+      "forms": "FORMULIR & INPUT",
+      "quick_start": "MULAI CEPAT",
+      "design_tokens": "TOKEN DESAIN"
+    }
+  },
+
+  "modules": {
+    "aria_label": "Chapter 4: Gambaran Taktis",
+    "tactical_map": "◆ PETA TAKTIS",
+    "system": "SISTEM ",
+    "modules_title": "MODUL",
+    "subtitle": "8 SEKTOR · 98 KOMPONEN · SIAP LAPANGAN",
+    "stat_total": "TOTAL",
+    "stat_sectors": "SEKTOR",
+    "stat_tokens": "TOKEN",
+    "stat_themes": "TEMA",
+    "items": "ITEM",
+    "deploy": "DEPLOY",
+    "features": {
+      "foundations_title": "FONDASI",
+      "foundations_desc": "Tipografi, palet warna, spasi, dan token desain semantik untuk estetika Endfield.",
+      "core_title": "KOMPONEN INTI",
+      "core_desc": "Tombol, Kartu, Input, Dialog — setiap elemen direkayasa dengan presisi industrial.",
+      "data_title": "TAMPILAN DATA",
+      "data_desc": "Tabel, grafik, badge, dan indikator status untuk visualisasi data taktis.",
+      "animation_title": "ANIMASI",
+      "animation_desc": "Parallax, glitch, glow, sistem gerak dipicu scroll — 8 primitif animasi.",
+      "patterns_title": "POLA",
+      "patterns_desc": "Cetak biru layout, pola formulir, struktur navigasi untuk antarmuka operator.",
+      "interactive_title": "INTERAKTIF",
+      "interactive_desc": "Status hover, ring fokus, transisi, mikro-interaksi disetel ke 60fps.",
+      "feedback_title": "UMPAN BALIK",
+      "feedback_desc": "Toast, alert, dialog, loading — sistem notifikasi dengan kejelasan taktis.",
+      "content_title": "KONTEN & MEDIA",
+      "content_desc": "Gambar, video, carousel, avatar — penanganan media dengan presisi responsif."
+    },
+    "status_active": "AKTIF"
+  },
+
+  "deploy": {
+    "aria_label": "Chapter 5: Deploy",
+    "operation_commence": "OPERASI DIMULAI",
+    "deploy_title": "DEPLOY",
+    "your_interface": "ANTARMUKA ANDA",
+    "description": "Dari nol ke UI kelas operator dalam hitungan menit. Instal, konfigurasi, dan deploy dengan presisi protokol Endfield.",
+    "feature_zero": "Tanpa Konfigurasi",
+    "feature_ts": "TypeScript",
+    "feature_tree": "Tree-Shake",
+    "feature_theme": "Gelap + Terang",
+    "documentation": "DOKUMENTASI",
+    "components": "KOMPONEN",
+    "github": "GITHUB",
+    "open_source": "LISENSI MIT · OPEN SOURCE · DIGERAKKAN KOMUNITAS",
+    "terminal_title": "TERMINAL ENDFIELD",
+    "copied": "TERSALIN",
+    "copy": "SALIN",
+    "term_detect": "◆ Mendeteksi konfigurasi proyek...",
+    "term_found": "✓ Ditemukan: React 18 + TypeScript + Tailwind CSS",
+    "term_installing": "◆ Menginstal 70+ komponen...",
+    "term_tokens": "✓ Token desain dikonfigurasi (94 token)",
+    "term_theme": "✓ Mesin tema diinisialisasi (gelap + terang)",
+    "term_motion": "✓ Sistem gerak dimuat (8 primitif)",
+    "term_ready": "◆ Semua sistem operasional. Siap untuk deploy.",
+    "ready_deploy": "Siap deploy"
+  },
+
+  "showcase": {
+    "button": {
+      "variants": "VARIAN",
+      "primary": "UTAMA",
+      "secondary": "SEKUNDER",
+      "ghost": "GHOST",
+      "danger": "BAHAYA",
+      "sizes": "UKURAN",
+      "states": "STATUS",
+      "focus": "FOKUS",
+      "loading": "MEMUAT",
+      "disabled": "NONAKTIF",
+      "component_card": "KARTU KOMPONEN",
+      "card_desc": "Bracket sudut, efek angkat hover, transisi cahaya border saat interaksi.",
+      "view_more": "LIHAT LEBIH",
+      "total_components": "TOTAL KOMPONEN",
+      "categories": "11 Kategori",
+      "active": "AKTIF",
+      "surface_0": "Surface 0",
+      "surface_1": "Surface 1",
+      "surface_2": "Surface 2",
+      "surface_3": "Surface 3"
+    },
+    "form": {
+      "operator_name": "NAMA OPERATOR",
+      "enter_name": "Masukkan nama...",
+      "access_code": "KODE AKSES",
+      "verified": "Terverifikasi",
+      "enabled": "AKTIF",
+      "disabled": "NONAKTIF",
+      "alpha": "ALPHA",
+      "beta": "BETA",
+      "gamma": "GAMMA"
+    },
+    "terminal": {
+      "title": "TERMINAL",
+      "step_1": "[1/4] Menyelesaikan paket...",
+      "step_2": "[2/4] Mengambil paket...",
+      "step_3": "[3/4] Menautkan dependensi...",
+      "step_4": "[4/4] Membangun paket baru...",
+      "done_1": "✓ 70+ komponen terinstal",
+      "done_2": "✓ Token desain dimuat",
+      "done_3": "✓ Siap digunakan"
+    }
+  },
+
+  "signature": {
+    "live_feed": "UMPAN LANGSUNG",
+    "active": "AKTIF",
+    "log_0": "[SYS] Protokol ENDFIELD terinisialisasi",
+    "log_1": "[NET] Latensi: 12ms ◆ STABIL",
+    "log_2": "[SEC] Auth terverifikasi — Level: ALPHA",
+    "log_3": "[DAT] 94 token desain dimuat",
+    "log_4": "[GPU] Render: 60fps terkunci",
+    "log_5": "[SYS] 70+ modul online",
+    "link_active": "TAUTAN AKTIF"
+  },
+
+  "scroll": {
+    "scroll_to_explore": "GULIR UNTUK JELAJAHI",
+    "chapter_label": "Chapter {{number}}"
+  }
+}

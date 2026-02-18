@@ -1,1 +1,254 @@
-{}
+{
+  "buttons": {
+    "title": "Buttons",
+    "description": "Clip-path cut corners, NOT border-radius. Uppercase, letter-spacing, Orbitron font.",
+    "props": {
+      "variant": "Visual style variant of the button",
+      "size": "Controls padding, font-size, and min-height",
+      "disabled": "Disables interaction and applies muted styling",
+      "loading": "Shows spinning diamond loader and disables click",
+      "icon": "Optional icon element rendered before label",
+      "onClick": "Click handler callback",
+      "children": "Button label content"
+    },
+    "keyboard": {
+      "enter": "Activate the focused button",
+      "space": "Activate the focused button",
+      "tab": "Move focus to the next focusable element",
+      "shift_tab": "Move focus to the previous focusable element"
+    },
+    "api": {
+      "clip_corner": "Applies the signature Endfield clipped corner polygon via clip-path. Use on any rectangular element.",
+      "hover_brightness_110": "Standard hover brightening for primary buttons. Pair with shadow glow for full effect.",
+      "active_brightness_90": "Press-down darkening effect for tactile feedback."
+    },
+    "playground": {
+      "label_text": "Label Text",
+      "button_default": "BUTTON"
+    },
+    "variants_heading": "VARIANTS",
+    "sizes_heading": "SIZES",
+    "states_heading": "STATES",
+    "primary": "PRIMARY",
+    "secondary": "SECONDARY",
+    "ghost": "GHOST",
+    "danger": "DANGER",
+    "add_item": "Add item",
+    "link": "LINK",
+    "default": "DEFAULT",
+    "hover": "HOVER",
+    "active": "ACTIVE",
+    "focus": "FOCUS",
+    "disabled": "DISABLED",
+    "loading": "LOADING"
+  },
+  "cards": {
+    "title": "Cards",
+    "description": "Corner brackets signature element. Hover: translateY(-4px), yellow border tint, shadow.",
+    "props": {
+      "variant": "Card layout and purpose variant",
+      "selected": "Shows selected state with primary border highlight",
+      "disabled": "Reduces opacity and disables pointer events",
+      "hoverable": "Enables lift and glow hover animation",
+      "onClick": "Makes the card clickable with cursor pointer",
+      "children": "Card body content"
+    },
+    "api": {
+      "corner_brackets": "Adds ::before and ::after pseudo-elements creating the signature Endfield corner bracket decoration (24px, primary color at 0.4 opacity).",
+      "hover_translate_y": "Lifts the card 4px on hover for depth effect. Combine with shadow and border color transition."
+    },
+    "playground": {
+      "title_label": "Title",
+      "card_title_default": "CARD TITLE"
+    },
+    "overline": "OVERLINE",
+    "tactical": "TACTICAL",
+    "content_card": "CONTENT CARD",
+    "content_card_desc": "Standard content layout with media slot, overline, title, and body text.",
+    "feature_card": "FEATURE CARD",
+    "feature_card_desc": "Icon-first card for features or capabilities. No media block.",
+    "uptime": "UPTIME",
+    "stat_value": "99.9%",
+    "aspect_ratio": "16:9",
+    "playground_desc": "Description text lorem ipsum dolor sit amet.",
+    "playground_feature_desc": "Feature description text with details."
+  },
+  "forms": {
+    "title": "Forms & Input",
+    "description": "Label: Orbitron 12px uppercase. Focus: yellow border + glow ring. Error: red border.",
+    "props": {
+      "label": "Field label displayed in Orbitron uppercase",
+      "type": "Input field type",
+      "placeholder": "Placeholder text shown when empty",
+      "required": "Shows red asterisk and enables validation",
+      "error": "Error message — triggers red border and glow",
+      "success": "Success message — triggers green border",
+      "helperText": "Subtle hint text below the input",
+      "disabled": "Disables the input with muted styling",
+      "value": "Controlled input value",
+      "onChange": "Change handler for controlled input"
+    },
+    "keyboard": {
+      "tab": "Move focus to the next form field",
+      "shift_tab": "Move focus to the previous form field",
+      "enter": "Submit the form or toggle checkbox",
+      "space": "Toggle checkbox/switch, open select dropdown",
+      "escape": "Close dropdown / cancel edit",
+      "arrow_up_down": "Navigate select dropdown options"
+    },
+    "api": {
+      "focus_border_primary": "Applies yellow border on focus. Always pair with focus:shadow glow ring for the complete Endfield focus style.",
+      "border_ef_red": "Red border for validation errors. Combine with shadow-[0_0_0_3px_rgba(255,71,87,0.1)] for the error glow."
+    },
+    "playground": {
+      "state_label": "State",
+      "label_label": "Label",
+      "field_label_default": "FIELD LABEL",
+      "placeholder_default": "Enter value...",
+      "error_field": "✕ This field has an error.",
+      "success_field": "✓ Looks good!"
+    },
+    "email_address": "EMAIL ADDRESS",
+    "placeholder_email": "endministrator@endfield.icu",
+    "helper_text": "Helper text for additional info",
+    "password": "PASSWORD",
+    "password_placeholder": "••••••••",
+    "username": "USERNAME",
+    "username_value": "ab",
+    "error_username": "✕ Username must be at least 3 characters.",
+    "callsign": "CALLSIGN",
+    "callsign_value": "Endministrator",
+    "success_callsign": "✓ Callsign is available.",
+    "message": "MESSAGE",
+    "optional": "(OPTIONAL)",
+    "placeholder_message": "Type your message here...",
+    "category": "CATEGORY",
+    "select_category": "Select category...",
+    "operations": "Operations",
+    "engineering": "Engineering",
+    "research": "Research",
+    "checkbox": "CHECKBOX",
+    "option_a": "Option A",
+    "option_b": "Option B",
+    "radio_diamond": "RADIO (DIAMOND)",
+    "choice_a": "Choice A",
+    "choice_b": "Choice B",
+    "toggle": "TOGGLE",
+    "toggle_switch": "Toggle switch",
+    "search": "SEARCH",
+    "search_placeholder": "Search documentation...",
+    "keyboard_shortcut": "⌘K",
+    "error_field": "✕ This field has an error.",
+    "success_field": "✓ Looks good!"
+  },
+  "navigation": {
+    "header_title": "Navigation — Header",
+    "header_description": "Fixed, blur backdrop, 64px height. Nav link: Orbitron, uppercase, diamond indicator on active.",
+    "sidebar_title": "Navigation — Sidebar (Docs)",
+    "sidebar_description": "Width 280px, fixed. Section label: Orbitron 11px uppercase. Active: yellow left border.",
+    "tabs_title": "Navigation — Tabs",
+    "tabs_description": "Orbitron 13px, uppercase. Active: yellow text + yellow bottom border.",
+    "breadcrumb_title": "Navigation — Breadcrumb",
+    "breadcrumb_description": "Item: Orbitron, 12px, uppercase. Separator: ›. Current: no link, font-weight 600.",
+    "pagination_title": "Navigation — Pagination",
+    "pagination_description": "Diamond markers. Orbitron font. Active: yellow bg, black text.",
+    "header_props": {
+      "logo": "Logo element or brand mark",
+      "navItems": "Navigation link items",
+      "sticky": "Fixed position with backdrop blur",
+      "actions": "Right-side action buttons (search, theme toggle)"
+    },
+    "header_api": {
+      "useScrollDirection": "Hook to auto-hide header on scroll down and reveal on scroll up."
+    },
+    "sidebar_props": {
+      "sections": "Grouped navigation sections with items",
+      "activeId": "Currently active item ID for highlight",
+      "onNavigate": "Callback when a nav item is clicked",
+      "collapsible": "Allow sections to collapse/expand",
+      "width": "Sidebar width in pixels"
+    },
+    "tabs_props": {
+      "tabs": "Array of tab definitions",
+      "activeIndex": "Controlled active tab index",
+      "onChange": "Callback when tab changes",
+      "variant": "Visual style of tab indicator"
+    },
+    "tabs_keyboard": {
+      "arrow_lr": "Move focus between tabs",
+      "enter_space": "Activate the focused tab",
+      "home": "Move focus to the first tab",
+      "end": "Move focus to the last tab"
+    },
+    "tabs_playground": {
+      "tab_count_label": "Tab Count"
+    },
+    "breadcrumb_props": {
+      "items": "Breadcrumb path items, last item is current page",
+      "separator": "Custom separator element between items"
+    },
+    "pagination_props": {
+      "totalPages": "Total number of pages",
+      "currentPage": "Current active page (1-indexed)",
+      "onPageChange": "Callback when page is changed",
+      "siblingCount": "Number of sibling pages shown around current"
+    },
+    "brand_ef": "EF",
+    "brand_endfield": "ENDFIELD",
+    "home": "HOME",
+    "docs": "DOCS",
+    "blog": "BLOG",
+    "about": "ABOUT",
+    "open_menu": "Open menu",
+    "getting_started": "GETTING STARTED",
+    "installation": "Installation",
+    "quick_start": "Quick Start",
+    "configuration": "Configuration",
+    "components": "COMPONENTS",
+    "button": "Button",
+    "card": "Card",
+    "input": "Input",
+    "tab_overview": "OVERVIEW",
+    "tab_usage": "USAGE",
+    "tab_api": "API",
+    "tab_examples": "EXAMPLES",
+    "tab_changelog": "CHANGELOG",
+    "tab_faq": "FAQ",
+    "content_for_tab": "Content for {{tab}} tab.",
+    "overview_content": "Tab panel content for Overview section. Padding 24px 0.",
+    "usage_content": "Usage instructions and implementation guide.",
+    "api_content": "API reference and props documentation.",
+    "examples_content": "Code examples and live demos.",
+    "breadcrumb_home": "HOME",
+    "breadcrumb_docs": "DOCS",
+    "breadcrumb_components": "COMPONENTS",
+    "breadcrumb_buttons": "BUTTONS",
+    "prev": "PREV",
+    "next": "NEXT"
+  },
+  "footer": {
+    "title": "Footer",
+    "description": "Background canvas, border-top. 3-column grid. Column title: Orbitron 12px uppercase.",
+    "props": {
+      "columns": "Footer link columns",
+      "copyright": "Copyright text displayed at bottom",
+      "version": "System version displayed bottom-right"
+    },
+    "product": "PRODUCT",
+    "community": "COMMUNITY",
+    "legal": "LEGAL",
+    "features": "Features",
+    "documentation": "Documentation",
+    "changelog": "Changelog",
+    "roadmap": "Roadmap",
+    "discord": "Discord",
+    "github": "GitHub",
+    "twitter": "Twitter",
+    "blog": "Blog",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "license": "License",
+    "copyright_text": "© 2026 Endfield Industries. All rights reserved.",
+    "version_text": "EF-SYS v2.0.0"
+  }
+}

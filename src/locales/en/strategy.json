@@ -1,1 +1,199 @@
-{}
+{
+  "voice_tone": {
+    "title": "Voice & Tone",
+    "description": "Authoritative, concise, technical, calm, forward-looking. User = 'Endministrator'.",
+    "headers": {
+      "context": "CONTEXT",
+      "tone": "TONE",
+      "example": "EXAMPLE"
+    },
+    "rows": {
+      "hero": {
+        "context": "Hero/Marketing",
+        "tone": "Inspirational, bold",
+        "example": "\"BUILD FASTER WEBSITES.\""
+      },
+      "documentation": {
+        "context": "Documentation",
+        "tone": "Clear, instructional",
+        "example": "\"Install the package using npm.\""
+      },
+      "error": {
+        "context": "Error/Feedback",
+        "tone": "Calm, helpful",
+        "example": "\"Signal lost. Check your connection.\""
+      },
+      "success": {
+        "context": "Success",
+        "tone": "Affirming, minimal",
+        "example": "\"Operation complete.\""
+      },
+      "onboarding": {
+        "context": "Onboarding",
+        "tone": "Welcoming",
+        "example": "\"Welcome back, Endministrator.\""
+      }
+    },
+    "terminology": "TERMINOLOGY",
+    "user_label": "\"Endministrator\"",
+    "system_label": "\"Endfield System\" / \"EF-SYS\"",
+    "operations_label": "\"Deploy\", \"Execute\", \"Initialize\", \"Scan\""
+  },
+  "microcopy": {
+    "title": "Microcopy Guidelines",
+    "description": "Button labels: specific action. Nav: 1-2 words uppercase. No articles.",
+    "headers": {
+      "action": "ACTION",
+      "use": "✅ USE",
+      "avoid": "❌ AVOID"
+    },
+    "rows": {
+      "submit": {
+        "action": "Submit",
+        "use": "SUBMIT REPORT",
+        "avoid": "\"Submit\""
+      },
+      "save": {
+        "action": "Save",
+        "use": "SAVE CHANGES",
+        "avoid": "\"OK\""
+      },
+      "delete": {
+        "action": "Delete",
+        "use": "DELETE ITEM",
+        "avoid": "\"Remove\""
+      },
+      "navigate": {
+        "action": "Navigate",
+        "use": "VIEW DETAILS",
+        "avoid": "\"Click Here\""
+      },
+      "create": {
+        "action": "Create",
+        "use": "CREATE PROJECT",
+        "avoid": "\"Add\""
+      }
+    }
+  },
+  "placeholder": {
+    "title": "Placeholder Text Standards",
+    "description": "Color #666666. Not italic. Never use as label replacement.",
+    "fields": {
+      "email": {
+        "label": "EMAIL",
+        "placeholder": "endministrator@endfield.icu"
+      },
+      "username": {
+        "label": "USERNAME",
+        "placeholder": "Enter your callsign..."
+      },
+      "search": {
+        "label": "SEARCH",
+        "placeholder": "Search documentation..."
+      },
+      "url": {
+        "label": "URL",
+        "placeholder": "https://example.com"
+      },
+      "date": {
+        "label": "DATE",
+        "placeholder": "YYYY.MM.DD"
+      }
+    }
+  },
+  "error_messages": {
+    "title": "Error Message Writing",
+    "description": "State the problem, explain fix, don't blame user, be specific, stay in-universe.",
+    "headers": {
+      "validation": "VALIDATION",
+      "message": "MESSAGE"
+    },
+    "rows": {
+      "required": {
+        "validation": "Required empty",
+        "message": "[FIELD] is required."
+      },
+      "invalid_email": {
+        "validation": "Invalid email",
+        "message": "Enter a valid email address."
+      },
+      "password_short": {
+        "validation": "Password short",
+        "message": "Password must be at least 8 characters."
+      },
+      "rate_limited": {
+        "validation": "Rate limited",
+        "message": "Too many requests. Try again in [X] seconds."
+      },
+      "network_error": {
+        "validation": "Network error",
+        "message": "Connection lost. Check your network status."
+      },
+      "server_error": {
+        "validation": "Server error",
+        "message": "System malfunction. Our team has been notified."
+      },
+      "permission_denied": {
+        "validation": "Permission denied",
+        "message": "Access restricted. Insufficient clearance level."
+      }
+    }
+  },
+  "formatting": {
+    "title": "Date, Time & Number Formatting",
+    "description": "Font: Orbitron or JetBrains Mono. Consistent format.",
+    "date_formats": "DATE FORMATS",
+    "number_formats": "NUMBER FORMATS",
+    "date": {
+      "full": {
+        "label": "Full",
+        "value": "15 Feb 2026"
+      },
+      "compact": {
+        "label": "Compact",
+        "value": "2026.02.15"
+      },
+      "timestamp": {
+        "label": "Timestamp",
+        "value": "2026.02.15 / 14:32:07 UTC"
+      },
+      "relative": {
+        "label": "Relative",
+        "value": "3 hours ago"
+      }
+    },
+    "number": {
+      "count": {
+        "label": "Count",
+        "value": "1,247"
+      },
+      "percentage": {
+        "label": "Percentage",
+        "value": "67%"
+      },
+      "version": {
+        "label": "Version",
+        "value": "2.4.1"
+      },
+      "file_size": {
+        "label": "File size",
+        "value": "12.4 MB"
+      },
+      "error_code": {
+        "label": "Error code",
+        "value": "EF-404-3B2C"
+      }
+    },
+    "relative_example": "3 hours ago"
+  },
+  "truncation": {
+    "title": "Truncation & Overflow",
+    "description": "Single line ellipsis, multi-line clamp, break-word for long strings.",
+    "single_line": "Single line (truncate)",
+    "multi_line": "Multi-line (line-clamp-2)",
+    "break_word": "Break word",
+    "sample_single": "This is a very long text that will be truncated with an ellipsis at the end of the line.",
+    "sample_multi": "This is a very long text that spans multiple lines. It will be clamped to exactly 2 lines with an ellipsis. Additional content will be hidden from view.",
+    "sample_break": "superlongstringwithoutanyspaces_or_breaks_that_needs_to_be_broken_across_lines"
+  }
+}
