@@ -43,7 +43,7 @@ export interface PlaygroundControl {
   label?: string;
   type: "select" | "boolean" | "text" | "number" | "color" | "range";
   options?: string[];
-  default: any;
+  default: string | number | boolean;
   min?: number;
   max?: number;
   step?: number;
@@ -62,9 +62,9 @@ interface ComponentPreviewProps {
   showViewport?: boolean;
   playground?: {
     controls: PlaygroundControl[];
-    render: (values: Record<string, any>) => ReactNode;
+    render: (values: Record<string, string | number | boolean>) => ReactNode;
     componentName?: string;
-    codeTemplate?: (values: Record<string, any>) => string;
+    codeTemplate?: (values: Record<string, string | number | boolean>) => string;
   };
 }
 
@@ -203,11 +203,13 @@ export const ComponentPreview = ({
     () =>
       playground?.controls.reduce(
         (acc, c) => ({ ...acc, [c.name]: c.default }),
-        {} as Record<string, any>,
+        {} as Record<string, string | number | boolean>,
       ) ?? {},
     [playground?.controls],
   );
-  const [pgValues, setPgValues] = useState<Record<string, any>>(defaultValues);
+  const [pgValues, setPgValues] = useState<
+    Record<string, string | number | boolean>
+  >(defaultValues);
   const [codeCopied, setCodeCopied] = useState(false);
   const [viewport, setViewport] = useState<"desktop" | "mobile">("desktop");
   const copyTimerRef = useRef<ReturnType<typeof setTimeout>>();
@@ -249,7 +251,7 @@ export const ComponentPreview = ({
     { key: "install", label: t("component_preview.install"), available: !!install },
   ];
 
-  const updatePg = (name: string, value: any) =>
+  const updatePg = (name: string, value: string | number | boolean) =>
     setPgValues((prev) => ({ ...prev, [name]: value }));
   const resetPg = () => setPgValues(defaultValues);
 

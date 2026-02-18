@@ -1,0 +1,63 @@
+name: CI
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    name: Quality Checks
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type Check
+        run: npx tsc --noEmit
+
+      - name: Test
+        run: npm run test
+
+  build:
+    name: Build Library
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build:lib
+
+      - name: Check dist exists
+        run: |
+          test -f dist/lib/index.mjs || exit 1
+          test -f dist/lib/index.cjs || exit 1
+          test -f dist/lib/index.d.ts || exit 1
+
+      - name: Bundle Size Report
+        run: |
+          echo "=== Bundle Size ==="
+          ls -lh dist/lib/
+          echo "MJS: $(wc -c < dist/lib/index.mjs) bytes"
+          echo "CJS: $(wc -c < dist/lib/index.cjs) bytes"
+          MJS_SIZE=$(wc -c < dist/lib/index.mjs)
+          MAX_SIZE=102400
+          if [ "$MJS_SIZE" -gt "$MAX_SIZE" ]; then
+            echo "❌ Bundle too large: ${MJS_SIZE} bytes (max: ${MAX_SIZE})"
+            exit 1
+          fi
+          echo "✅ Bundle OK: ${MJS_SIZE} bytes"

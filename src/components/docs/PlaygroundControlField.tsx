@@ -6,8 +6,8 @@ const PlaygroundControlField = ({
   onChange,
 }: {
   control: PlaygroundControl;
-  value: any;
-  onChange: (v: any) => void;
+  value: string | number | boolean;
+  onChange: (v: string | number | boolean) => void;
 }) => {
   const label = control.label ?? control.name;
 

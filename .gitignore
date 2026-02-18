@@ -44,4 +44,3 @@ coverage/
 *.tgz
 docs/
 scripts/
-src/test/
