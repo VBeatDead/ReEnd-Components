@@ -91,5 +91,83 @@
     "description": "Alert inline dengan tint bg semantik. Banner atas halaman: bg kuning, teks hitam.",
     "info_message": "Pesan alert {type}. Persisten dan dapat ditutup.",
     "new_version": "◆ VERSI BARU TERSEDIA — PERBARUI SEKARANG"
+  },
+  "_props": {
+    "toast-notification": {
+      "type": "Tipe semantik yang mengontrol warna dan ikon",
+      "title": "Teks heading tebal huruf kapital",
+      "message": "Teks deskripsi isi",
+      "duration": "Waktu auto-dismiss dalam ms. Set 0 untuk persisten.",
+      "dismissible": "Menampilkan tombol tutup X",
+      "onDismiss": "Callback ketika toast ditutup",
+      "api": {
+        "toast_info": "Menampilkan toast info dengan border kiri biru dan ikon info.",
+        "toast_success": "Menampilkan toast sukses dengan border kiri hijau dan ikon centang.",
+        "toast_error": "Menampilkan toast error dengan border kiri merah dan ikon alert."
+      }
+    },
+    "modal-dialog": {
+      "open": "Mengontrol visibilitas modal",
+      "onClose": "Callback ketika modal ditutup",
+      "title": "Teks judul header modal",
+      "children": "Konten body modal",
+      "actions": "Tombol aksi footer",
+      "variant": "Varian visual untuk konfirmasi destruktif",
+      "closeOnBackdrop": "Tutup ketika mengklik overlay backdrop",
+      "api": {
+        "useModal": "Hook untuk mengelola status buka/tutup modal dengan penanganan tombol escape bawaan."
+      },
+      "kbd": {
+        "0": "Menutup dialog modal",
+        "1": "Pindahkan fokus ke elemen berikutnya dalam modal (jebakan fokus)",
+        "2": "Pindahkan fokus ke elemen sebelumnya dalam modal",
+        "3": "Aktifkan tombol aksi yang difokuskan"
+      }
+    },
+    "tooltip-popover": {
+      "content": "Konten tooltip/popover",
+      "trigger": "Elemen yang memicu tooltip",
+      "side": "Sisi penempatan yang diutamakan",
+      "delay": "Delay hover dalam ms sebelum menampilkan (khusus tooltip)",
+      "interactive": "Jika true, dirender sebagai popover (konten yang dapat diklik)"
+    },
+    "loading-skeleton": {
+      "variant": "Gaya indikator loading",
+      "size": "Ukuran spinner/dots",
+      "text": "Teks status loading opsional (contoh: 'MENGINISIALISASI...')",
+      "lines": "Jumlah baris shimmer skeleton"
+    },
+    "empty-state": {
+      "icon": "Elemen ikon besar (48px)",
+      "title": "Teks heading huruf kapital",
+      "description": "Teks konteks pendukung",
+      "action": "Tombol CTA opsional"
+    },
+    "error-pages": {
+      "code": "Kode error HTTP",
+      "title": "Override judul error default",
+      "onRetry": "Callback aksi coba lagi (menampilkan tombol coba lagi)"
+    },
+    "offline-state": {
+      "variant": "Mode tampilan",
+      "onRetry": "Callback coba koneksi ulang"
+    },
+    "success-state": {
+      "message": "Teks pesan sukses",
+      "variant": "Mode tampilan"
+    },
+    "inline-validation": {
+      "status": "Status validasi",
+      "message": "Pesan validasi dengan awalan ikon",
+      "trigger": "Kapan validasi dijalankan",
+      "debounce": "Delay debounce dalam ms untuk trigger onChange"
+    },
+    "banner-alert": {
+      "type": "Tipe semantik yang mengontrol skema warna",
+      "children": "Konten pesan alert",
+      "dismissible": "Menampilkan tombol tutup",
+      "variant": "Alert inline atau banner lebar penuh atas",
+      "onDismiss": "Callback ketika ditutup"
+    }
   }
 }

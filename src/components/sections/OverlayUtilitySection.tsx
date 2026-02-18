@@ -24,49 +24,49 @@ export function OverlayUtilitySection() {
             name: "open",
             type: "boolean",
             required: true,
-            description: "Controls visibility",
+            description: t("_props.command-palette.open"),
           },
           {
             name: "onOpenChange",
             type: "(open: boolean) => void",
             required: true,
-            description: "Callback for open/close state",
+            description: t("_props.command-palette.onOpenChange"),
           },
           {
             name: "onSelect",
             type: "(item: CommandItem) => void",
             required: true,
-            description: "Callback when a result is selected",
+            description: t("_props.command-palette.onSelect"),
           },
           {
             name: "placeholder",
             type: "string",
             default: '"Type a command..."',
             required: false,
-            description: "Search input placeholder",
+            description: t("_props.command-palette.placeholder"),
           },
           {
             name: "groups",
             type: "{ label: string; items: CommandItem[] }[]",
             required: true,
-            description: "Grouped command items",
+            description: t("_props.command-palette.groups"),
           },
         ]}
         api={[
           {
             name: "useCommandPalette",
             signature: "() => { open, toggle, close }",
-            description: "Hook with ⌘K shortcut binding and focus management.",
+            description: t("_props.command-palette.api.useCommandPalette"),
           },
         ]}
         keyboard={[
-          { key: "⌘K / Ctrl+K", description: "Open command palette" },
-          { key: "Escape", description: "Close palette" },
-          { key: "Arrow ↑/↓", description: "Navigate through results" },
-          { key: "Enter", description: "Select the highlighted result" },
+          { key: "⌘K / Ctrl+K", description: t("_props.command-palette.kbd.0") },
+          { key: "Escape", description: t("_props.command-palette.kbd.1") },
+          { key: "Arrow ↑/↓", description: t("_props.command-palette.kbd.2") },
+          { key: "Enter", description: t("_props.command-palette.kbd.3") },
           {
             key: "Tab",
-            description: "Cycle focus within the dialog (focus trap)",
+            description: t("_props.command-palette.kbd.4"),
           },
         ]}
         install={{
@@ -136,19 +136,19 @@ export function OverlayUtilitySection() {
             name: "onAccept",
             type: "() => void",
             required: true,
-            description: "Callback when all cookies accepted",
+            description: t("_props.cookie-consent.onAccept"),
           },
           {
             name: "onCustomize",
             type: "() => void",
             required: false,
-            description: "Callback to open cookie preferences",
+            description: t("_props.cookie-consent.onCustomize"),
           },
           {
             name: "message",
             type: "string",
             required: false,
-            description: "Custom consent message text",
+            description: t("_props.cookie-consent.message"),
           },
         ]}
       >
@@ -178,14 +178,14 @@ export function OverlayUtilitySection() {
             type: "number",
             default: "300",
             required: false,
-            description: "Scroll distance in px before button appears",
+            description: t("_props.back-to-top.threshold"),
           },
           {
             name: "smooth",
             type: "boolean",
             default: "true",
             required: false,
-            description: "Use smooth scroll behavior",
+            description: t("_props.back-to-top.smooth"),
           },
         ]}
       >
@@ -212,20 +212,20 @@ export function OverlayUtilitySection() {
             name: "text",
             type: "string",
             required: true,
-            description: "Text content to copy",
+            description: t("_props.copy-clipboard.text"),
           },
           {
             name: "resetDelay",
             type: "number",
             default: "2000",
             required: false,
-            description: "Time in ms before resetting to idle state",
+            description: t("_props.copy-clipboard.resetDelay"),
           },
           {
             name: "onCopy",
             type: "() => void",
             required: false,
-            description: "Callback after successful copy",
+            description: t("_props.copy-clipboard.onCopy"),
           },
         ]}
       >
@@ -242,26 +242,26 @@ export function OverlayUtilitySection() {
             name: "trigger",
             type: "ReactNode",
             required: true,
-            description: "Element that opens the dropdown",
+            description: t("_props.dropdown.trigger"),
           },
           {
             name: "items",
             type: '{ label: string; onClick: () => void; variant?: "default" | "danger" }[]',
             required: true,
-            description: "Menu items",
+            description: t("_props.dropdown.items"),
           },
           {
             name: "groups",
             type: "{ label?: string; items: DropdownItem[] }[]",
             required: false,
-            description: "Grouped menu items with optional section labels",
+            description: t("_props.dropdown.groups"),
           },
           {
             name: "align",
             type: '"start" | "end"',
             default: '"start"',
             required: false,
-            description: "Horizontal alignment relative to trigger",
+            description: t("_props.dropdown.align"),
           },
         ]}
       >
@@ -300,15 +300,13 @@ export function OverlayUtilitySection() {
             name: "items",
             type: '{ label: string; shortcut?: string; onClick: () => void; variant?: "default" | "danger" }[]',
             required: true,
-            description:
-              "Context menu items with optional keyboard shortcut hints",
+            description: t("_props.context-menu.items"),
           },
           {
             name: "children",
             type: "ReactNode",
             required: true,
-            description:
-              "Target area that triggers context menu on right-click",
+            description: t("_props.context-menu.children"),
           },
         ]}
       >

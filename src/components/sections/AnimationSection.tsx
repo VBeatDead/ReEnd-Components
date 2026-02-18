@@ -25,27 +25,27 @@ export function AnimationSection() {
             name: "name",
             type: '"fadeIn" | "fadeInUp" | "glitch" | "pulseGlow" | "diamondSpin" | "skeleton"',
             required: true,
-            description: "Animation name from the catalog",
+            description: t("_props.animation-system.name"),
           },
           {
             name: "duration",
             type: '"instant" | "fast" | "normal" | "slow" | "slower"',
             default: '"normal"',
             required: false,
-            description: "Duration scale token",
+            description: t("_props.animation-system.duration"),
           },
           {
             name: "delay",
             type: "number",
             required: false,
-            description: "Animation delay in ms",
+            description: t("_props.animation-system.delay"),
           },
           {
             name: "easing",
             type: '"default" | "bounce" | "sharp" | "smooth"',
             default: '"default"',
             required: false,
-            description: "Timing function",
+            description: t("_props.animation-system.easing"),
           },
         ]}
         api={[
@@ -53,14 +53,12 @@ export function AnimationSection() {
             name: "useInView",
             signature:
               "(ref: RefObject, options?: { threshold: number }) => boolean",
-            description:
-              "Returns true when element enters viewport. Use to trigger scroll animations.",
+            description: t("_props.animation-system.api.useInView"),
           },
           {
             name: "useStagger",
             signature: "(count: number, delay?: number) => string[]",
-            description:
-              "Returns array of CSS delay strings for staggered child animations.",
+            description: t("_props.animation-system.api.useStagger"),
           },
         ]}
       >
@@ -139,14 +137,14 @@ export function AnimationSection() {
             type: '"fade" | "slide" | "scale"',
             default: '"fade"',
             required: false,
-            description: "Transition animation type",
+            description: t("_props.page-transitions.type"),
           },
           {
             name: "duration",
             type: "number",
             default: "300",
             required: false,
-            description: "Transition duration in ms",
+            description: t("_props.page-transitions.duration"),
           },
         ]}
       >
@@ -166,28 +164,28 @@ export function AnimationSection() {
             type: '"fadeInUp" | "fadeIn" | "scaleIn"',
             default: '"fadeInUp"',
             required: false,
-            description: "Animation to play on scroll",
+            description: t("_props.scroll-animations.animation"),
           },
           {
             name: "threshold",
             type: "number",
             default: "0.1",
             required: false,
-            description: "Intersection Observer threshold (0-1)",
+            description: t("_props.scroll-animations.threshold"),
           },
           {
             name: "stagger",
             type: "number",
             default: "100",
             required: false,
-            description: "Delay in ms between sibling animations",
+            description: t("_props.scroll-animations.stagger"),
           },
           {
             name: "once",
             type: "boolean",
             default: "true",
             required: false,
-            description: "Only animate once when entering viewport",
+            description: t("_props.scroll-animations.once"),
           },
         ]}
       >
@@ -223,28 +221,28 @@ export function AnimationSection() {
             type: "number",
             default: "12",
             required: false,
-            description: "Number of particles",
+            description: t("_props.particle-effects.count"),
           },
           {
             name: "color",
             type: "string",
             default: '"primary"',
             required: false,
-            description: "Particle color token",
+            description: t("_props.particle-effects.color"),
           },
           {
             name: "speed",
             type: '"slow" | "medium" | "fast"',
             default: '"slow"',
             required: false,
-            description: "Drift animation speed",
+            description: t("_props.particle-effects.speed"),
           },
           {
             name: "opacity",
             type: "[number, number]",
             default: "[0.1, 0.3]",
             required: false,
-            description: "Min/max opacity range",
+            description: t("_props.particle-effects.opacity"),
           },
         ]}
       >

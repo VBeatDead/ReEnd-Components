@@ -19,5 +19,33 @@
     "ambient_particles": "PARTIKEL AMBIENT"
   },
   "live_animations": "ANIMASI LANGSUNG",
-  "duration_scale": "SKALA DURASI"
+  "duration_scale": "SKALA DURASI",
+  "_props": {
+    "animation-system": {
+      "name": "Nama animasi dari katalog",
+      "duration": "Token skala durasi",
+      "delay": "Delay animasi dalam ms",
+      "easing": "Fungsi timing",
+      "api": {
+        "useInView": "Mengembalikan true ketika elemen memasuki viewport. Gunakan untuk memicu animasi scroll.",
+        "useStagger": "Mengembalikan array string delay CSS untuk animasi anak yang bertahap."
+      }
+    },
+    "page-transitions": {
+      "type": "Tipe animasi transisi",
+      "duration": "Durasi transisi dalam ms"
+    },
+    "scroll-animations": {
+      "animation": "Animasi yang diputar saat scroll",
+      "threshold": "Threshold Intersection Observer (0-1)",
+      "stagger": "Delay dalam ms antar animasi elemen saudara",
+      "once": "Hanya animasi sekali saat memasuki viewport"
+    },
+    "particle-effects": {
+      "count": "Jumlah partikel",
+      "color": "Token warna partikel",
+      "speed": "Kecepatan animasi drift",
+      "opacity": "Rentang opasitas min/maks"
+    }
+  }
 }

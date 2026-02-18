@@ -30,59 +30,56 @@ export function FeedbackSection() {
             name: "type",
             type: '"info" | "success" | "warning" | "error" | "endfield"',
             required: true,
-            description: "Semantic type controlling color and icon",
+            description: t("_props.toast-notification.type"),
           },
           {
             name: "title",
             type: "string",
             required: true,
-            description: "Bold uppercase heading text",
+            description: t("_props.toast-notification.title"),
           },
           {
             name: "message",
             type: "string",
             required: true,
-            description: "Body text description",
+            description: t("_props.toast-notification.message"),
           },
           {
             name: "duration",
             type: "number",
             default: "5000",
             required: false,
-            description: "Auto-dismiss time in ms. Set 0 for persistent.",
+            description: t("_props.toast-notification.duration"),
           },
           {
             name: "dismissible",
             type: "boolean",
             default: "true",
             required: false,
-            description: "Shows the X close button",
+            description: t("_props.toast-notification.dismissible"),
           },
           {
             name: "onDismiss",
             type: "() => void",
             required: false,
-            description: "Callback when toast is dismissed",
+            description: t("_props.toast-notification.onDismiss"),
           },
         ]}
         api={[
           {
             name: "toast.info()",
             signature: "(title: string, msg: string) => void",
-            description:
-              "Shows an info toast with blue left border and info icon.",
+            description: t("_props.toast-notification.api.toast_info"),
           },
           {
             name: "toast.success()",
             signature: "(title: string, msg: string) => void",
-            description:
-              "Shows a success toast with green left border and checkmark icon.",
+            description: t("_props.toast-notification.api.toast_success"),
           },
           {
             name: "toast.error()",
             signature: "(title: string, msg: string) => void",
-            description:
-              "Shows an error toast with red left border and alert icon.",
+            description: t("_props.toast-notification.api.toast_error"),
           },
         ]}
       >
@@ -169,67 +166,65 @@ export function FeedbackSection() {
             name: "open",
             type: "boolean",
             required: true,
-            description: "Controls modal visibility",
+            description: t("_props.modal-dialog.open"),
           },
           {
             name: "onClose",
             type: "() => void",
             required: true,
-            description: "Callback when modal is closed",
+            description: t("_props.modal-dialog.onClose"),
           },
           {
             name: "title",
             type: "string",
             required: true,
-            description: "Modal header title text",
+            description: t("_props.modal-dialog.title"),
           },
           {
             name: "children",
             type: "ReactNode",
             required: true,
-            description: "Modal body content",
+            description: t("_props.modal-dialog.children"),
           },
           {
             name: "actions",
             type: "ReactNode",
             required: false,
-            description: "Footer action buttons",
+            description: t("_props.modal-dialog.actions"),
           },
           {
             name: "variant",
             type: '"default" | "danger"',
             default: '"default"',
             required: false,
-            description: "Visual variant for destructive confirmations",
+            description: t("_props.modal-dialog.variant"),
           },
           {
             name: "closeOnBackdrop",
             type: "boolean",
             default: "true",
             required: false,
-            description: "Close when clicking backdrop overlay",
+            description: t("_props.modal-dialog.closeOnBackdrop"),
           },
         ]}
         api={[
           {
             name: "useModal",
             signature: "() => { open, onOpen, onClose }",
-            description:
-              "Hook to manage modal open/close state with escape key handling built-in.",
+            description: t("_props.modal-dialog.api.useModal"),
           },
         ]}
         keyboard={[
-          { key: "Escape", description: "Close the modal dialog" },
+          { key: "Escape", description: t("_props.modal-dialog.kbd.0") },
           {
             key: "Tab",
-            description:
-              "Move focus to the next element within the modal (focus trap)",
+            description: t("_props.modal-dialog.kbd.1"),
           },
           {
             key: "Shift + Tab",
-            description: "Move focus to the previous element within the modal",
+            description: t("_props.modal-dialog.kbd.2"),
           },
-          { key: "Enter", description: "Activate the focused action button" },
+          { key: "Enter", description: t("_props.modal-dialog.kbd.3") },
         ]}
         install={{
           importPath:
@@ -334,34 +329,34 @@ export function FeedbackSection() {
             name: "content",
             type: "ReactNode",
             required: true,
-            description: "Tooltip/popover content",
+            description: t("_props.tooltip-popover.content"),
           },
           {
             name: "trigger",
             type: "ReactNode",
             required: true,
-            description: "Element that triggers the tooltip",
+            description: t("_props.tooltip-popover.trigger"),
           },
           {
             name: "side",
             type: '"top" | "bottom" | "left" | "right"',
             default: '"top"',
             required: false,
-            description: "Preferred placement side",
+            description: t("_props.tooltip-popover.side"),
           },
           {
             name: "delay",
             type: "number",
             default: "200",
             required: false,
-            description: "Hover delay in ms before showing (tooltip only)",
+            description: t("_props.tooltip-popover.delay"),
           },
           {
             name: "interactive",
             type: "boolean",
             default: "false",
             required: false,
-            description: "If true, renders as popover (clickable content)",
+            description: t("_props.tooltip-popover.interactive"),
           },
         ]}
       >
@@ -410,28 +405,27 @@ export function FeedbackSection() {
             type: '"spinner" | "dots" | "skeleton" | "fullpage"',
             default: '"spinner"',
             required: false,
-            description: "Loading indicator style",
+            description: t("_props.loading-skeleton.variant"),
           },
           {
             name: "size",
             type: '"sm" | "md" | "lg"',
             default: '"md"',
             required: false,
-            description: "Spinner/dots size",
+            description: t("_props.loading-skeleton.size"),
           },
           {
             name: "text",
             type: "string",
             required: false,
-            description:
-              "Optional loading status text (e.g. 'INITIALIZING...')",
+            description: t("_props.loading-skeleton.text"),
           },
           {
             name: "lines",
             type: "number",
             default: "3",
             required: false,
-            description: "Number of skeleton shimmer lines",
+            description: t("_props.loading-skeleton.lines"),
           },
         ]}
       >
@@ -453,8 +447,8 @@ export function FeedbackSection() {
                     className="w-1 h-1 bg-primary animate-pulse"
                     style={{
                       clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)",
+                      animationDelay: `${i * 200}ms`,
                     }}
-                    style={{ animationDelay: `${i * 200}ms` }}
                   />
                 ))}
               </div>
@@ -504,25 +498,25 @@ export function FeedbackSection() {
             name: "icon",
             type: "ReactNode",
             required: true,
-            description: "Large icon element (48px)",
+            description: t("_props.empty-state.icon"),
           },
           {
             name: "title",
             type: "string",
             required: true,
-            description: "Uppercase heading text",
+            description: t("_props.empty-state.title"),
           },
           {
             name: "description",
             type: "string",
             required: true,
-            description: "Supporting context text",
+            description: t("_props.empty-state.description"),
           },
           {
             name: "action",
             type: "{ label: string; onClick: () => void }",
             required: false,
-            description: "Optional CTA button",
+            description: t("_props.empty-state.action"),
           },
         ]}
       >
@@ -579,19 +573,19 @@ export function FeedbackSection() {
             name: "code",
             type: '"404" | "403" | "500" | "503"',
             required: true,
-            description: "HTTP error code",
+            description: t("_props.error-pages.code"),
           },
           {
             name: "title",
             type: "string",
             required: false,
-            description: "Override default error title",
+            description: t("_props.error-pages.title"),
           },
           {
             name: "onRetry",
             type: "() => void",
             required: false,
-            description: "Retry action callback (shows retry button)",
+            description: t("_props.error-pages.onRetry"),
           },
         ]}
       >
@@ -657,13 +651,13 @@ export function FeedbackSection() {
             type: '"banner" | "fullpage"',
             default: '"banner"',
             required: false,
-            description: "Display mode",
+            description: t("_props.offline-state.variant"),
           },
           {
             name: "onRetry",
             type: "() => void",
             required: false,
-            description: "Retry connection callback",
+            description: t("_props.offline-state.onRetry"),
           },
         ]}
       >
@@ -716,14 +710,14 @@ export function FeedbackSection() {
             name: "message",
             type: "string",
             required: true,
-            description: "Success message text",
+            description: t("_props.success-state.message"),
           },
           {
             name: "variant",
             type: '"inline" | "fullpage"',
             default: '"inline"',
             required: false,
-            description: "Display mode",
+            description: t("_props.success-state.variant"),
           },
         ]}
       >
@@ -748,27 +742,27 @@ export function FeedbackSection() {
             type: '"error" | "success" | "warning" | "idle"',
             default: '"idle"',
             required: false,
-            description: "Validation state",
+            description: t("_props.inline-validation.status"),
           },
           {
             name: "message",
             type: "string",
             required: false,
-            description: "Validation message with icon prefix",
+            description: t("_props.inline-validation.message"),
           },
           {
             name: "trigger",
             type: '"onChange" | "onBlur" | "onSubmit"',
             default: '"onBlur"',
             required: false,
-            description: "When validation fires",
+            description: t("_props.inline-validation.trigger"),
           },
           {
             name: "debounce",
             type: "number",
             default: "300",
             required: false,
-            description: "Debounce delay in ms for onChange trigger",
+            description: t("_props.inline-validation.debounce"),
           },
         ]}
       >
@@ -816,33 +810,33 @@ export function FeedbackSection() {
             name: "type",
             type: '"info" | "success" | "warning" | "error"',
             required: true,
-            description: "Semantic type controlling color scheme",
+            description: t("_props.banner-alert.type"),
           },
           {
             name: "children",
             type: "ReactNode",
             required: true,
-            description: "Alert message content",
+            description: t("_props.banner-alert.children"),
           },
           {
             name: "dismissible",
             type: "boolean",
             default: "true",
             required: false,
-            description: "Shows close button",
+            description: t("_props.banner-alert.dismissible"),
           },
           {
             name: "variant",
             type: '"inline" | "banner"',
             default: '"inline"',
             required: false,
-            description: "Inline alert or full-width top banner",
+            description: t("_props.banner-alert.variant"),
           },
           {
             name: "onDismiss",
             type: "() => void",
             required: false,
-            description: "Callback when dismissed",
+            description: t("_props.banner-alert.onDismiss"),
           },
         ]}
       >

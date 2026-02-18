@@ -90,5 +90,34 @@
     "selected_count": "3 terpilih",
     "delete_btn": "HAPUS",
     "export_btn": "EKSPOR"
+  },
+  "_props": {
+    "states-matrix": {
+      "elements": "Definisi elemen dengan pemetaan status"
+    },
+    "micro-interactions": {
+      "type": "Tipe pola interaksi",
+      "onTrigger": "Callback ketika interaksi dipicu"
+    },
+    "focus-keyboard": {
+      "shortcuts": "Definisi pintasan keyboard kustom",
+      "trapFocus": "Jebak fokus dalam container (untuk modal)",
+      "api": {
+        "useFocusTrap": "Menjebak fokus keyboard dalam elemen container. Digunakan untuk modal dan dialog.",
+        "useShortcut": "Mendaftarkan pintasan keyboard global dengan pembersihan otomatis."
+      }
+    },
+    "drag-drop": {
+      "items": "Array item yang dapat diseret",
+      "onReorder": "Callback dengan item yang diurutkan ulang",
+      "direction": "Batasan arah seret"
+    },
+    "selection": {
+      "options": "Item opsi yang dapat dipilih",
+      "value": "Nilai yang dipilih",
+      "onChange": "Callback perubahan seleksi",
+      "multiple": "Mengaktifkan multi-seleksi dengan bilah aksi mengambang",
+      "actions": "Tombol aksi massal untuk multi-seleksi"
+    }
   }
 }

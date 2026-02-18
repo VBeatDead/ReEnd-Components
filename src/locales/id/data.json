@@ -111,5 +111,59 @@
       "current": "Saat Ini",
       "upcoming": "Mendatang"
     }
+  },
+  "_props": {
+    "table": {
+      "columns": "Array definisi kolom dengan header, accessor, dan lebar opsional",
+      "data": "Array objek data baris",
+      "sortable": "Mengaktifkan klik-untuk-sortir pada header kolom",
+      "striped": "Bergantian latar baris antara surface-1 dan transparan",
+      "stickyHeader": "Menjaga header tetap saat scroll vertikal",
+      "onRowClick": "Pengendali klik untuk seleksi baris",
+      "api": {
+        "Column": "Objek konfigurasi kolom yang mendefinisikan label header, kunci data, lebar opsional, dan kemampuan sortir.",
+        "SortDirection": "Status sortir saat ini yang dikembalikan oleh hook useSortableTable."
+      }
+    },
+    "list": {
+      "variant": "Varian gaya daftar",
+      "items": "Data item daftar"
+    },
+    "stat-metric": {
+      "label": "Label metrik dalam huruf kapital",
+      "value": "Nilai tampilan utama",
+      "trend": "Indikator perubahan persentase",
+      "trendDirection": "Mengontrol pewarnaan hijau (naik) atau merah (turun)"
+    },
+    "timeline": {
+      "items": "Entri linimasa dalam urutan kronologis",
+      "orientation": "Arah tata letak linimasa"
+    },
+    "accordion": {
+      "items": "Definisi panel akordeon",
+      "defaultOpen": "Indeks panel yang terbuka awal",
+      "multiple": "Izinkan beberapa panel terbuka bersamaan",
+      "onChange": "Callback ketika panel terbuka berubah"
+    },
+    "avatar": {
+      "src": "URL gambar untuk avatar",
+      "fallback": "Teks atau ikon fallback ketika tidak ada gambar",
+      "size": "Dimensi avatar (24-80px)",
+      "status": "Warna indikator diamond status"
+    },
+    "tags-badges": {
+      "label": "Teks tampilan tag",
+      "variant": "Varian warna semantik",
+      "removable": "Menampilkan tombol hapus x",
+      "onRemove": "Callback ketika tombol hapus diklik",
+      "count": "Angka jumlah lencana (dirender sebagai lencana angka)"
+    },
+    "progress-stepper": {
+      "value": "Persentase progres (0-100)",
+      "variant": "Mode tampilan",
+      "steps": "Definisi langkah untuk varian stepper",
+      "color": "Warna bilah progres",
+      "showLabel": "Tampilkan label persentase"
+    }
   }
 }

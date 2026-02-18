@@ -88,6 +88,7 @@ const ViewportFrame = ({
   children: ReactNode;
   width: number;
 }) => {
+  const { t } = useTranslation("common");
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
   const [height, setHeight] = useState(200);

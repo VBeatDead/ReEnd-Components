@@ -17,7 +17,7 @@ export function InteractiveSection() {
             name: "elements",
             type: "{ name: string; states: Record<string, string> }[]",
             required: true,
-            description: "Element definitions with state mappings",
+            description: t("_props.states-matrix.elements"),
           },
         ]}
       >
@@ -125,13 +125,13 @@ export function InteractiveSection() {
             name: "type",
             type: '"ripple" | "copy" | "favorite" | "toggle"',
             required: true,
-            description: "Interaction pattern type",
+            description: t("_props.micro-interactions.type"),
           },
           {
             name: "onTrigger",
             type: "() => void",
             required: false,
-            description: "Callback when interaction is triggered",
+            description: t("_props.micro-interactions.onTrigger"),
           },
         ]}
       >
@@ -243,28 +243,26 @@ input:focus-visible {
             name: "shortcuts",
             type: "{ key: string; action: string }[]",
             required: false,
-            description: "Custom keyboard shortcut definitions",
+            description: t("_props.focus-keyboard.shortcuts"),
           },
           {
             name: "trapFocus",
             type: "boolean",
             default: "false",
             required: false,
-            description: "Trap focus within container (for modals)",
+            description: t("_props.focus-keyboard.trapFocus"),
           },
         ]}
         api={[
           {
             name: "useFocusTrap",
             signature: "(ref: RefObject) => void",
-            description:
-              "Traps keyboard focus within a container element. Used for modals and dialogs.",
+            description: t("_props.focus-keyboard.api.useFocusTrap"),
           },
           {
             name: "useShortcut",
             signature: "(key: string, handler: () => void) => void",
-            description:
-              "Registers a global keyboard shortcut with automatic cleanup.",
+            description: t("_props.focus-keyboard.api.useShortcut"),
           },
         ]}
       >
@@ -328,20 +326,20 @@ input:focus-visible {
             name: "items",
             type: "T[]",
             required: true,
-            description: "Draggable items array",
+            description: t("_props.drag-drop.items"),
           },
           {
             name: "onReorder",
             type: "(items: T[]) => void",
             required: true,
-            description: "Callback with reordered items",
+            description: t("_props.drag-drop.onReorder"),
           },
           {
             name: "direction",
             type: '"vertical" | "horizontal"',
             default: '"vertical"',
             required: false,
-            description: "Drag direction constraint",
+            description: t("_props.drag-drop.direction"),
           },
         ]}
       >
@@ -368,32 +366,32 @@ input:focus-visible {
             name: "options",
             type: "{ label: string; value: string }[]",
             required: true,
-            description: "Selectable option items",
+            description: t("_props.selection.options"),
           },
           {
             name: "value",
             type: "string | string[]",
             required: true,
-            description: "Selected value(s)",
+            description: t("_props.selection.value"),
           },
           {
             name: "onChange",
             type: "(value: string | string[]) => void",
             required: true,
-            description: "Selection change callback",
+            description: t("_props.selection.onChange"),
           },
           {
             name: "multiple",
             type: "boolean",
             default: "false",
             required: false,
-            description: "Enable multi-select with floating action bar",
+            description: t("_props.selection.multiple"),
           },
           {
             name: "actions",
             type: '{ label: string; onClick: (selected: string[]) => void; variant?: "default" | "danger" }[]',
             required: false,
-            description: "Bulk action buttons for multi-select",
+            description: t("_props.selection.actions"),
           },
         ]}
       >

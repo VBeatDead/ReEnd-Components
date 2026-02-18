@@ -111,5 +111,59 @@
       "current": "Current",
       "upcoming": "Upcoming"
     }
+  },
+  "_props": {
+    "table": {
+      "columns": "Array of column definitions with header, accessor, and optional width",
+      "data": "Array of row data objects",
+      "sortable": "Enables click-to-sort on column headers",
+      "striped": "Alternates row background between surface-1 and transparent",
+      "stickyHeader": "Keeps header fixed during vertical scroll",
+      "onRowClick": "Click handler for row selection",
+      "api": {
+        "Column": "Column configuration object defining header label, data key, optional width, and sort capability.",
+        "SortDirection": "Current sort state returned by the useSortableTable hook."
+      }
+    },
+    "list": {
+      "variant": "List style variant",
+      "items": "List items data"
+    },
+    "stat-metric": {
+      "label": "Metric label in uppercase",
+      "value": "Primary display value",
+      "trend": "Percentage change indicator",
+      "trendDirection": "Controls green (up) or red (down) coloring"
+    },
+    "timeline": {
+      "items": "Timeline entries in chronological order",
+      "orientation": "Layout direction of the timeline"
+    },
+    "accordion": {
+      "items": "Accordion panel definitions",
+      "defaultOpen": "Index of initially open panel",
+      "multiple": "Allow multiple panels open simultaneously",
+      "onChange": "Callback when open panel changes"
+    },
+    "avatar": {
+      "src": "Image URL for the avatar",
+      "fallback": "Fallback text or icon when no image",
+      "size": "Avatar dimensions (24-80px)",
+      "status": "Status diamond indicator color"
+    },
+    "tags-badges": {
+      "label": "Tag display text",
+      "variant": "Semantic color variant",
+      "removable": "Shows x remove button",
+      "onRemove": "Callback when remove button is clicked",
+      "count": "Badge count number (renders as count badge)"
+    },
+    "progress-stepper": {
+      "value": "Progress percentage (0-100)",
+      "variant": "Display mode",
+      "steps": "Step definitions for stepper variant",
+      "color": "Progress bar color",
+      "showLabel": "Show percentage label"
+    }
   }
 }

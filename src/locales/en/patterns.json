@@ -126,5 +126,22 @@
     "arrow_tokens": "→ Design tokens",
     "arrow_base": "→ Reset, typography",
     "arrow_animations": "→ Keyframes"
+  },
+  "_props": {
+    "page-templates": {
+      "template": "Page template type",
+      "header": "Custom header override",
+      "sidebar": "Sidebar content (documentation template)",
+      "children": "Main page content"
+    },
+    "section-patterns": {
+      "overline": "Section overline label",
+      "heading": "Section heading text",
+      "layout": "Content layout pattern",
+      "children": "Section content"
+    },
+    "responsive": {
+      "breakpoints": "Custom breakpoint overrides"
+    }
   }
 }

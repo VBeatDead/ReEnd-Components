@@ -50,5 +50,50 @@
     "scroll_progress": "Scroll Progress Bar",
     "custom_scrollbar": "Custom Scrollbar (6px, square thumb)",
     "scroll_line_text": "Line {{number}}: Scroll content for testing custom scrollbar style."
+  },
+  "_props": {
+    "hero-section": {
+      "overline": "Pill-shaped overline label (e.g. 'VERSION 2.0')",
+      "title": "Main heading text (56-72px)",
+      "subtitle": "Supporting paragraph text",
+      "primaryAction": "Primary CTA button",
+      "secondaryAction": "Secondary outline CTA button",
+      "terminal": "Terminal command to display below CTAs"
+    },
+    "code-block-terminal": {
+      "code": "Code content to display",
+      "language": "Language for syntax highlighting",
+      "showLineNumbers": "Display line numbers",
+      "copyable": "Show copy button on hover",
+      "variant": "Visual style variant"
+    },
+    "blog-layout": {
+      "title": "Article heading",
+      "category": "Category label (e.g. 'ENGINEERING')",
+      "date": "Publication date",
+      "readTime": "Estimated read time",
+      "children": "Article body content (markdown-rendered)"
+    },
+    "image-media": {
+      "src": "Image source URL",
+      "alt": "Alt text for accessibility",
+      "caption": "Caption text below image",
+      "aspectRatio": "Image aspect ratio",
+      "hover": "Enable scale hover effect"
+    },
+    "video-player": {
+      "src": "Video source URL",
+      "poster": "Poster image URL",
+      "autoplay": "Auto-play on mount",
+      "controls": "Show playback controls"
+    },
+    "dividers": {
+      "variant": "Divider visual style",
+      "label": "Center label text (for labeled variant)"
+    },
+    "scroll-cursor": {
+      "showProgress": "Show fixed top scroll progress bar",
+      "customCursor": "Enable custom Endfield cursor"
+    }
   }
 }

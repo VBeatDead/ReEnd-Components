@@ -91,5 +91,83 @@
     "description": "Inline alerts with semantic bg tint. Top-of-page banner: yellow bg, black text.",
     "info_message": "{type} alert message. Persistent and dismissible.",
     "new_version": "◆ NEW VERSION AVAILABLE — UPDATE NOW"
+  },
+  "_props": {
+    "toast-notification": {
+      "type": "Semantic type controlling color and icon",
+      "title": "Bold uppercase heading text",
+      "message": "Body text description",
+      "duration": "Auto-dismiss time in ms. Set 0 for persistent.",
+      "dismissible": "Shows the X close button",
+      "onDismiss": "Callback when toast is dismissed",
+      "api": {
+        "toast_info": "Shows an info toast with blue left border and info icon.",
+        "toast_success": "Shows a success toast with green left border and checkmark icon.",
+        "toast_error": "Shows an error toast with red left border and alert icon."
+      }
+    },
+    "modal-dialog": {
+      "open": "Controls modal visibility",
+      "onClose": "Callback when modal is closed",
+      "title": "Modal header title text",
+      "children": "Modal body content",
+      "actions": "Footer action buttons",
+      "variant": "Visual variant for destructive confirmations",
+      "closeOnBackdrop": "Close when clicking backdrop overlay",
+      "api": {
+        "useModal": "Hook to manage modal open/close state with escape key handling built-in."
+      },
+      "kbd": {
+        "0": "Close the modal dialog",
+        "1": "Move focus to the next element within the modal (focus trap)",
+        "2": "Move focus to the previous element within the modal",
+        "3": "Activate the focused action button"
+      }
+    },
+    "tooltip-popover": {
+      "content": "Tooltip/popover content",
+      "trigger": "Element that triggers the tooltip",
+      "side": "Preferred placement side",
+      "delay": "Hover delay in ms before showing (tooltip only)",
+      "interactive": "If true, renders as popover (clickable content)"
+    },
+    "loading-skeleton": {
+      "variant": "Loading indicator style",
+      "size": "Spinner/dots size",
+      "text": "Optional loading status text (e.g. 'INITIALIZING...')",
+      "lines": "Number of skeleton shimmer lines"
+    },
+    "empty-state": {
+      "icon": "Large icon element (48px)",
+      "title": "Uppercase heading text",
+      "description": "Supporting context text",
+      "action": "Optional CTA button"
+    },
+    "error-pages": {
+      "code": "HTTP error code",
+      "title": "Override default error title",
+      "onRetry": "Retry action callback (shows retry button)"
+    },
+    "offline-state": {
+      "variant": "Display mode",
+      "onRetry": "Retry connection callback"
+    },
+    "success-state": {
+      "message": "Success message text",
+      "variant": "Display mode"
+    },
+    "inline-validation": {
+      "status": "Validation state",
+      "message": "Validation message with icon prefix",
+      "trigger": "When validation fires",
+      "debounce": "Debounce delay in ms for onChange trigger"
+    },
+    "banner-alert": {
+      "type": "Semantic type controlling color scheme",
+      "children": "Alert message content",
+      "dismissible": "Shows close button",
+      "variant": "Inline alert or full-width top banner",
+      "onDismiss": "Callback when dismissed"
+    }
   }
 }

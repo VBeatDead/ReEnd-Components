@@ -19,5 +19,33 @@
     "ambient_particles": "AMBIENT PARTICLES"
   },
   "live_animations": "LIVE ANIMATIONS",
-  "duration_scale": "DURATION SCALE"
+  "duration_scale": "DURATION SCALE",
+  "_props": {
+    "animation-system": {
+      "name": "Animation name from the catalog",
+      "duration": "Duration scale token",
+      "delay": "Animation delay in ms",
+      "easing": "Timing function",
+      "api": {
+        "useInView": "Returns true when element enters viewport. Use to trigger scroll animations.",
+        "useStagger": "Returns array of CSS delay strings for staggered child animations."
+      }
+    },
+    "page-transitions": {
+      "type": "Transition animation type",
+      "duration": "Transition duration in ms"
+    },
+    "scroll-animations": {
+      "animation": "Animation to play on scroll",
+      "threshold": "Intersection Observer threshold (0-1)",
+      "stagger": "Delay in ms between sibling animations",
+      "once": "Only animate once when entering viewport"
+    },
+    "particle-effects": {
+      "count": "Number of particles",
+      "color": "Particle color token",
+      "speed": "Drift animation speed",
+      "opacity": "Min/max opacity range"
+    }
+  }
 }

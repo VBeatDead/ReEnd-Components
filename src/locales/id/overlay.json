@@ -45,5 +45,48 @@
     "copy": "Salin",
     "paste": "Tempel",
     "delete": "Hapus"
+  },
+  "_props": {
+    "command-palette": {
+      "open": "Mengontrol visibilitas",
+      "onOpenChange": "Callback untuk status buka/tutup",
+      "onSelect": "Callback ketika hasil dipilih",
+      "placeholder": "Placeholder input pencarian",
+      "groups": "Item perintah yang dikelompokkan",
+      "api": {
+        "useCommandPalette": "Hook dengan binding pintasan Cmd+K dan manajemen fokus."
+      },
+      "kbd": {
+        "0": "Buka palet perintah",
+        "1": "Tutup palet",
+        "2": "Navigasi antar hasil",
+        "3": "Pilih hasil yang disorot",
+        "4": "Siklus fokus dalam dialog (jebakan fokus)"
+      }
+    },
+    "cookie-consent": {
+      "onAccept": "Callback ketika semua cookie diterima",
+      "onCustomize": "Callback untuk membuka preferensi cookie",
+      "message": "Teks pesan persetujuan kustom"
+    },
+    "back-to-top": {
+      "threshold": "Jarak scroll dalam px sebelum tombol muncul",
+      "smooth": "Gunakan perilaku scroll halus"
+    },
+    "copy-clipboard": {
+      "text": "Konten teks untuk disalin",
+      "resetDelay": "Waktu dalam ms sebelum kembali ke status idle",
+      "onCopy": "Callback setelah berhasil menyalin"
+    },
+    "dropdown": {
+      "trigger": "Elemen yang membuka dropdown",
+      "items": "Item menu",
+      "groups": "Item menu yang dikelompokkan dengan label bagian opsional",
+      "align": "Perataan horizontal relatif terhadap trigger"
+    },
+    "context-menu": {
+      "items": "Item menu konteks dengan petunjuk pintasan keyboard opsional",
+      "children": "Area target yang memicu menu konteks dengan klik kanan"
+    }
   }
 }

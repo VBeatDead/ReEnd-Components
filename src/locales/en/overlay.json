@@ -45,5 +45,48 @@
     "copy": "Copy",
     "paste": "Paste",
     "delete": "Delete"
+  },
+  "_props": {
+    "command-palette": {
+      "open": "Controls visibility",
+      "onOpenChange": "Callback for open/close state",
+      "onSelect": "Callback when a result is selected",
+      "placeholder": "Search input placeholder",
+      "groups": "Grouped command items",
+      "api": {
+        "useCommandPalette": "Hook with Cmd+K shortcut binding and focus management."
+      },
+      "kbd": {
+        "0": "Open command palette",
+        "1": "Close palette",
+        "2": "Navigate through results",
+        "3": "Select the highlighted result",
+        "4": "Cycle focus within the dialog (focus trap)"
+      }
+    },
+    "cookie-consent": {
+      "onAccept": "Callback when all cookies accepted",
+      "onCustomize": "Callback to open cookie preferences",
+      "message": "Custom consent message text"
+    },
+    "back-to-top": {
+      "threshold": "Scroll distance in px before button appears",
+      "smooth": "Use smooth scroll behavior"
+    },
+    "copy-clipboard": {
+      "text": "Text content to copy",
+      "resetDelay": "Time in ms before resetting to idle state",
+      "onCopy": "Callback after successful copy"
+    },
+    "dropdown": {
+      "trigger": "Element that opens the dropdown",
+      "items": "Menu items",
+      "groups": "Grouped menu items with optional section labels",
+      "align": "Horizontal alignment relative to trigger"
+    },
+    "context-menu": {
+      "items": "Context menu items with optional keyboard shortcut hints",
+      "children": "Target area that triggers context menu on right-click"
+    }
   }
 }

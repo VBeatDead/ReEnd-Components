@@ -17,25 +17,25 @@ export function PatternsSection() {
             name: "template",
             type: '"homepage" | "documentation" | "blog-list" | "blog-post" | "error"',
             required: true,
-            description: "Page template type",
+            description: t("_props.page-templates.template"),
           },
           {
             name: "header",
             type: "ReactNode",
             required: false,
-            description: "Custom header override",
+            description: t("_props.page-templates.header"),
           },
           {
             name: "sidebar",
             type: "ReactNode",
             required: false,
-            description: "Sidebar content (documentation template)",
+            description: t("_props.page-templates.sidebar"),
           },
           {
             name: "children",
             type: "ReactNode",
             required: true,
-            description: "Main page content",
+            description: t("_props.page-templates.children"),
           },
         ]}
       >
@@ -105,26 +105,26 @@ export function PatternsSection() {
             name: "overline",
             type: "string",
             required: false,
-            description: "Section overline label",
+            description: t("_props.section-patterns.overline"),
           },
           {
             name: "heading",
             type: "string",
             required: true,
-            description: "Section heading text",
+            description: t("_props.section-patterns.heading"),
           },
           {
             name: "layout",
             type: '"standard" | "alternating" | "grid"',
             default: '"standard"',
             required: false,
-            description: "Content layout pattern",
+            description: t("_props.section-patterns.layout"),
           },
           {
             name: "children",
             type: "ReactNode",
             required: true,
-            description: "Section content",
+            description: t("_props.section-patterns.children"),
           },
         ]}
       >
@@ -178,7 +178,7 @@ export function PatternsSection() {
             name: "breakpoints",
             type: "Record<string, number>",
             required: false,
-            description: "Custom breakpoint overrides",
+            description: t("_props.responsive.breakpoints"),
           },
         ]}
       >

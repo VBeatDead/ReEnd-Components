@@ -27,42 +27,40 @@ export function DataDisplaySection() {
             name: "columns",
             type: "Column[]",
             required: true,
-            description:
-              "Array of column definitions with header, accessor, and optional width",
+            description: t("_props.table.columns"),
           },
           {
             name: "data",
             type: "T[]",
             required: true,
-            description: "Array of row data objects",
+            description: t("_props.table.data"),
           },
           {
             name: "sortable",
             type: "boolean",
             default: "false",
             required: false,
-            description: "Enables click-to-sort on column headers",
+            description: t("_props.table.sortable"),
           },
           {
             name: "striped",
             type: "boolean",
             default: "true",
             required: false,
-            description:
-              "Alternates row background between surface-1 and transparent",
+            description: t("_props.table.striped"),
           },
           {
             name: "stickyHeader",
             type: "boolean",
             default: "true",
             required: false,
-            description: "Keeps header fixed during vertical scroll",
+            description: t("_props.table.stickyHeader"),
           },
           {
             name: "onRowClick",
             type: "(row: T) => void",
             required: false,
-            description: "Click handler for row selection",
+            description: t("_props.table.onRowClick"),
           },
         ]}
         api={[
@@ -70,14 +68,12 @@ export function DataDisplaySection() {
             name: "Column",
             signature:
               "{ header: string; accessor: string; width?: string; sortable?: boolean }",
-            description:
-              "Column configuration object defining header label, data key, optional width, and sort capability.",
+            description: t("_props.table.api.Column"),
           },
           {
             name: "SortDirection",
             signature: '"asc" | "desc" | null',
-            description:
-              "Current sort state returned by the useSortableTable hook.",
+            description: t("_props.table.api.SortDirection"),
           },
         ]}
       >
@@ -171,13 +167,13 @@ export function DataDisplaySection() {
             type: '"diamond" | "numbered" | "key-value"',
             default: '"diamond"',
             required: false,
-            description: "List style variant",
+            description: t("_props.list.variant"),
           },
           {
             name: "items",
             type: "string[] | { key: string; value: string }[]",
             required: true,
-            description: "List items data",
+            description: t("_props.list.items"),
           },
         ]}
       >
@@ -258,25 +254,25 @@ export function DataDisplaySection() {
             name: "label",
             type: "string",
             required: true,
-            description: "Metric label in uppercase",
+            description: t("_props.stat-metric.label"),
           },
           {
             name: "value",
             type: "string | number",
             required: true,
-            description: "Primary display value",
+            description: t("_props.stat-metric.value"),
           },
           {
             name: "trend",
             type: "string",
             required: false,
-            description: "Percentage change indicator",
+            description: t("_props.stat-metric.trend"),
           },
           {
             name: "trendDirection",
             type: '"up" | "down"',
             required: false,
-            description: "Controls green (up) or red (down) coloring",
+            description: t("_props.stat-metric.trendDirection"),
           },
         ]}
       >
@@ -337,14 +333,14 @@ export function DataDisplaySection() {
             name: "items",
             type: "{ date: string; title: string; description: string; current?: boolean }[]",
             required: true,
-            description: "Timeline entries in chronological order",
+            description: t("_props.timeline.items"),
           },
           {
             name: "orientation",
             type: '"vertical" | "horizontal"',
             default: '"vertical"',
             required: false,
-            description: "Layout direction of the timeline",
+            description: t("_props.timeline.orientation"),
           },
         ]}
       >
@@ -397,26 +393,26 @@ export function DataDisplaySection() {
             name: "items",
             type: "{ title: string; content: ReactNode }[]",
             required: true,
-            description: "Accordion panel definitions",
+            description: t("_props.accordion.items"),
           },
           {
             name: "defaultOpen",
             type: "number",
             required: false,
-            description: "Index of initially open panel",
+            description: t("_props.accordion.defaultOpen"),
           },
           {
             name: "multiple",
             type: "boolean",
             default: "false",
             required: false,
-            description: "Allow multiple panels open simultaneously",
+            description: t("_props.accordion.multiple"),
           },
           {
             name: "onChange",
             type: "(index: number | null) => void",
             required: false,
-            description: "Callback when open panel changes",
+            description: t("_props.accordion.onChange"),
           },
         ]}
       >
@@ -466,26 +462,26 @@ export function DataDisplaySection() {
             name: "src",
             type: "string",
             required: false,
-            description: "Image URL for the avatar",
+            description: t("_props.avatar.src"),
           },
           {
             name: "fallback",
             type: "string",
             required: false,
-            description: "Fallback text or icon when no image",
+            description: t("_props.avatar.fallback"),
           },
           {
             name: "size",
             type: '"xs" | "sm" | "md" | "lg" | "xl"',
             default: '"md"',
             required: false,
-            description: "Avatar dimensions (24-80px)",
+            description: t("_props.avatar.size"),
           },
           {
             name: "status",
             type: '"online" | "offline" | "busy"',
             required: false,
-            description: "Status diamond indicator color",
+            description: t("_props.avatar.status"),
           },
         ]}
       >
@@ -534,33 +530,33 @@ export function DataDisplaySection() {
             name: "label",
             type: "string",
             required: true,
-            description: "Tag display text",
+            description: t("_props.tags-badges.label"),
           },
           {
             name: "variant",
             type: '"default" | "primary" | "info" | "success" | "warning" | "danger" | "rare"',
             default: '"default"',
             required: false,
-            description: "Semantic color variant",
+            description: t("_props.tags-badges.variant"),
           },
           {
             name: "removable",
             type: "boolean",
             default: "false",
             required: false,
-            description: "Shows × remove button",
+            description: t("_props.tags-badges.removable"),
           },
           {
             name: "onRemove",
             type: "() => void",
             required: false,
-            description: "Callback when remove button is clicked",
+            description: t("_props.tags-badges.onRemove"),
           },
           {
             name: "count",
             type: "number",
             required: false,
-            description: "Badge count number (renders as count badge)",
+            description: t("_props.tags-badges.count"),
           },
         ]}
         playground={{
@@ -715,34 +711,34 @@ export function DataDisplaySection() {
             name: "value",
             type: "number",
             required: true,
-            description: "Progress percentage (0-100)",
+            description: t("_props.progress-stepper.value"),
           },
           {
             name: "variant",
             type: '"bar" | "stepper"',
             default: '"bar"',
             required: false,
-            description: "Display mode",
+            description: t("_props.progress-stepper.variant"),
           },
           {
             name: "steps",
             type: '{ label: string; status: "complete" | "current" | "upcoming" }[]',
             required: false,
-            description: "Step definitions for stepper variant",
+            description: t("_props.progress-stepper.steps"),
           },
           {
             name: "color",
             type: '"primary" | "danger"',
             default: '"primary"',
             required: false,
-            description: "Progress bar color",
+            description: t("_props.progress-stepper.color"),
           },
           {
             name: "showLabel",
             type: "boolean",
             default: "true",
             required: false,
-            description: "Show percentage label",
+            description: t("_props.progress-stepper.showLabel"),
           },
         ]}
       >

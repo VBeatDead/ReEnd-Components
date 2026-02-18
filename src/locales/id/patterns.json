@@ -126,5 +126,22 @@
     "arrow_tokens": "→ Design token",
     "arrow_base": "→ Reset, tipografi",
     "arrow_animations": "→ Keyframe"
+  },
+  "_props": {
+    "page-templates": {
+      "template": "Tipe template halaman",
+      "header": "Override header kustom",
+      "sidebar": "Konten sidebar (template dokumentasi)",
+      "children": "Konten halaman utama"
+    },
+    "section-patterns": {
+      "overline": "Label overline bagian",
+      "heading": "Teks heading bagian",
+      "layout": "Pola tata letak konten",
+      "children": "Konten bagian"
+    },
+    "responsive": {
+      "breakpoints": "Override breakpoint kustom"
+    }
   }
 }

@@ -140,7 +140,8 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
               aria-label={t("common:theme.toggle")}
             >
               <span
-                className={`block transition-all duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)] ${isAnimating ? "rotate-[360deg] scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}`}
+                className={`block transition-all duration-500 ${isAnimating ? "rotate-[360deg] scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}`}
+                style={{ transitionTimingFunction: "cubic-bezier(0.25, 0.8, 0.25, 1)" }}
               >
                 {theme === "dark" ? (
                   <Sun className="w-4 h-4" />

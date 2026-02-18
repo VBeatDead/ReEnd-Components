@@ -90,5 +90,34 @@
     "selected_count": "3 selected",
     "delete_btn": "DELETE",
     "export_btn": "EXPORT"
+  },
+  "_props": {
+    "states-matrix": {
+      "elements": "Element definitions with state mappings"
+    },
+    "micro-interactions": {
+      "type": "Interaction pattern type",
+      "onTrigger": "Callback when interaction is triggered"
+    },
+    "focus-keyboard": {
+      "shortcuts": "Custom keyboard shortcut definitions",
+      "trapFocus": "Trap focus within container (for modals)",
+      "api": {
+        "useFocusTrap": "Traps keyboard focus within a container element. Used for modals and dialogs.",
+        "useShortcut": "Registers a global keyboard shortcut with automatic cleanup."
+      }
+    },
+    "drag-drop": {
+      "items": "Draggable items array",
+      "onReorder": "Callback with reordered items",
+      "direction": "Drag direction constraint"
+    },
+    "selection": {
+      "options": "Selectable option items",
+      "value": "Selected value(s)",
+      "onChange": "Selection change callback",
+      "multiple": "Enable multi-select with floating action bar",
+      "actions": "Bulk action buttons for multi-select"
+    }
   }
 }

@@ -50,5 +50,50 @@
     "scroll_progress": "Bar Progres Scroll",
     "custom_scrollbar": "Scrollbar Kustom (6px, thumb persegi)",
     "scroll_line_text": "Baris {{number}}: Konten scroll untuk menguji gaya scrollbar kustom."
+  },
+  "_props": {
+    "hero-section": {
+      "overline": "Label overline berbentuk pil (contoh: 'VERSI 2.0')",
+      "title": "Teks heading utama (56-72px)",
+      "subtitle": "Teks paragraf pendukung",
+      "primaryAction": "Tombol CTA utama",
+      "secondaryAction": "Tombol CTA outline sekunder",
+      "terminal": "Perintah terminal untuk ditampilkan di bawah CTA"
+    },
+    "code-block-terminal": {
+      "code": "Konten kode untuk ditampilkan",
+      "language": "Bahasa untuk pewarnaan sintaksis",
+      "showLineNumbers": "Menampilkan nomor baris",
+      "copyable": "Menampilkan tombol salin saat hover",
+      "variant": "Varian gaya visual"
+    },
+    "blog-layout": {
+      "title": "Heading artikel",
+      "category": "Label kategori (contoh: 'REKAYASA')",
+      "date": "Tanggal publikasi",
+      "readTime": "Estimasi waktu baca",
+      "children": "Konten body artikel (dirender dari markdown)"
+    },
+    "image-media": {
+      "src": "URL sumber gambar",
+      "alt": "Teks alt untuk aksesibilitas",
+      "caption": "Teks keterangan di bawah gambar",
+      "aspectRatio": "Rasio aspek gambar",
+      "hover": "Mengaktifkan efek hover skala"
+    },
+    "video-player": {
+      "src": "URL sumber video",
+      "poster": "URL gambar poster",
+      "autoplay": "Putar otomatis saat mount",
+      "controls": "Menampilkan kontrol pemutaran"
+    },
+    "dividers": {
+      "variant": "Gaya visual pembatas",
+      "label": "Teks label tengah (untuk varian berlabel)"
+    },
+    "scroll-cursor": {
+      "showProgress": "Menampilkan bar progres scroll fixed atas",
+      "customCursor": "Mengaktifkan kursor Endfield kustom"
+    }
   }
 }
