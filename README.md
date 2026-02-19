@@ -3,10 +3,21 @@
 [![npm version](https://img.shields.io/npm/v/reend-components)](https://www.npmjs.com/package/reend-components)
 [![npm downloads](https://img.shields.io/npm/dm/reend-components)](https://www.npmjs.com/package/reend-components)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![CI](https://github.com/VBeatDead/ReEnd-Components/actions/workflows/ci.yml/badge.svg)](https://github.com/VBeatDead/ReEnd-Components/actions/workflows/ci.yml)
 
-**Arknights: Endfield Design System** — A React component library inspired by the UI aesthetics of Arknights: Endfield. Built with TypeScript, Tailwind CSS, and Radix UI primitives.
+**The only React component library built for tactical, sci-fi, and gaming-inspired UI.**
+
+Not another shadcn clone. Not a Bootstrap wrapper.
+ReEnd is for when your app should look like a tactical HUD.
+
+→ Dark-first design system (Endfield aesthetic)
+→ Signature components you won't find anywhere else
+→ CSS variable tokens + Tailwind preset
+→ TypeScript, Radix UI primitives, accessible
 
 [Documentation](https://reend-components.pages.dev) · [GitHub](https://github.com/VBeatDead/ReEnd-Components) · [npm](https://www.npmjs.com/package/reend-components)
+
+---
 
 ## Installation
 
@@ -22,11 +33,20 @@ bun add reend-components
 
 ### Peer Dependencies
 
-| Package     | Version           |
-| ----------- | ----------------- |
-| react       | ≥18.0.0           |
-| react-dom   | ≥18.0.0           |
-| tailwindcss | ≥3.4.0 (optional) |
+| Package          | Version            | Required for          |
+| ---------------- | ------------------ | --------------------- |
+| `react`          | ≥18.0.0            | All components        |
+| `react-dom`      | ≥18.0.0            | All components        |
+| `tailwindcss`    | ≥3.4.0 *(optional)*| Tailwind preset       |
+| `framer-motion`  | ≥10.0.0 *(optional)*| Signature components |
+| `lucide-react`   | ≥0.400.0 *(optional)*| HoloCard icon prop  |
+
+```bash
+# For Signature components (GlitchText, RadarChart, TacticalPanel, etc.)
+npm install framer-motion lucide-react
+```
+
+---
 
 ## Quick Start
 
@@ -40,6 +60,7 @@ export default {
   presets: [reendPreset],
   content: [
     "./src/**/*.{ts,tsx}",
+    // Required for Signature component classes to be included
     "./node_modules/reend-components/dist/**/*.{js,mjs}",
   ],
 };
@@ -76,12 +97,14 @@ function App() {
 
 ### Without Tailwind
 
-If you're not using Tailwind CSS, import the pre-built stylesheet:
+Import the pre-built stylesheet instead:
 
 ```tsx
 import "reend-components/styles.css";
 import { Tooltip } from "reend-components";
 ```
+
+---
 
 ## Components
 
@@ -93,6 +116,61 @@ import { Tooltip } from "reend-components";
 | `SonnerToaster` | Alternative toast (Sonner lib)          |
 | `cn()`          | Utility for merging Tailwind classes    |
 | `useToast()`    | Toast notification hook                 |
+
+---
+
+## Signature Components
+
+> **Requires** `framer-motion` and/or `lucide-react` peer dependencies.
+> Add `./node_modules/reend-components/dist/**/*.{js,mjs}` to your Tailwind `content`
+> array so animation utilities (`animate-glitch`, `clip-corner`, etc.) are included.
+
+```bash
+npm install framer-motion lucide-react
+```
+
+| Component        | Description                                              | Key Props |
+| ---------------- | -------------------------------------------------------- | --------- |
+| `GlitchText`     | Animated glitch effect text span                         | `children: string`, `className?` |
+| `DiamondLoader`  | Rotating diamond loading spinner                         | `size?: "sm"\|"md"\|"lg"`, `label?` |
+| `TacticalPanel`  | HUD-style content panel with status indicator            | `title`, `status?: "online"\|"warning"\|"offline"\|"scanning"` |
+| `HoloCard`       | Holographic stat/feature card with hover tilt            | `title`, `subtitle`, `icon: React.ElementType`, `value?` |
+| `DataStream`     | Scrolling live data feed terminal                        | `messages?: string[]` |
+| `TacticalBadge`  | Status badge with semantic variants (CVA-powered)        | `variant?: "default"\|"success"\|"warning"\|"danger"\|"info"` |
+| `WarningBanner`  | Alert banner with severity levels                        | `level?: "caution"\|"alert"\|"critical"` |
+| `ScanDivider`    | Animated scan-line section divider                       | `label?` |
+| `CoordinateTag`  | HUD coordinate display tag                               | `label`, `value`, `unit?` |
+| `RadarChart`     | Animated SVG radar/spider chart                          | `data: {label, value}[]`, `size?`, `color?: "primary"\|"cyan"` |
+| `HUDOverlay`     | Corner-bracket HUD overlay with crosshair and coords     | `systemLabel?`, `lat?`, `lon?`, `showCoords?`, `showCrosshair?` |
+
+```tsx
+import {
+  TacticalPanel,
+  HUDOverlay,
+  RadarChart,
+  GlitchText,
+} from "reend-components";
+
+function Dashboard() {
+  return (
+    <HUDOverlay systemLabel="ENDFIELD::DASHBOARD">
+      <TacticalPanel title="OPERATOR STATUS" status="online">
+        <GlitchText>DR. AMBROSE</GlitchText>
+        <RadarChart
+          data={[
+            { label: "ATK", value: 88 },
+            { label: "DEF", value: 62 },
+            { label: "TECH", value: 95 },
+            { label: "SPD", value: 74 },
+          ]}
+        />
+      </TacticalPanel>
+    </HUDOverlay>
+  );
+}
+```
+
+---
 
 ## Theming
 
@@ -128,6 +206,8 @@ See [CSS Variable Reference](https://reend-components.pages.dev/docs/foundations
 
 [Full token reference →](https://reend-components.pages.dev/docs/foundations)
 
+---
+
 ## Development
 
 ```bash
@@ -137,8 +217,11 @@ npm install
 npm run dev        # docs dev server at :8080
 npm run build      # build docs SPA
 npm run build:lib  # build library for npm
-npm run test       # run tests
+npm run test       # run tests (89 tests)
+npm run test:coverage  # test + coverage report
 ```
+
+---
 
 ## Internationalization (i18n)
 
@@ -151,48 +234,9 @@ The documentation site supports **English** (default) and **Bahasa Indonesia** v
 | `/docs/foundations`    | English    |
 | `/id/docs/foundations` | Indonesian |
 
-### Languages
-
-- **English** (`en`) — default, no URL prefix needed
-- **Indonesian** (`id`) — prefix `/id/` in URL
-
-### Translation Files
-
-```
-src/locales/
-├── en/          # English (16 namespace files)
-│   ├── common.json
-│   ├── home.json
-│   ├── docs.json
-│   ├── foundations.json
-│   ├── core.json
-│   ├── ... (12 more)
-│   └── signature.json
-└── id/          # Indonesian (mirrors en/)
-    ├── common.json
-    └── ...
-```
-
 **1,425 translation keys** across 16 namespaces × 2 languages.
 
-### Adding a New Language
-
-1. Create a new directory: `src/locales/{lang}/`
-2. Copy all JSON files from `src/locales/en/`
-3. Translate all values
-4. Add the language code to `SUPPORTED_LANGS` in `src/i18n/index.ts`
-5. Add lazy-load entries in `src/i18n/loadNamespace.ts`
-6. Run tests: `npm test`
-
-### i18n Scripts
-
-```bash
-npm test                                    # includes i18n completeness tests
-npx vitest run src/test/i18n-e2e.test.ts   # full E2E i18n validation (109 tests)
-node scripts/detect-hardcoded-strings.cjs  # find untranslated strings
-npx tsx scripts/generate-sitemap.ts        # regenerate sitemap.xml
-node scripts/bundle-analysis.cjs           # bundle size report
-```
+---
 
 ## License
 
