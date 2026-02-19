@@ -29,6 +29,7 @@ export default defineConfig({
         "react",
         "react-dom",
         "react/jsx-runtime",
+        "@radix-ui/react-slot",
         "@radix-ui/react-toast",
         "@radix-ui/react-tooltip",
         "class-variance-authority",

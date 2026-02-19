@@ -1,6 +1,7 @@
-import { ComponentPreview } from "../../docs/ComponentPreview";
+import { Button } from "../../ui/button";
 import { ArrowRight, Plus } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { ComponentPreview } from "../../docs/ComponentPreview";
 
 function ButtonsDemo() {
   const { t } = useTranslation("core");
@@ -9,29 +10,39 @@ function ButtonsDemo() {
       id="buttons"
       title={t("buttons.title")}
       description={t("buttons.description")}
-      code={`.btn-primary {
-  background: #FFD429;
-  color: #0A0A0A;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: 700; font-size: 14px;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 14px 32px;
-  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-}`}
+      code={`import { Button } from "reend-components";
+
+// Primary — Endfield CTA
+<Button variant="primary" size="md">DEPLOY ◆</Button>
+
+// asChild — render as anchor
+<Button asChild variant="secondary">
+  <a href="/page">NAVIGATE</a>
+</Button>
+
+// Loading state
+<Button loading>PROCESSING</Button>`}
       props={[
         {
           name: "variant",
-          type: '"primary" | "secondary" | "ghost" | "danger" | "link"',
+          type: '"primary" | "secondary" | "ghost" | "danger" | "link" | "icon"',
           default: '"primary"',
           required: false,
           description: t("buttons.props.variant"),
         },
         {
           name: "size",
-          type: '"xs" | "sm" | "md" | "lg" | "xl"',
+          type: '"xs" | "sm" | "md" | "lg" | "xl" | "icon"',
           default: '"md"',
           required: false,
           description: t("buttons.props.size"),
+        },
+        {
+          name: "asChild",
+          type: "boolean",
+          default: "false",
+          required: false,
+          description: "Render as child element via Radix Slot. Use to wrap <a> or custom elements with button styling.",
         },
         {
           name: "disabled",
@@ -46,12 +57,6 @@ function ButtonsDemo() {
           default: "false",
           required: false,
           description: t("buttons.props.loading"),
-        },
-        {
-          name: "icon",
-          type: "ReactNode",
-          required: false,
-          description: t("buttons.props.icon"),
         },
         {
           name: "onClick",
@@ -76,10 +81,10 @@ function ButtonsDemo() {
         },
       ]}
       install={{
-        importPath: 'import { Button } from "@/components/ui/button";',
+        importPath: 'import { Button } from "reend-components";',
         usage:
           '<Button variant="primary" size="md" onClick={handleClick}>\n  DEPLOY ◆\n</Button>',
-        dependencies: ["class-variance-authority", "clsx", "tailwind-merge"],
+        dependencies: ["reend-components"],
       }}
       api={[
         {
@@ -122,42 +127,19 @@ function ButtonsDemo() {
           { name: "disabled", type: "boolean", default: false },
           { name: "loading", type: "boolean", default: false },
         ],
-        render: (v) => {
-          const sizeMap: Record<
-            string,
-            { px: string; font: string; h: string }
-          > = {
-            xs: { px: "4px 12px", font: "11px", h: "28px" },
-            sm: { px: "8px 16px", font: "12px", h: "32px" },
-            md: { px: "12px 28px", font: "14px", h: "44px" },
-            lg: { px: "16px 36px", font: "16px", h: "52px" },
-            xl: { px: "20px 48px", font: "18px", h: "60px" },
-          };
-          const s = sizeMap[v.size] || sizeMap.md;
-          const variantClass: Record<string, string> = {
-            primary:
-              "clip-corner bg-primary text-primary-foreground hover:brightness-110 hover:shadow-[0_0_20px_hsl(47_100%_56%/0.3)]",
-            secondary:
-              "clip-corner border border-foreground/25 text-card-foreground hover:border-primary hover:text-primary bg-transparent",
-            ghost: "text-muted-foreground hover:text-primary bg-transparent",
-            danger:
-              "clip-corner bg-ef-red text-foreground hover:brightness-110",
-          };
-          return (
-            <div className="flex items-center justify-center">
-              <button
-                className={`font-display font-bold tracking-[0.1em] uppercase transition-all active:brightness-90 ${variantClass[v.variant] || variantClass.primary} ${v.disabled ? "opacity-40 cursor-not-allowed" : ""}`}
-                style={{ padding: s.px, fontSize: s.font, minHeight: s.h }}
-                disabled={v.disabled}
-              >
-                {v.loading && (
-                  <span className="inline-block w-4 h-4 border-2 border-current clip-corner-sm animate-diamond-spin mr-2" />
-                )}
-                {v.label}
-              </button>
-            </div>
-          );
-        },
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        render: (v: any) => (
+          <div className="flex items-center justify-center">
+            <Button
+              variant={v.variant}
+              size={v.size}
+              disabled={!!v.disabled}
+              loading={!!v.loading}
+            >
+              {String(v.label)}
+            </Button>
+          </div>
+        ),
       }}
     >
       <div className="space-y-8">
@@ -167,28 +149,17 @@ function ButtonsDemo() {
             {t("buttons.variants_heading")}
           </h3>
           <div className="flex flex-wrap gap-4 items-center">
-            <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 hover:brightness-110 hover:shadow-[0_0_20px_hsl(47_100%_56%/0.3)] transition-all active:brightness-90">
-              {t("buttons.primary")}
-            </button>
-            <button className="clip-corner border border-foreground/25 text-card-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 hover:border-primary hover:text-primary transition-all bg-transparent">
-              {t("buttons.secondary")}
-            </button>
-            <button className="text-muted-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-3.5 hover:text-primary transition-all bg-transparent">
-              {t("buttons.ghost")}
-            </button>
-            <button className="clip-corner bg-ef-red text-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 hover:brightness-110 transition-all">
-              {t("buttons.danger")}
-            </button>
-            <button
-              className="bg-foreground/5 border border-border text-muted-foreground p-3 hover:bg-primary/10 hover:border-primary/30 hover:text-primary transition-all"
-              aria-label={t("buttons.add_item")}
-            >
+            <Button variant="primary">{t("buttons.primary")}</Button>
+            <Button variant="secondary">{t("buttons.secondary")}</Button>
+            <Button variant="ghost">{t("buttons.ghost")}</Button>
+            <Button variant="danger">{t("buttons.danger")}</Button>
+            <Button variant="icon" size="icon" aria-label={t("buttons.add_item")}>
               <Plus className="w-5 h-5" />
-            </button>
-            <button className="text-primary font-display text-xs font-bold tracking-[0.1em] uppercase flex items-center gap-2 hover:gap-3 transition-all group bg-transparent">
+            </Button>
+            <Button variant="link">
               {t("buttons.link")}{" "}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </button>
+              <ArrowRight className="w-4 h-4" />
+            </Button>
           </div>
         </div>
 
@@ -198,20 +169,10 @@ function ButtonsDemo() {
             {t("buttons.sizes_heading")}
           </h3>
           <div className="flex flex-wrap gap-3 items-end">
-            {[
-              { size: "XS", px: "4px 12px", font: "11px", h: "28px" },
-              { size: "SM", px: "8px 16px", font: "12px", h: "32px" },
-              { size: "MD", px: "12px 28px", font: "14px", h: "44px" },
-              { size: "LG", px: "16px 36px", font: "16px", h: "52px" },
-              { size: "XL", px: "20px 48px", font: "18px", h: "60px" },
-            ].map((s) => (
-              <button
-                key={s.size}
-                className="clip-corner bg-primary text-primary-foreground font-display font-bold tracking-[0.1em] uppercase transition-all hover:brightness-110"
-                style={{ padding: s.px, fontSize: s.font, minHeight: s.h }}
-              >
-                {s.size}
-              </button>
+            {(["xs", "sm", "md", "lg", "xl"] as const).map((size) => (
+              <Button key={size} size={size}>
+                {size.toUpperCase()}
+              </Button>
             ))}
           </div>
         </div>
@@ -222,28 +183,18 @@ function ButtonsDemo() {
             {t("buttons.states_heading")}
           </h3>
           <div className="flex flex-wrap gap-3 items-center">
-            <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5">
-              {t("buttons.default")}
-            </button>
-            <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 brightness-110 shadow-[0_0_20px_hsl(47_100%_56%/0.3)]">
+            <Button>{t("buttons.default")}</Button>
+            <Button className="brightness-110 shadow-glow pointer-events-none">
               {t("buttons.hover")}
-            </button>
-            <button className="clip-corner bg-ef-yellow-dark text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5">
+            </Button>
+            <Button className="brightness-90 pointer-events-none">
               {t("buttons.active")}
-            </button>
-            <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 ring-2 ring-primary ring-offset-2 ring-offset-background">
+            </Button>
+            <Button className="ring-2 ring-primary ring-offset-2 ring-offset-background pointer-events-none">
               {t("buttons.focus")}
-            </button>
-            <button
-              className="clip-corner bg-ef-gray text-ef-gray-mid font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 cursor-not-allowed"
-              disabled
-            >
-              {t("buttons.disabled")}
-            </button>
-            <button className="clip-corner bg-primary/80 text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-8 py-3.5 flex items-center gap-2">
-              <div className="w-4 h-4 border-2 border-primary-foreground clip-corner-sm animate-diamond-spin" />
-              {t("buttons.loading")}
-            </button>
+            </Button>
+            <Button disabled>{t("buttons.disabled")}</Button>
+            <Button loading>{t("buttons.loading")}</Button>
           </div>
         </div>
       </div>

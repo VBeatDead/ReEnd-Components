@@ -4,17 +4,15 @@
 // Design tokens (CSS custom properties)
 import "../../styles/variables.css";
 
-// UI Components
 export * from "./tooltip";
 export * from "./toast";
 export { Toaster } from "./toaster";
 export { Toaster as SonnerToaster, toast } from "./sonner";
 
-// Utilities
-export { cn } from "../../lib/utils";
+export { Button, buttonVariants } from "./button";
+export { Badge, badgeVariants } from "./badge";
 
-// Hooks
+export { cn } from "../../lib/utils";
 export { useToast, toast as toastAction } from "../../hooks/use-toast";
 
-// Signature Components (Arknights: Endfield exclusives)
 export * from "./signature";
