@@ -15,6 +15,7 @@ const ChangelogPage = () => {
       </div>
 
       <div className="space-y-6">
+        {/* v0.2.0 — latest */}
         <div className="border border-border bg-surface-1 p-6">
           <div className="flex items-center gap-3 mb-4">
             <span className="font-mono text-sm font-bold text-primary">
@@ -37,6 +38,7 @@ const ChangelogPage = () => {
           </ul>
         </div>
 
+        {/* v0.1.0 */}
         <div className="border border-border bg-surface-1 p-6">
           <div className="flex items-center gap-3 mb-4">
             <span className="font-mono text-sm font-bold text-muted-foreground">

@@ -2,26 +2,29 @@
   "title": "◆ LOG PERUBAHAN",
   "latest": "TERBARU",
   "v2": {
-    "version": "v2.0.0",
-    "date": "Februari 2026",
+    "version": "v0.2.0",
+    "date": "19 Februari 2026",
     "items": [
-      "Desain ulang total dengan tema Futurisme Industrial Sci-Fi",
-      "87+ pratinjau komponen di 11 seksi tematik",
-      "Penyorotan sintaks Shiki dengan dukungan tema ganda",
-      "Playground interaktif dengan generasi kode langsung",
-      "Palet perintah pencarian fuzzy (⌘K)",
-      "Dukungan aksesibilitas penuh — peran ARIA, jebakan fokus, navigasi papan ketik",
-      "Toggle pratinjau responsif (Desktop / Mobile)",
-      "Dokumentasi interaksi papan ketik per komponen"
+      "11 Signature Components diekspor dari npm library: GlitchText, DiamondLoader, TacticalPanel, HoloCard, DataStream, TacticalBadge, WarningBanner, ScanDivider, CoordinateTag, RadarChart, HUDOverlay",
+      "Pembersihan dependensi — 7 paket docs-only (i18next, shiki, react-router-dom, dll.) dipindah ke devDependencies",
+      "framer-motion dan lucide-react ditambahkan sebagai optional peer dependencies",
+      "89 pengujian lulus di 4 file tes — cakupan pernyataan 86,69%",
+      "Pipeline CI/CD GitHub Actions — lint, typecheck, tes, build pada setiap push",
+      "README diperbarui dengan proposisi nilai, tabel API Signature Components, dan panduan peer deps",
+      "Bundle: 28,15 kB MJS (gzip: 7,11 kB)"
     ]
   },
   "v1": {
-    "version": "v1.0.0",
-    "date": "Januari 2025",
+    "version": "v0.1.0",
+    "date": "17 Februari 2026",
     "items": [
-      "Rilis awal dengan pustaka komponen dasar",
-      "Dukungan mode gelap dengan ThemeProvider kustom",
-      "Halaman utama dengan animasi sinematik"
+      "Rilis npm library pertama — Tooltip, Toast, Toaster, SonnerToaster, cn(), useToast()",
+      "Sistem token desain CSS dengan palet warna ef-* dan surface-* layering",
+      "Tailwind CSS preset diekspor sebagai reend-components/tailwind",
+      "Peluncuran situs dokumentasi dengan tema Futurisme Industrial Sci-Fi",
+      "87+ pratinjau komponen di 11 seksi tematik",
+      "Penyorotan sintaks Shiki, playground interaktif, pencarian fuzzy (⌘K)",
+      "i18n Bahasa Inggris dan Indonesia — 16 namespace"
     ]
   }
 }

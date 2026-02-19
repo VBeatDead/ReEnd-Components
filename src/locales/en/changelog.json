@@ -2,26 +2,29 @@
   "title": "◆ CHANGELOG",
   "latest": "LATEST",
   "v2": {
-    "version": "v2.0.0",
-    "date": "February 2026",
+    "version": "v0.2.0",
+    "date": "February 19, 2026",
     "items": [
-      "Complete redesign with Sci-Fi Industrial Futurism theme",
-      "87+ component previews across 11 thematic sections",
-      "Shiki syntax highlighting with dual theme support",
-      "Interactive playgrounds with live code generation",
-      "Fuzzy search command palette (⌘K)",
-      "Full accessibility support — ARIA roles, focus traps, keyboard navigation",
-      "Responsive preview toggle (Desktop / Mobile)",
-      "Keyboard interaction documentation per component"
+      "11 Signature Components exported from npm library: GlitchText, DiamondLoader, TacticalPanel, HoloCard, DataStream, TacticalBadge, WarningBanner, ScanDivider, CoordinateTag, RadarChart, HUDOverlay",
+      "Dependency cleanup — 7 docs-only packages (i18next, shiki, react-router-dom, etc.) moved to devDependencies",
+      "framer-motion and lucide-react added as optional peer dependencies",
+      "89 tests passing across 4 test files — 86.69% statement coverage",
+      "GitHub Actions CI/CD pipeline — lint, typecheck, test, build on every push",
+      "README updated with value proposition, Signature Components API table, and peer deps guide",
+      "Bundle: 28.15 kB MJS (gzip: 7.11 kB)"
     ]
   },
   "v1": {
-    "version": "v1.0.0",
-    "date": "January 2025",
+    "version": "v0.1.0",
+    "date": "February 17, 2026",
     "items": [
-      "Initial release with basic component library",
-      "Dark mode support with custom ThemeProvider",
-      "Landing page with cinematic animations"
+      "Initial npm library release — Tooltip, Toast, Toaster, SonnerToaster, cn(), useToast()",
+      "CSS design token system with ef-* color palette and surface-* layering",
+      "Tailwind CSS preset exported as reend-components/tailwind",
+      "Documentation site launch with Sci-Fi Industrial Futurism theme",
+      "87+ component previews across 11 thematic sections",
+      "Shiki syntax highlighting, interactive playgrounds, fuzzy search (⌘K)",
+      "English and Indonesian (Bahasa) i18n — 16 namespaces"
     ]
   }
 }
