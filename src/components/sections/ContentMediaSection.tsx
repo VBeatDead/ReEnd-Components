@@ -2,6 +2,7 @@ import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
 import { ArrowRight, Play } from "lucide-react";
 import SignatureContentSection from "./signature/SignatureContentSection";
+import { Separator } from "../ui/separator";
 
 export function ContentMediaSection() {
   const { t } = useTranslation("content");
@@ -414,24 +415,24 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
             <p className="text-xs text-muted-foreground mb-2">
               {t("dividers.standard")}
             </p>
-            <div className="border-t border-border" />
+            <Separator />
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-2">
               {t("dividers.tech_glow")}
             </p>
-            <div className="gradient-line-h" />
+            <Separator variant="glow" />
           </div>
           <div>
             <p className="text-xs text-muted-foreground mb-2">
               {t("dividers.with_label")}
             </p>
             <div className="flex items-center gap-4">
-              <div className="flex-1 border-t border-border" />
+              <Separator className="flex-1 w-auto" />
               <span className="font-ui text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
                 {t("dividers.section_label")}
               </span>
-              <div className="flex-1 border-t border-border" />
+              <Separator className="flex-1 w-auto" />
             </div>
           </div>
           <div>

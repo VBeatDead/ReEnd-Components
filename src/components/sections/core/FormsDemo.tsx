@@ -1,13 +1,26 @@
 import { ComponentPreview } from "../../docs/ComponentPreview";
 import { useState } from "react";
-import { Search, Eye, EyeOff, ChevronDown } from "lucide-react";
+import { Search, Eye, EyeOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Input, Label, HelperText } from "../../ui/input";
+import { Textarea } from "../../ui/textarea";
+import { Checkbox } from "../../ui/checkbox";
+import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
+import { Switch } from "../../ui/switch";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "../../ui/select";
 
 function FormsDemo() {
   const { t } = useTranslation("core");
   const [inputValue, setInputValue] = useState("");
   const [toggled, setToggled] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [radioValue, setRadioValue] = useState("choice_a");
 
   return (
     <ComponentPreview
@@ -15,56 +28,47 @@ function FormsDemo() {
       title={t("forms.title")}
       showViewport
       description={t("forms.description")}
-      code={`/* Input States */
-Default: border rgba(255,255,255,0.12)
-Hover:   border rgba(255,255,255,0.2)
-Focus:   border #FFD429 + shadow 0 0 0 3px rgba(255,212,41,0.1)
-Error:   border #FF4757 + shadow 0 0 0 3px rgba(255,71,87,0.1)
-Success: border #2ED573`}
+      code={`import { Input, Label, HelperText } from "reend-components";
+import { Textarea } from "reend-components";
+
+<div className="space-y-2">
+  <Label htmlFor="callsign">CALLSIGN</Label>
+  <Input id="callsign" placeholder="Enter designation" />
+  <HelperText>4–8 characters required</HelperText>
+</div>
+
+{/* Error state */}
+<Input state="error" value="taken_name" />
+<HelperText state="error">Username already taken</HelperText>
+
+{/* Textarea with counter */}
+<Textarea showCount maxLength={200} placeholder="Enter message" />`}
       props={[
         {
-          name: "label",
-          type: "string",
-          required: true,
-          description: t("forms.props.label"),
+          name: "state",
+          type: '"default" | "error" | "success"',
+          default: '"default"',
+          required: false,
+          description: t("forms.props.state"),
         },
         {
-          name: "type",
-          type: '"text" | "email" | "password" | "search" | "textarea" | "select"',
-          default: '"text"',
+          name: "size",
+          type: '"sm" | "md" | "lg"',
+          default: '"md"',
           required: false,
-          description: t("forms.props.type"),
+          description: t("forms.props.size"),
         },
         {
-          name: "placeholder",
-          type: "string",
+          name: "leftElement",
+          type: "ReactNode",
           required: false,
-          description: t("forms.props.placeholder"),
+          description: t("forms.props.leftElement"),
         },
         {
-          name: "required",
-          type: "boolean",
-          default: "false",
+          name: "rightElement",
+          type: "ReactNode",
           required: false,
-          description: t("forms.props.required"),
-        },
-        {
-          name: "error",
-          type: "string",
-          required: false,
-          description: t("forms.props.error"),
-        },
-        {
-          name: "success",
-          type: "string",
-          required: false,
-          description: t("forms.props.success"),
-        },
-        {
-          name: "helperText",
-          type: "string",
-          required: false,
-          description: t("forms.props.helperText"),
+          description: t("forms.props.rightElement"),
         },
         {
           name: "disabled",
@@ -74,16 +78,17 @@ Success: border #2ED573`}
           description: t("forms.props.disabled"),
         },
         {
-          name: "value",
-          type: "string",
+          name: "showCount",
+          type: "boolean",
+          default: "false",
           required: false,
-          description: t("forms.props.value"),
+          description: t("forms.props.showCount"),
         },
         {
-          name: "onChange",
-          type: "(value: string) => void",
+          name: "maxLength",
+          type: "number",
           required: false,
-          description: t("forms.props.onChange"),
+          description: t("forms.props.maxLength"),
         },
       ]}
       keyboard={[
@@ -102,20 +107,25 @@ Success: border #2ED573`}
       ]}
       install={{
         importPath:
-          'import { Input } from "@/components/ui/input";\nimport { Label } from "@/components/ui/label";\nimport { Switch } from "@/components/ui/switch";',
+          'import { Input, Label, HelperText } from "reend-components";\nimport { Textarea } from "reend-components";',
         usage:
-          '<div>\n  <Label htmlFor="callsign">CALLSIGN</Label>\n  <Input id="callsign" placeholder="Enter designation" />\n</div>',
+          '<div className="space-y-2">\n  <Label htmlFor="callsign">CALLSIGN</Label>\n  <Input id="callsign" placeholder="Enter designation" />\n  <HelperText>4–8 characters required</HelperText>\n</div>',
       }}
       api={[
         {
-          name: "focus:border-primary",
-          signature: "focus state",
+          name: "focus-within:border-primary",
+          signature: "focus state (Input wrapper)",
           description: t("forms.api.focus_border_primary"),
         },
         {
           name: "border-ef-red",
           signature: "error state",
           description: t("forms.api.border_ef_red"),
+        },
+        {
+          name: "showCount + maxLength",
+          signature: "Textarea counter",
+          description: t("forms.api.show_count"),
         },
       ]}
       playground={{
@@ -135,6 +145,12 @@ Success: border #2ED573`}
             default: "default",
           },
           {
+            name: "size",
+            type: "select",
+            options: ["sm", "md", "lg"],
+            default: "md",
+          },
+          {
             name: "label",
             label: t("forms.playground.label_label"),
             type: "text",
@@ -147,33 +163,37 @@ Success: border #2ED573`}
           },
           { name: "required", type: "boolean", default: false },
         ],
-        render: (v) => {
-          const borderClass =
+        render: (v: Record<string, unknown>) => {
+          const isDisabled = v.state === "disabled";
+          const inputState =
             v.state === "error"
-              ? "border-ef-red shadow-[0_0_0_3px_rgba(255,71,87,0.1)]"
+              ? "error"
               : v.state === "success"
-                ? "border-ef-green"
-                : "border-border focus:border-primary focus:shadow-[0_0_0_3px_hsl(47_100%_56%/0.1)]";
+                ? "success"
+                : "default";
           return (
             <div className="max-w-sm mx-auto space-y-2">
-              <label className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
-                {v.label} {v.required && <span className="text-ef-red">*</span>}
-              </label>
-              <input
-                type={v.type}
-                placeholder={v.placeholder}
-                disabled={v.state === "disabled"}
-                className={`w-full bg-surface-1 border text-card-foreground px-4 py-3 text-sm placeholder:text-ef-gray-mid outline-none transition-all ${borderClass} ${v.state === "disabled" ? "opacity-50 cursor-not-allowed" : ""}`}
+              <Label>
+                {String(v.label)}{" "}
+                {v.required && <span className="text-ef-red">*</span>}
+              </Label>
+              <Input
+                type={String(v.type) as React.HTMLInputTypeAttribute}
+                placeholder={String(v.placeholder)}
+                disabled={isDisabled}
+                state={inputState}
+                size={v.size as "sm" | "md" | "lg"}
+                className="w-full"
               />
               {v.state === "error" && (
-                <p className="text-xs text-ef-red">
+                <HelperText state="error">
                   {t("forms.playground.error_field")}
-                </p>
+                </HelperText>
               )}
               {v.state === "success" && (
-                <p className="text-xs text-ef-green">
+                <HelperText state="success">
                   {t("forms.playground.success_field")}
-                </p>
+                </HelperText>
               )}
             </div>
           );
@@ -181,113 +201,112 @@ Success: border #2ED573`}
       }}
     >
       <div className="max-w-lg space-y-6">
-        {/* Text Input */}
+        {/* Text Input with helper text */}
         <div className="space-y-2">
-          <label className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
+          <Label htmlFor="ef-email">
             {t("forms.email_address")} <span className="text-ef-red">*</span>
-          </label>
-          <input
+          </Label>
+          <Input
+            id="ef-email"
             type="email"
             placeholder={t("forms.placeholder_email")}
-            className="w-full bg-surface-1 border border-border text-card-foreground px-4 py-3 text-sm placeholder:text-ef-gray-mid focus:border-primary focus:shadow-[0_0_0_3px_hsl(47_100%_56%/0.1)] outline-none transition-all"
+            className="w-full"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
           />
-          <p className="text-xs text-muted-foreground">
-            {t("forms.helper_text")}
-          </p>
+          <HelperText>{t("forms.helper_text")}</HelperText>
         </div>
 
-        {/* Password */}
+        {/* Password with toggle */}
         <div className="space-y-2">
-          <label className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
-            {t("forms.password")}
-          </label>
-          <div className="relative">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder={t("forms.password_placeholder")}
-              className="w-full bg-surface-1 border border-border text-card-foreground px-4 py-3 pr-12 text-sm placeholder:text-ef-gray-mid focus:border-primary focus:shadow-[0_0_0_3px_hsl(47_100%_56%/0.1)] outline-none transition-all"
-            />
-            <button
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors bg-transparent"
-            >
-              {showPassword ? (
-                <EyeOff className="w-4 h-4" />
-              ) : (
-                <Eye className="w-4 h-4" />
-              )}
-            </button>
-          </div>
+          <Label htmlFor="ef-password">{t("forms.password")}</Label>
+          <Input
+            id="ef-password"
+            type={showPassword ? "text" : "password"}
+            placeholder={t("forms.password_placeholder")}
+            className="w-full"
+            rightElement={
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="text-muted-foreground hover:text-foreground transition-colors bg-transparent"
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
+              </button>
+            }
+          />
         </div>
 
         {/* Error state */}
         <div className="space-y-2">
-          <label className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-ef-red">
+          <Label htmlFor="ef-username" className="text-ef-red">
             {t("forms.username")}
-          </label>
-          <input
+          </Label>
+          <Input
+            id="ef-username"
             type="text"
+            state="error"
             value={t("forms.username_value")}
             readOnly
-            aria-label="Username"
             aria-invalid="true"
             aria-describedby="username-error"
-            className="w-full bg-surface-1 border border-ef-red text-card-foreground px-4 py-3 text-sm shadow-[0_0_0_3px_rgba(255,71,87,0.1)] outline-none"
+            className="w-full"
           />
-          <p id="username-error" className="text-xs text-ef-red">
+          <HelperText id="username-error" state="error">
             {t("forms.error_username")}
-          </p>
+          </HelperText>
         </div>
 
         {/* Success state */}
         <div className="space-y-2">
-          <label className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
-            {t("forms.callsign")}
-          </label>
-          <input
+          <Label htmlFor="ef-callsign">{t("forms.callsign")}</Label>
+          <Input
+            id="ef-callsign"
             type="text"
+            state="success"
             value={t("forms.callsign_value")}
             readOnly
             aria-label="Callsign"
-            className="w-full bg-surface-1 border border-ef-green text-card-foreground px-4 py-3 text-sm outline-none"
+            className="w-full"
           />
-          <p className="text-xs text-ef-green">{t("forms.success_callsign")}</p>
+          <HelperText state="success">{t("forms.success_callsign")}</HelperText>
         </div>
 
-        {/* Textarea */}
+        {/* Textarea with character counter */}
         <div className="space-y-2">
-          <label className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
+          <Label htmlFor="ef-message">
             {t("forms.message")}{" "}
             <span className="text-muted-foreground font-normal">
               {t("forms.optional")}
             </span>
-          </label>
-          <textarea
+          </Label>
+          <Textarea
+            id="ef-message"
             placeholder={t("forms.placeholder_message")}
             rows={4}
-            className="w-full bg-surface-1 border border-border text-card-foreground px-4 py-3 text-sm placeholder:text-ef-gray-mid focus:border-primary focus:shadow-[0_0_0_3px_hsl(47_100%_56%/0.1)] outline-none transition-all resize-y"
+            showCount
+            maxLength={300}
+            className="w-full"
           />
         </div>
 
         {/* Select */}
         <div className="space-y-2">
-          <label className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
-            {t("forms.category")}
-          </label>
-          <div className="relative">
-            <select
-              aria-label={t("forms.category")}
-              className="w-full bg-surface-1 border border-border text-card-foreground px-4 py-3 text-sm appearance-none outline-none focus:border-primary transition-all"
-            >
-              <option>{t("forms.select_category")}</option>
-              <option>{t("forms.operations")}</option>
-              <option>{t("forms.engineering")}</option>
-              <option>{t("forms.research")}</option>
-            </select>
-            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
-          </div>
+          <Label htmlFor="ef-category">{t("forms.category")}</Label>
+          <Select>
+            <SelectTrigger id="ef-category" className="w-full">
+              <SelectValue placeholder={t("forms.select_category")} />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="operations">{t("forms.operations")}</SelectItem>
+              <SelectItem value="engineering">{t("forms.engineering")}</SelectItem>
+              <SelectItem value="research">{t("forms.research")}</SelectItem>
+            </SelectContent>
+          </Select>
         </div>
 
         {/* Checkbox & Radio */}
@@ -296,41 +315,20 @@ Success: border #2ED573`}
             <p className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
               {t("forms.checkbox")}
             </p>
-            {[t("forms.option_a"), t("forms.option_b")].map((opt, i) => (
-              <label
-                key={opt}
-                className="flex items-center gap-3 cursor-pointer group"
-              >
-                <div
-                  className={`w-[18px] h-[18px] border-2 flex items-center justify-center transition-all ${i === 0 ? "border-primary bg-primary" : "border-border group-hover:border-primary"}`}
-                >
-                  {i === 0 && (
-                    <span className="text-primary-foreground text-[10px]">
-                      ✓
-                    </span>
-                  )}
-                </div>
-                <span className="text-sm text-card-foreground">{opt}</span>
-              </label>
-            ))}
+            <Checkbox label={t("forms.option_a")} defaultChecked />
+            <Checkbox label={t("forms.option_b")} />
           </div>
           <div className="space-y-3">
             <p className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
               {t("forms.radio_diamond")}
             </p>
-            {[t("forms.choice_a"), t("forms.choice_b")].map((opt, i) => (
-              <label
-                key={opt}
-                className="flex items-center gap-3 cursor-pointer group"
-              >
-                <span
-                  className={`text-lg ${i === 0 ? "text-primary" : "text-ef-gray group-hover:text-muted-foreground"} transition-colors`}
-                >
-                  {i === 0 ? "◆" : "◇"}
-                </span>
-                <span className="text-sm text-card-foreground">{opt}</span>
-              </label>
-            ))}
+            <RadioGroup
+              value={radioValue}
+              onValueChange={setRadioValue}
+            >
+              <RadioGroupItem value="choice_a" label={t("forms.choice_a")} />
+              <RadioGroupItem value="choice_b" label={t("forms.choice_b")} />
+            </RadioGroup>
           </div>
         </div>
 
@@ -339,35 +337,28 @@ Success: border #2ED573`}
           <p className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
             {t("forms.toggle")}
           </p>
-          <button
-            onClick={() => setToggled(!toggled)}
-            role="switch"
-            aria-checked={toggled}
+          <Switch
+            checked={toggled}
+            onCheckedChange={setToggled}
             aria-label={t("forms.toggle_switch")}
-            className={`relative w-11 h-6 rounded-none transition-colors ${toggled ? "bg-primary" : "bg-ef-gray"}`}
-          >
-            <div
-              className={`absolute top-0.5 left-0.5 w-5 h-5 bg-foreground transition-transform ${toggled ? "translate-x-5" : "translate-x-0"}`}
-            />
-          </button>
+          />
         </div>
 
-        {/* Search */}
+        {/* Search with icon + keyboard hint */}
         <div className="space-y-2">
-          <label className="font-display text-xs font-semibold tracking-[0.1em] uppercase text-muted-foreground">
-            {t("forms.search")}
-          </label>
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder={t("forms.search_placeholder")}
-              className="w-full bg-surface-1 border border-border text-card-foreground pl-10 pr-16 py-3 text-sm placeholder:text-ef-gray-mid focus:border-primary focus:shadow-[0_0_0_3px_hsl(47_100%_56%/0.1)] outline-none transition-all"
-            />
-            <kbd className="absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[10px] bg-surface-2 px-1.5 py-0.5 border border-border text-muted-foreground">
-              {t("forms.keyboard_shortcut")}
-            </kbd>
-          </div>
+          <Label htmlFor="ef-search">{t("forms.search")}</Label>
+          <Input
+            id="ef-search"
+            type="text"
+            placeholder={t("forms.search_placeholder")}
+            className="w-full"
+            leftElement={<Search className="w-4 h-4" />}
+            rightElement={
+              <kbd className="font-mono text-[10px] bg-surface-2 px-1.5 py-0.5 border border-border text-muted-foreground">
+                {t("forms.keyboard_shortcut")}
+              </kbd>
+            }
+          />
         </div>
       </div>
     </ComponentPreview>

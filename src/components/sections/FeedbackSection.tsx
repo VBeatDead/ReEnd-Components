@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
 import {
@@ -14,9 +15,25 @@ import {
   Filter,
 } from "lucide-react";
 import SignatureFeedbackSection from "./signature/SignatureFeedbackSection";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+} from "../ui/dialog";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "../ui/popover";
+import { Button } from "../ui/button";
 
 export function FeedbackSection() {
   const { t } = useTranslation("feedback");
+  const [dialogOpen, setDialogOpen] = useState(false);
   return (
     <>
       {/* Toast */}
@@ -291,31 +308,26 @@ export function FeedbackSection() {
           ),
         }}
       >
-        <div className="max-w-md mx-auto">
-          <div className="bg-surface-3 border border-border shadow-[0_24px_64px_rgba(0,0,0,0.6)]">
-            <div className="flex items-center justify-between px-6 py-4 border-b border-border">
-              <h3 className="font-display text-base font-bold uppercase tracking-[0.02em] text-foreground">
-                {"⚠ "}
-                {t("modal.confirm_title")}
-              </h3>
-              <button className="text-muted-foreground hover:text-foreground transition-colors">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-            <div className="px-6 py-6">
-              <p className="text-sm text-muted-foreground">
+        <div className="flex items-center justify-center min-h-[120px]">
+          <Button variant="outline" onClick={() => setDialogOpen(true)}>
+            {t("modal.confirm_title")}
+          </Button>
+          <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+            <DialogContent size="md">
+              <DialogHeader>
+                <DialogTitle>{"⚠ " + t("modal.confirm_title")}</DialogTitle>
+              </DialogHeader>
+              <DialogDescription>
                 {t("modal.confirm_body")}
-              </p>
-            </div>
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-border">
-              <button className="text-muted-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-2.5 hover:text-foreground transition-colors bg-transparent">
-                {t("modal.cancel")}
-              </button>
-              <button className="clip-corner bg-ef-red text-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-2.5 hover:brightness-110 transition-all">
-                {t("modal.delete")}
-              </button>
-            </div>
-          </div>
+              </DialogDescription>
+              <DialogFooter>
+                <DialogClose asChild>
+                  <Button variant="ghost">{t("modal.cancel")}</Button>
+                </DialogClose>
+                <Button variant="destructive">{t("modal.delete")}</Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </ComponentPreview>
 
@@ -379,17 +391,22 @@ export function FeedbackSection() {
             <p className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground">
               {t("tooltip.popover_label")}
             </p>
-            <div className="bg-surface-2 border border-border shadow-[0_16px_48px_rgba(0,0,0,0.5)] p-4 min-w-[200px]">
-              <h4 className="font-display text-[13px] font-bold uppercase tracking-[0.05em] text-foreground mb-2">
-                {t("tooltip.popover_title")}
-              </h4>
-              <p className="text-sm text-muted-foreground mb-3">
-                {t("tooltip.popover_body")}
-              </p>
-              <button className="text-primary font-display text-xs font-bold tracking-[0.1em] uppercase bg-transparent">
-                {t("tooltip.action_cta")}
-              </button>
-            </div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button variant="outline">{t("tooltip.hover_me")}</Button>
+              </PopoverTrigger>
+              <PopoverContent>
+                <h4 className="font-display text-[13px] font-bold uppercase tracking-[0.05em] text-foreground mb-2">
+                  {t("tooltip.popover_title")}
+                </h4>
+                <p className="text-sm text-muted-foreground mb-3">
+                  {t("tooltip.popover_body")}
+                </p>
+                <button className="text-primary font-display text-xs font-bold tracking-[0.1em] uppercase bg-transparent">
+                  {t("tooltip.action_cta")}
+                </button>
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
       </ComponentPreview>

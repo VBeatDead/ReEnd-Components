@@ -7,6 +7,83 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-02-19
+
+### Added
+
+- **`Accordion`** + **`AccordionItem`** + **`AccordionTrigger`** + **`AccordionContent`** — `@radix-ui/react-accordion`. `+`/`−` font-mono indicator (NOT chevron). Items: `border border-white/6`. Content: `animate-accordion-down`/`animate-accordion-up` using `--radix-accordion-content-height`. `type="single"|"multiple"`, `collapsible`, `defaultValue` props. All sub-components are `forwardRef` + `displayName`.
+- **`Tabs`** + **`TabsList`** + **`TabsTrigger`** + **`TabsContent`** — `@radix-ui/react-tabs`. 3 `variant` options on both list and trigger (CVA): `underline` (default, `border-b-primary` active indicator), `pill` (`bg-surface-3` active, rounded pill shape), `bordered` (`bg-white/[0.05]` active, right border between items). Trigger label: `font-display text-[13px] font-semibold uppercase tracking-wider`. Exports `tabsListVariants`, `tabsTriggerVariants`.
+- **`Popover`** + **`PopoverTrigger`** + **`PopoverContent`** + **`PopoverAnchor`** — `@radix-ui/react-popover`. Content: `bg-surface-2 border border-white/10 shadow-lg p-4 min-w-[200px] z-50`. Animation: `data-[state=open]:animate-fade-in-up`. Default `sideOffset=6`.
+- **`Dialog`** + **`DialogTrigger`** + **`DialogPortal`** + **`DialogOverlay`** + **`DialogContent`** + **`DialogHeader`** + **`DialogFooter`** + **`DialogTitle`** + **`DialogDescription`** + **`DialogClose`** — `@radix-ui/react-dialog`. Overlay: `bg-black/75 backdrop-blur-sm`. Content: CVA `size` variants — `sm`(max-w-sm) / `md`(max-w-lg, default) / `lg`(max-w-2xl) / `xl`(max-w-4xl) / `fullscreen`(100vw × 100vh). Header/Footer: `border-b`/`border-t border-white/8`. Title: `font-display uppercase tracking-wider`. Description: `flex-1 overflow-y-auto`. Exports `dialogContentVariants`.
+- **`Separator`** — `@radix-ui/react-separator`. 5 `variant` options: `default`(`bg-white/10`) / `subtle`(`bg-white/5`) / `strong`(`bg-white/25`) / `glow`(`bg-gradient-to-r from-transparent via-primary/40 to-transparent`) / `accent`(`bg-primary/30`). Horizontal: `h-px w-full`. Vertical: `w-px h-full`. `decorative=true` by default (removes from accessibility tree). Exports `separatorVariants`.
+- **Test coverage** — 58 new tests added (400 total across 11 test files):
+  - `__tests__/accordion-tabs.test.tsx` — 22 tests (Accordion: 11, Tabs: 11)
+  - `__tests__/overlay.test.tsx` — 36 tests (Popover: 8, Dialog: 13, Separator: 13) — net 36 (2 files combined: 58 new tests total, previously 342, now 400)
+
+### Changed
+
+- **Docs site demos** updated to use real library imports (not inline HTML):
+  - `DataDisplaySection.tsx` — Accordion section now uses `<Accordion>`, `<AccordionItem>`, `<AccordionTrigger>`, `<AccordionContent>` from `reend-components`; removed inline `useState<number | null>(0)` accordion state
+  - `NavigationDemos.tsx` — Tabs section now uses `<Tabs>`, `<TabsList>`, `<TabsTrigger>`, `<TabsContent>` from `reend-components`; `TabsPlayground` updated to use real Tabs; removed `activeTab` state
+  - `FeedbackSection.tsx` — Dialog section now uses real `<Dialog>` with trigger button + portal overlay; Popover/tooltip section uses real `<Popover>` component
+  - `ContentMediaSection.tsx` — Dividers section now uses `<Separator>` with `variant="default"` and `variant="glow"`
+- **Library bundle size** — 62.00 kB MJS / 44.86 kB CJS (under 70 kB Month 2 target)
+- **`vite.lib.config.ts`** — Added all 5 Tier 3 Radix packages to `external` list: `@radix-ui/react-accordion`, `@radix-ui/react-tabs`, `@radix-ui/react-popover`, `@radix-ui/react-dialog`, `@radix-ui/react-separator`
+- **`.gitignore`** — Added `CLAUDE.md` entry so local AI instruction file is never tracked by git
+
+### Fixed
+
+- `separator.tsx` — Resolved TypeScript conflict where `orientation` prop was defined in both Radix's `ComponentPropsWithoutRef` and CVA's `VariantProps`. Fixed via `Omit<ComponentPropsWithoutRef<Root>, "orientation">` to let CVA's type take precedence; runtime resolves `null` to `"horizontal"` default.
+
+## [Unreleased — Tier 2, v0.2.x pre-release]
+
+### Added
+
+- **`Checkbox`** — `@radix-ui/react-checkbox` powered. Square 18×18px border-2. Unchecked: `border-white/25` / hover `border-primary/60`. Checked: `bg-primary` + `◆` indicator. Indeterminate: `bg-primary/50` + `−` indicator. `label` + `helperText` props. Focus ring yellow. Disabled: `opacity-40`.
+- **`RadioGroup`** + **`RadioGroupItem`** — `@radix-ui/react-radio-group`. Diamond swap: `◇` (muted) unchecked → `◆` (primary) checked via `group-data-[state=...]` Tailwind. `label` + `helperText` props on item.
+- **`Switch`** — `@radix-ui/react-switch`. Square 44×24px track (`rounded-none`). Off: `bg-white/10 border-white/15`. On: `bg-primary`. Thumb: `w-5 h-5 bg-white translate-x-5` on checked. `label`, `offLabel`, `onLabel` props.
+- **`Select`** — `@radix-ui/react-select`. Full sub-component API: `Select`, `SelectGroup`, `SelectValue`, `SelectTrigger`, `SelectContent`, `SelectLabel`, `SelectItem`, `SelectSeparator`, `SelectScrollUpButton`, `SelectScrollDownButton`. Trigger styled like `Input` (border/focus/disabled states consistent). Content: `bg-surface-2`. Item: yellow hover. `danger` prop on item for destructive actions. Uses `▾`/`▴` text chars (no lucide-react dependency).
+- **`Avatar`** + **`AvatarImage`** + **`AvatarFallback`** — `@radix-ui/react-avatar`. `clip-corner-sm` shape (NOT circle). 6 sizes: `xs`(24px) / `sm`(32px) / `md`(40px) / `lg`(56px) / `xl`(80px) / `2xl`(120px). Status diamond dot `◆` at bottom-right: `online`(`ef-green`) / `offline`(`muted`) / `busy`(`destructive`) / `away`(`ef-orange`). Exports `avatarVariants`.
+- **`Progress`** — `@radix-ui/react-progress`. 4 color variants: `default`(primary) / `success`(ef-green) / `danger`(destructive) / `info`(ef-blue). 3 sizes: `sm`(h-1) / `md`(h-1.5, default) / `lg`(h-2.5). `showLabel` shows right-aligned `font-mono` percent. Indeterminate: `animate-skeleton` shimmer. Fill uses `ease-smooth` transition. Value auto-clamped 0–100. Exports `progressTrackVariants`, `progressFillVariants`.
+- **Test coverage** — 73 new tests added (342 total across 9 test files):
+  - `__tests__/interactive.test.tsx` — 41 tests (Checkbox, RadioGroup, Switch, Select)
+  - `__tests__/display.test.tsx` — 32 tests (Avatar, Progress)
+
+### Changed
+
+- **Docs site demos** updated to use real library imports (not inline HTML):
+  - `FormsDemo.tsx` — Checkbox/Radio sections now use `<Checkbox>`, `<RadioGroup>`, `<RadioGroupItem>`; Toggle now uses `<Switch>`; Select dropdown uses `<Select>`, `<SelectTrigger>`, etc. from `reend-components`
+  - `DataDisplaySection.tsx` — Avatar and Progress sections now use real `<Avatar>` / `<Progress>` library components
+- **Library bundle size** — 53.13 kB MJS / 37.85 kB CJS (under 70 kB Month 2 target)
+- **`vite.lib.config.ts`** — Added all 6 Tier 2 Radix packages to `external` list: `@radix-ui/react-checkbox`, `@radix-ui/react-radio-group`, `@radix-ui/react-switch`, `@radix-ui/react-select`, `@radix-ui/react-avatar`, `@radix-ui/react-progress`
+
+- **`Button`** — 6 CVA variants (`primary`, `secondary`, `ghost`, `danger`, `link`, `icon`) + 5 size variants (`xs`, `sm`, `md`, `lg`, `xl`) + `loading` state (diamond spinner, `aria-busy`, `disabled`) + `asChild` via `@radix-ui/react-slot`. Exports `buttonVariants`.
+- **`Badge`** — 7 color variants (`default`, `primary`, `info`, `success`, `warning`, `danger`, `purple`) + `removable` prop with `onRemove` callback (`stopPropagation` handled). Exports `badgeVariants`.
+- **`Card`** — Root component with corner bracket decoration (top-left + bottom-right via Tailwind `before:`/`after:` pseudo-element utilities), `hoverable` (lift + shadow + bracket intensify on hover) and `selected` (yellow border + subtle background) boolean variants. Exports `cardVariants`.
+  - `CardHeader` — flex layout container for title + action slots
+  - `CardMeta` — overline label (`font-mono 10px uppercase tracking-[0.15em] text-primary`)
+  - `CardTitle` — display heading (`font-display text-sm font-bold uppercase`)
+  - `CardDescription` — muted body text (`text-sm text-muted-foreground leading-relaxed`)
+  - `CardBody` — main content area with `p-5` padding
+  - `CardFooter` — action row with `border-t border-border` separator
+- **`Input`** — Single-line text input built as a flex wrapper div (border + state on wrapper, inner `<input>` transparent). Props: `state` (`default`/`error`/`success`), `size` (`sm`=32px / `md`=44px / `lg`=52px), `leftElement`, `rightElement`. Focus ring: yellow glow (`rgba(255,212,41,0.1)`). Error ring: red glow (`rgba(255,71,87,0.1)`). Disabled: `opacity-40 cursor-not-allowed pointer-events-none`. Uses `Omit<InputHTMLAttributes, "size">` to avoid HTML `size` attr collision. Exports `inputWrapperVariants`.
+- **`Label`** — Form label (`font-display 11px uppercase tracking-widest text-muted-foreground`). `forwardRef` to `<label>`.
+- **`HelperText`** — Supporting text below inputs. `state` prop drives color: `default`→`text-muted-foreground`, `error`→`text-destructive`, `success`→`text-ef-green`. Font: `12px`.
+- **`Textarea`** — Multi-line input with all states matching `Input`. `resize-y`, `min-h-[120px]`. `showCount` prop shows character counter (bottom-right, `font-mono 11px`): muted below 80%, `text-ef-orange` at ≥80%, `text-destructive` above `maxLength`. Supports both controlled and uncontrolled usage. Exports `textareaVariants`.
+- **Test coverage** — 180 new tests added (269 total across 7 test files):
+  - `__tests__/button-badge.test.tsx` — 48 tests (Button + Badge)
+  - `__tests__/card.test.tsx` — 42 tests (Card + all 6 sub-components + composition)
+  - `__tests__/form.test.tsx` — 79 tests (Input, Label, HelperText, Textarea, composition)
+
+### Changed
+
+- **Docs site demos** updated to use real library imports (not inline HTML):
+  - `ButtonsDemo.tsx` — uses `<Button>` from `reend-components`
+  - `CardsDemo.tsx` — uses `<Card>`, `<CardBody>`, `<CardMeta>`, `<CardTitle>`, `<CardDescription>` from `reend-components`
+  - `FormsDemo.tsx` — uses `<Input>`, `<Label>`, `<HelperText>`, `<Textarea>` from `reend-components`; password field uses `rightElement` slot for eye toggle; search field uses `leftElement` + `rightElement` slots; textarea demo shows live character counter
+- **Library bundle size** — 39.70 kB MJS / 27.90 kB CJS (well under 50 kB Month 1 target)
+- **`npx tsc --noEmit`** — zero TypeScript errors across all source files and test files
+
 ## [0.2.0] - 2026-02-19
 
 ### Added

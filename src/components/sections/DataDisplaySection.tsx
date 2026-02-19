@@ -1,12 +1,18 @@
 import { ComponentPreview } from "../docs/ComponentPreview";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ChevronDown, ArrowRight } from "lucide-react";
 import SignatureDataSection from "./signature/SignatureDataSection";
+import { Avatar, AvatarFallback } from "../ui/avatar";
+import { Progress } from "../ui/progress";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "../ui/accordion";
 
 export function DataDisplaySection() {
   const { t } = useTranslation("data");
-  const [accordionOpen, setAccordionOpen] = useState<number | null>(0);
 
   return (
     <>
@@ -416,39 +422,21 @@ export function DataDisplaySection() {
           },
         ]}
       >
-        <div className="max-w-lg space-y-1">
-          {[
-            t("accordion.questions.what_is_endfield"),
-            t("accordion.questions.how_to_install"),
-            t("accordion.questions.is_production_ready"),
-          ].map((q, i) => (
-            <div key={q} className="border border-border">
-              <button
-                onClick={() => setAccordionOpen(accordionOpen === i ? null : i)}
-                className="w-full flex items-center justify-between px-5 py-4 bg-surface-1 hover:bg-surface-hover transition-colors"
-                aria-expanded={accordionOpen === i}
-                aria-controls={`accordion-panel-${i}`}
-                id={`accordion-trigger-${i}`}
-              >
-                <span className="font-display text-sm font-semibold tracking-[0.02em] uppercase text-foreground">
-                  {q}
-                </span>
-                <span className="font-mono text-primary text-base">
-                  {accordionOpen === i ? "−" : "+"}
-                </span>
-              </button>
-              {accordionOpen === i && (
-                <div
-                  className="px-5 py-4 border-t border-border text-sm text-muted-foreground animate-fade-in"
-                  role="region"
-                  id={`accordion-panel-${i}`}
-                  aria-labelledby={`accordion-trigger-${i}`}
-                >
+        <div className="max-w-lg">
+          <Accordion type="single" collapsible defaultValue="item-0">
+            {[
+              t("accordion.questions.what_is_endfield"),
+              t("accordion.questions.how_to_install"),
+              t("accordion.questions.is_production_ready"),
+            ].map((q, i) => (
+              <AccordionItem key={q} value={`item-${i}`}>
+                <AccordionTrigger>{q}</AccordionTrigger>
+                <AccordionContent>
                   {t("accordion.answer_placeholder")}
-                </div>
-              )}
-            </div>
-          ))}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </ComponentPreview>
 
@@ -486,32 +474,19 @@ export function DataDisplaySection() {
         ]}
       >
         <div className="flex items-end gap-6 flex-wrap">
-          {[
-            { size: "xs", px: 24 },
-            { size: "sm", px: 32 },
-            { size: "md", px: 40 },
-            { size: "lg", px: 56 },
-            { size: "xl", px: 80 },
-          ].map((a) => (
+          {(
+            [
+              { size: "xs" as const },
+              { size: "sm" as const },
+              { size: "md" as const, status: "online" as const },
+              { size: "lg" as const, status: "busy" as const },
+              { size: "xl" as const },
+            ] as const
+          ).map((a) => (
             <div key={a.size} className="flex flex-col items-center gap-2">
-              <div className="relative">
-                <div
-                  className="clip-corner-sm bg-surface-2 flex items-center justify-center text-muted-foreground"
-                  style={{ width: a.px, height: a.px }}
-                >
-                  <span style={{ fontSize: a.px * 0.35 }}>◆</span>
-                </div>
-                {a.size === "md" && (
-                  <span className="absolute -bottom-0.5 -right-0.5 text-ef-green text-[10px]">
-                    ◆
-                  </span>
-                )}
-                {a.size === "lg" && (
-                  <span className="absolute -bottom-0.5 -right-0.5 text-ef-red text-[10px]">
-                    ◆
-                  </span>
-                )}
-              </div>
+              <Avatar size={a.size} status={"status" in a ? a.status : undefined}>
+                <AvatarFallback>◆</AvatarFallback>
+              </Avatar>
               <span className="font-display text-[10px] text-muted-foreground uppercase">
                 {a.size}
               </span>
@@ -745,31 +720,17 @@ export function DataDisplaySection() {
         <div className="space-y-8">
           {/* Progress bars */}
           <div className="space-y-4">
-            <div>
-              <div className="flex justify-between mb-1">
-                <span className="text-xs text-muted-foreground">
-                  {t("progress.deployment")}
-                </span>
-                <span className="font-ui text-[11px] text-muted-foreground">
-                  75%
-                </span>
-              </div>
-              <div className="h-1 bg-ef-dark-gray w-full">
-                <div className="h-full bg-primary w-3/4 transition-all" />
-              </div>
+            <div className="space-y-1">
+              <span className="text-xs text-muted-foreground">
+                {t("progress.deployment")}
+              </span>
+              <Progress value={75} showLabel />
             </div>
-            <div>
-              <div className="flex justify-between mb-1">
-                <span className="text-xs text-muted-foreground">
-                  {t("progress.danger")}
-                </span>
-                <span className="font-ui text-[11px] text-muted-foreground">
-                  90%
-                </span>
-              </div>
-              <div className="h-1 bg-ef-dark-gray w-full">
-                <div className="h-full bg-ef-red w-[90%]" />
-              </div>
+            <div className="space-y-1">
+              <span className="text-xs text-muted-foreground">
+                {t("progress.danger")}
+              </span>
+              <Progress value={90} variant="danger" showLabel />
             </div>
           </div>
 

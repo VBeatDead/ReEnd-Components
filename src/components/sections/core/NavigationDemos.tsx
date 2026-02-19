@@ -1,17 +1,16 @@
 import { ComponentPreview } from "../../docs/ComponentPreview";
-import { useState } from "react";
 import { Menu } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../ui/tabs";
 
 function TabsPlayground({
   variant,
   tabCount,
 }: {
-  variant: string;
+  variant: "underline" | "pill" | "bordered";
   tabCount: number;
 }) {
   const { t } = useTranslation("core");
-  const [active, setActive] = useState(0);
   const tabLabels = [
     t("navigation.tab_overview"),
     t("navigation.tab_usage"),
@@ -20,43 +19,29 @@ function TabsPlayground({
     t("navigation.tab_changelog"),
     t("navigation.tab_faq"),
   ].slice(0, tabCount);
+
   return (
-    <div>
-      <div
-        className={`flex flex-wrap ${variant === "pill" ? "gap-2 p-1 bg-surface-2 border border-border" : "border-b border-border"}`}
-      >
-        {tabLabels.map((tab, i) => (
-          <button
-            key={tab}
-            onClick={() => setActive(i)}
-            className={`font-display text-[13px] font-semibold tracking-[0.08em] uppercase px-5 py-3 transition-colors bg-transparent ${
-              variant === "pill"
-                ? active === i
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-card-foreground"
-                : active === i
-                  ? "text-primary border-b-2 border-primary"
-                  : "text-muted-foreground border-b-2 border-transparent hover:text-card-foreground"
-            }`}
-          >
+    <Tabs defaultValue={tabLabels[0]}>
+      <TabsList variant={variant}>
+        {tabLabels.map((tab) => (
+          <TabsTrigger key={tab} value={tab} variant={variant}>
             {tab}
-          </button>
+          </TabsTrigger>
         ))}
-      </div>
-      <div className="py-6 animate-fade-in">
-        <p className="text-sm text-muted-foreground">
-          {t("navigation.content_for_tab", {
-            tab: tabLabels[active >= tabCount ? 0 : active],
-          })}
-        </p>
-      </div>
-    </div>
+      </TabsList>
+      {tabLabels.map((tab) => (
+        <TabsContent key={tab} value={tab}>
+          <p className="text-sm text-muted-foreground">
+            {t("navigation.content_for_tab", { tab })}
+          </p>
+        </TabsContent>
+      ))}
+    </Tabs>
   );
 }
 
 function NavigationDemos() {
   const { t } = useTranslation("core");
-  const [activeTab, setActiveTab] = useState(0);
 
   return (
     <>
@@ -302,32 +287,18 @@ function NavigationDemos() {
           ),
         }}
       >
-        <div>
-          <div className="flex flex-wrap border-b border-border">
-            {[
-              t("navigation.tab_overview"),
-              t("navigation.tab_usage"),
-              t("navigation.tab_api"),
-              t("navigation.tab_examples"),
-            ].map((tab, i) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(i)}
-                className={`font-display text-[13px] font-semibold tracking-[0.08em] uppercase px-5 py-3 border-b-2 transition-colors bg-transparent ${activeTab === i ? "text-primary border-primary" : "text-muted-foreground border-transparent hover:text-card-foreground"}`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-          <div className="py-6 animate-fade-in">
-            <p className="text-sm text-muted-foreground">
-              {activeTab === 0 && t("navigation.overview_content")}
-              {activeTab === 1 && t("navigation.usage_content")}
-              {activeTab === 2 && t("navigation.api_content")}
-              {activeTab === 3 && t("navigation.examples_content")}
-            </p>
-          </div>
-        </div>
+        <Tabs defaultValue="overview">
+          <TabsList>
+            <TabsTrigger value="overview">{t("navigation.tab_overview")}</TabsTrigger>
+            <TabsTrigger value="usage">{t("navigation.tab_usage")}</TabsTrigger>
+            <TabsTrigger value="api">{t("navigation.tab_api")}</TabsTrigger>
+            <TabsTrigger value="examples">{t("navigation.tab_examples")}</TabsTrigger>
+          </TabsList>
+          <TabsContent value="overview">{t("navigation.overview_content")}</TabsContent>
+          <TabsContent value="usage">{t("navigation.usage_content")}</TabsContent>
+          <TabsContent value="api">{t("navigation.api_content")}</TabsContent>
+          <TabsContent value="examples">{t("navigation.examples_content")}</TabsContent>
+        </Tabs>
       </ComponentPreview>
 
       {/* Nav Breadcrumb */}
