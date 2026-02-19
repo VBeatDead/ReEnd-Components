@@ -1,6 +1,32 @@
 {
   "title": "◆ CHANGELOG",
   "latest": "LATEST",
+  "v3": {
+    "version": "v0.3.0",
+    "date": "February 19, 2026",
+    "items": [
+      "15 new production-ready components — Button, Badge, Card, Input, Textarea, Checkbox, RadioGroup, Switch, Select, Avatar, Progress, Accordion, Tabs, Popover, Dialog, Separator",
+      "Button: 6 variants (primary, secondary, ghost, danger, link, icon), 5 sizes, loading state with diamond spinner, asChild via Radix Slot",
+      "Badge: 7 color variants (primary, info, success, warning, danger, purple, default), removable with onRemove callback",
+      "Card: corner bracket decoration on 2 corners, hoverable + selected boolean variants — with CardHeader, CardMeta, CardTitle, CardDescription, CardBody, CardFooter",
+      "Input: wrapper-div architecture, 3 states (default/error/success), 3 sizes, leftElement + rightElement slots",
+      "Textarea: showCount character counter (muted → orange ≥80% → red >maxLength), resize-y, all Input states",
+      "Checkbox: square 18×18px border-2, ◆ checked indicator, − indeterminate — via group-data-[state] Tailwind",
+      "RadioGroup: ◇ (unchecked) → ◆ (checked) diamond swap pattern, label + helperText props",
+      "Switch: square track (rounded-none), label / offLabel / onLabel props, translate-x-5 thumb on checked",
+      "Select: 10 sub-components (Trigger, Content, Item, Label, Separator, ScrollUp/Down, Group, Value), danger item variant",
+      "Avatar: clip-corner-sm shape (NOT circle), 6 sizes (xs → 2xl), ◆ status dot with 4 states (online/offline/busy/away)",
+      "Progress: 4 color variants (default/success/danger/info), 3 sizes, showLabel, indeterminate shimmer animation",
+      "Accordion: +/− font-mono indicator (not chevron), smooth expand/collapse via --radix-accordion-content-height",
+      "Tabs: 3 variants — underline (active border-b), pill (bg-surface-3), bordered (bg-white/5) — CVA on list + trigger",
+      "Popover: surface-2 panel, shadow-lg, fade-in-up animation, min-w-[200px], sideOffset=6",
+      "Dialog: 5 size variants (sm/md/lg/xl/fullscreen), backdrop-blur-sm overlay — full anatomy (Trigger, Overlay, Content, Header, Footer, Title, Description, Close)",
+      "Separator: 5 style variants (default/subtle/strong/glow/accent), horizontal + vertical orientation",
+      "400 tests passing across 11 test files — >70% statement coverage on all new components",
+      "Bundle: 62.00 kB MJS (gzip: 13.34 kB) — under 70 kB Month 3 target",
+      "Docs site demos updated to use real library components (Accordion, Tabs, Dialog, Popover, Separator)"
+    ]
+  },
   "v2": {
     "version": "v0.2.0",
     "date": "February 19, 2026",

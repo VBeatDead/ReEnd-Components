@@ -1,6 +1,32 @@
 {
   "title": "◆ LOG PERUBAHAN",
   "latest": "TERBARU",
+  "v3": {
+    "version": "v0.3.0",
+    "date": "19 Februari 2026",
+    "items": [
+      "15 komponen baru siap produksi — Button, Badge, Card, Input, Textarea, Checkbox, RadioGroup, Switch, Select, Avatar, Progress, Accordion, Tabs, Popover, Dialog, Separator",
+      "Button: 6 varian (primary, secondary, ghost, danger, link, icon), 5 ukuran, loading state dengan diamond spinner, asChild via Radix Slot",
+      "Badge: 7 varian warna (primary, info, success, warning, danger, purple, default), removable dengan callback onRemove",
+      "Card: dekorasi corner bracket di 2 sudut, varian hoverable + selected — dengan CardHeader, CardMeta, CardTitle, CardDescription, CardBody, CardFooter",
+      "Input: arsitektur wrapper-div, 3 state (default/error/success), 3 ukuran, slot leftElement + rightElement",
+      "Textarea: counter karakter showCount (muted → orange ≥80% → merah >maxLength), resize-y, semua state Input",
+      "Checkbox: border-2 kotak 18×18px, indikator ◆ checked, − indeterminate — via pola group-data-[state] Tailwind",
+      "RadioGroup: pola swap berlian ◇ (tidak dipilih) → ◆ (dipilih), props label + helperText",
+      "Switch: track kotak (rounded-none), props label / offLabel / onLabel, thumb translate-x-5 saat checked",
+      "Select: 10 sub-komponen (Trigger, Content, Item, Label, Separator, ScrollUp/Down, Group, Value), varian item danger",
+      "Avatar: bentuk clip-corner-sm (BUKAN lingkaran), 6 ukuran (xs → 2xl), titik status ◆ dengan 4 state (online/offline/busy/away)",
+      "Progress: 4 varian warna (default/success/danger/info), 3 ukuran, showLabel, animasi shimmer indeterminate",
+      "Accordion: indikator font-mono +/− (bukan chevron), expand/collapse halus via --radix-accordion-content-height",
+      "Tabs: 3 varian — underline (border-b aktif), pill (bg-surface-3), bordered (bg-white/5) — CVA pada list + trigger",
+      "Popover: panel surface-2, shadow-lg, animasi fade-in-up, min-w-[200px], sideOffset=6",
+      "Dialog: 5 varian ukuran (sm/md/lg/xl/fullscreen), overlay backdrop-blur-sm — anatomi lengkap (Trigger, Overlay, Content, Header, Footer, Title, Description, Close)",
+      "Separator: 5 varian gaya (default/subtle/strong/glow/accent), orientasi horizontal + vertikal",
+      "400 pengujian lulus di 11 file tes — cakupan >70% pada semua komponen baru",
+      "Bundle: 62,00 kB MJS (gzip: 13,34 kB) — di bawah target 70 kB",
+      "Demo situs dokumentasi diperbarui menggunakan komponen library nyata (Accordion, Tabs, Dialog, Popover, Separator)"
+    ]
+  },
   "v2": {
     "version": "v0.2.0",
     "date": "19 Februari 2026",
