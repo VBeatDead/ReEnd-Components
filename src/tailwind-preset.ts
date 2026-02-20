@@ -1,7 +1,5 @@
 /**
  * ReEnd-Components — Tailwind CSS Preset
- * Arknights: Endfield Design System
- *
  * Usage:
  *   // tailwind.config.ts
  *   import reendPreset from "reend-components/tailwind";
@@ -15,6 +13,8 @@
  */
 
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
+import plugin from "tailwindcss/plugin";
 
 const reendPreset: Partial<Config> = {
   darkMode: ["class"],
@@ -133,7 +133,6 @@ const reendPreset: Partial<Config> = {
       },
       // ─── Keyframes ───────────────────────────────────────────────────────
       keyframes: {
-        // Existing
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -142,7 +141,6 @@ const reendPreset: Partial<Config> = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-        // Signature & design system animations
         fadeIn: {
           from: { opacity: "0" },
           to: { opacity: "1" },
@@ -194,6 +192,14 @@ const reendPreset: Partial<Config> = {
           from: { opacity: "0", transform: "translateY(8px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "dialog-in": {
+          from: { opacity: "0", scale: "0.96" },
+          to: { opacity: "1", scale: "1" },
+        },
+        "frequency-bar": {
+          "0%": { transform: "scaleY(0.15)" },
+          "100%": { transform: "scaleY(1)" },
+        },
       },
       // ─── Animation utilities ─────────────────────────────────────────────
       animation: {
@@ -211,96 +217,99 @@ const reendPreset: Partial<Config> = {
         skeleton: "skeletonShimmer 1.5s infinite",
         shrink: "shrink 5s linear forwards",
         "count-up": "countUp 0.4s var(--ease-default, ease) forwards",
+        "dialog-in": "dialog-in 0.2s var(--ease-default, ease) forwards",
+        "frequency-bar": "frequency-bar 0.8s ease-in-out infinite alternate",
       },
     },
   },
   plugins: [
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    require("tailwindcss-animate"),
+    tailwindcssAnimate,
     // ─── Endfield Signature Utilities ────────────────────────────────────
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    require("tailwindcss/plugin")(({ addUtilities, addComponents }: {
-      addUtilities: (utilities: Record<string, Record<string, string>>) => void;
-      addComponents: (components: Record<string, Record<string, string>>) => void;
-    }) => {
-      // Clip-corner utilities — Endfield signature cut-corner aesthetic
-      addComponents({
-        ".clip-corner": {
-          "clip-path":
-            "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
-        },
-        ".clip-corner-sm": {
-          "clip-path":
-            "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))",
-        },
-        ".clip-corner-lg": {
-          "clip-path":
-            "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
-        },
-      });
+    plugin(
+      ({
+        addUtilities,
+        addComponents,
+      }: {
+        addUtilities: (
+          utilities: Record<string, Record<string, string>>,
+        ) => void;
+        addComponents: (
+          components: Record<string, Record<string, string>>,
+        ) => void;
+      }) => {
+        addComponents({
+          ".clip-corner": {
+            "clip-path":
+              "polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px))",
+          },
+          ".clip-corner-sm": {
+            "clip-path":
+              "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))",
+          },
+          ".clip-corner-lg": {
+            "clip-path":
+              "polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px))",
+          },
+        });
 
-      // Scanline overlay — CRT scan-line texture for HUD panels
-      addComponents({
-        ".scanline-overlay": {
-          position: "relative",
-        },
-        ".scanline-overlay::after": {
-          content: '""',
-          position: "absolute",
-          inset: "0",
-          background:
-            "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.015) 2px, rgba(255, 255, 255, 0.015) 4px)",
-          "pointer-events": "none",
-          "z-index": "1",
-        },
-      });
+        addComponents({
+          ".scanline-overlay": {
+            position: "relative",
+          },
+          ".scanline-overlay::after": {
+            content: '""',
+            position: "absolute",
+            inset: "0",
+            background:
+              "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255, 255, 255, 0.015) 2px, rgba(255, 255, 255, 0.015) 4px)",
+            "pointer-events": "none",
+            "z-index": "1",
+          },
+        });
 
-      // Skeleton shimmer — includes background gradient (not just animation)
-      addUtilities({
-        ".animate-skeleton": {
-          background:
-            "linear-gradient(90deg, hsl(var(--surface-1)) 0%, hsl(var(--surface-2)) 50%, hsl(var(--surface-1)) 100%)",
-          "background-size": "200% 100%",
-          animation: "skeletonShimmer 1.5s infinite",
-        },
-      });
+        addUtilities({
+          ".animate-skeleton": {
+            background:
+              "linear-gradient(90deg, hsl(var(--surface-1)) 0%, hsl(var(--surface-2)) 50%, hsl(var(--surface-1)) 100%)",
+            "background-size": "200% 100%",
+            animation: "skeletonShimmer 1.5s infinite",
+          },
+        });
 
-      // Slide-down — includes transform-origin and overflow (not just animation)
-      addUtilities({
-        ".animate-slide-down": {
-          animation: "slideDown 0.3s ease forwards",
-          "transform-origin": "top",
-          overflow: "hidden",
-        },
-      });
+        addUtilities({
+          ".animate-slide-down": {
+            animation: "slideDown 0.3s ease forwards",
+            "transform-origin": "top",
+            overflow: "hidden",
+          },
+        });
 
-      // Glow effects
-      addUtilities({
-        ".glow-yellow": {
-          "box-shadow": "0 0 20px hsl(var(--primary) / 0.2)",
-        },
-        ".glow-yellow-strong": {
-          "box-shadow": "0 0 40px hsl(var(--primary) / 0.3)",
-        },
-        ".text-glow-yellow": {
-          "text-shadow": "0 0 20px hsl(var(--primary) / 0.3)",
-        },
-      });
+        addUtilities({
+          ".glow-yellow": {
+            "box-shadow": "0 0 20px hsl(var(--primary) / 0.2)",
+          },
+          ".glow-yellow-strong": {
+            "box-shadow": "0 0 40px hsl(var(--primary) / 0.3)",
+          },
+          ".text-glow-yellow": {
+            "text-shadow": "0 0 20px hsl(var(--primary) / 0.3)",
+          },
+        });
 
-      // Gradient line decorators
-      addUtilities({
-        ".gradient-line-h": {
-          height: "1px",
-          background:
-            "linear-gradient(90deg, transparent 0%, hsl(var(--primary)) 50%, transparent 100%)",
-        },
-        ".gradient-line-v": {
-          width: "1px",
-          background:
-            "linear-gradient(180deg, transparent 0%, hsl(var(--primary)) 50%, transparent 100%)",
-        },
-      });
-    }),
+        addUtilities({
+          ".gradient-line-h": {
+            height: "1px",
+            background:
+              "linear-gradient(90deg, transparent 0%, hsl(var(--primary)) 50%, transparent 100%)",
+          },
+          ".gradient-line-v": {
+            width: "1px",
+            background:
+              "linear-gradient(180deg, transparent 0%, hsl(var(--primary)) 50%, transparent 100%)",
+          },
+        });
+      },
+    ),
   ],
 };
 

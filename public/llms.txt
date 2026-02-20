@@ -3,7 +3,7 @@
 > Arknights: Endfield inspired React component library with Tailwind CSS. Sci-Fi Industrial Futurism design system.
 
 **URL**: https://reend-components.pages.dev
-**Version**: 0.3.0
+**Version**: 0.4.0
 **License**: MIT
 **Repository**: https://github.com/VBeatDead/ReEnd-Components
 
@@ -43,17 +43,3 @@ ReEnd-Components is a React component library and documentation site inspired by
 
 Install via npm: `npm install reend-components`
 Exports: React components, Tailwind CSS preset (`reend-components/tailwind`), CSS variables (`reend-components/styles.css`).
-
-## Available Components (v0.3.0)
-
-**Core UI** — Button, Badge, Card (+ CardHeader, CardMeta, CardTitle, CardDescription, CardBody, CardFooter)
-
-**Form** — Input, Label, HelperText, Textarea, Checkbox, RadioGroup, RadioGroupItem, Switch, Select (+ 9 sub-components)
-
-**Display** — Avatar (+ AvatarImage, AvatarFallback), Progress
-
-**Interaction** — Accordion (+ AccordionItem, AccordionTrigger, AccordionContent), Tabs (+ TabsList, TabsTrigger, TabsContent), Popover (+ PopoverTrigger, PopoverContent, PopoverAnchor), Dialog (+ DialogTrigger, DialogPortal, DialogOverlay, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose), Separator
-
-**Signature** — GlitchText, DiamondLoader, TacticalPanel, HoloCard, DataStream, TacticalBadge, WarningBanner, ScanDivider, CoordinateTag, RadarChart, HUDOverlay
-
-**Utilities** — Tooltip, Toast, Toaster, SonnerToaster, cn(), useToast()

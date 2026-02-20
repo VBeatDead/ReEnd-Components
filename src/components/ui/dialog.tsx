@@ -41,8 +41,8 @@ const dialogContentVariants = cva(
   [
     "fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2",
     "bg-surface-2 border border-white/10 shadow-xl",
-    "flex flex-col",
-    "data-[state=open]:animate-fade-in-up",
+    "flex flex-col max-h-[90vh]",
+    "data-[state=open]:animate-dialog-in",
     "focus:outline-none",
   ],
   {

@@ -7,6 +7,58 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-02-20
+
+### Added
+
+- **9 Signature Phase 2 Components** (Tier 4A + 5 + 6 Endfield-exclusive):
+  - `MissionCard` — mission briefing card with priority indicator (CRITICAL / HIGH / STANDARD), status badge (ACTIVE / PENDING / COMPLETE / CLASSIFIED), operator count display, and diamond-decorated border
+  - `OperatorCard` — operator profile card with clip-corner image slot, rank tag, specialization chip, and tactical stats panel
+  - `StatusBar` — horizontal HUD status bar with label, value, optional max, and color variants (default / warning / danger / success); animated fill via framer-motion
+  - `CommandOutput` — terminal-style scrolling command output with alternating prompt styles and monospace display
+  - `CountdownTimer` — countdown clock with `targetDate` prop, days/hours/minutes/seconds segments, expired state, and pulse animation
+  - `MatrixGrid` — animated falling character grid (katakana + alphanumeric) rendered on canvas with configurable density and speed
+  - `FrequencyBars` — animated audio frequency bar visualizer with 20 bars, configurable color, and randomized heights
+  - `TacticalTable` — fully typed generic sortable table with sort indicators, striped rows, and empty state support
+  - `DataStream` (enhanced) — updated with improved message pool, configurable prefix, and pause-on-hover
+  - `HUDOverlay` (enhanced) — expanded corner bracket variants, improved coordinate display and live clock accuracy
+  - `GlitchText` (enhanced) — refined glitch timing intervals and configurable intensity
+  - `RadarChart` (enhanced) — improved animation easing and axis label positioning
+
+- **5 Core Gap Utility Components** (Tier 6):
+  - `Timeline` + `TimelineItem` — vertical timeline with `◆` (complete/current) and `◇` (upcoming) node markers, `pl-6` container + `before:` pseudo-element vertical line; `status` prop drives node style; composable via `items` prop or `children`
+  - `Stepper` — horizontal/vertical step indicator with `currentStep` (0-indexed), step connectors colored by completion state; exports `StepItem` type
+  - `Pagination` — page navigation with `getPageRange()` ellipsis algorithm, `◆ PREV` / `NEXT ◆` buttons, `aria-current="page"`, disabled states; exports `paginationItemVariants` CVA
+  - `Breadcrumb` — `<nav aria-label>` wrapper with `<ol>`, configurable `separator` (default `›`), `aria-current="page"` on last item, anchor for items with `href`
+  - `NumberInput` — controlled/uncontrolled number input with `+`/`−` buttons, `min`/`max`/`step`, ArrowUp/ArrowDown keyboard support; `sm`/`md`/`lg` size variants via CVA; exports `numberInputVariants`
+
+- **3 Previously-exported gap components** now in public index:
+  - `Skeleton` — shimmer placeholder with `sm`/`md`/`lg`/`xl` variants and `circle` boolean
+  - `EmptyState` — empty-state panel with icon, title, description, and optional action
+  - `Alert` — alert banner with `info`/`warning`/`danger`/`success` variants and optional dismiss
+
+- **CLI Tool** (`npx reend-ui`) — shadcn-style copy-paste workflow for ReEnd components:
+  - `reend-ui init` — project detection (Next.js / Vite / CRA / Remix), outputDir prompt, `reend-ui.config.json` creation, variables.css copy
+  - `reend-ui add [components...]` — fetches source files from GitHub raw, resolves deps, shows install instructions; `--overwrite` flag
+  - `reend-ui list [--core | --signature]` — lists all 42 available components grouped by type
+  - `reend-ui update [components...]` — re-adds installed components with `--overwrite` (updates all if none specified)
+  - Binary: `./dist/bin/cli.cjs` bundled via esbuild (Node 18+, standalone CJS, no install required)
+
+- **Component Playground** — Sandpack-powered live code editor embedded in the docs site:
+  - `src/components/docs/Playground.tsx` — lazy-loaded Sandpack component with Endfield dark theme, share URL (`btoa`-encoded `?pg=` param), reset button, and close handler
+  - "OPEN IN PLAYGROUND" toggle button per `ComponentPreview` — expands Playground below demo with pre-loaded code
+  - Auto-opens when `?pg=` URL param is present (shared links)
+
+- **Test coverage** — 45 new tests added (675 total across 14 test files):
+  - `__tests__/navigation.test.tsx` — 45 tests (Timeline: 9, Stepper: 8, Pagination: 10, Breadcrumb: 8, NumberInput: 10)
+
+### Changed
+
+- **Library bundle** updated to include all Phase 2 components (Tier 4A–6)
+- **`src/components/ui/index.ts`** — added exports for Timeline, TimelineItem, timelineItemVariants, Stepper, Pagination, paginationItemVariants, Breadcrumb, NumberInput, numberInputVariants, Skeleton, EmptyState, Alert and all new Signature components
+- **`package.json`** — added `bin` field for `reend-ui` CLI; `prepublishOnly` now runs `build:lib && build:cli`; added `esbuild`, `commander`, `chalk`, `prompts`, `@codesandbox/sandpack-react` to devDependencies
+- **`.gitignore`** — added `CLAUDE.md` (AI instruction file, kept local only)
+
 ## [0.3.0] - 2026-02-19
 
 ### Added
@@ -146,6 +198,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Internationalization** — English and Bahasa Indonesia docs (16 namespaces, ~1,425 translation keys)
 - **Dual build** — ESM (`index.mjs`) + CJS (`index.cjs`) + TypeScript declarations via `vite.lib.config.ts`
 
-[Unreleased]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/VBeatDead/ReEnd-Components/releases/tag/v0.1.0

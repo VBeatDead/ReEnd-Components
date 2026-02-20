@@ -1,6 +1,6 @@
 {
   "name": "reend-components",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": false,
   "description": "Tactical, sci-fi, and gaming-inspired React component library — Arknights: Endfield Design System",
   "type": "module",
@@ -25,8 +25,12 @@
       "require": "./src/tailwind-preset.ts"
     }
   },
+  "bin": {
+    "reend-ui": "./dist/bin/cli.cjs"
+  },
   "files": [
     "dist/lib",
+    "dist/bin",
     "src/styles",
     "src/tailwind-preset.ts",
     "README.md",
@@ -80,11 +84,14 @@
   },
   "scripts": {
     "dev": "vite",
-    "prebuild": "node --experimental-strip-types scripts/generate-llms.ts",
+    "prebuild": "node --experimental-strip-types scripts/sync-release.ts",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "build:lib": "vite build --config vite.lib.config.ts",
-    "prepublishOnly": "npm run build:lib",
+    "build:cli": "node scripts/build-cli.mjs",
+    "prepublishOnly": "npm run build:lib && npm run build:cli",
+    "version": "node --experimental-strip-types scripts/sync-release.ts && git add CHANGELOG.md public/llms.txt",
+    "sync": "node --experimental-strip-types scripts/sync-release.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
@@ -113,6 +120,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@codesandbox/sandpack-react": "^2.20.0",
     "@eslint/js": "^9.32.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.6.0",
@@ -123,6 +131,9 @@
     "@vitejs/plugin-react-swc": "^3.11.0",
     "@vitest/coverage-v8": "^3.2.4",
     "autoprefixer": "^10.4.21",
+    "chalk": "^5.6.2",
+    "commander": "^14.0.3",
+    "esbuild": "^0.27.3",
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
@@ -134,6 +145,7 @@
     "jsdom": "^20.0.3",
     "lucide-react": "^0.462.0",
     "postcss": "^8.5.6",
+    "prompts": "^2.4.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-error-boundary": "^6.1.1",

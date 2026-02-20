@@ -10,12 +10,12 @@ Tabs.displayName = "Tabs";
 
 /* ── List variants ───────────────────────────────────────────────────────── */
 
-const tabsListVariants = cva("inline-flex items-center", {
+const tabsListVariants = cva("flex items-center overflow-x-auto", {
   variants: {
     variant: {
-      underline: "border-b border-white/10 gap-0",
-      pill: "gap-1 bg-surface-1 p-1",
-      bordered: "border border-white/10 gap-0",
+      underline: "border-b border-white/10 gap-0 w-full",
+      pill: "gap-1 bg-surface-1 p-1 w-fit",
+      bordered: "border border-white/10 gap-0 w-full",
     },
   },
   defaultVariants: { variant: "underline" },

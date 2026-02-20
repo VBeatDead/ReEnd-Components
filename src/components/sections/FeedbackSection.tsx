@@ -30,10 +30,14 @@ import {
   PopoverContent,
 } from "../ui/popover";
 import { Button } from "../ui/button";
+import { SkeletonCard, SkeletonText, SkeletonAvatar, SkeletonLine } from "../ui/skeleton";
+import { EmptyState } from "../ui/empty-state";
+import { Alert } from "../ui/alert";
 
 export function FeedbackSection() {
   const { t } = useTranslation("feedback");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [popoverOpen, setPopoverOpen] = useState(false);
   return (
     <>
       {/* Toast */}
@@ -391,11 +395,20 @@ export function FeedbackSection() {
             <p className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground">
               {t("tooltip.popover_label")}
             </p>
-            <Popover>
+            <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
               <PopoverTrigger asChild>
-                <Button variant="outline">{t("tooltip.hover_me")}</Button>
+                <Button
+                  variant="outline"
+                  onMouseEnter={() => setPopoverOpen(true)}
+                  onMouseLeave={() => setPopoverOpen(false)}
+                >
+                  {t("tooltip.hover_me")}
+                </Button>
               </PopoverTrigger>
-              <PopoverContent>
+              <PopoverContent
+                onMouseEnter={() => setPopoverOpen(true)}
+                onMouseLeave={() => setPopoverOpen(false)}
+              >
                 <h4 className="font-display text-[13px] font-bold uppercase tracking-[0.05em] text-foreground mb-2">
                   {t("tooltip.popover_title")}
                 </h4>
@@ -483,22 +496,20 @@ export function FeedbackSection() {
               </div>
             </div>
           </div>
-          {/* Skeleton */}
+          {/* Skeleton — library components */}
           <div>
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
               {t("loading.skeleton")}
             </h4>
-            <div className="max-w-sm space-y-3">
-              <div className="h-4 w-3/4 animate-skeleton rounded-none" />
-              <div className="h-4 w-full animate-skeleton rounded-none" />
-              <div className="h-4 w-2/3 animate-skeleton rounded-none" />
-              <div className="flex gap-3 mt-4">
-                <div className="w-10 h-10 animate-skeleton rounded-none" />
-                <div className="flex-1 space-y-2">
-                  <div className="h-3 w-1/2 animate-skeleton rounded-none" />
-                  <div className="h-3 w-3/4 animate-skeleton rounded-none" />
+            <div className="flex flex-wrap gap-6">
+              <div className="space-y-3 w-full max-w-xs">
+                <SkeletonText lines={3} />
+                <div className="flex gap-3 items-center">
+                  <SkeletonAvatar size="md" />
+                  <SkeletonText lines={2} className="flex-1" />
                 </div>
               </div>
+              <SkeletonCard showAvatar lines={2} className="w-full max-w-xs" />
             </div>
           </div>
         </div>
@@ -538,44 +549,32 @@ export function FeedbackSection() {
         ]}
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            {
-              icon: <Search className="w-12 h-12" />,
-              title: t("empty_state.no_results_title"),
-              desc: t("empty_state.no_results_desc"),
-              cta: t("empty_state.clear_search"),
-            },
-            {
-              icon: <Lock className="w-12 h-12" />,
-              title: t("empty_state.access_restricted_title"),
-              desc: t("empty_state.access_restricted_desc"),
-              cta: null,
-            },
-            {
-              icon: <Mail className="w-12 h-12" />,
-              title: t("empty_state.inbox_zero_title"),
-              desc: t("empty_state.inbox_zero_desc"),
-              cta: null,
-            },
-          ].map((e) => (
-            <div
-              key={e.title}
-              className="flex flex-col items-center text-center py-8 px-4"
-            >
-              <div className="text-ef-gray-mid mb-4">{e.icon}</div>
-              <h4 className="font-display text-lg font-bold tracking-[0.02em] uppercase text-foreground mb-2">
-                {e.title}
-              </h4>
-              <p className="text-sm text-muted-foreground max-w-[360px] mb-4">
-                {e.desc}
-              </p>
-              {e.cta && (
-                <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-2.5">
-                  {e.cta}
-                </button>
-              )}
-            </div>
-          ))}
+          <EmptyState
+            variant="search"
+            icon={<Search />}
+            title={t("empty_state.no_results_title")}
+            description={t("empty_state.no_results_desc")}
+            action={
+              <button className="clip-corner bg-primary text-primary-foreground font-display text-xs font-bold tracking-[0.1em] uppercase px-6 py-2.5">
+                {t("empty_state.clear_search")}
+              </button>
+            }
+            size="sm"
+          />
+          <EmptyState
+            variant="permission"
+            icon={<Lock />}
+            title={t("empty_state.access_restricted_title")}
+            description={t("empty_state.access_restricted_desc")}
+            size="sm"
+          />
+          <EmptyState
+            variant="empty"
+            icon={<Mail />}
+            title={t("empty_state.inbox_zero_title")}
+            description={t("empty_state.inbox_zero_desc")}
+            size="sm"
+          />
         </div>
       </ComponentPreview>
 
@@ -857,59 +856,19 @@ export function FeedbackSection() {
           },
         ]}
       >
-        <div className="space-y-4">
-          {[
-            {
-              type: "Info",
-              bg: "bg-ef-blue/[0.08]",
-              border: "border-ef-blue/20",
-              color: "text-ef-blue",
-              icon: <Info className="w-4 h-4" />,
-            },
-            {
-              type: "Success",
-              bg: "bg-ef-green/[0.08]",
-              border: "border-ef-green/20",
-              color: "text-ef-green",
-              icon: <CheckCircle className="w-4 h-4" />,
-            },
-            {
-              type: "Warning",
-              bg: "bg-ef-orange/[0.08]",
-              border: "border-ef-orange/20",
-              color: "text-ef-orange",
-              icon: <AlertTriangle className="w-4 h-4" />,
-            },
-            {
-              type: "Error",
-              bg: "bg-ef-red/[0.08]",
-              border: "border-ef-red/20",
-              color: "text-ef-red",
-              icon: <AlertOctagon className="w-4 h-4" />,
-            },
-          ].map((a) => (
-            <div
-              key={a.type}
-              className={`${a.bg} border ${a.border} px-4 py-3 flex items-start gap-3`}
-            >
-              <span className={a.color}>{a.icon}</span>
-              <div className="flex-1">
-                <p className="text-sm text-card-foreground">
-                  {t("banner.info_message", { type: a.type })}
-                </p>
-              </div>
-              <button className="text-muted-foreground/50 hover:text-foreground text-xs">
-                ✕
-              </button>
-            </div>
-          ))}
-          {/* Top banner */}
-          <div className="bg-primary text-primary-foreground px-4 py-2.5 text-center font-display text-xs font-semibold tracking-[0.08em] uppercase flex items-center justify-center gap-4">
-            <span>{t("banner.new_version")}</span>
-            <button className="text-primary-foreground/70 hover:text-primary-foreground">
-              ✕
-            </button>
-          </div>
+        <div className="space-y-3 max-w-xl">
+          <Alert variant="info" title="INFO">
+            {t("banner.info_message", { type: "Info" })}
+          </Alert>
+          <Alert variant="success" title="SUCCESS">
+            {t("banner.info_message", { type: "Success" })}
+          </Alert>
+          <Alert variant="warning" title="WARNING">
+            {t("banner.info_message", { type: "Warning" })}
+          </Alert>
+          <Alert variant="error" title="ERROR" dismissible>
+            {t("banner.info_message", { type: "Error" })}
+          </Alert>
         </div>
       </ComponentPreview>
       <SignatureFeedbackSection />

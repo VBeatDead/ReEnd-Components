@@ -108,14 +108,52 @@ import { Tooltip } from "reend-components";
 
 ## Components
 
-| Component       | Description                             |
-| --------------- | --------------------------------------- |
-| `Tooltip`       | Popup info on hover/focus (Radix-based) |
-| `Toast`         | Notification toasts (Radix-based)       |
-| `Toaster`       | Toast container/renderer                |
-| `SonnerToaster` | Alternative toast (Sonner lib)          |
-| `cn()`          | Utility for merging Tailwind classes    |
-| `useToast()`    | Toast notification hook                 |
+### Core
+
+| Component              | Description                                                       |
+| ---------------------- | ----------------------------------------------------------------- |
+| `Button`               | 6 variants, 5 sizes, loading state, asChild (Radix Slot)          |
+| `Badge`                | 7 color variants, removable with `onRemove`                       |
+| `Card`                 | Corner-bracket decoration, hoverable/selected variants            |
+| `Input` / `Label`      | 3 states, 3 sizes, left/right element slots                       |
+| `Textarea`             | Character counter, all Input states                               |
+| `Checkbox`             | ◆ checked, − indeterminate indicator                              |
+| `RadioGroup`           | ◇→◆ diamond swap pattern                                         |
+| `Switch`               | Square track, label / offLabel / onLabel props                    |
+| `Select`               | 10 sub-components, danger item variant                            |
+| `Avatar`               | clip-corner-sm shape, 6 sizes, ◆ status dot (4 states)           |
+| `Progress`             | 4 color variants, indeterminate shimmer                           |
+| `NumberInput`          | ±buttons, Arrow↑/↓ keyboard, min/max clamping, 3 sizes           |
+| `Tooltip`              | Popup info on hover/focus (Radix-based)                           |
+| `Toast` / `Toaster`    | Notification toasts (Radix-based)                                 |
+| `SonnerToaster`        | Alternative toast (Sonner lib)                                    |
+| `Accordion`            | +/− font-mono indicator, smooth expand/collapse                   |
+| `Tabs`                 | 3 variants — underline, pill, bordered                            |
+| `Popover`              | surface-2 panel, fade-in-up animation                             |
+| `Dialog`               | 5 size variants, backdrop-blur overlay, full anatomy              |
+| `Separator`            | 5 style variants, horizontal + vertical                           |
+| `cn()`                 | Utility for merging Tailwind classes                              |
+| `useToast()`           | Toast notification hook                                           |
+
+### Navigation & Layout
+
+| Component    | Description                                                              |
+| ------------ | ------------------------------------------------------------------------ |
+| `Timeline`   | Vertical event timeline — ◆/◇ nodes, date, title, description, status   |
+| `Stepper`    | Horizontal/vertical step tracker — complete/current/upcoming states      |
+| `Pagination` | Smart ellipsis page nav — PREV/NEXT + numbered pages, `onPageChange`     |
+| `Breadcrumb` | Hierarchical path nav — custom separator, aria-current on last item      |
+
+### Feedback & Utility
+
+| Component      | Description                                                        |
+| -------------- | ------------------------------------------------------------------ |
+| `Alert`        | Inline alert — info/success/warning/error variants, dismissible    |
+| `EmptyState`   | Centered empty state — 4 presets, icon/action slots                |
+| `SkeletonLine` | Animated skeleton placeholder line — width + height variants       |
+| `SkeletonText` | Multi-line skeleton block                                          |
+| `SkeletonAvatar` | Diamond-shaped avatar skeleton                                   |
+| `SkeletonCard` | Full card skeleton with optional avatar row                        |
 
 ---
 
@@ -217,7 +255,7 @@ npm install
 npm run dev        # docs dev server at :8080
 npm run build      # build docs SPA
 npm run build:lib  # build library for npm
-npm run test       # run tests (89 tests)
+npm run test       # run tests (675 tests)
 npm run test:coverage  # test + coverage report
 ```
 

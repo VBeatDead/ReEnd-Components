@@ -1,56 +1,71 @@
 {
   "title": "◆ LOG PERUBAHAN",
   "latest": "TERBARU",
-  "v3": {
-    "version": "v0.3.0",
-    "date": "19 Februari 2026",
-    "items": [
-      "15 komponen baru siap produksi — Button, Badge, Card, Input, Textarea, Checkbox, RadioGroup, Switch, Select, Avatar, Progress, Accordion, Tabs, Popover, Dialog, Separator",
-      "Button: 6 varian (primary, secondary, ghost, danger, link, icon), 5 ukuran, loading state dengan diamond spinner, asChild via Radix Slot",
-      "Badge: 7 varian warna (primary, info, success, warning, danger, purple, default), removable dengan callback onRemove",
-      "Card: dekorasi corner bracket di 2 sudut, varian hoverable + selected — dengan CardHeader, CardMeta, CardTitle, CardDescription, CardBody, CardFooter",
-      "Input: arsitektur wrapper-div, 3 state (default/error/success), 3 ukuran, slot leftElement + rightElement",
-      "Textarea: counter karakter showCount (muted → orange ≥80% → merah >maxLength), resize-y, semua state Input",
-      "Checkbox: border-2 kotak 18×18px, indikator ◆ checked, − indeterminate — via pola group-data-[state] Tailwind",
-      "RadioGroup: pola swap berlian ◇ (tidak dipilih) → ◆ (dipilih), props label + helperText",
-      "Switch: track kotak (rounded-none), props label / offLabel / onLabel, thumb translate-x-5 saat checked",
-      "Select: 10 sub-komponen (Trigger, Content, Item, Label, Separator, ScrollUp/Down, Group, Value), varian item danger",
-      "Avatar: bentuk clip-corner-sm (BUKAN lingkaran), 6 ukuran (xs → 2xl), titik status ◆ dengan 4 state (online/offline/busy/away)",
-      "Progress: 4 varian warna (default/success/danger/info), 3 ukuran, showLabel, animasi shimmer indeterminate",
-      "Accordion: indikator font-mono +/− (bukan chevron), expand/collapse halus via --radix-accordion-content-height",
-      "Tabs: 3 varian — underline (border-b aktif), pill (bg-surface-3), bordered (bg-white/5) — CVA pada list + trigger",
-      "Popover: panel surface-2, shadow-lg, animasi fade-in-up, min-w-[200px], sideOffset=6",
-      "Dialog: 5 varian ukuran (sm/md/lg/xl/fullscreen), overlay backdrop-blur-sm — anatomi lengkap (Trigger, Overlay, Content, Header, Footer, Title, Description, Close)",
-      "Separator: 5 varian gaya (default/subtle/strong/glow/accent), orientasi horizontal + vertikal",
-      "400 pengujian lulus di 11 file tes — cakupan >70% pada semua komponen baru",
-      "Bundle: 62,00 kB MJS (gzip: 13,34 kB) — di bawah target 70 kB",
-      "Demo situs dokumentasi diperbarui menggunakan komponen library nyata (Accordion, Tabs, Dialog, Popover, Separator)"
-    ]
-  },
-  "v2": {
-    "version": "v0.2.0",
-    "date": "19 Februari 2026",
-    "items": [
-      "11 Signature Components diekspor dari npm library: GlitchText, DiamondLoader, TacticalPanel, HoloCard, DataStream, TacticalBadge, WarningBanner, ScanDivider, CoordinateTag, RadarChart, HUDOverlay",
-      "Pembersihan dependensi — 7 paket docs-only (i18next, shiki, react-router-dom, dll.) dipindah ke devDependencies",
-      "framer-motion dan lucide-react ditambahkan sebagai optional peer dependencies",
-      "89 pengujian lulus di 4 file tes — cakupan pernyataan 86,69%",
-      "Pipeline CI/CD GitHub Actions — lint, typecheck, tes, build pada setiap push",
-      "README diperbarui dengan proposisi nilai, tabel API Signature Components, dan panduan peer deps",
-      "Bundle: 28,15 kB MJS (gzip: 7,11 kB)"
-    ]
-  },
-  "v1": {
-    "version": "v0.1.0",
-    "date": "17 Februari 2026",
-    "items": [
-      "Rilis npm library pertama — Tooltip, Toast, Toaster, SonnerToaster, cn(), useToast()",
-      "Sistem token desain CSS dengan palet warna ef-* dan surface-* layering",
-      "Tailwind CSS preset diekspor sebagai reend-components/tailwind",
-      "Peluncuran situs dokumentasi dengan tema Futurisme Industrial Sci-Fi",
-      "87+ pratinjau komponen di 11 seksi tematik",
-      "Penyorotan sintaks Shiki, playground interaktif, pencarian fuzzy (⌘K)",
-      "i18n Bahasa Inggris dan Indonesia — 16 namespace"
-    ]
-  }
+  "versions": [
+    {
+      "version": "v0.4.0",
+      "date": "20 Februari 2026",
+      "items": [
+        "9 Signature Phase 2 komponen baru — MissionCard, OperatorCard, StatusBar, CommandOutput, CountdownTimer, MatrixGrid, FrequencyBars, TacticalTable (+ peningkatan DataStream, HUDOverlay, GlitchText, RadarChart)",
+        "5 komponen utility gap baru — Timeline, Stepper, Pagination, Breadcrumb, NumberInput",
+        "3 komponen gap ditambahkan ke ekspor publik — Skeleton, EmptyState, Alert",
+        "CLI Tool: `npx reend-ui` — perintah init, add, list, update (alur kerja copy-paste shadcn-style untuk 42 komponen)",
+        "Component Playground: editor kode langsung berbasis Sandpack di docs — URL berbagi via btoa, reset, tombol 'Buka di Playground' per komponen",
+        "45 pengujian baru (675 total di 14 file tes) — cakupan Timeline, Stepper, Pagination, Breadcrumb, NumberInput",
+        "CLI binary dibangun via esbuild ke dist/bin/cli.cjs — standalone Node 18+, tidak perlu instalasi"
+      ]
+    },
+    {
+      "version": "v0.3.0",
+      "date": "19 Februari 2026",
+      "items": [
+        "15 komponen baru siap produksi — Button, Badge, Card, Input, Textarea, Checkbox, RadioGroup, Switch, Select, Avatar, Progress, Accordion, Tabs, Popover, Dialog, Separator",
+        "Button: 6 varian (primary, secondary, ghost, danger, link, icon), 5 ukuran, loading state dengan diamond spinner, asChild via Radix Slot",
+        "Badge: 7 varian warna (primary, info, success, warning, danger, purple, default), removable dengan callback onRemove",
+        "Card: dekorasi corner bracket di 2 sudut, varian hoverable + selected — dengan CardHeader, CardMeta, CardTitle, CardDescription, CardBody, CardFooter",
+        "Input: arsitektur wrapper-div, 3 state (default/error/success), 3 ukuran, slot leftElement + rightElement",
+        "Textarea: counter karakter showCount (muted → orange ≥80% → merah >maxLength), resize-y, semua state Input",
+        "Checkbox: border-2 kotak 18×18px, indikator ◆ checked, − indeterminate — via pola group-data-[state] Tailwind",
+        "RadioGroup: pola swap berlian ◇ (tidak dipilih) → ◆ (dipilih), props label + helperText",
+        "Switch: track kotak (rounded-none), props label / offLabel / onLabel, thumb translate-x-5 saat checked",
+        "Select: 10 sub-komponen (Trigger, Content, Item, Label, Separator, ScrollUp/Down, Group, Value), varian item danger",
+        "Avatar: bentuk clip-corner-sm (BUKAN lingkaran), 6 ukuran (xs → 2xl), titik status ◆ dengan 4 state (online/offline/busy/away)",
+        "Progress: 4 varian warna (default/success/danger/info), 3 ukuran, showLabel, animasi shimmer indeterminate",
+        "Accordion: indikator font-mono +/− (bukan chevron), expand/collapse halus via --radix-accordion-content-height",
+        "Tabs: 3 varian — underline (border-b aktif), pill (bg-surface-3), bordered (bg-white/5) — CVA pada list + trigger",
+        "Popover: panel surface-2, shadow-lg, animasi fade-in-up, min-w-[200px], sideOffset=6",
+        "Dialog: 5 varian ukuran (sm/md/lg/xl/fullscreen), overlay backdrop-blur-sm — anatomi lengkap (Trigger, Overlay, Content, Header, Footer, Title, Description, Close)",
+        "Separator: 5 varian gaya (default/subtle/strong/glow/accent), orientasi horizontal + vertikal",
+        "400 pengujian lulus di 11 file tes — cakupan >70% pada semua komponen baru",
+        "Bundle: 62,00 kB MJS (gzip: 13,34 kB) — di bawah target 70 kB",
+        "Demo situs dokumentasi diperbarui menggunakan komponen library nyata (Accordion, Tabs, Dialog, Popover, Separator)"
+      ]
+    },
+    {
+      "version": "v0.2.0",
+      "date": "19 Februari 2026",
+      "items": [
+        "11 Signature Components diekspor dari npm library: GlitchText, DiamondLoader, TacticalPanel, HoloCard, DataStream, TacticalBadge, WarningBanner, ScanDivider, CoordinateTag, RadarChart, HUDOverlay",
+        "Pembersihan dependensi — 7 paket docs-only (i18next, shiki, react-router-dom, dll.) dipindah ke devDependencies",
+        "framer-motion dan lucide-react ditambahkan sebagai optional peer dependencies",
+        "89 pengujian lulus di 4 file tes — cakupan pernyataan 86,69%",
+        "Pipeline CI/CD GitHub Actions — lint, typecheck, tes, build pada setiap push",
+        "README diperbarui dengan proposisi nilai, tabel API Signature Components, dan panduan peer deps",
+        "Bundle: 28,15 kB MJS (gzip: 7,11 kB)"
+      ]
+    },
+    {
+      "version": "v0.1.0",
+      "date": "17 Februari 2026",
+      "items": [
+        "Rilis npm library pertama — Tooltip, Toast, Toaster, SonnerToaster, cn(), useToast()",
+        "Sistem token desain CSS dengan palet warna ef-* dan surface-* layering",
+        "Tailwind CSS preset diekspor sebagai reend-components/tailwind",
+        "Peluncuran situs dokumentasi dengan tema Futurisme Industrial Sci-Fi",
+        "87+ pratinjau komponen di 11 seksi tematik",
+        "Penyorotan sintaks Shiki, playground interaktif, pencarian fuzzy (⌘K)",
+        "i18n Bahasa Inggris dan Indonesia — 16 namespace"
+      ]
+    }
+  ]
 }

@@ -278,7 +278,7 @@ input:focus-visible {
               aria-label="Focus state demo"
             />
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
             {[
               [
                 t("focus_keyboard.shortcuts.tab"),
@@ -305,11 +305,11 @@ input:focus-visible {
                 t("focus_keyboard.shortcuts.home_end_desc"),
               ],
             ].map(([key, action]) => (
-              <div key={key} className="flex items-center gap-2 text-xs">
-                <kbd className="font-mono text-[10px] bg-surface-2 px-2 py-1 border border-border text-muted-foreground">
+              <div key={key} className="flex items-start gap-2 text-xs min-w-0">
+                <kbd className="font-mono text-[10px] bg-surface-2 px-2 py-1 border border-border text-muted-foreground shrink-0 whitespace-nowrap">
                   {key}
                 </kbd>
-                <span className="text-muted-foreground">{action}</span>
+                <span className="text-muted-foreground leading-tight">{action}</span>
               </div>
             ))}
           </div>

@@ -60,7 +60,7 @@ export function InstallationSection() {
                 {t("getting_started.npm_link_text")}
               </a>
               <span className="font-mono text-[10px] bg-primary/10 border border-primary/20 text-primary px-2 py-0.5">
-                v0.1.0
+                v{__REEND_VERSION__}
               </span>
             </div>
           </div>

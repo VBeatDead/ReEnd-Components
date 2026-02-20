@@ -44,6 +44,7 @@ const sectionDefs: SectionDef[] = [
       { id: "buttons" },
       { id: "cards" },
       { id: "forms-input" },
+      { id: "number-input" },
       { id: "nav-header" },
       { id: "nav-sidebar" },
       { id: "nav-tabs" },

@@ -5,6 +5,8 @@ import {
   useRef,
   useEffect,
   useCallback,
+  lazy,
+  Suspense,
 } from "react";
 import { createPortal } from "react-dom";
 import { RotateCcw, Copy, Check, Monitor, Smartphone } from "lucide-react";
@@ -12,6 +14,10 @@ import { CodeBlock } from "./CodeBlock";
 import PlaygroundControlField from "./PlaygroundControlField";
 import PropsPanel from "./PropsPanel";
 import { useTranslation } from "react-i18next";
+
+const PlaygroundLazy = lazy(() =>
+  import("./Playground").then((m) => ({ default: m.Playground })),
+);
 
 export interface PropDefinition {
   name: string;
@@ -60,11 +66,14 @@ interface ComponentPreviewProps {
   keyboard?: KeyboardInteraction[];
   install?: InstallGuide;
   showViewport?: boolean;
+  sandpackCode?: string;
   playground?: {
     controls: PlaygroundControl[];
     render: (values: Record<string, string | number | boolean>) => ReactNode;
     componentName?: string;
-    codeTemplate?: (values: Record<string, string | number | boolean>) => string;
+    codeTemplate?: (
+      values: Record<string, string | number | boolean>,
+    ) => string;
   };
 }
 
@@ -191,14 +200,21 @@ export const ComponentPreview = ({
   keyboard,
   install,
   showViewport = false,
+  sandpackCode,
   playground,
 }: ComponentPreviewProps) => {
   const { t } = useTranslation("common");
   const [activeTab, setActiveTab] = useState<TabKey>(
     playground ? "playground" : "preview",
   );
+  const [sandpackOpen, setSandpackOpen] = useState(() => {
+    try {
+      return !!new URLSearchParams(window.location.search).get("pg");
+    } catch {
+      return false;
+    }
+  });
 
-  // Playground state
   const defaultValues = useMemo(
     () =>
       playground?.controls.reduce(
@@ -207,9 +223,8 @@ export const ComponentPreview = ({
       ) ?? {},
     [playground?.controls],
   );
-  const [pgValues, setPgValues] = useState<
-    Record<string, string | number | boolean>
-  >(defaultValues);
+  const [pgValues, setPgValues] =
+    useState<Record<string, string | number | boolean>>(defaultValues);
   const [codeCopied, setCodeCopied] = useState(false);
   const [viewport, setViewport] = useState<"desktop" | "mobile">("desktop");
   const copyTimerRef = useRef<ReturnType<typeof setTimeout>>();
@@ -242,13 +257,29 @@ export const ComponentPreview = ({
   }, [pgValues, playground, activeTab, title]);
 
   const tabs: { key: TabKey; label: string; available: boolean }[] = [
-    { key: "playground", label: t("component_preview.playground"), available: !!playground },
+    {
+      key: "playground",
+      label: t("component_preview.playground"),
+      available: !!playground,
+    },
     { key: "preview", label: t("component_preview.preview"), available: true },
     { key: "code", label: t("component_preview.code"), available: !!code },
-    { key: "props", label: t("component_preview.props"), available: !!propDefs?.length },
+    {
+      key: "props",
+      label: t("component_preview.props"),
+      available: !!propDefs?.length,
+    },
     { key: "api", label: t("component_preview.api"), available: !!api?.length },
-    { key: "keyboard", label: t("component_preview.keys"), available: !!keyboard?.length },
-    { key: "install", label: t("component_preview.install"), available: !!install },
+    {
+      key: "keyboard",
+      label: t("component_preview.keys"),
+      available: !!keyboard?.length,
+    },
+    {
+      key: "install",
+      label: t("component_preview.install"),
+      available: !!install,
+    },
   ];
 
   const updatePg = (name: string, value: string | number | boolean) =>
@@ -288,7 +319,7 @@ export const ComponentPreview = ({
                 aria-controls={`${id}-panel-${tab.key}`}
                 tabIndex={activeTab === tab.key ? 0 : -1}
                 onClick={() => setActiveTab(tab.key)}
-                className={`relative font-display text-[11px] font-bold tracking-[0.08em] uppercase px-4 sm:px-5 py-3 transition-colors bg-transparent whitespace-nowrap ${
+                className={`relative font-display text-[11px] font-bold tracking-[0.08em] uppercase px-4 sm:px-5 py-3 transition-colors bg-transparent whitespace-nowrap cursor-pointer ${
                   activeTab === tab.key
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"
@@ -359,12 +390,16 @@ export const ComponentPreview = ({
                     {codeCopied ? (
                       <>
                         <Check className="w-3 h-3 text-ef-green" />
-                        <span className="text-ef-green">{t("actions.copied")}</span>
+                        <span className="text-ef-green">
+                          {t("actions.copied")}
+                        </span>
                       </>
                     ) : (
                       <>
                         <Copy className="w-3 h-3 text-muted-foreground" />
-                        <span className="text-muted-foreground">{t("actions.copy")}</span>
+                        <span className="text-muted-foreground">
+                          {t("actions.copy")}
+                        </span>
                       </>
                     )}
                   </button>
@@ -393,7 +428,11 @@ export const ComponentPreview = ({
                 </span>
                 {(
                   [
-                    { key: "desktop", icon: Monitor, label: t("component_preview.desktop") },
+                    {
+                      key: "desktop",
+                      icon: Monitor,
+                      label: t("component_preview.desktop"),
+                    },
                     {
                       key: "mobile",
                       icon: Smartphone,
@@ -418,11 +457,11 @@ export const ComponentPreview = ({
               </div>
             )}
             {/* Responsive container */}
-            <div className="flex justify-center p-6 sm:p-10">
+            <div className="flex justify-center p-6 sm:p-10 overflow-x-auto">
               {showViewport && viewport === "mobile" ? (
                 <ViewportFrame width={375}>{children}</ViewportFrame>
               ) : (
-                <div className="w-full">{children}</div>
+                <div className="w-full min-w-0">{children}</div>
               )}
             </div>
           </div>
@@ -537,7 +576,11 @@ export const ComponentPreview = ({
               <span className="font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground block mb-2">
                 {t("component_preview.usage")}
               </span>
-              <CodeBlock code={install.usage} language="tsx" title={t("component_preview.usage")} />
+              <CodeBlock
+                code={install.usage}
+                language="tsx"
+                title={t("component_preview.usage")}
+              />
             </div>
             {/* Dependencies */}
             {install.dependencies?.length ? (
@@ -555,6 +598,41 @@ export const ComponentPreview = ({
           </div>
         )}
       </div>
+
+      {/* Open in Playground */}
+      {sandpackCode && (
+        <div className="mt-3">
+          <button
+            onClick={() => setSandpackOpen((o) => !o)}
+            className={`font-display text-[11px] font-bold tracking-[0.08em] uppercase px-4 py-2 border transition-colors ${
+              sandpackOpen
+                ? "border-primary/40 text-primary bg-primary/5"
+                : "border-border text-muted-foreground hover:border-primary/40 hover:text-primary"
+            }`}
+          >
+            {sandpackOpen ? "▼ CLOSE PLAYGROUND" : "◆ OPEN IN PLAYGROUND"}
+          </button>
+        </div>
+      )}
+      {sandpackCode && sandpackOpen && (
+        <div className="mt-2">
+          <Suspense
+            fallback={
+              <div className="border border-border bg-surface-0 h-[480px] flex items-center justify-center">
+                <span className="font-mono text-xs text-muted-foreground animate-pulse">
+                  LOADING PLAYGROUND...
+                </span>
+              </div>
+            }
+          >
+            <PlaygroundLazy
+              code={sandpackCode}
+              title={title}
+              onClose={() => setSandpackOpen(false)}
+            />
+          </Suspense>
+        </div>
+      )}
     </section>
   );
 };

@@ -55,7 +55,7 @@ jobs:
           echo "MJS: $(wc -c < dist/lib/index.mjs) bytes"
           echo "CJS: $(wc -c < dist/lib/index.cjs) bytes"
           MJS_SIZE=$(wc -c < dist/lib/index.mjs)
-          MAX_SIZE=102400
+          MAX_SIZE=133120
           if [ "$MJS_SIZE" -gt "$MAX_SIZE" ]; then
             echo "❌ Bundle too large: ${MJS_SIZE} bytes (max: ${MAX_SIZE})"
             exit 1

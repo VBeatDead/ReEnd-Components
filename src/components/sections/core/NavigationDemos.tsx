@@ -1,7 +1,10 @@
+import React, { useState } from "react";
 import { ComponentPreview } from "../../docs/ComponentPreview";
 import { Menu } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "../../ui/tabs";
+import { Breadcrumb } from "../../ui/breadcrumb";
+import { Pagination } from "../../ui/pagination";
 
 function TabsPlayground({
   variant,
@@ -37,6 +40,19 @@ function TabsPlayground({
         </TabsContent>
       ))}
     </Tabs>
+  );
+}
+
+function PaginationDemo() {
+  const { t } = useTranslation("core");
+  const [page, setPage] = useState(3);
+  return (
+    <Pagination
+      totalPages={24}
+      currentPage={page}
+      onPageChange={setPage}
+      siblingCount={1}
+    />
   );
 }
 
@@ -322,26 +338,14 @@ function NavigationDemos() {
           },
         ]}
       >
-        <nav className="flex items-center gap-2 text-xs">
-          {[
-            t("navigation.breadcrumb_home"),
-            t("navigation.breadcrumb_docs"),
-            t("navigation.breadcrumb_components"),
-          ].map((item, i) => (
-            <span key={item} className="flex items-center gap-2">
-              {i > 0 && (
-                <span className="text-[10px] text-muted-foreground">›</span>
-              )}
-              <button className="font-display tracking-[0.08em] uppercase text-muted-foreground hover:text-primary transition-colors bg-transparent">
-                {item}
-              </button>
-            </span>
-          ))}
-          <span className="text-[10px] text-muted-foreground">›</span>
-          <span className="font-display tracking-[0.08em] uppercase text-card-foreground font-semibold">
-            {t("navigation.breadcrumb_buttons")}
-          </span>
-        </nav>
+        <Breadcrumb
+          items={[
+            { label: t("navigation.breadcrumb_home"), href: "#" },
+            { label: t("navigation.breadcrumb_docs"), href: "#" },
+            { label: t("navigation.breadcrumb_components"), href: "#" },
+            { label: t("navigation.breadcrumb_buttons") },
+          ]}
+        />
       </ComponentPreview>
 
       {/* Nav Pagination */}
@@ -377,26 +381,7 @@ function NavigationDemos() {
           },
         ]}
       >
-        <div className="flex flex-wrap items-center gap-2">
-          <button className="font-display text-xs uppercase text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 bg-transparent">
-            ◆ {t("navigation.prev")}
-          </button>
-          {[1, 2, 3, 4, 5].map((n) => (
-            <button
-              key={n}
-              className={`font-ui text-xs w-9 h-9 flex items-center justify-center transition-all ${n === 3 ? "bg-primary text-primary-foreground font-bold" : "text-muted-foreground border border-border hover:border-primary/30 hover:bg-primary/5"}`}
-            >
-              {n}
-            </button>
-          ))}
-          <span className="text-muted-foreground text-xs">...</span>
-          <button className="font-ui text-xs w-9 h-9 flex items-center justify-center text-muted-foreground border border-border hover:border-primary/30">
-            24
-          </button>
-          <button className="font-display text-xs uppercase text-muted-foreground hover:text-primary transition-colors flex items-center gap-1 bg-transparent">
-            {t("navigation.next")} ◆
-          </button>
-        </div>
+        <PaginationDemo />
       </ComponentPreview>
     </>
   );

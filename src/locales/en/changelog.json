@@ -1,56 +1,71 @@
 {
   "title": "◆ CHANGELOG",
   "latest": "LATEST",
-  "v3": {
-    "version": "v0.3.0",
-    "date": "February 19, 2026",
-    "items": [
-      "15 new production-ready components — Button, Badge, Card, Input, Textarea, Checkbox, RadioGroup, Switch, Select, Avatar, Progress, Accordion, Tabs, Popover, Dialog, Separator",
-      "Button: 6 variants (primary, secondary, ghost, danger, link, icon), 5 sizes, loading state with diamond spinner, asChild via Radix Slot",
-      "Badge: 7 color variants (primary, info, success, warning, danger, purple, default), removable with onRemove callback",
-      "Card: corner bracket decoration on 2 corners, hoverable + selected boolean variants — with CardHeader, CardMeta, CardTitle, CardDescription, CardBody, CardFooter",
-      "Input: wrapper-div architecture, 3 states (default/error/success), 3 sizes, leftElement + rightElement slots",
-      "Textarea: showCount character counter (muted → orange ≥80% → red >maxLength), resize-y, all Input states",
-      "Checkbox: square 18×18px border-2, ◆ checked indicator, − indeterminate — via group-data-[state] Tailwind",
-      "RadioGroup: ◇ (unchecked) → ◆ (checked) diamond swap pattern, label + helperText props",
-      "Switch: square track (rounded-none), label / offLabel / onLabel props, translate-x-5 thumb on checked",
-      "Select: 10 sub-components (Trigger, Content, Item, Label, Separator, ScrollUp/Down, Group, Value), danger item variant",
-      "Avatar: clip-corner-sm shape (NOT circle), 6 sizes (xs → 2xl), ◆ status dot with 4 states (online/offline/busy/away)",
-      "Progress: 4 color variants (default/success/danger/info), 3 sizes, showLabel, indeterminate shimmer animation",
-      "Accordion: +/− font-mono indicator (not chevron), smooth expand/collapse via --radix-accordion-content-height",
-      "Tabs: 3 variants — underline (active border-b), pill (bg-surface-3), bordered (bg-white/5) — CVA on list + trigger",
-      "Popover: surface-2 panel, shadow-lg, fade-in-up animation, min-w-[200px], sideOffset=6",
-      "Dialog: 5 size variants (sm/md/lg/xl/fullscreen), backdrop-blur-sm overlay — full anatomy (Trigger, Overlay, Content, Header, Footer, Title, Description, Close)",
-      "Separator: 5 style variants (default/subtle/strong/glow/accent), horizontal + vertical orientation",
-      "400 tests passing across 11 test files — >70% statement coverage on all new components",
-      "Bundle: 62.00 kB MJS (gzip: 13.34 kB) — under 70 kB Month 3 target",
-      "Docs site demos updated to use real library components (Accordion, Tabs, Dialog, Popover, Separator)"
-    ]
-  },
-  "v2": {
-    "version": "v0.2.0",
-    "date": "February 19, 2026",
-    "items": [
-      "11 Signature Components exported from npm library: GlitchText, DiamondLoader, TacticalPanel, HoloCard, DataStream, TacticalBadge, WarningBanner, ScanDivider, CoordinateTag, RadarChart, HUDOverlay",
-      "Dependency cleanup — 7 docs-only packages (i18next, shiki, react-router-dom, etc.) moved to devDependencies",
-      "framer-motion and lucide-react added as optional peer dependencies",
-      "89 tests passing across 4 test files — 86.69% statement coverage",
-      "GitHub Actions CI/CD pipeline — lint, typecheck, test, build on every push",
-      "README updated with value proposition, Signature Components API table, and peer deps guide",
-      "Bundle: 28.15 kB MJS (gzip: 7.11 kB)"
-    ]
-  },
-  "v1": {
-    "version": "v0.1.0",
-    "date": "February 17, 2026",
-    "items": [
-      "Initial npm library release — Tooltip, Toast, Toaster, SonnerToaster, cn(), useToast()",
-      "CSS design token system with ef-* color palette and surface-* layering",
-      "Tailwind CSS preset exported as reend-components/tailwind",
-      "Documentation site launch with Sci-Fi Industrial Futurism theme",
-      "87+ component previews across 11 thematic sections",
-      "Shiki syntax highlighting, interactive playgrounds, fuzzy search (⌘K)",
-      "English and Indonesian (Bahasa) i18n — 16 namespaces"
-    ]
-  }
+  "versions": [
+    {
+      "version": "v0.4.0",
+      "date": "February 20, 2026",
+      "items": [
+        "9 new Signature Phase 2 components — MissionCard, OperatorCard, StatusBar, CommandOutput, CountdownTimer, MatrixGrid, FrequencyBars, TacticalTable (+ DataStream, HUDOverlay, GlitchText, RadarChart enhancements)",
+        "5 new Core gap utility components — Timeline, Stepper, Pagination, Breadcrumb, NumberInput",
+        "3 gap components added to public exports — Skeleton, EmptyState, Alert",
+        "CLI Tool: `npx reend-ui` — init, add, list, update commands (shadcn-style copy-paste workflow for 42 components)",
+        "Component Playground: Sandpack-powered live code editor embedded in docs — share URL via btoa, reset, per-component 'Open in Playground' button",
+        "45 new tests (675 total across 14 test files) — Timeline, Stepper, Pagination, Breadcrumb, NumberInput coverage",
+        "CLI binary built via esbuild to dist/bin/cli.cjs — standalone Node 18+, no install required"
+      ]
+    },
+    {
+      "version": "v0.3.0",
+      "date": "February 19, 2026",
+      "items": [
+        "15 new production-ready components — Button, Badge, Card, Input, Textarea, Checkbox, RadioGroup, Switch, Select, Avatar, Progress, Accordion, Tabs, Popover, Dialog, Separator",
+        "Button: 6 variants (primary, secondary, ghost, danger, link, icon), 5 sizes, loading state with diamond spinner, asChild via Radix Slot",
+        "Badge: 7 color variants (primary, info, success, warning, danger, purple, default), removable with onRemove callback",
+        "Card: corner bracket decoration on 2 corners, hoverable + selected boolean variants — with CardHeader, CardMeta, CardTitle, CardDescription, CardBody, CardFooter",
+        "Input: wrapper-div architecture, 3 states (default/error/success), 3 sizes, leftElement + rightElement slots",
+        "Textarea: showCount character counter (muted → orange ≥80% → red >maxLength), resize-y, all Input states",
+        "Checkbox: square 18×18px border-2, ◆ checked indicator, − indeterminate — via group-data-[state] Tailwind",
+        "RadioGroup: ◇ (unchecked) → ◆ (checked) diamond swap pattern, label + helperText props",
+        "Switch: square track (rounded-none), label / offLabel / onLabel props, translate-x-5 thumb on checked",
+        "Select: 10 sub-components (Trigger, Content, Item, Label, Separator, ScrollUp/Down, Group, Value), danger item variant",
+        "Avatar: clip-corner-sm shape (NOT circle), 6 sizes (xs → 2xl), ◆ status dot with 4 states (online/offline/busy/away)",
+        "Progress: 4 color variants (default/success/danger/info), 3 sizes, showLabel, indeterminate shimmer animation",
+        "Accordion: +/− font-mono indicator (not chevron), smooth expand/collapse via --radix-accordion-content-height",
+        "Tabs: 3 variants — underline (active border-b), pill (bg-surface-3), bordered (bg-white/5) — CVA on list + trigger",
+        "Popover: surface-2 panel, shadow-lg, fade-in-up animation, min-w-[200px], sideOffset=6",
+        "Dialog: 5 size variants (sm/md/lg/xl/fullscreen), backdrop-blur-sm overlay — full anatomy (Trigger, Overlay, Content, Header, Footer, Title, Description, Close)",
+        "Separator: 5 style variants (default/subtle/strong/glow/accent), horizontal + vertical orientation",
+        "400 tests passing across 11 test files — >70% statement coverage on all new components",
+        "Bundle: 62.00 kB MJS (gzip: 13.34 kB) — under 70 kB Month 3 target",
+        "Docs site demos updated to use real library components (Accordion, Tabs, Dialog, Popover, Separator)"
+      ]
+    },
+    {
+      "version": "v0.2.0",
+      "date": "February 19, 2026",
+      "items": [
+        "11 Signature Components exported from npm library: GlitchText, DiamondLoader, TacticalPanel, HoloCard, DataStream, TacticalBadge, WarningBanner, ScanDivider, CoordinateTag, RadarChart, HUDOverlay",
+        "Dependency cleanup — 7 docs-only packages (i18next, shiki, react-router-dom, etc.) moved to devDependencies",
+        "framer-motion and lucide-react added as optional peer dependencies",
+        "89 tests passing across 4 test files — 86.69% statement coverage",
+        "GitHub Actions CI/CD pipeline — lint, typecheck, test, build on every push",
+        "README updated with value proposition, Signature Components API table, and peer deps guide",
+        "Bundle: 28.15 kB MJS (gzip: 7.11 kB)"
+      ]
+    },
+    {
+      "version": "v0.1.0",
+      "date": "February 17, 2026",
+      "items": [
+        "Initial npm library release — Tooltip, Toast, Toaster, SonnerToaster, cn(), useToast()",
+        "CSS design token system with ef-* color palette and surface-* layering",
+        "Tailwind CSS preset exported as reend-components/tailwind",
+        "Documentation site launch with Sci-Fi Industrial Futurism theme",
+        "87+ component previews across 11 thematic sections",
+        "Shiki syntax highlighting, interactive playgrounds, fuzzy search (⌘K)",
+        "English and Indonesian (Bahasa) i18n — 16 namespaces"
+      ]
+    }
+  ]
 }

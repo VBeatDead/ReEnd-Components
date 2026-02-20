@@ -10,6 +10,8 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "../ui/accordion";
+import { Timeline } from "../ui/timeline";
+import { Stepper } from "../ui/stepper";
 
 export function DataDisplaySection() {
   const { t } = useTranslation("data");
@@ -350,42 +352,29 @@ export function DataDisplaySection() {
           },
         ]}
       >
-        <div className="max-w-md pl-6 border-l border-ef-dark-gray space-y-8">
-          {[
-            {
-              date: t("timeline.entries.system_update.date"),
-              title: t("timeline.entries.system_update.title"),
-              desc: t("timeline.entries.system_update.desc"),
-              current: true,
-            },
-            {
-              date: t("timeline.entries.beta_testing.date"),
-              title: t("timeline.entries.beta_testing.title"),
-              desc: t("timeline.entries.beta_testing.desc"),
-              current: false,
-            },
-            {
-              date: t("timeline.entries.project_kickoff.date"),
-              title: t("timeline.entries.project_kickoff.title"),
-              desc: t("timeline.entries.project_kickoff.desc"),
-              current: false,
-            },
-          ].map((item) => (
-            <div key={item.date} className="relative">
-              <span
-                className={`absolute -left-[30px] top-1 text-sm ${item.current ? "text-primary" : "text-ef-gray-mid"}`}
-              >
-                {item.current ? "◆" : "◇"}
-              </span>
-              <p className="font-ui text-[11px] text-muted-foreground tracking-wider mb-1">
-                {item.date}
-              </p>
-              <h4 className="font-display text-base font-bold tracking-[0.02em] uppercase text-foreground">
-                {item.title}
-              </h4>
-              <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
-            </div>
-          ))}
+        <div className="max-w-md">
+          <Timeline
+            items={[
+              {
+                date: t("timeline.entries.system_update.date"),
+                title: t("timeline.entries.system_update.title"),
+                description: t("timeline.entries.system_update.desc"),
+                status: "current",
+              },
+              {
+                date: t("timeline.entries.beta_testing.date"),
+                title: t("timeline.entries.beta_testing.title"),
+                description: t("timeline.entries.beta_testing.desc"),
+                status: "complete",
+              },
+              {
+                date: t("timeline.entries.project_kickoff.date"),
+                title: t("timeline.entries.project_kickoff.title"),
+                description: t("timeline.entries.project_kickoff.desc"),
+                status: "complete",
+              },
+            ]}
+          />
         </div>
       </ComponentPreview>
 
@@ -739,40 +728,14 @@ export function DataDisplaySection() {
             <h4 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-6">
               {t("progress.stepper")}
             </h4>
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-0 max-w-lg">
-              {(
-                t("progress.step_labels", { returnObjects: true }) as string[]
-              ).map((step, i) => (
-                <div
-                  key={step}
-                  className="flex items-center flex-1 last:flex-none"
-                >
-                  <div className="flex flex-col items-center">
-                    <span
-                      className={`text-sm ${i < 2 ? "text-primary" : "text-ef-gray"} ${i === 1 ? "animate-pulse-glow rounded-sm" : ""}`}
-                    >
-                      {i < 2 ? "◆" : "◇"}
-                    </span>
-                    <span
-                      className={`font-display text-[10px] uppercase mt-2 ${i === 1 ? "text-primary" : i < 1 ? "text-card-foreground" : "text-ef-gray-mid"}`}
-                    >
-                      {step}
-                    </span>
-                    <span className="text-[9px] text-muted-foreground">
-                      {i < 1
-                        ? t("progress.step_states.complete")
-                        : i === 1
-                          ? t("progress.step_states.current")
-                          : t("progress.step_states.upcoming")}
-                    </span>
-                  </div>
-                  {i < 3 && (
-                    <div
-                      className={`flex-1 h-px mx-2 ${i < 1 ? "bg-primary" : "bg-ef-gray"}`}
-                    />
-                  )}
-                </div>
-              ))}
+            <div className="overflow-x-auto">
+              <Stepper
+                steps={(t("progress.step_labels", { returnObjects: true }) as string[]).map(
+                  (label) => ({ label }),
+                )}
+                currentStep={1}
+                orientation="horizontal"
+              />
             </div>
           </div>
         </div>
