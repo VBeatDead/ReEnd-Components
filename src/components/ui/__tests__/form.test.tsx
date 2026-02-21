@@ -62,7 +62,7 @@ describe("Input", () => {
   it("applies default border class when state=default", () => {
     const { container } = render(<Input state="default" />);
     const wrapper = container.firstChild as HTMLElement;
-    expect(wrapper.className).toContain("border-white/[0.12]");
+    expect(wrapper.className).toContain("border-input");
   });
 
   it("applies error border class when state=error", () => {
@@ -80,7 +80,7 @@ describe("Input", () => {
   it("default state has hover and focus-within classes", () => {
     const { container } = render(<Input />);
     const wrapper = container.firstChild as HTMLElement;
-    expect(wrapper.className).toContain("hover:border-white/20");
+    expect(wrapper.className).toContain("hover:border-border-strong");
     expect(wrapper.className).toContain("focus-within:border-primary");
   });
 
@@ -375,7 +375,7 @@ describe("Textarea", () => {
   it("applies default border class when state=default", () => {
     const { container } = render(<Textarea state="default" />);
     const ta = container.querySelector("textarea") as HTMLElement;
-    expect(ta.className).toContain("border-white/[0.12]");
+    expect(ta.className).toContain("border-input");
   });
 
   it("applies error border class when state=error", () => {
@@ -393,7 +393,7 @@ describe("Textarea", () => {
   it("default state has hover and focus classes", () => {
     const { container } = render(<Textarea />);
     const ta = container.querySelector("textarea") as HTMLElement;
-    expect(ta.className).toContain("hover:border-white/20");
+    expect(ta.className).toContain("hover:border-border-strong");
     expect(ta.className).toContain("focus:border-primary");
   });
 

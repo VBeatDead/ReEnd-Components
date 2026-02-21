@@ -3,10 +3,28 @@
   "latest": "LATEST",
   "versions": [
     {
+      "version": "v1.0.0",
+      "date": "February 20, 2026",
+      "items": [
+        "Accessibility audit — WCAG 2.1 AA compliance pass across all 47 components",
+        "Stepper: added role=\"list\", aria-label per step with state (completed/current/upcoming), aria-current=\"step\" on active step",
+        "Timeline: added role=\"list\" on container, role=\"listitem\" + aria-current on TimelineItem",
+        "TacticalTable: selectable rows now keyboard accessible — tabIndex=0, Enter/Space triggers onRowClick, focus-visible ring",
+        "Alert: decorative icon span (◆/✓/⚠/✕) now has aria-hidden=\"true\"",
+        "MissionCard: progress bar now has role=\"progressbar\" with aria-valuenow/min/max",
+        "Breadcrumb: separator li now has role=\"presentation\" in addition to aria-hidden",
+        "API: exported missing TypeScript types from barrel — StepItem, StepperProps, TimelineProps, TimelineItemProps, PaginationProps, BreadcrumbItemData, BreadcrumbProps, NumberInputProps",
+        "Light mode audit — replaced all hardcoded border-white/x and bg-white/x classes with adaptive semantic tokens (border-input, border-border, border-border-strong, bg-surface-*) across 18 components",
+        "Tailwind preset: added border-strong sub-token (hsl(var(--border-strong))) enabling border-border-strong utility",
+        "Form fields (Input, Textarea, Select, Checkbox, Switch, NumberInput) now have visible borders in light mode via border-input token",
+        "Button secondary/icon, Badge default, Accordion, Tabs, Dialog, Popover, Separator, Skeleton, Pagination, Timeline, Stepper, Breadcrumb, EmptyState all use adaptive border/bg tokens"
+      ]
+    },
+    {
       "version": "v0.4.0",
       "date": "February 20, 2026",
       "items": [
-        "9 new Signature Phase 2 components — MissionCard, OperatorCard, StatusBar, CommandOutput, CountdownTimer, MatrixGrid, FrequencyBars, TacticalTable (+ DataStream, HUDOverlay, GlitchText, RadarChart enhancements)",
+        "9 new Signature components — MissionCard, OperatorCard, StatusBar, CommandOutput, CountdownTimer, MatrixGrid, FrequencyBars, TacticalTable (+ DataStream, HUDOverlay, GlitchText, RadarChart enhancements)",
         "5 new Core gap utility components — Timeline, Stepper, Pagination, Breadcrumb, NumberInput",
         "3 gap components added to public exports — Skeleton, EmptyState, Alert",
         "CLI Tool: `npx reend-ui` — init, add, list, update commands (shadcn-style copy-paste workflow for 42 components)",

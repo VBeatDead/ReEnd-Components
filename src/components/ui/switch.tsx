@@ -30,7 +30,7 @@ const Switch = React.forwardRef<
         checked={checked}
         className={cn(
           "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-none",
-          "border border-white/15 bg-white/10",
+          "border border-input bg-surface-3",
           "transition-all duration-200",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           "disabled:cursor-not-allowed disabled:opacity-40",

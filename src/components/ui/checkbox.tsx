@@ -23,7 +23,7 @@ const Checkbox = React.forwardRef<
           ref={ref}
           id={checkboxId}
           className={cn(
-            "group peer h-[18px] w-[18px] shrink-0 border-2 border-white/25 bg-transparent",
+            "group peer h-[18px] w-[18px] shrink-0 border-2 border-input bg-transparent",
             "cursor-pointer transition-all duration-150",
             "hover:border-primary/60",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",

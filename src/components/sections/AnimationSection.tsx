@@ -1,8 +1,24 @@
 import { useTranslation } from "react-i18next";
+import { useRef, useState, useEffect } from "react";
 import { ComponentPreview } from "../docs/ComponentPreview";
 
 export function AnimationSection() {
   const { t } = useTranslation("animation");
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [animKey, setAnimKey] = useState(0);
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setAnimKey((k) => k + 1);
+      },
+      { threshold: 0.3 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <>
@@ -189,13 +205,13 @@ export function AnimationSection() {
           },
         ]}
       >
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div ref={scrollRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {[1, 2, 3].map((i) => (
             <div
-              key={i}
+              key={`${i}-${animKey}`}
               className="corner-brackets bg-surface-1 border border-border p-6 text-center animate-fade-in-up"
               style={{
-                animationDelay: `${i * 100}ms`,
+                animationDelay: `${(i - 1) * 150}ms`,
                 animationFillMode: "both",
               }}
             >
@@ -203,7 +219,7 @@ export function AnimationSection() {
                 {String(i).padStart(2, "0")}
               </span>
               <p className="font-display text-xs uppercase text-muted-foreground mt-2">
-                {t("scroll_triggered.stagger_label", { ms: i * 100 })}
+                {t("scroll_triggered.stagger_label", { ms: (i - 1) * 150 })}
               </p>
             </div>
           ))}

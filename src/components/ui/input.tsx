@@ -10,8 +10,8 @@ const inputWrapperVariants = cva(
     variants: {
       state: {
         default: [
-          "border-white/[0.12]",
-          "hover:border-white/20",
+          "border-input",
+          "hover:border-border-strong",
           "focus-within:border-primary",
           "focus-within:shadow-[0_0_0_3px_rgba(255,212,41,0.1)]",
         ].join(" "),

@@ -29,6 +29,7 @@
     "description": "Tooltip: latar #222, 12px, non-interaktif. Popover: surface-2, shadow-lg, interaktif.",
     "tooltip_label": "TOOLTIP",
     "hover_me": "Arahkan kursor",
+    "click_me": "Klik saya",
     "tooltip_content": "Konten tooltip",
     "popover_label": "POPOVER",
     "popover_title": "JUDUL POPOVER",

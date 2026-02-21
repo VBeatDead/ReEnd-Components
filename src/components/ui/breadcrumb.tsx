@@ -53,7 +53,8 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
                 {!isCurrent && (
                   <li
                     aria-hidden="true"
-                    className="text-[10px] text-white/20 select-none"
+                    role="presentation"
+                    className="text-[10px] text-muted-foreground/40 select-none"
                   >
                     {separator ?? "›"}
                   </li>

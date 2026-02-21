@@ -40,7 +40,7 @@ DialogOverlay.displayName = "DialogOverlay";
 const dialogContentVariants = cva(
   [
     "fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2",
-    "bg-surface-2 border border-white/10 shadow-xl",
+    "bg-surface-2 border border-border shadow-xl",
     "flex flex-col max-h-[90vh]",
     "data-[state=open]:animate-dialog-in",
     "focus:outline-none",
@@ -89,7 +89,7 @@ function DialogHeader({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-between border-b border-white/8 px-6 py-4",
+        "flex shrink-0 items-center justify-between border-b border-border px-6 py-4",
         className,
       )}
       {...props}
@@ -107,7 +107,7 @@ function DialogFooter({
   return (
     <div
       className={cn(
-        "flex shrink-0 items-center justify-end gap-3 border-t border-white/8 px-6 py-4",
+        "flex shrink-0 items-center justify-end gap-3 border-t border-border px-6 py-4",
         className,
       )}
       {...props}

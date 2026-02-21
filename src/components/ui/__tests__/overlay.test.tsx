@@ -273,13 +273,13 @@ describe("Separator", () => {
   it("renders subtle variant", () => {
     const { container } = render(<Separator variant="subtle" />);
     const el = container.firstChild as HTMLElement;
-    expect(el.className).toContain("bg-white/5");
+    expect(el.className).toContain("bg-border");
   });
 
   it("renders strong variant", () => {
     const { container } = render(<Separator variant="strong" />);
     const el = container.firstChild as HTMLElement;
-    expect(el.className).toContain("bg-white/25");
+    expect(el.className).toContain("bg-border-strong");
   });
 
   it("renders glow variant", () => {

@@ -11,7 +11,7 @@ const paginationItemVariants = cva(
       active: {
         true: "bg-primary text-primary-foreground border-primary font-bold",
         false:
-          "text-muted-foreground border-white/10 hover:border-primary/40 hover:text-foreground",
+          "text-muted-foreground border-border hover:border-primary/40 hover:text-foreground",
       },
       disabled: {
         true: "opacity-40 cursor-not-allowed pointer-events-none",

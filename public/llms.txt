@@ -3,7 +3,7 @@
 > Arknights: Endfield inspired React component library with Tailwind CSS. Sci-Fi Industrial Futurism design system.
 
 **URL**: https://reend-components.pages.dev
-**Version**: 0.4.0
+**Version**: 1.0.0
 **License**: MIT
 **Repository**: https://github.com/VBeatDead/ReEnd-Components
 

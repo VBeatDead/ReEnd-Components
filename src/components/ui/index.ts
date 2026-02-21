@@ -92,9 +92,14 @@ export { EmptyState, emptyStateVariants } from "./empty-state";
 export { Alert, alertVariants } from "./alert";
 
 export { Timeline, TimelineItem, timelineItemVariants } from "./timeline";
+export type { TimelineProps, TimelineItemProps } from "./timeline";
 export { Stepper } from "./stepper";
+export type { StepItem, StepperProps } from "./stepper";
 export { Pagination, paginationItemVariants } from "./pagination";
+export type { PaginationProps } from "./pagination";
 export { Breadcrumb } from "./breadcrumb";
+export type { BreadcrumbItemData, BreadcrumbProps } from "./breadcrumb";
 export { NumberInput, numberInputVariants } from "./number-input";
+export type { NumberInputProps } from "./number-input";
 
 export * from "./signature";

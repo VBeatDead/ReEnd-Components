@@ -67,6 +67,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         icon
       ) : (
         <span
+          aria-hidden="true"
           className={cn(
             "font-mono text-[14px] font-bold leading-none",
             cfg.color,

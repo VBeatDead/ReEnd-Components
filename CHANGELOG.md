@@ -7,11 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-02-20
+
+### Changed
+
+- **Accessibility (WCAG 2.1 AA)** — full audit + fixes across all 47 components:
+  - `Stepper`: `role="list"` on container; each step item gets `role="listitem"`, `aria-label` describing step number + label + state (completed/current/upcoming), `aria-current="step"` on the active step
+  - `Timeline`: `role="list"` on `<Timeline>` container; `role="listitem"` + `aria-current="true"` on `<TimelineItem>` with `status="current"`
+  - `TacticalTable`: selectable rows now keyboard-accessible — `tabIndex={0}`, `onKeyDown` handling Enter/Space to trigger `onRowClick`, `focus-visible:ring-1 focus-visible:ring-primary` outline
+  - `Alert`: decorative icon characters (◆ / ✓ / ⚠ / ✕) now have `aria-hidden="true"` — role="alert" and variant meaning conveyed by context, not character
+  - `MissionCard`: inline progress bar now has `role="progressbar"` with `aria-valuenow`, `aria-valuemin={0}`, `aria-valuemax={100}`, `aria-label="Mission progress"`; percentage text has `aria-hidden="true"` (already exposed via meter)
+  - `Breadcrumb`: separator `<li>` now has `role="presentation"` alongside `aria-hidden="true"` — removes ambiguity for AT that might count hidden list items
+
+- **TypeScript API** — missing prop interfaces now exported from library barrel (`reend-components`):
+  - `StepItem`, `StepperProps` from `Stepper`
+  - `TimelineProps`, `TimelineItemProps` from `Timeline`
+  - `PaginationProps` from `Pagination`
+  - `BreadcrumbItemData`, `BreadcrumbProps` from `Breadcrumb`
+  - `NumberInputProps` from `NumberInput`
+
+- **Light Mode Design Compliance** — comprehensive audit replacing all hardcoded `border-white/x` and `bg-white/x` Tailwind classes with adaptive semantic tokens across 18 core components:
+  - `Tailwind preset` + `tailwind.config.ts`: added `border-strong` sub-token mapping to `--border-strong` CSS variable; `border-border-strong` now usable as a Tailwind utility
+  - **Critical form fields** (`Input`, `Textarea`, `Select`, `Checkbox`, `Switch`, `NumberInput`): all default borders changed from `border-white/[0.12]` → `border-input`; hover borders changed from `hover:border-white/20` → `hover:border-border-strong` — borders now visible in both dark and light mode
+  - `Button` secondary: `border-white/25` → `border-border-strong`; icon variant: `border-white/10` + `bg-white/5` → `border-border` + `bg-surface-2`
+  - `Badge` default: `border-white/15` + `bg-white/5` → `border-border` + `bg-surface-2`
+  - `Accordion`: item border `border-white/6` → `border-border`; trigger hover `hover:bg-white/[0.02]` → `hover:bg-surface-hover`
+  - `Tabs`: list/bordered `border-white/10` → `border-border`; trigger `hover:bg-white/[0.03]` → `hover:bg-surface-hover`; active `bg-white/[0.05]` → `bg-surface-3`
+  - `Dialog`: content/header/footer `border-white/10` + `border-white/8` → `border-border`
+  - `Popover`: `border-white/10` → `border-border`
+  - `Separator`: `bg-white/10` → `bg-border`, `bg-white/5` → `bg-border`, `bg-white/25` → `bg-border-strong`
+  - `Progress`: track `bg-white/8` → `bg-surface-3`
+  - `Skeleton` (SkeletonCard): `border-white/8` → `border-border`
+  - `Pagination`: inactive page `border-white/10` → `border-border`
+  - `Timeline`: connector line `before:bg-white/10` → `before:bg-border`; upcoming marker `text-white/20` → `text-muted-foreground/40`
+  - `Stepper`: upcoming markers `text-white/20` → `text-muted-foreground/40`; connectors `bg-white/10` → `bg-border`
+  - `Breadcrumb`: separator `text-white/20` → `text-muted-foreground/40`
+  - `EmptyState`: icon container `text-white/15` → `text-muted-foreground/30`
+
 ## [0.4.0] - 2026-02-20
 
 ### Added
 
-- **9 Signature Phase 2 Components** (Tier 4A + 5 + 6 Endfield-exclusive):
+- **9 Signature Components** (Tier 4A + 5 + 6 Endfield-exclusive):
   - `MissionCard` — mission briefing card with priority indicator (CRITICAL / HIGH / STANDARD), status badge (ACTIVE / PENDING / COMPLETE / CLASSIFIED), operator count display, and diamond-decorated border
   - `OperatorCard` — operator profile card with clip-corner image slot, rank tag, specialization chip, and tactical stats panel
   - `StatusBar` — horizontal HUD status bar with label, value, optional max, and color variants (default / warning / danger / success); animated fill via framer-motion
@@ -54,7 +91,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **Library bundle** updated to include all Phase 2 components (Tier 4A–6)
+- **Library bundle** updated to include all components (Tier 4A–6)
 - **`src/components/ui/index.ts`** — added exports for Timeline, TimelineItem, timelineItemVariants, Stepper, Pagination, paginationItemVariants, Breadcrumb, NumberInput, numberInputVariants, Skeleton, EmptyState, Alert and all new Signature components
 - **`package.json`** — added `bin` field for `reend-ui` CLI; `prepublishOnly` now runs `build:lib && build:cli`; added `esbuild`, `commander`, `chalk`, `prompts`, `@codesandbox/sandpack-react` to devDependencies
 - **`.gitignore`** — added `CLAUDE.md` (AI instruction file, kept local only)
@@ -198,7 +235,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Internationalization** — English and Bahasa Indonesia docs (16 namespaces, ~1,425 translation keys)
 - **Dual build** — ESM (`index.mjs`) + CJS (`index.cjs`) + TypeScript declarations via `vite.lib.config.ts`
 
-[Unreleased]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.1.0...v0.2.0

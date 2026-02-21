@@ -309,7 +309,7 @@ export const REGISTRY: Record<string, ComponentEntry> = {
     description: "Corner-bracket HUD overlay with scanlines, noise, children",
   },
 
-  // ── Signature (Phase 2 — New) ────────────────────────────────────────────
+  // ── Signature ────────────────────────────────────────────
   "mission-card": {
     name: "mission-card",
     displayName: "MissionCard",

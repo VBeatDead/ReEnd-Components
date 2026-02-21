@@ -29,6 +29,12 @@ import {
   PopoverTrigger,
   PopoverContent,
 } from "../ui/popover";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+  TooltipProvider,
+} from "../ui/tooltip";
 import { Button } from "../ui/button";
 import { SkeletonCard, SkeletonText, SkeletonAvatar, SkeletonLine } from "../ui/skeleton";
 import { EmptyState } from "../ui/empty-state";
@@ -37,7 +43,6 @@ import { Alert } from "../ui/alert";
 export function FeedbackSection() {
   const { t } = useTranslation("feedback");
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [popoverOpen, setPopoverOpen] = useState(false);
   return (
     <>
       {/* Toast */}
@@ -381,34 +386,24 @@ export function FeedbackSection() {
             <p className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground">
               {t("tooltip.tooltip_label")}
             </p>
-            <div className="relative inline-block">
-              <button className="bg-surface-2 border border-border px-4 py-2 text-sm text-card-foreground">
-                {t("tooltip.hover_me")}
-              </button>
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-surface-3 border border-border px-3 py-1.5 text-xs text-card-foreground whitespace-nowrap">
-                {t("tooltip.tooltip_content")}
-                <div className="absolute top-full left-1/2 -translate-x-1/2 w-2 h-2 bg-surface-3 border-b border-r border-border rotate-45 -mt-1" />
-              </div>
-            </div>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button variant="secondary">{t("tooltip.hover_me")}</Button>
+                </TooltipTrigger>
+                <TooltipContent>{t("tooltip.tooltip_content")}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
           <div className="space-y-2">
             <p className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground">
               {t("tooltip.popover_label")}
             </p>
-            <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
+            <Popover>
               <PopoverTrigger asChild>
-                <Button
-                  variant="outline"
-                  onMouseEnter={() => setPopoverOpen(true)}
-                  onMouseLeave={() => setPopoverOpen(false)}
-                >
-                  {t("tooltip.hover_me")}
-                </Button>
+                <Button variant="outline">{t("tooltip.click_me")}</Button>
               </PopoverTrigger>
-              <PopoverContent
-                onMouseEnter={() => setPopoverOpen(true)}
-                onMouseLeave={() => setPopoverOpen(false)}
-              >
+              <PopoverContent>
                 <h4 className="font-display text-[13px] font-bold uppercase tracking-[0.05em] text-foreground mb-2">
                   {t("tooltip.popover_title")}
                 </h4>
@@ -648,7 +643,7 @@ export function FeedbackSection() {
               <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">
                 {e.desc}
               </p>
-              <p className="font-mono text-[10px] sm:text-[11px] text-[#444] mt-2 sm:mt-3">
+              <p className="font-mono text-[10px] sm:text-[11px] text-muted-foreground mt-2 sm:mt-3">
                 EF-{e.code}-3B2C
               </p>
             </div>

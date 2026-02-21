@@ -1,6 +1,6 @@
 {
   "name": "reend-components",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "private": false,
   "description": "Tactical, sci-fi, and gaming-inspired React component library — Arknights: Endfield Design System",
   "type": "module",
@@ -26,7 +26,7 @@
     }
   },
   "bin": {
-    "reend-ui": "./dist/bin/cli.cjs"
+    "reend-ui": "dist/bin/cli.cjs"
   },
   "files": [
     "dist/lib",
@@ -43,7 +43,7 @@
   "author": "VBeatDead (https://github.com/VBeatDead)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/VBeatDead/ReEnd-Components.git"
+    "url": "git+https://github.com/VBeatDead/ReEnd-Components.git"
   },
   "bugs": {
     "url": "https://github.com/VBeatDead/ReEnd-Components/issues"

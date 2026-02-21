@@ -114,7 +114,7 @@ const SkeletonCard = React.forwardRef<HTMLDivElement, SkeletonCardProps>(
     <div
       ref={ref}
       className={cn(
-        "border border-white/8 bg-surface-1 p-4 space-y-3",
+        "border border-border bg-surface-1 p-4 space-y-3",
         className,
       )}
       aria-hidden="true"

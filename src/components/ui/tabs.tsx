@@ -13,9 +13,9 @@ Tabs.displayName = "Tabs";
 const tabsListVariants = cva("flex items-center overflow-x-auto", {
   variants: {
     variant: {
-      underline: "border-b border-white/10 gap-0 w-full",
+      underline: "border-b border-border gap-0 w-full",
       pill: "gap-1 bg-surface-1 p-1 w-fit",
-      bordered: "border border-white/10 gap-0 w-full",
+      bordered: "border border-border gap-0 w-full",
     },
   },
   defaultVariants: { variant: "underline" },
@@ -60,9 +60,9 @@ const tabsTriggerVariants = cva(
           "data-[state=active]:bg-surface-3 data-[state=active]:text-primary",
         ],
         bordered: [
-          "px-4 py-2.5 text-muted-foreground border-r border-white/10 last:border-r-0",
-          "hover:text-foreground hover:bg-white/[0.03]",
-          "data-[state=active]:text-primary data-[state=active]:bg-white/[0.05]",
+          "px-4 py-2.5 text-muted-foreground border-r border-border last:border-r-0",
+          "hover:text-foreground hover:bg-surface-hover",
+          "data-[state=active]:text-primary data-[state=active]:bg-surface-3",
         ],
       },
     },

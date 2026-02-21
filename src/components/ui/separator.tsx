@@ -8,9 +8,9 @@ import { cn } from "../../lib/utils";
 const separatorVariants = cva("shrink-0", {
   variants: {
     variant: {
-      default: "bg-white/10",
-      subtle: "bg-white/5",
-      strong: "bg-white/25",
+      default: "bg-border",
+      subtle: "bg-border",
+      strong: "bg-border-strong",
       glow: "bg-gradient-to-r from-transparent via-primary/40 to-transparent",
       accent: "bg-primary/30",
     },

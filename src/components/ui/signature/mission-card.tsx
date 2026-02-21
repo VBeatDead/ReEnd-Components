@@ -178,13 +178,20 @@ const MissionCard = React.forwardRef<HTMLDivElement, MissionCardProps>(
           <div className="px-4 pb-3 pt-1 space-y-2">
             {clampedProgress !== undefined && (
               <div className="flex items-center gap-2">
-                <div className="flex-1 h-1 bg-white/8 overflow-hidden">
+                <div
+                  role="progressbar"
+                  aria-valuenow={clampedProgress}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-label="Mission progress"
+                  className="flex-1 h-1 bg-white/8 overflow-hidden"
+                >
                   <div
                     className="h-full bg-primary transition-all duration-500"
                     style={{ width: `${clampedProgress}%` }}
                   />
                 </div>
-                <span className="font-mono text-[10px] text-muted-foreground shrink-0 w-8 text-right">
+                <span className="font-mono text-[10px] text-muted-foreground shrink-0 w-8 text-right" aria-hidden="true">
                   {clampedProgress}%
                 </span>
               </div>

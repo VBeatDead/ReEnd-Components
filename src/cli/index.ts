@@ -17,7 +17,7 @@ program
       "◆ ReEnd UI — Arknights: Endfield React Component Library\n",
     ) + chalk.dim("  Shadcn-style copy-paste workflow for ReEnd components.\n"),
   )
-  .version("0.4.0");
+  .version("1.0.0");
 
 /* ── init ─────────────────────────────────────────────────────────────────── */
 

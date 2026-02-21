@@ -3,10 +3,28 @@
   "latest": "TERBARU",
   "versions": [
     {
+      "version": "v1.0.0",
+      "date": "20 Februari 2026",
+      "items": [
+        "Audit aksesibilitas — kepatuhan WCAG 2.1 AA pada semua 47 komponen",
+        "Stepper: ditambahkan role=\"list\", aria-label per langkah dengan state (selesai/saat ini/mendatang), aria-current=\"step\" pada langkah aktif",
+        "Timeline: ditambahkan role=\"list\" pada container, role=\"listitem\" + aria-current pada TimelineItem",
+        "TacticalTable: baris selectable kini dapat diakses via keyboard — tabIndex=0, Enter/Space memicu onRowClick, focus-visible ring",
+        "Alert: ikon dekoratif (◆/✓/⚠/✕) kini memiliki aria-hidden=\"true\"",
+        "MissionCard: bilah progres kini memiliki role=\"progressbar\" dengan aria-valuenow/min/max",
+        "Breadcrumb: separator li kini memiliki role=\"presentation\" selain aria-hidden",
+        "API: tipe TypeScript yang hilang kini diekspor dari barrel — StepItem, StepperProps, TimelineProps, TimelineItemProps, PaginationProps, BreadcrumbItemData, BreadcrumbProps, NumberInputProps",
+        "Audit light mode — semua kelas hardcoded border-white/x dan bg-white/x diganti dengan token semantik adaptif (border-input, border-border, border-border-strong, bg-surface-*) di 18 komponen",
+        "Tailwind preset: ditambahkan sub-token border-strong (hsl(var(--border-strong))) untuk utilitas border-border-strong",
+        "Form fields (Input, Textarea, Select, Checkbox, Switch, NumberInput) kini memiliki border yang terlihat di light mode via token border-input",
+        "Button secondary/icon, Badge default, Accordion, Tabs, Dialog, Popover, Separator, Skeleton, Pagination, Timeline, Stepper, Breadcrumb, EmptyState kini menggunakan token border/bg adaptif"
+      ]
+    },
+    {
       "version": "v0.4.0",
       "date": "20 Februari 2026",
       "items": [
-        "9 Signature Phase 2 komponen baru — MissionCard, OperatorCard, StatusBar, CommandOutput, CountdownTimer, MatrixGrid, FrequencyBars, TacticalTable (+ peningkatan DataStream, HUDOverlay, GlitchText, RadarChart)",
+        "9 Signature komponen baru — MissionCard, OperatorCard, StatusBar, CommandOutput, CountdownTimer, MatrixGrid, FrequencyBars, TacticalTable (+ peningkatan DataStream, HUDOverlay, GlitchText, RadarChart)",
         "5 komponen utility gap baru — Timeline, Stepper, Pagination, Breadcrumb, NumberInput",
         "3 komponen gap ditambahkan ke ekspor publik — Skeleton, EmptyState, Alert",
         "CLI Tool: `npx reend-ui` — perintah init, add, list, update (alur kerja copy-paste shadcn-style untuk 42 komponen)",

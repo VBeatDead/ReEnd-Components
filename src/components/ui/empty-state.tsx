@@ -80,7 +80,7 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         {...props}
       >
         {icon && (
-          <div className="text-white/15 mb-6 [&>svg]:w-12 [&>svg]:h-12">
+          <div className="text-muted-foreground/30 mb-6 [&>svg]:w-12 [&>svg]:h-12">
             {icon}
           </div>
         )}

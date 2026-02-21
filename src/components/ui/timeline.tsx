@@ -9,7 +9,7 @@ const timelineItemVariants = cva("", {
     status: {
       complete: "text-primary",
       current: "text-primary",
-      upcoming: "text-white/20",
+      upcoming: "text-muted-foreground/40",
     },
   },
   defaultVariants: { status: "upcoming" },
@@ -38,6 +38,8 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
     return (
       <div
         ref={ref}
+        role="listitem"
+        aria-current={status === "current" ? "true" : undefined}
         className={cn("relative pb-8 last:pb-0", className)}
         {...props}
       >
@@ -83,9 +85,10 @@ const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
     return (
       <div
         ref={ref}
+        role="list"
         className={cn(
           "relative pl-6 space-y-0",
-          "before:absolute before:left-[9px] before:top-2 before:bottom-2 before:w-px before:bg-white/10",
+          "before:absolute before:left-[9px] before:top-2 before:bottom-2 before:w-px before:bg-border",
           className,
         )}
         {...props}

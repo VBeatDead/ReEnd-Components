@@ -169,8 +169,19 @@ function TacticalTableInner<T extends Record<string, unknown>>(
                 <tr
                   key={rowIdx}
                   aria-selected={selectable ? isSelected : undefined}
+                  tabIndex={selectable ? 0 : undefined}
                   onClick={
                     selectable ? () => onRowClick?.(row, rowIdx) : undefined
+                  }
+                  onKeyDown={
+                    selectable
+                      ? (e) => {
+                          if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            onRowClick?.(row, rowIdx);
+                          }
+                        }
+                      : undefined
                   }
                   className={cn(
                     "transition-colors",
@@ -179,7 +190,7 @@ function TacticalTableInner<T extends Record<string, unknown>>(
                       : isEven
                         ? "bg-white/[0.015] hover:bg-primary/[0.03]"
                         : "hover:bg-primary/[0.03]",
-                    selectable && "cursor-pointer",
+                    selectable && "cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary",
                   )}
                 >
                   {columns.map((col) => (

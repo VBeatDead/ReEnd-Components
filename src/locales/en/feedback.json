@@ -29,6 +29,7 @@
     "description": "Tooltip: #222 bg, 12px, non-interactive. Popover: surface-2, shadow-lg, interactive.",
     "tooltip_label": "TOOLTIP",
     "hover_me": "Hover me",
+    "click_me": "Click me",
     "tooltip_content": "Tooltip content",
     "popover_label": "POPOVER",
     "popover_title": "POPOVER TITLE",

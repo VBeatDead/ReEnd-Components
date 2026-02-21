@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils";
 /* ── Track variants (height / size) ─────────────────────────────────────── */
 
 const progressTrackVariants = cva(
-  "relative w-full overflow-hidden bg-white/8",
+  "relative w-full overflow-hidden bg-surface-3",
   {
     variants: {
       size: {

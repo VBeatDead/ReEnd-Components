@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 /* ── Variants ─────────────────────────────────────────────────────────────── */
 
 const numberInputVariants = cva(
-  "inline-flex items-center border border-white/[0.12] bg-transparent",
+  "inline-flex items-center border border-input bg-transparent",
   {
     variants: {
       size: {
@@ -87,7 +87,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           aria-label="Decrement"
           className={cn(
             buttonBase,
-            "h-full border-r border-white/[0.12]",
+            "h-full border-r border-input",
             (disabled || atMin) && "opacity-40 cursor-not-allowed",
             !(disabled || atMin) && "hover:text-foreground",
           )}
@@ -116,7 +116,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           }}
           className={cn(
             "w-16 h-full text-center font-mono text-[13px] text-foreground bg-transparent",
-            "border-x border-white/[0.12] outline-none",
+            "border-x border-input outline-none",
             "[appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none",
             disabled && "opacity-40 cursor-not-allowed",
           )}
@@ -131,7 +131,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
           aria-label="Increment"
           className={cn(
             buttonBase,
-            "h-full border-l border-white/[0.12]",
+            "h-full border-l border-input",
             (disabled || atMax) && "opacity-40 cursor-not-allowed",
             !(disabled || atMax) && "hover:text-foreground",
           )}

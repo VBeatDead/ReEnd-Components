@@ -12,13 +12,13 @@ const buttonVariants = cva(
         primary:
           "clip-corner bg-primary text-primary-foreground hover:brightness-110 hover:shadow-glow active:brightness-90",
         secondary:
-          "clip-corner border border-white/25 text-card-foreground bg-transparent hover:border-primary/60 hover:text-primary active:bg-primary/5",
+          "clip-corner border border-border-strong text-card-foreground bg-transparent hover:border-primary/60 hover:text-primary active:bg-primary/5",
         ghost:
           "bg-transparent text-muted-foreground hover:text-primary hover:bg-primary/5 active:bg-primary/10",
         danger:
           "clip-corner bg-destructive text-destructive-foreground hover:brightness-110 active:brightness-90",
         link: "bg-transparent text-primary underline-offset-4 hover:underline h-auto p-0",
-        icon: "bg-white/5 border border-white/10 text-muted-foreground hover:border-primary/30 hover:bg-primary/10 hover:text-primary",
+        icon: "bg-surface-2 border border-border text-muted-foreground hover:border-primary/30 hover:bg-primary/10 hover:text-primary",
       },
       size: {
         xs: "h-7  px-3  text-[11px]",
