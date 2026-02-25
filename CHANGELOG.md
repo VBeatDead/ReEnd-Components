@@ -7,6 +7,94 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **`RichTextEditor`** — Markdown WYSIWYG editor with toolbar (B/I/U/S/H1–H3/quote/list/link/image/divider), MARKDOWN/PREVIEW toggle, character count, and `maxLength` enforcement. Zero dependencies.
+- **`SortControl`** — Sort options row with tri-state cycling (asc → desc → none), ▲/▼ direction indicators, Orbitron labels.
+- **`PullToRefresh`** — Mobile pull-to-refresh with 5-phase state machine (idle → pulling → threshold → refreshing → complete), diamond spinner, haptic feedback.
+- **`SwipeableItem`** — Touch-swipeable list item with left/right action reveal at 80px, auto-trigger at 160px, haptic feedback.
+- **`FilterBar`** search slot — optional `searchPlaceholder`, `searchValue`, `onSearchChange` props added to `FilterBar` with ◆ diamond prefix icon.
+- **`BottomSheet`** snap points — added `initialSnap` prop and drag-to-dismiss gesture (120px threshold) with pointer event handling on the drag handle.
+- **CSS** — Search highlight: `mark` and `.search-highlight` styles (yellow tint + `--primary` text, light-mode variant).
+- **CSS tokens** — Added `--ef-yellow-glow`, semantic text tokens (`--text-primary` through `--text-success`), border aliases (`--border-subtle`, `--border-default`), and font variable references (`--font-display`, `--font-ui`, `--font-mono`, `--font-body`, `--font-decorative`) to both `variables.css` and `index.css`.
+
+### Changed
+- **`OTPInput`** — Upgraded: Orbitron font (was JetBrains Mono), added `success` prop (green border + text), `onResend` + `resendCooldown` timer, updated box dimensions to 48×56px per spec.
+- **`DatePicker`** — Full rewrite: custom calendar popover (was native `<input type="date">`). Diamond clip-path selected day, MO–SU headers, month navigation ◂/▸, TODAY/CLEAR footer, `minDate`/`maxDate` support.
+- **`FileUpload`** — Added `drag-invalid` state (8th visual state), per-file item list with 80×80px image thumbnails, 3px progress bar per file, Orbitron filename + size display.
+
+### Fixed
+- **FileUpload** demo added to docs site — component was missing from OverlayUtilitySection and sidebar navigation.
+- **Light mode color compliance** — replaced 37 hardcoded hex colors in `rich-text-editor.tsx`, `file-upload.tsx`, `date-picker.tsx`, and `alert.tsx` with semantic CSS tokens (`text-foreground`, `text-muted-foreground`, `bg-surface-2`, `border-border`, etc.).
+- **`RatingProps.onChange`** — resolved type conflict with `HTMLAttributes<HTMLDivElement>.onChange` via `Omit` pattern.
+- **`SessionTimeoutModal`** — fixed `variant="default"` → `variant="primary"` to match Button API.
+- **Empty interface lint errors** — converted `interface X extends Y {}` to `type X = Y` in `list.tsx` and `stat.tsx`.
+- **Test polyfill** — added `PointerEvent` polyfill to `src/test/setup.ts` so pointer-gesture components (`SwipeableItem`, `BottomSheet`) can be tested in jsdom.
+
+## [1.1.0] - 2026-02-21
+
+### BREAKING CHANGES
+
+- **`--z-popover` removed** — use `--z-dropdown` instead. Z-index values scaled 10×–57× (relative order preserved).
+- **`--duration-slower` changed** — from `700ms` to `800ms`. Update any hardcoded `700ms` timing.
+- **Z-index scale change** — all z-index values have been updated: `dropdown: 10→100`, `sticky: 20→200`, `overlay: 30→1500`, `modal: 40→2000`, `toast: 60→3000`, `tooltip: 70→4000`. Update any custom z-index overrides.
+- **Sonner error toast** — error toasts no longer auto-dismiss (`duration: Infinity`). Add explicit close button if needed.
+
+### Added
+
+#### Design Tokens
+- New z-index tokens: `--z-below (-1)`, `--z-raised (1)`, `--z-header (1000)`, `--z-max (9999)`
+- Soft color tokens: `--ef-red-soft`, `--ef-green-soft`, `--ef-orange-soft`
+- Opacity scale: `--opacity-overlay`, `--opacity-hover`, `--opacity-disabled`, `--opacity-border`, `--opacity-focus`, `--opacity-muted`
+- Gradient tokens: `--ef-gradient-primary`, `--ef-gradient-overlay`, `--ef-gradient-line`, `--ef-gradient-card-hover`, `--ef-gradient-scanline`
+- Chart color palette: `--chart-1` through `--chart-8`
+- Breakpoint reference tokens: `--bp-mobile`, `--bp-tablet`, `--bp-laptop`, `--bp-desktop`, `--bp-wide`
+
+#### Tailwind Preset
+- Chart colors: `chart-1` through `chart-8` in Tailwind color palette
+- Opacity utilities: `opacity-overlay`, `opacity-hover`, `opacity-disabled`, `opacity-border`, `opacity-focus`, `opacity-muted`
+- New keyframes: `slideUp`, `shake`
+- New animations: `animate-slide-up`, `animate-shake`
+- New z-index classes: `z-below`, `z-raised`, `z-header`, `z-max`
+
+#### CSS Utilities
+- `.panel-glass`, `.panel-glass-light`, `.panel-glass-dark` — glassmorphism panels with backdrop-filter
+- `mark` — search highlight styling (yellow tint, `--primary` text)
+- `.spoiler` — click-to-reveal hidden text with data-revealed state
+- Print utilities: `.print-hidden`, `.print-only`, `.print-break-before`, `.print-break-after`, `.print-no-break`
+
+#### New Components (P1)
+- **`ViewToggle`** — Grid/List view toggle with localStorage persistence
+- **`FilterBar`** + **`FilterChip`** — Filter bar with multi-select dropdowns, active chips, and clear-all
+- **`OTPInput`** — OTP/PIN input with auto-advance, paste support, and shake-on-error animation
+- **`DatePicker`** — Native date input with Endfield styling, size variants, and error state
+
+#### New Components (P2)
+- **`Rating`** — Diamond ◆/◇ rating with hover preview, keyboard navigation, and ARIA slider role
+- **`SessionTimeoutModal`** — Session expiry modal with embedded CountdownTimer
+- **`FileUpload`** — Drag-and-drop upload zone with 8 visual states and image previews
+- **`BottomSheet`** — Portal-rendered bottom sheet with slide-up animation and backdrop
+- **`Carousel`** + **`CarouselItem`** — CSS scroll-snap carousel with ◆/◇ dot indicators and arrow navigation
+- **`ResizeHandle`**, **`Panel`**, **`PanelGroup`**, **`PanelResizeHandle`** — Resizable panel layout via `react-resizable-panels`
+- **`CHART_COLORS`**, **`endfieldChartTheme`** — Recharts integration with Endfield design tokens
+
+#### Card Variants
+- **`OperatorCard`** — Portrait 3:4 card with rarity ◆/◇ diamonds, name, faction
+- **`LinkCard`** — Icon + title + arrow card for navigation
+
+#### Sonner (`notify` helper)
+- New `notify` export: `notify.info()`, `notify.success()`, `notify.warning()`, `notify.error()` with preset durations
+- Sonner now configured with `richColors`, `closeButton`, `visibleToasts={3}`, `pauseWhenPageIsHidden`
+
+#### Dependencies
+- Added `react-resizable-panels` (^4.x) as optional peer dep
+- Added `recharts` (^3.x) as optional peer dep
+
+### Changed
+
+- `--duration-slower`: `700ms` → `800ms` (both `variables.css` and `index.css`)
+- Z-index values corrected to match PRD spec (see BREAKING CHANGES above)
+- Sonner `Toaster` now has `richColors`, `closeButton`, `duration=4000`, `visibleToasts=3`
+
 ## [1.0.0] - 2026-02-20
 
 ### Changed
