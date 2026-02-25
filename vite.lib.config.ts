@@ -51,6 +51,9 @@ export default defineConfig({
         "tailwindcss-animate",
         "framer-motion",
         /^framer-motion\/.*/,
+        "react-resizable-panels",
+        "recharts",
+        /^recharts\/.*/,
       ],
       output: {
         globals: {
