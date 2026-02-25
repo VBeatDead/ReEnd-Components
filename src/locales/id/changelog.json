@@ -3,6 +3,25 @@
   "latest": "TERBARU",
   "versions": [
     {
+      "version": "v1.1.0",
+      "date": "26 Februari 2026",
+      "items": [
+        "28 komponen UI baru: OTPInput, DatePicker, Rating, FileUpload, RichTextEditor, BackToTop, BottomSheet, Carousel, CommandPalette, ContextMenu, CookieConsent, CopyClipboard, Dropdown, FilterBar, Footer, Resizable, ScrollProgress, SessionTimeoutModal, ViewToggle, Chart, List, SortControl, SpoilerBlock, Stat, Table, ThemeSwitcher, PullToRefresh, SwipeableItem",
+        "4 hook baru: useFocusTrap, useShortcut, useInView, useStagger — semua diekspor dari library",
+        "17 komponen yang ditingkatkan: Accordion (indikator + berputar), Alert (dapat ditutup, ARIA), Avatar (glow berlian saat hover, penskalaan per ukuran), Dialog (5 ukuran, animate-dialog-in), Popover (perbaikan z-index), Skeleton (4 varian), Sonner (warna token desain), Stepper (perbaikan overflow), Switch (thumb berlian + spin), Tabs (flex-wrap), dan lainnya",
+        "7 pembaruan komponen signature: CommandOutput, FrequencyBars, MatrixGrid, MissionCard, OperatorCard, StatusBar, TacticalTable",
+        "Pembaruan token desain: token semantik --text-*, --ef-yellow-glow, referensi variabel font, override light mode untuk semua token baru",
+        "utilities.css baru dibundel ke dist/lib/style.css: 11 keyframe animasi, clip-corner, panel-glass, scanline-overlay, utilitas spoiler",
+        "Registry CLI diperbarui: dep @radix-ui/react-popover date-picker diperbaiki, dep framer-motion holo-card yang salah dihapus",
+        "Situs dokumentasi: semua 11 seksi ditulis ulang lengkap dengan code props di setiap ComponentPreview, kepatuhan ARIA, warna token",
+        "Terjemahan EN + ID untuk semua 28 komponen baru dan 4 hook (24 file locale diperbarui)",
+        "Penggunaan CLI didokumentasikan di seksi Instalasi — semua 4 perintah (init/add/list/update) dalam EN + ID",
+        "Suite pengujian direstrukturisasi: 1166 pengujian di 26 file — 4 subtes signature, 4 file tes integrasi seksi",
+        "Build: pemisahan chunk Vite untuk sandpack/codemirror/lezer/radix/charts/icons/i18n — 0 peringatan ukuran chunk",
+        "Bundle: 230,92 kB MJS (49,69 kB gzip)"
+      ]
+    },
+    {
       "version": "v1.0.0",
       "date": "20 Februari 2026",
       "items": [

@@ -3,6 +3,25 @@
   "latest": "LATEST",
   "versions": [
     {
+      "version": "v1.1.0",
+      "date": "February 26, 2026",
+      "items": [
+        "28 new UI components: OTPInput, DatePicker, Rating, FileUpload, RichTextEditor, BackToTop, BottomSheet, Carousel, CommandPalette, ContextMenu, CookieConsent, CopyClipboard, Dropdown, FilterBar, Footer, Resizable, ScrollProgress, SessionTimeoutModal, ViewToggle, Chart, List, SortControl, SpoilerBlock, Stat, Table, ThemeSwitcher, PullToRefresh, SwipeableItem",
+        "4 new hooks: useFocusTrap, useShortcut, useInView, useStagger — all exported from the library",
+        "17 enhanced components: Accordion (rotating + indicator), Alert (dismissible, ARIA), Avatar (diamond glow hover, per-size scaling), Dialog (5 sizes, animate-dialog-in), Popover (z-index fix), Skeleton (4 variants), Sonner (design token colors), Stepper (overflow fix), Switch (diamond thumb + spin), Tabs (flex-wrap), and more",
+        "7 signature component updates: CommandOutput, FrequencyBars, MatrixGrid, MissionCard, OperatorCard, StatusBar, TacticalTable",
+        "Design token overhaul: semantic --text-* tokens, --ef-yellow-glow, font variable references, light mode overrides for all new tokens",
+        "New utilities.css bundled into dist/lib/style.css: 11 animation keyframes, clip-corner, panel-glass, scanline-overlay, spoiler utilities",
+        "CLI registry updated: date-picker @radix-ui/react-popover dep fixed, holo-card false framer-motion dep removed",
+        "Docs site: all 11 sections fully rewritten with code props on every ComponentPreview, ARIA compliance, token-only colors",
+        "EN + ID translations for all 28 new components and 4 hooks (24 locale files updated)",
+        "CLI usage documented in Installation section — all 4 commands (init/add/list/update) in EN + ID",
+        "Test suite restructured: 1166 tests across 26 files — 4 signature subtests, 4 section integration tests",
+        "Build: Vite chunk splitting for sandpack/codemirror/lezer/radix/charts/icons/i18n — 0 chunk size warnings",
+        "Bundle: 230.92 kB MJS (49.69 kB gzip)"
+      ]
+    },
+    {
       "version": "v1.0.0",
       "date": "February 20, 2026",
       "items": [
