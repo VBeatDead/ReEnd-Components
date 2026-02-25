@@ -70,7 +70,7 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
         ),
       }))
       .filter((section) => section.items.length > 0);
-  }, [searchQuery]);
+  }, [searchQuery, sidebarData]);
 
   return (
     <aside
@@ -111,8 +111,8 @@ export const DocsSidebar = ({ activeId, onNavigate }: DocsSidebarProps) => {
                     navigate(lp(`/docs/${section.slug}`));
                   }
                 }}
-                className={`w-full flex items-center justify-between py-2 px-2 group ${
-                  isSectionActive ? "bg-primary/5" : ""
+                className={`w-full flex items-center justify-between py-2 px-2 group relative ${
+                  isSectionActive ? "bg-primary/5 corner-brackets" : ""
                 }`}
                 role="treeitem"
                 aria-expanded={!collapsed[section.title]}

@@ -9,9 +9,11 @@ const DocsOverview = () => {
   const { t } = useTranslation(["common", "docs"]);
   const lp = useLocalizedPath();
 
-  const sidebarData = useMemo(() => getSidebarData((key, opts) => t(key, { ns: "docs", ...opts })), [t]);
+  const sidebarData = useMemo(
+    () => getSidebarData((key, opts) => t(key, { ns: "docs", ...opts })),
+    [t],
+  );
 
-  // Exclude changelog from grid cards
   const sections = sidebarData.filter((s) => s.slug !== "changelog");
   const changelogSection = sidebarData.find((s) => s.slug === "changelog");
 
@@ -28,7 +30,10 @@ const DocsOverview = () => {
           </span>
         </div>
         <h1 className="font-display text-3xl lg:text-5xl font-bold tracking-[0.04em] uppercase text-foreground mt-2 mb-4">
-          {t("docs:overview.title_prefix")} <span className="text-primary">{t("docs:overview.title_accent")}</span>
+          {t("docs:overview.title_prefix")}{" "}
+          <span className="text-primary">
+            {t("docs:overview.title_accent")}
+          </span>
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl">
           {t("docs:overview.subtitle")}
@@ -46,7 +51,7 @@ const DocsOverview = () => {
             <button
               key={section.slug}
               onClick={() => navigate(lp(`/docs/${section.slug}`))}
-              className="group text-left border border-border bg-surface-1 p-5 hover:border-primary/40 hover:bg-surface-2 transition-all duration-200"
+              className="group text-left border border-border bg-surface-1 p-5 hover:border-primary/40 hover:bg-surface-2 hover:shadow-glow-md transition-all duration-200 clip-corner-sm"
             >
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-primary text-xs">◆</span>
@@ -59,11 +64,15 @@ const DocsOverview = () => {
               </p>
               <div className="flex items-center gap-3">
                 <span className="font-mono text-[10px] text-muted-foreground">
-                  {t("docs:overview.items_count", { count: section.items.length })}
+                  {t("docs:overview.items_count", {
+                    count: section.items.length,
+                  })}
                 </span>
                 {signatureCount > 0 && (
                   <span className="font-mono text-[10px] text-primary/60">
-                    {t("docs:overview.signature_count", { count: signatureCount })}
+                    {t("docs:overview.signature_count", {
+                      count: signatureCount,
+                    })}
                   </span>
                 )}
               </div>
@@ -76,16 +85,18 @@ const DocsOverview = () => {
       <div className="mt-8">
         <button
           onClick={() => navigate(lp("/docs/changelog"))}
-          className="text-left border border-border bg-surface-1 p-5 hover:border-primary/40 hover:bg-surface-2 transition-all duration-200 w-full"
+          className="text-left border border-border bg-surface-1 p-5 hover:border-primary/40 hover:bg-surface-2 hover:shadow-glow-md transition-all duration-200 w-full clip-corner-sm"
         >
           <div className="flex items-center gap-2 mb-1">
             <span className="text-primary text-xs">◆</span>
             <span className="font-display text-[11px] font-bold tracking-[0.12em] uppercase text-foreground">
-              {changelogSection?.title ?? t("docs:sidebar.sections.changelog.title")}
+              {changelogSection?.title ??
+                t("docs:sidebar.sections.changelog.title")}
             </span>
           </div>
           <p className="text-xs text-muted-foreground">
-            {changelogSection?.description ?? t("docs:overview.changelog_description")}
+            {changelogSection?.description ??
+              t("docs:overview.changelog_description")}
           </p>
         </button>
       </div>

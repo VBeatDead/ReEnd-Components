@@ -322,6 +322,17 @@ function NavigationDemos() {
         id="nav-breadcrumb"
         title={t("navigation.breadcrumb_title")}
         description={t("navigation.breadcrumb_description")}
+        code={`import { Breadcrumb } from "reend-components";
+import type { BreadcrumbItemData } from "reend-components";
+
+const crumbs: BreadcrumbItemData[] = [
+  { label: "HOME", href: "/" },
+  { label: "DOCS", href: "/docs" },
+  { label: "CORE COMPONENTS", href: "/docs/core-components" },
+  { label: "BREADCRUMB" },
+];
+
+<Breadcrumb items={crumbs} />`}
         props={[
           {
             name: "items",
@@ -353,6 +364,16 @@ function NavigationDemos() {
         id="nav-pagination"
         title={t("navigation.pagination_title")}
         description={t("navigation.pagination_description")}
+        code={`import { Pagination } from "reend-components";
+
+const [page, setPage] = useState(1);
+
+<Pagination
+  currentPage={page}
+  totalPages={24}
+  onPageChange={setPage}
+  siblingCount={1}
+/>`}
         props={[
           {
             name: "totalPages",

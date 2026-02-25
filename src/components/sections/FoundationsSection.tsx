@@ -11,6 +11,26 @@ export function FoundationsSection() {
         id="design-philosophy"
         title={t("philosophy.title")}
         description={t("philosophy.description")}
+        code={`/* ReEnd Design Philosophy — 5 Pillars */
+
+/* 1. TACTICAL — Military-grade precision */
+.ef-component {
+  border-radius: 0; /* Sharp corners — var(--radius) = 0px */
+  font-family: var(--font-display); /* Orbitron for headings */
+}
+
+/* 2. DARK FIRST — Dark mode is the default */
+:root { --background: 0 0% 4%; }
+.light { --background: 0 0% 96%; }
+
+/* 3. PRECISION — 4px grid, pixel-perfect */
+/* Spacing scale: 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64px */
+
+/* 4. FUNCTIONAL — Every element serves a purpose */
+/* No decorative shadows. Glow = status indicator. */
+
+/* 5. SIGNATURE — Endfield-exclusive identity */
+/* ◆ Diamond motif, tactical panels, HUD overlays */`}
       >
         <div className="space-y-8">
           {/* Identity */}
@@ -119,12 +139,12 @@ export function FoundationsSection() {
         id="color-system"
         title={t("colors.title")}
         description={t("colors.description")}
-        code={`/* Primary Accent */
---ef-yellow: #FFD429;      /* CTA, brand */
---ef-yellow-dark: #B8960F;  /* Hover/pressed */
---ef-yellow-glow: rgba(255,212,41,0.15); /* Glow */
+        code={`/* ── Dual Accent ──────────────────────────── */
+--ef-yellow: #FFD429;       /* Community template accent */
+--ef-lime:   #CBFF40;       /* Official gryphline.com accent */
+--accent-active: /* whichever is active for the brand context */
 
-/* Semantic */
+/* ── Semantic ──────────────────────────────────────── */
 --ef-blue: #4DA8DA;    /* Link, info */
 --ef-red: #FF4757;     /* Error, danger */
 --ef-green: #2ED573;   /* Success */
@@ -222,14 +242,49 @@ export function FoundationsSection() {
             </div>
           </div>
 
+          {/* Dual Accent */}
+          <div>
+            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-3">
+              {t("colors.dual_accent_heading")}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
+              <div className="border border-border bg-surface-1 p-4 corner-brackets">
+                <div className="h-12 clip-corner-sm bg-primary mb-3" />
+                <p className="font-display text-xs font-bold uppercase text-primary">
+                  --ef-yellow · #FFD429
+                </p>
+                <p className="font-mono text-[10px] text-muted-foreground mt-1">
+                  Community / template accent · Orbitron brand color
+                </p>
+              </div>
+              <div className="border border-border bg-surface-1 p-4 corner-brackets">
+                <div className="h-12 clip-corner-sm bg-ef-lime mb-3" />
+                <p className="font-display text-xs font-bold uppercase text-ef-lime">
+                  --ef-lime · #CBFF40
+                </p>
+                <p className="font-mono text-[10px] text-muted-foreground mt-1">
+                  Official gryphline.com accent · HG primary brand
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3 p-3 border border-border bg-surface-1 text-xs font-mono text-muted-foreground">
+              <span className="text-primary text-[8px]">◆</span>
+              <span>
+                Use <code className="text-primary">--accent-active</code> to
+                swap between accents in your theme context
+              </span>
+            </div>
+          </div>
+
           {/* Accents */}
           <div>
             <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
               {t("colors.accent_heading")}
             </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
               {[
                 { nameKey: "yellow", hex: "#FFD429", cls: "bg-primary" },
+                { nameKey: "lime", hex: "#CBFF40", cls: "bg-ef-lime" },
                 { nameKey: "blue", hex: "#4DA8DA", cls: "bg-ef-blue" },
                 { nameKey: "cyan", hex: "#00E5FF", cls: "bg-ef-cyan" },
                 { nameKey: "red", hex: "#FF4757", cls: "bg-ef-red" },
@@ -241,7 +296,7 @@ export function FoundationsSection() {
                   <div className={`h-16 clip-corner-sm ${c.cls}`} />
                   <div>
                     <p className="text-xs font-semibold text-foreground">
-                      {t(`colors.names.${c.nameKey}`)}
+                      ef-{c.nameKey}
                     </p>
                     <p className="font-mono text-[10px] text-muted-foreground">
                       {c.hex}
@@ -277,13 +332,7 @@ export function FoundationsSection() {
                 </p>
               </div>
               <div className="space-y-2">
-                <div
-                  className="h-16"
-                  style={{
-                    background:
-                      "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px)",
-                  }}
-                />
+                <div className="h-16 scanline-overlay bg-surface-1 border border-border" />
                 <p className="text-xs text-muted-foreground">
                   {t("colors.gradient_scanline")}
                 </p>
@@ -400,6 +449,37 @@ export function FoundationsSection() {
             </div>
           </div>
 
+          {/* Type Utility Classes*/}
+          <div>
+            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
+              {t("typography.utility_classes_heading")}
+            </h3>
+            <div className="space-y-3 border border-border bg-surface-1 p-4">
+              <div className="border-b border-border pb-3">
+                <p className="font-mono text-[9px] text-muted-foreground mb-1">
+                  .ef-display — lh: 0.95, uppercase
+                </p>
+                <p className="ef-display text-2xl text-foreground">
+                  ENDFIELD SYSTEM
+                </p>
+              </div>
+              <div className="border-b border-border pb-3">
+                <p className="font-mono text-[9px] text-muted-foreground mb-1">
+                  .ef-heading — lh: 1.0, uppercase
+                </p>
+                <p className="ef-heading text-xl text-foreground">
+                  CHAPTER HEADER
+                </p>
+              </div>
+              <div>
+                <p className="font-mono text-[9px] text-muted-foreground mb-1">
+                  .ef-overline — 11px, muted, mono
+                </p>
+                <p className="ef-overline">SECTION LABEL · FOUNDATIONS</p>
+              </div>
+            </div>
+          </div>
+
           {/* Text Colors */}
           <div>
             <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
@@ -455,11 +535,11 @@ export function FoundationsSection() {
               ].map((tc) => (
                 <div key={tc.labelKey} className="flex items-center gap-2">
                   <div
-                    className="w-3 h-3 border border-border"
-                    style={{ backgroundColor: tc.color }}
+                    className="w-3 h-3 border border-border shrink-0"
+                    style={{ backgroundColor: `var(${tc.token})` }}
                   />
                   <div>
-                    <p className="text-xs" style={{ color: tc.color }}>
+                    <p className="text-xs" style={{ color: `var(${tc.token})` }}>
                       {t(`typography.${tc.labelKey}`)}
                     </p>
                     <p className="font-mono text-[9px] text-muted-foreground">
@@ -517,6 +597,22 @@ export function FoundationsSection() {
         id="background-surface"
         title={t("surfaces.title")}
         description={t("surfaces.description")}
+        code={`/* Surface Layer System — 7 levels */
+
+/* Import in your project */
+@import "reend-components/variables.css";
+
+/* Usage — each layer adds visual depth */
+.card   { background: hsl(var(--surface-1)); }  /* +1 above base */
+.panel  { background: hsl(var(--surface-2)); }  /* +2 above base */
+.modal  { background: hsl(var(--surface-3)); }  /* +3 above base */
+.popover { background: hsl(var(--surface-4)); } /* +4 above base */
+
+/* Or use Tailwind utilities */
+<div className="bg-background" />   /* base (#0A0A0A dark) */
+<div className="bg-surface-1" />    /* #111 dark */
+<div className="bg-surface-2" />    /* #1A1A1A dark */
+<div className="bg-surface-3" />    /* #222 dark */`}
       >
         <div className="space-y-6">
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-3">
@@ -559,6 +655,83 @@ export function FoundationsSection() {
               </div>
             </div>
           </div>
+
+          {/* Background Decoration Utilities */}
+          <div>
+            <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
+              {t("surfaces.decorations_heading")}
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <div className="bg-grid-pattern bg-surface-1 h-32 border border-border flex items-center justify-center">
+                  <span className="font-mono text-[10px] text-muted-foreground bg-surface-2/90 px-2 py-1">
+                    .bg-grid-pattern
+                  </span>
+                </div>
+                <p className="font-mono text-[10px] text-muted-foreground">
+                  60×60px grid overlay — --bg-grid-color
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="bg-radial-glow bg-surface-1 h-32 border border-border flex items-center justify-center overflow-hidden">
+                  <span className="font-mono text-[10px] text-muted-foreground bg-surface-2/90 px-2 py-1">
+                    .bg-radial-glow
+                  </span>
+                </div>
+                <p className="font-mono text-[10px] text-muted-foreground">
+                  Primary radial glow at top — --bg-glow-primary
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div
+                  className="h-32 border border-border flex items-center justify-center overflow-hidden bg-surface-1"
+                  style={{
+                    backgroundImage: "var(--bg-glow-lime)",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center top",
+                    backgroundSize: "100% 200%",
+                  }}
+                >
+                  <span className="font-mono text-[10px] text-muted-foreground bg-surface-2/90 px-2 py-1">
+                    .bg-radial-glow-lime
+                  </span>
+                </div>
+                <p className="font-mono text-[10px] text-muted-foreground">
+                  Lime accent glow — --bg-glow-lime
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="bg-diagonal-lines bg-surface-1 h-32 border border-border flex items-center justify-center">
+                  <span className="font-mono text-[10px] text-muted-foreground bg-surface-2/90 px-2 py-1">
+                    .bg-diagonal-lines
+                  </span>
+                </div>
+                <p className="font-mono text-[10px] text-muted-foreground">
+                  Diagonal stripe texture
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="bg-grid-pattern bg-radial-glow bg-surface-1 h-32 border border-border flex items-center justify-center">
+                  <span className="font-mono text-[10px] text-muted-foreground bg-surface-2/90 px-2 py-1">
+                    Grid + Glow
+                  </span>
+                </div>
+                <p className="font-mono text-[10px] text-muted-foreground">
+                  Combine classes freely
+                </p>
+              </div>
+              <div className="space-y-2">
+                <div className="bg-noise-overlay bg-surface-1 h-32 border border-border flex items-center justify-center">
+                  <span className="font-mono text-[10px] text-muted-foreground bg-surface-2/90 px-2 py-1">
+                    .bg-noise-overlay
+                  </span>
+                </div>
+                <p className="font-mono text-[10px] text-muted-foreground">
+                  SVG fractal noise at 2.5% opacity
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
       </ComponentPreview>
 
@@ -567,6 +740,25 @@ export function FoundationsSection() {
         id="iconography"
         title={t("icons.title")}
         description={t("icons.description")}
+        code={`/* Iconography — Diamond (◆) system */
+
+/* Primary diamond motif — inline in JSX */
+<span className="text-primary">◆</span>           /* filled */
+<span className="text-muted-foreground">◇</span>  /* outline */
+<span className="text-primary">◆</span>           /* bullet */
+
+/* Lucide React icons (peer dep) */
+import { Shield, Zap, Target, Radio } from "lucide-react";
+
+<Shield className="w-5 h-5 text-primary" />
+<Zap className="w-5 h-5 text-ef-yellow" />
+
+/* Icon sizing scale */
+/* w-3 h-3 (12px) — inline/micro */
+/* w-4 h-4 (16px) — button icons */
+/* w-5 h-5 (20px) — card icons */
+/* w-6 h-6 (24px) — feature icons */
+/* w-8 h-8 (32px) — hero icons */`}
       >
         <div>
           <h3 className="font-display text-xs font-bold tracking-[0.1em] uppercase text-muted-foreground mb-4">
@@ -610,6 +802,33 @@ export function FoundationsSection() {
         id="illustration"
         title={t("illustration.title")}
         description={t("illustration.description")}
+        code={`/* Illustration — Topographic & Tactical Patterns */
+
+/* Topographic contour lines (CSS only) */
+.topo-pattern {
+  background-image: repeating-radial-gradient(
+    circle at 50% 50%,
+    transparent 0px,
+    transparent 20px,
+    hsl(var(--foreground) / 0.06) 20px,
+    hsl(var(--foreground) / 0.06) 21px
+  );
+}
+
+/* Diagonal stripe decoration */
+.stripe-bg {
+  background-image: repeating-linear-gradient(
+    45deg,
+    hsl(var(--foreground) / 0.03) 0px,
+    hsl(var(--foreground) / 0.03) 1px,
+    transparent 1px,
+    transparent 8px
+  );
+}
+
+/* MatrixGrid signature component */
+import { MatrixGrid } from "reend-components";
+<MatrixGrid rows={8} cols={12} className="opacity-30" />`}
       >
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
@@ -631,6 +850,169 @@ export function FoundationsSection() {
               </p>
             </div>
           ))}
+        </div>
+      </ComponentPreview>
+
+      {/* Panel Glass */}
+      <ComponentPreview
+        id="panel-glass"
+        title={t("panel_glass.title")}
+        description={t("panel_glass.description")}
+        code={`/* No import needed — CSS utilities */
+.panel-glass        /* dark: rgba(20,20,20,0.55)·blur(16px) | light: rgba(255,255,255,0.75) */
+.panel-glass-light  /* dark: rgba(20,20,20,0.35)·blur(12px) | light: rgba(255,255,255,0.55) */
+.panel-glass-dark   /* rgba(10,10,10,0.65)·blur(12px) — always dark overlay */`}
+      >
+        <div className="relative grid grid-cols-1 sm:grid-cols-3 gap-4 p-6 min-h-[180px] bg-surface-0 overflow-hidden">
+          {/* Background: diagonal yellow stripes */}
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(45deg, transparent, transparent 14px, rgba(255,212,41,0.07) 14px, rgba(255,212,41,0.07) 15px)",
+            }}
+          />
+          {/* Soft primary glow blobs — visible content for backdrop-filter to blur */}
+          <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-primary/25 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-primary/20 blur-3xl pointer-events-none" />
+          {/* Large decorative diamond */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-primary/20 text-[130px] leading-none select-none pointer-events-none">
+            ◆
+          </div>
+          {/* Horizontal accent lines */}
+          <div className="absolute left-6 right-6 top-[18%] h-px bg-primary/25 pointer-events-none" />
+          <div className="absolute left-6 right-6 bottom-[18%] h-px bg-primary/15 pointer-events-none" />
+          {/* Corner brackets */}
+          <div className="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-primary/40 pointer-events-none" />
+          <div className="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-primary/40 pointer-events-none" />
+          <div className="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-primary/40 pointer-events-none" />
+          <div className="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-primary/40 pointer-events-none" />
+          {/* Tactical label */}
+          <div className="absolute bottom-3 right-10 font-mono text-[9px] text-primary/30 tracking-widest select-none pointer-events-none uppercase">
+            glassmorphism//reend
+          </div>
+          {/* Glass panels — rendered above background decorations */}
+          <div className="relative panel-glass p-4">
+            <p className="text-xs font-display uppercase text-foreground/80 mb-1">
+              panel-glass
+            </p>
+            <p className="text-xs text-foreground/60">dark:55% | light:75%</p>
+          </div>
+          <div className="relative panel-glass-light p-4">
+            <p className="text-xs font-display uppercase text-foreground/80 mb-1">
+              panel-glass-light
+            </p>
+            <p className="text-xs text-foreground/60">dark:35% | light:55%</p>
+          </div>
+          <div className="relative panel-glass-dark p-4">
+            <p className="text-xs font-display uppercase mb-1">
+              panel-glass-dark
+            </p>
+            <p className="text-xs opacity-70">Always dark — 65% black</p>
+          </div>
+        </div>
+      </ComponentPreview>
+
+      {/* Glow Shadows */}
+      <ComponentPreview
+        id="glow-shadows"
+        title={t("glow_shadows.title")}
+        description={t("glow_shadows.description")}
+        code={`/* No Y-offset — pure radial glow (website resmi style) */
+--shadow-glow-sm:  0 0  6px rgba(0,0,0,0.25);
+--shadow-glow-md:  0 0 12px rgba(0,0,0,0.35);
+--shadow-glow-lg:  0 0 24px rgba(0,0,0,0.50);
+--shadow-accent:   0 0 16px hsl(var(--primary) / 0.35);
+
+/* Tailwind usage */
+shadow-glow-sm | shadow-glow-md | shadow-glow-lg | shadow-accent`}
+      >
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4">
+          {[
+            { cls: "shadow-glow-sm", label: "shadow-glow-sm", desc: "0 0 6px" },
+            {
+              cls: "shadow-glow-md",
+              label: "shadow-glow-md",
+              desc: "0 0 12px",
+            },
+            {
+              cls: "shadow-glow-lg",
+              label: "shadow-glow-lg",
+              desc: "0 0 24px",
+            },
+            {
+              cls: "shadow-accent",
+              label: "shadow-accent",
+              desc: "primary tint",
+            },
+          ].map((s) => (
+            <div key={s.cls} className="space-y-3 flex flex-col items-center">
+              <div
+                className={`w-16 h-16 bg-surface-2 border border-border flex items-center justify-center ${s.cls}`}
+              >
+                <span className="text-primary text-lg">◆</span>
+              </div>
+              <div className="text-center">
+                <p className="font-mono text-[9px] text-primary">.{s.label}</p>
+                <p className="font-mono text-[9px] text-muted-foreground">
+                  {s.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </ComponentPreview>
+
+      {/* Search Highlight */}
+      <ComponentPreview
+        id="search-highlight"
+        title={t("search_highlight.title")}
+        description={t("search_highlight.description")}
+        code={`/* Search Highlight & Spoiler Patterns */
+
+/* Search highlight — uses <mark> with Tailwind */
+<p>
+  Results for{" "}
+  <mark className="bg-primary/20 text-primary px-0.5">
+    "operator"
+  </mark>
+  : 24 matches found.
+</p>
+
+/* CSS custom property approach */
+::highlight(search-results) {
+  background-color: hsl(var(--primary) / 0.2);
+  color: hsl(var(--primary));
+}
+
+/* Spoiler block — import from library */
+import { SpoilerBlock, SpoilerInline } from "reend-components";
+
+<SpoilerBlock label="Chapter 9 Boss Identity">
+  <p>The final operator is Endministrator-0.</p>
+</SpoilerBlock>
+
+<p>The answer is <SpoilerInline>42</SpoilerInline>.</p>`}
+      >
+        <div className="space-y-6 p-4">
+          <div>
+            <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-wider">
+              mark element
+            </p>
+            <p className="text-sm text-foreground leading-relaxed">
+              Search results for <mark>Arknights Endfield</mark> found 42
+              matches containing <mark>Endfield</mark> design tokens.
+            </p>
+          </div>
+          <div>
+            <p className="text-xs font-mono text-muted-foreground mb-2 uppercase tracking-wider">
+              .spoiler — hover to reveal
+            </p>
+            <p className="text-sm text-foreground leading-relaxed">
+              The secret password is{" "}
+              <span className="spoiler px-1">TACTICAL-OVERRIDE-7734</span>.
+            </p>
+          </div>
         </div>
       </ComponentPreview>
     </>

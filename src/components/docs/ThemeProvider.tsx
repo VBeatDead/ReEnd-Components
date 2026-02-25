@@ -26,8 +26,18 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     root.classList.add(theme);
     localStorage.setItem("ef-theme", theme);
     const timeout = setTimeout(() => root.classList.remove("theme-transitioning"), 700);
+    window.dispatchEvent(new CustomEvent("ef-theme-change", { detail: { theme } }));
     return () => clearTimeout(timeout);
   }, [theme]);
+
+  useEffect(() => {
+    const handleExternal = (e: Event) => {
+      const newTheme = (e as CustomEvent<{ theme: Theme }>).detail.theme;
+      setTheme((prev) => (prev !== newTheme ? newTheme : prev));
+    };
+    window.addEventListener("ef-theme-change", handleExternal);
+    return () => window.removeEventListener("ef-theme-change", handleExternal);
+  }, []);
 
   const toggleTheme = () => setTheme((t) => (t === "dark" ? "light" : "dark"));
 

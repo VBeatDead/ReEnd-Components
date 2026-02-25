@@ -1,11 +1,36 @@
+import { useRef, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../docs/ComponentPreview";
-import { ArrowRight, Play } from "lucide-react";
+import { Play } from "lucide-react";
 import SignatureContentSection from "./signature/SignatureContentSection";
 import { Separator } from "../ui/separator";
 
+const CURSOR_STYLES = [
+  { cursor: "default", label: "default" },
+  { cursor: "pointer", label: "pointer" },
+  { cursor: "crosshair", label: "crosshair" },
+  { cursor: "cell", label: "cell" },
+  { cursor: "move", label: "move" },
+  { cursor: "text", label: "text" },
+  { cursor: "not-allowed", label: "not-allowed" },
+  { cursor: "grab", label: "grab" },
+  { cursor: "zoom-in", label: "zoom-in" },
+] as const;
+
 export function ContentMediaSection() {
   const { t } = useTranslation("content");
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [scrollPct, setScrollPct] = useState(0);
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const pct = el.scrollHeight - el.clientHeight > 0
+      ? (el.scrollTop / (el.scrollHeight - el.clientHeight)) * 100
+      : 0;
+    setScrollPct(Math.round(pct));
+  }, []);
+
   return (
     <>
       {/* Hero Section */}
@@ -52,6 +77,27 @@ export function ContentMediaSection() {
             description: t("_props.hero-section.terminal"),
           },
         ]}
+        code={`/* Hero Section Pattern */
+<section className="relative min-h-screen flex items-center bg-surface-1 overflow-hidden">
+  {/* Background decorations */}
+  <div className="absolute inset-0 scanline-overlay pointer-events-none" />
+  <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-primary/5 blur-3xl" />
+
+  <div className="container mx-auto px-6 relative z-10">
+    <p className="font-display text-xs tracking-[0.3em] text-primary mb-4 uppercase">
+      ◆ ENDFIELD SYSTEM v2.4.1
+    </p>
+    <h1 className="font-display text-6xl font-black uppercase tracking-tight text-foreground mb-6">
+      BUILD FASTER.<br />DEPLOY FURTHER.
+    </h1>
+    <p className="text-lg text-muted-foreground max-w-xl mb-8">
+      Tactical React components for mission-critical interfaces.
+    </p>
+    <button className="bg-primary text-primary-foreground px-8 py-3 font-display font-bold uppercase tracking-[0.1em]">
+      INITIALIZE SYSTEM ◆
+    </button>
+  </div>
+</section>`}
       >
         <div className="relative scanline-overlay bg-surface-0 -mx-6 sm:-mx-8 -my-6 sm:-my-8 p-0">
           <div
@@ -107,11 +153,11 @@ export function ContentMediaSection() {
         id="code-block-terminal"
         title={t("code_block.title")}
         description={t("code_block.description")}
-        code={`/* Syntax Highlighting Colors */
-Keyword:   #FF79C6   String:    #F1FA8C
-Number:    #BD93F9   Comment:   #6272A4
-Function:  #50FA7B   Operator:  #FF5555
-Variable:  #F8F8F2   Type:      #8BE9FD`}
+        code={`/* Syntax Highlighting — Endfield Design Tokens */
+Keyword:   text-ef-blue       String:   text-ef-green
+Function:  text-primary       Operator: text-ef-red
+Type/JSX:  text-ef-blue-light Default:  text-foreground
+Comment:   text-muted-foreground`}
         props={[
           {
             name: "code",
@@ -158,30 +204,30 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
             </div>
             <pre className="p-4 overflow-x-auto text-sm font-mono leading-relaxed">
               <code>
-                <span style={{ color: "#FF79C6" }}>import</span>{" "}
-                <span style={{ color: "#F8F8F2" }}>{"{ Button }"}</span>{" "}
-                <span style={{ color: "#FF79C6" }}>from</span>{" "}
-                <span style={{ color: "#F1FA8C" }}>'endfield-ui'</span>;<br />
+                <span className="text-ef-blue">import</span>{" "}
+                <span className="text-foreground">{"{ Button }"}</span>{" "}
+                <span className="text-ef-blue">from</span>{" "}
+                <span className="text-ef-green">'endfield-ui'</span>;<br />
                 <br />
-                <span style={{ color: "#FF79C6" }}>const</span>{" "}
-                <span style={{ color: "#50FA7B" }}>App</span>{" "}
-                <span style={{ color: "#FF5555" }}>=</span> (){" "}
-                <span style={{ color: "#FF79C6" }}>=&gt;</span> {"("}
+                <span className="text-ef-blue">const</span>{" "}
+                <span className="text-primary">App</span>{" "}
+                <span className="text-ef-red">=</span> (){" "}
+                <span className="text-ef-blue">=&gt;</span> {"("}
                 <br />
                 {"  "}
-                <span style={{ color: "#F8F8F2" }}>&lt;</span>
-                <span style={{ color: "#8BE9FD" }}>Button</span>{" "}
-                <span style={{ color: "#50FA7B" }}>variant</span>
-                <span style={{ color: "#FF5555" }}>=</span>
-                <span style={{ color: "#F1FA8C" }}>"primary"</span>
-                <span style={{ color: "#F8F8F2" }}>&gt;</span>
+                <span className="text-foreground">&lt;</span>
+                <span className="text-ef-blue-light">Button</span>{" "}
+                <span className="text-primary">variant</span>
+                <span className="text-ef-red">=</span>
+                <span className="text-ef-green">"primary"</span>
+                <span className="text-foreground">&gt;</span>
                 <br />
                 {"    "}DEPLOY
                 <br />
                 {"  "}
-                <span style={{ color: "#F8F8F2" }}>&lt;/</span>
-                <span style={{ color: "#8BE9FD" }}>Button</span>
-                <span style={{ color: "#F8F8F2" }}>&gt;</span>
+                <span className="text-foreground">&lt;/</span>
+                <span className="text-ef-blue-light">Button</span>
+                <span className="text-foreground">&gt;</span>
                 <br />
                 {")"}
               </code>
@@ -250,6 +296,30 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
             description: t("_props.blog-layout.children"),
           },
         ]}
+        code={`/* Blog/Article Layout Pattern */
+<article className="max-w-3xl mx-auto">
+  {/* Meta */}
+  <div className="flex items-center gap-3 mb-6 text-muted-foreground text-xs font-display tracking-[0.1em] uppercase">
+    <span>15.02.2026</span>
+    <span className="text-primary">◆</span>
+    <span>FIELD REPORT</span>
+    <span className="text-primary">◆</span>
+    <span>8 MIN READ</span>
+  </div>
+
+  <h1 className="font-display text-4xl font-black uppercase tracking-tight mb-6">
+    SECTOR 7 ANOMALY RESOLVED
+  </h1>
+
+  <p className="text-muted-foreground mb-4 leading-relaxed">
+    After 72 hours of continuous monitoring, EF-SYS has confirmed...
+  </p>
+
+  {/* Section divider */}
+  <div className="my-8 border-t border-border" />
+
+  <p className="leading-relaxed">Article body continues here...</p>
+</article>`}
       >
         <div className="max-w-[680px] mx-auto">
           <div className="mb-6">
@@ -325,6 +395,25 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
             description: t("_props.image-media.hover"),
           },
         ]}
+        code={`/* Image / Media Pattern */
+
+// Responsive image with caption
+<figure className="space-y-2">
+  <div className="relative aspect-video bg-surface-2 border border-border overflow-hidden">
+    <img
+      src="/mission-briefing.jpg"
+      alt="Sector 7 aerial view"
+      className="w-full h-full object-cover"
+    />
+    {/* Corner bracket overlay */}
+    <div className="absolute inset-0 clip-corner pointer-events-none border border-primary/20" />
+  </div>
+  <figcaption className="font-display text-[10px] tracking-[0.1em] uppercase text-muted-foreground">
+    FIG. 01 — SECTOR 7 AERIAL RECONNAISSANCE
+  </figcaption>
+</figure>
+
+// Aspect ratio utilities: aspect-video (16:9) | aspect-square | aspect-[4/3]`}
       >
         <div className="max-w-md">
           <div className="overflow-hidden bg-surface-1 border border-border group">
@@ -373,6 +462,27 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
             description: t("_props.video-player.controls"),
           },
         ]}
+        code={`/* Video Player Pattern */
+<div className="relative aspect-video bg-surface-1 border border-border overflow-hidden group">
+  {/* Thumbnail */}
+  <img src="/video-thumb.jpg" alt="" className="w-full h-full object-cover" />
+
+  {/* Play button */}
+  <button
+    aria-label="Play video"
+    className="absolute inset-0 flex items-center justify-center"
+    onClick={() => setPlaying(true)}
+  >
+    <div className="w-16 h-16 bg-primary/90 flex items-center justify-center clip-corner group-hover:bg-primary transition-colors">
+      <svg viewBox="0 0 24 24" className="w-6 h-6 text-primary-foreground fill-current ml-1">
+        <polygon points="5,3 19,12 5,21" />
+      </svg>
+    </div>
+  </button>
+
+  {/* Scanline overlay */}
+  <div className="absolute inset-0 scanline-overlay pointer-events-none" />
+</div>`}
       >
         <div className="max-w-md">
           <div
@@ -409,6 +519,24 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
             description: t("_props.dividers.label"),
           },
         ]}
+        code={`import { Separator } from "reend-components";
+
+// Horizontal variants
+<Separator variant="default" />
+<Separator variant="subtle" />
+<Separator variant="strong" />
+<Separator variant="glow" />
+<Separator variant="accent" />
+
+// Vertical separator
+<div className="flex items-center gap-4 h-8">
+  <span>LEFT</span>
+  <Separator orientation="vertical" variant="default" />
+  <span>RIGHT</span>
+</div>
+
+// Variants: "default" | "subtle" | "strong" | "glow" | "accent"
+// Orientation: "horizontal" | "vertical"`}
       >
         <div className="space-y-8">
           <div>
@@ -451,45 +579,121 @@ Variable:  #F8F8F2   Type:      #8BE9FD`}
         id="scroll-cursor"
         title={t("scroll.title")}
         description={t("scroll.description")}
+        code={`// ScrollProgress — fixed top bar, tracks window.scrollY
+import { ScrollProgress } from 'reend-components';
+
+<ScrollProgress />              // default: 2px height, primary color
+<ScrollProgress height={3} color="hsl(var(--ef-blue))" />
+
+// BackToTop — button that appears after 300px scroll
+import { BackToTop } from 'reend-components';
+<BackToTop threshold={300} />`}
         props={[
           {
-            name: "showProgress",
-            type: "boolean",
-            default: "false",
+            name: "color",
+            type: "string",
+            default: "hsl(var(--primary))",
             required: false,
             description: t("_props.scroll-cursor.showProgress"),
           },
           {
-            name: "customCursor",
-            type: "boolean",
-            default: "false",
+            name: "height",
+            type: "number",
+            default: "2",
             required: false,
             description: t("_props.scroll-cursor.customCursor"),
           },
         ]}
       >
-        <div className="space-y-4">
+        <div className="space-y-6">
+          {/* Live scroll progress demo */}
           <div>
             <p className="text-xs text-muted-foreground mb-2">
               {t("scroll.scroll_progress")}
             </p>
-            <div className="h-0.5 bg-ef-dark-gray w-full">
-              <div className="h-full bg-primary w-2/3" />
+            <div className="border border-border overflow-hidden">
+              {/* Sticky progress bar inside container */}
+              <div className="h-0.5 bg-border sticky top-0 z-10">
+                <div
+                  className="h-full bg-primary transition-[width] duration-100"
+                  style={{ width: `${scrollPct}%` }}
+                  role="progressbar"
+                  aria-valuenow={scrollPct}
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                />
+              </div>
+              <div
+                ref={scrollRef}
+                onScroll={handleScroll}
+                className="h-32 overflow-y-auto bg-surface-1 p-4 text-sm text-muted-foreground"
+                style={{ scrollbarWidth: "thin" }}
+              >
+                {Array.from({ length: 20 }, (_, i) => (
+                  <p key={i} className="py-0.5">
+                    {t("scroll.scroll_line_text", { number: i + 1 })}
+                  </p>
+                ))}
+              </div>
+              <div className="px-4 py-2 border-t border-border flex items-center gap-3 bg-surface-2">
+                <div className="h-0.5 flex-1 bg-border">
+                  <div
+                    className="h-full bg-primary/50 transition-[width] duration-100"
+                    style={{ width: `${scrollPct}%` }}
+                  />
+                </div>
+                <span className="font-mono text-[11px] text-primary shrink-0 min-w-[3ch] text-right">
+                  {scrollPct}%
+                </span>
+              </div>
             </div>
           </div>
+
+          {/* Cursor styles */}
           <div>
             <p className="text-xs text-muted-foreground mb-2">
-              {t("scroll.custom_scrollbar")}
+              {t("scroll.cursor_styles")}
             </p>
-            <div
-              className="h-32 overflow-y-auto bg-surface-1 border border-border p-4 text-sm text-muted-foreground"
-              style={{ scrollbarWidth: "thin" }}
-            >
-              {Array.from({ length: 20 }, (_, i) => (
-                <p key={i} className="py-1">
-                  {t("scroll.scroll_line_text", { number: i + 1 })}
-                </p>
+            <div className="grid grid-cols-3 sm:grid-cols-5 gap-1.5">
+              {CURSOR_STYLES.map(({ cursor, label }) => (
+                <div
+                  key={cursor}
+                  className="border border-border bg-surface-1 px-2 py-2.5 text-center hover:border-primary/40 hover:bg-surface-2 transition-colors select-none"
+                  style={{ cursor }}
+                >
+                  <p className="font-mono text-[10px] text-primary leading-none">{label}</p>
+                </div>
               ))}
+            </div>
+          </div>
+
+          {/* ScrollProgress component display */}
+          <div>
+            <p className="text-xs text-muted-foreground mb-2">
+              {t("scroll.scroll_progress_component")}
+            </p>
+            <div className="bg-surface-0 border border-border p-3 flex items-stretch gap-3">
+              {/* Visual representation */}
+              <div className="w-24 border border-border bg-surface-1 relative overflow-hidden shrink-0">
+                <div className="h-0.5 bg-primary absolute top-0 left-0" style={{ width: "60%" }} />
+                <div className="p-2 pt-3">
+                  <div className="space-y-1">
+                    {[80, 60, 90, 50].map((w, i) => (
+                      <div key={i} className="h-1 bg-border" style={{ width: `${w}%` }} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="font-mono text-xs text-muted-foreground">
+                <span className="text-ef-blue">import</span>{" "}
+                <span className="text-foreground">{"{ ScrollProgress }"}</span>{" "}
+                <span className="text-ef-blue">from</span>{" "}
+                <span className="text-ef-green">'reend-components'</span>
+                <br /><br />
+                <span className="text-muted-foreground/60">{"// Fixed top bar, 2px height"}</span>
+                <br />
+                <span className="text-foreground">{"<ScrollProgress />"}</span>
+              </div>
             </div>
           </div>
         </div>

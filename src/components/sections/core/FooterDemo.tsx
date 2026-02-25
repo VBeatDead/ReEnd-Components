@@ -1,4 +1,5 @@
 import { ComponentPreview } from "../../docs/ComponentPreview";
+import { Footer, FooterColumn, FooterLink } from "../../ui/footer";
 import { useTranslation } from "react-i18next";
 
 function FooterDemo() {
@@ -9,12 +10,51 @@ function FooterDemo() {
       title={t("footer.title")}
       showViewport
       description={t("footer.description")}
+      code={`import { Footer, FooterColumn, FooterLink } from "reend-components";
+
+<Footer
+  brand="REEND COMPONENTS"
+  tagline="v1.1.0 · MIT License"
+  copyright="© 2025 VBeatDead. All rights reserved."
+  note="Not affiliated with HyperGryph or Yostar. Arknights: Endfield is a trademark of HyperGryph."
+>
+  <FooterColumn title="Product">
+    <FooterLink href="#">Features</FooterLink>
+    <FooterLink href="#">Documentation</FooterLink>
+    <FooterLink href="#">Changelog</FooterLink>
+    <FooterLink href="#">Roadmap</FooterLink>
+  </FooterColumn>
+  <FooterColumn title="Community">
+    <FooterLink href="#" external>Discord</FooterLink>
+    <FooterLink href="#" external>GitHub</FooterLink>
+    <FooterLink href="#" external>Twitter</FooterLink>
+  </FooterColumn>
+  <FooterColumn title="Legal">
+    <FooterLink href="#">Privacy Policy</FooterLink>
+    <FooterLink href="#">Terms of Service</FooterLink>
+    <FooterLink href="#">MIT License</FooterLink>
+  </FooterColumn>
+</Footer>`}
+      install={{
+        importPath: `import { Footer, FooterColumn, FooterLink } from "reend-components";`,
+        usage: `<Footer brand="BRAND NAME" copyright="© 2025">
+  <FooterColumn title="Product">
+    <FooterLink href="#">Link</FooterLink>
+  </FooterColumn>
+</Footer>`,
+      }}
       props={[
         {
-          name: "columns",
-          type: "{ title: string; links: { label: string; href: string }[] }[]",
-          required: true,
-          description: t("footer.props.columns"),
+          name: "brand",
+          type: "string",
+          required: false,
+          description: t("footer.props.brand"),
+        },
+        {
+          name: "tagline",
+          type: "string",
+          required: false,
+          description: t("footer.props.tagline"),
         },
         {
           name: "copyright",
@@ -23,67 +63,38 @@ function FooterDemo() {
           description: t("footer.props.copyright"),
         },
         {
-          name: "version",
+          name: "note",
           type: "string",
           required: false,
-          description: t("footer.props.version"),
+          description: t("footer.props.note"),
         },
       ]}
     >
-      <div className="bg-background border-t border-border -mx-6 sm:-mx-8 -mb-6 sm:-mb-8 p-6 sm:p-8 mt-0">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 mb-8">
-          {[
-            {
-              title: t("footer.product"),
-              links: [
-                t("footer.features"),
-                t("footer.documentation"),
-                t("footer.changelog"),
-                t("footer.roadmap"),
-              ],
-            },
-            {
-              title: t("footer.community"),
-              links: [
-                t("footer.discord"),
-                t("footer.github"),
-                t("footer.twitter"),
-                t("footer.blog"),
-              ],
-            },
-            {
-              title: t("footer.legal"),
-              links: [
-                t("footer.privacy"),
-                t("footer.terms"),
-                t("footer.license"),
-              ],
-            },
-          ].map((col) => (
-            <div key={col.title}>
-              <h4 className="font-display text-xs font-bold tracking-[0.15em] uppercase text-muted-foreground mb-4">
-                {col.title}
-              </h4>
-              <ul className="space-y-2">
-                {col.links.map((link) => (
-                  <li key={link}>
-                    <button className="text-sm text-ef-gray-mid hover:text-primary transition-colors bg-transparent">
-                      {link}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        <div className="border-t border-border pt-4 flex flex-wrap items-center justify-between gap-2">
-          <p className="text-xs text-ef-gray-mid">
-            {t("footer.copyright_text")}
-          </p>
-          <p className="font-mono text-[10px] text-ef-gray-mid">
-            {t("footer.version_text")}
-          </p>
-        </div>
+      <div className="-mx-6 sm:-mx-8 -mb-6 sm:-mb-8 mt-0">
+        <Footer
+          brand={t("footer.brand_text")}
+          tagline={t("footer.version_text")}
+          copyright={t("footer.copyright_text")}
+          note={t("footer.note_text")}
+        >
+          <FooterColumn title={t("footer.product")}>
+            <FooterLink href="#">{t("footer.features")}</FooterLink>
+            <FooterLink href="#">{t("footer.documentation")}</FooterLink>
+            <FooterLink href="#">{t("footer.changelog")}</FooterLink>
+            <FooterLink href="#">{t("footer.roadmap")}</FooterLink>
+          </FooterColumn>
+          <FooterColumn title={t("footer.community")}>
+            <FooterLink href="#" external>{t("footer.discord")}</FooterLink>
+            <FooterLink href="#" external>{t("footer.github")}</FooterLink>
+            <FooterLink href="#" external>{t("footer.twitter")}</FooterLink>
+            <FooterLink href="#">{t("footer.blog")}</FooterLink>
+          </FooterColumn>
+          <FooterColumn title={t("footer.legal")}>
+            <FooterLink href="#">{t("footer.privacy")}</FooterLink>
+            <FooterLink href="#">{t("footer.terms")}</FooterLink>
+            <FooterLink href="#">{t("footer.license")}</FooterLink>
+          </FooterColumn>
+        </Footer>
       </div>
     </ComponentPreview>
   );

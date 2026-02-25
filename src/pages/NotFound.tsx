@@ -27,7 +27,14 @@ const NotFound = () => {
         <span className="font-ui text-[10px] tracking-[0.2em] uppercase text-primary">
           {t("errors.not_found_label")}
         </span>
-        <h1 className="font-display text-6xl font-bold text-foreground mt-4 mb-2">
+        {/* Glitch effect on error code — Section 64 spec */}
+        <div
+          className="font-display text-[120px] font-bold text-primary/10 leading-none mt-2 select-none animate-glitch"
+          aria-hidden="true"
+        >
+          404
+        </div>
+        <h1 className="font-display text-4xl font-bold text-foreground -mt-4 mb-2">
           {t("errors.not_found_title")}
         </h1>
         <p className="text-lg text-muted-foreground mb-8">

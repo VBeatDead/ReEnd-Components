@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useMemo } from "react";
 import {
   motion,
   useScroll,
@@ -271,16 +271,19 @@ const InstallTerminal = () => {
   const [lines, setLines] = useState<{ text: string; type: string }[]>([]);
   const [step, setStep] = useState(0);
 
-  const terminalSteps = [
-    { text: "$ npx reend-components init", type: "command" },
-    { text: t("deploy.term_detect"), type: "info" },
-    { text: t("deploy.term_found"), type: "success" },
-    { text: t("deploy.term_installing"), type: "info" },
-    { text: t("deploy.term_tokens"), type: "success" },
-    { text: t("deploy.term_theme"), type: "success" },
-    { text: t("deploy.term_motion"), type: "success" },
-    { text: t("deploy.term_ready"), type: "done" },
-  ];
+  const terminalSteps = useMemo(
+    () => [
+      { text: "$ npx reend-components init", type: "command" },
+      { text: t("deploy.term_detect"), type: "info" },
+      { text: t("deploy.term_found"), type: "success" },
+      { text: t("deploy.term_installing"), type: "info" },
+      { text: t("deploy.term_tokens"), type: "success" },
+      { text: t("deploy.term_theme"), type: "success" },
+      { text: t("deploy.term_motion"), type: "success" },
+      { text: t("deploy.term_ready"), type: "done" },
+    ],
+    [t],
+  );
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -291,7 +294,7 @@ const InstallTerminal = () => {
       });
     }, 1200);
     return () => clearInterval(interval);
-  }, []);
+  }, [terminalSteps]);
 
   const handleCopy = () => {
     navigator.clipboard.writeText("npx reend-components init");
