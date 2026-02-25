@@ -10,7 +10,7 @@ Tabs.displayName = "Tabs";
 
 /* ── List variants ───────────────────────────────────────────────────────── */
 
-const tabsListVariants = cva("flex items-center overflow-x-auto", {
+const tabsListVariants = cva("flex items-center flex-wrap", {
   variants: {
     variant: {
       underline: "border-b border-border gap-0 w-full",
@@ -96,6 +96,7 @@ const TabsContent = React.forwardRef<
     ref={ref}
     className={cn(
       "mt-4 text-sm text-muted-foreground",
+      "animate-in fade-in-0 duration-200",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-background",
       className,
     )}

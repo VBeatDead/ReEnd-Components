@@ -156,6 +156,125 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = "CardFooter";
 
+// ── OperatorCard ──────────────────────────────────────────────────────────────
+
+export interface OperatorCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  name: string;
+  faction?: string;
+  rarity?: 1 | 2 | 3 | 4 | 5 | 6;
+  imageSrc?: string;
+  imageAlt?: string;
+  selected?: boolean;
+}
+
+const OperatorCard = React.forwardRef<HTMLDivElement, OperatorCardProps>(
+  (
+    { name, faction, rarity = 5, imageSrc, imageAlt, selected, className, ...props },
+    ref,
+  ) => (
+    <div
+      ref={ref}
+      className={cn(
+        "relative bg-surface-1 border border-border transition-all duration-300 w-[120px] sm:w-[140px] shrink-0 cursor-pointer",
+        "hover:-translate-y-1 hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)] hover:border-primary/20",
+        selected && "border-2 border-primary/40 bg-primary/[0.06]",
+        className,
+      )}
+      {...props}
+    >
+      {/* Portrait area 3:4 */}
+      <div className="clip-corner-sm aspect-[3/4] bg-surface-2 overflow-hidden">
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            alt={imageAlt ?? name}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <span className="text-primary/20 text-4xl">◆</span>
+          </div>
+        )}
+      </div>
+      {/* Rarity */}
+      <div className="px-2 pt-1.5 pb-0">
+        <span className="text-[10px] text-primary tracking-wider">
+          {"◆".repeat(rarity)}
+          {"◇".repeat(6 - rarity)}
+        </span>
+      </div>
+      {/* Name + Faction */}
+      <div className="px-2 pb-2">
+        <p className="font-display text-[13px] font-semibold uppercase text-foreground leading-tight truncate">
+          {name}
+        </p>
+        {faction && (
+          <p className="font-mono text-[10px] text-muted-foreground truncate">
+            {faction}
+          </p>
+        )}
+      </div>
+    </div>
+  ),
+);
+OperatorCard.displayName = "OperatorCard";
+
+// ── LinkCard ──────────────────────────────────────────────────────────────────
+
+export interface LinkCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  title: string;
+  icon?: React.ReactNode;
+  href?: string;
+  external?: boolean;
+}
+
+const LinkCard = React.forwardRef<HTMLDivElement, LinkCardProps>(
+  ({ title, icon, href, external, className, onClick, ...props }, ref) => {
+    const inner = (
+      <div
+        className={cn(
+          "relative bg-surface-1 border border-border flex items-center gap-3 p-3",
+          "transition-all duration-200 cursor-pointer group",
+          "hover:border-primary/40 hover:bg-primary/[0.04]",
+          className,
+        )}
+        {...props}
+      >
+        {icon && (
+          <div className="w-10 h-10 flex items-center justify-center bg-surface-2 shrink-0 text-primary">
+            {icon}
+          </div>
+        )}
+        <span className="font-display text-[13px] font-semibold uppercase text-foreground flex-1 truncate">
+          {title}
+        </span>
+        <span className="text-primary transition-transform duration-200 group-hover:translate-x-1 shrink-0">
+          →
+        </span>
+      </div>
+    );
+    if (href) {
+      return (
+        <a
+          ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+          href={href}
+          target={external ? "_blank" : undefined}
+          rel={external ? "noopener noreferrer" : undefined}
+          className="block"
+        >
+          {inner}
+        </a>
+      );
+    }
+    return (
+      <div ref={ref} onClick={onClick}>
+        {inner}
+      </div>
+    );
+  },
+);
+LinkCard.displayName = "LinkCard";
+
 // ── Exports ───────────────────────────────────────────────────────────────────
 
 export {
@@ -167,4 +286,6 @@ export {
   CardDescription,
   CardBody,
   CardFooter,
+  OperatorCard,
+  LinkCard,
 };

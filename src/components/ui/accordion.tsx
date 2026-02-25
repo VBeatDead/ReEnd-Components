@@ -45,23 +45,12 @@ const AccordionTrigger = React.forwardRef<
       <span
         className={cn(
           "font-mono text-base leading-none select-none shrink-0 ml-2",
-          "text-muted-foreground transition-colors duration-200",
-          "group-hover:text-primary",
-          "group-data-[state=open]:hidden group-data-[state=closed]:inline",
+          "text-primary transition-transform duration-200",
+          "group-data-[state=open]:rotate-45",
         )}
         aria-hidden
       >
         +
-      </span>
-      <span
-        className={cn(
-          "font-mono text-base leading-none select-none shrink-0 ml-2",
-          "text-primary transition-colors duration-200",
-          "group-data-[state=open]:inline group-data-[state=closed]:hidden",
-        )}
-        aria-hidden
-      >
-        −
       </span>
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>

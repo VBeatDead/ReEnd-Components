@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          "clip-corner bg-primary text-primary-foreground hover:brightness-110 hover:shadow-glow active:brightness-90",
+          "clip-corner bg-primary text-primary-foreground hover:brightness-110 hover:shadow-glow hover:-translate-y-px active:brightness-90 active:translate-y-0",
         secondary:
           "clip-corner border border-border-strong text-card-foreground bg-transparent hover:border-primary/60 hover:text-primary active:bg-primary/5",
         ghost:

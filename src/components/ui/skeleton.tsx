@@ -139,6 +139,62 @@ const SkeletonCard = React.forwardRef<HTMLDivElement, SkeletonCardProps>(
 );
 SkeletonCard.displayName = "SkeletonCard";
 
+/* ── SkeletonImage ───────────────────────────────────────────────────────── */
+
+export interface SkeletonImageProps extends React.HTMLAttributes<HTMLDivElement> {
+  aspectRatio?: "video" | "square" | "portrait";
+}
+
+const ASPECT_RATIOS = {
+  video: "aspect-video",
+  square: "aspect-square",
+  portrait: "aspect-[3/4]",
+};
+
+const SkeletonImage = React.forwardRef<HTMLDivElement, SkeletonImageProps>(
+  ({ aspectRatio = "video", className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        "animate-skeleton w-full",
+        ASPECT_RATIOS[aspectRatio],
+        className,
+      )}
+      aria-hidden="true"
+      {...props}
+    />
+  ),
+);
+SkeletonImage.displayName = "SkeletonImage";
+
+/* ── SkeletonTableRow ───────────────────────────────────────────────────── */
+
+export interface SkeletonTableRowProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  columns?: number;
+}
+
+const SkeletonTableRow = React.forwardRef<HTMLDivElement, SkeletonTableRowProps>(
+  ({ columns = 4, className, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("flex items-center gap-4 py-3", className)}
+      aria-hidden="true"
+      {...props}
+    >
+      {Array.from({ length: columns }).map((_, i) => (
+        <SkeletonLine
+          key={i}
+          width={i === 0 ? "1/4" : "full"}
+          height="sm"
+          className="flex-1"
+        />
+      ))}
+    </div>
+  ),
+);
+SkeletonTableRow.displayName = "SkeletonTableRow";
+
 /* ── Exports ─────────────────────────────────────────────────────────────── */
 
 export {
@@ -146,5 +202,7 @@ export {
   SkeletonText,
   SkeletonAvatar,
   SkeletonCard,
+  SkeletonImage,
+  SkeletonTableRow,
   skeletonLineVariants,
 };

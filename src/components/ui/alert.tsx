@@ -96,7 +96,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             </p>
           )}
           {children && (
-            <div className="text-[13px] text-muted-foreground leading-relaxed">
+            <div className="text-[13px] text-foreground leading-relaxed">
               {children}
             </div>
           )}
@@ -108,7 +108,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             type="button"
             aria-label="Dismiss"
             onClick={onDismiss}
-            className="shrink-0 text-muted-foreground hover:text-foreground transition-colors font-mono text-[12px] leading-none"
+            className="shrink-0 opacity-50 hover:opacity-100 text-foreground transition-opacity font-mono text-[12px] leading-none"
           >
             ✕
           </button>
@@ -119,6 +119,42 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
 );
 Alert.displayName = "Alert";
 
+/* ── TopBanner ──────────────────────────────────────────────────────────── */
+
+export interface TopBannerProps extends React.HTMLAttributes<HTMLDivElement> {
+  dismissible?: boolean;
+  onDismiss?: () => void;
+}
+
+const TopBanner = React.forwardRef<HTMLDivElement, TopBannerProps>(
+  ({ dismissible = true, onDismiss, children, className, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="banner"
+      className={cn(
+        "sticky top-0 z-header bg-primary text-primary-foreground",
+        "flex items-center justify-center gap-3 px-6 py-2",
+        "font-display text-xs font-semibold uppercase tracking-wider text-center",
+        className,
+      )}
+      {...props}
+    >
+      <span className="flex-1 text-center">{children}</span>
+      {dismissible && (
+        <button
+          type="button"
+          aria-label="Dismiss banner"
+          onClick={onDismiss}
+          className="shrink-0 opacity-70 hover:opacity-100 transition-opacity font-mono text-sm leading-none"
+        >
+          ✕
+        </button>
+      )}
+    </div>
+  ),
+);
+TopBanner.displayName = "TopBanner";
+
 /* ── Exports ─────────────────────────────────────────────────────────────── */
 
-export { Alert, alertVariants };
+export { Alert, alertVariants, TopBanner };

@@ -9,6 +9,35 @@ const PRESET_COPY: Record<string, { title: string; description: string }> = {
     title: "NO RESULTS FOUND",
     description: "Try adjusting your search query.",
   },
+  "empty-list": {
+    title: "NO ITEMS YET",
+    description: "Add your first item to get started.",
+  },
+  "no-notifications": {
+    title: "NO NOTIFICATIONS",
+    description: "You're all caught up. Check back later.",
+  },
+  "error-loading": {
+    title: "FAILED TO LOAD",
+    description: "An error occurred. Please try again.",
+  },
+  "no-permission": {
+    title: "ACCESS RESTRICTED",
+    description: "You don't have permission to view this.",
+  },
+  "empty-filter": {
+    title: "NO MATCHING RESULTS",
+    description: "Try adjusting or clearing your filters.",
+  },
+  "inbox-zero": {
+    title: "INBOX ZERO",
+    description: "All messages have been processed.",
+  },
+  "no-connection": {
+    title: "NO CONNECTION",
+    description: "Check your network and try again.",
+  },
+  /* Legacy aliases for backward compatibility */
   error: {
     title: "FAILED TO LOAD",
     description: "An error occurred. Please try again.",
@@ -50,7 +79,20 @@ export interface EmptyStateProps
   title?: string;
   description?: string;
   action?: React.ReactNode;
-  variant?: "default" | "search" | "error" | "permission" | "empty";
+  variant?:
+    | "default"
+    | "search"
+    | "empty-list"
+    | "no-notifications"
+    | "error-loading"
+    | "no-permission"
+    | "empty-filter"
+    | "inbox-zero"
+    | "no-connection"
+    /* Legacy aliases */
+    | "error"
+    | "permission"
+    | "empty";
 }
 
 /* ── Component ───────────────────────────────────────────────────────────── */
