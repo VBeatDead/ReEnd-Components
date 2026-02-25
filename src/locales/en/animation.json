@@ -6,7 +6,9 @@
   "page_transitions": {
     "title": "Page Transitions",
     "description": "Cross-fade 300ms. View Transitions API.",
-    "cross_fade_text": "Cross-fade page transition using View Transitions API (300ms duration)."
+    "cross_fade_text": "Cross-fade page transition using View Transitions API (300ms duration).",
+    "page_label": "PAGE",
+    "switch_label": "[SWITCH PAGE]"
   },
   "scroll_triggered": {
     "title": "Scroll-Triggered Animations",
@@ -20,6 +22,13 @@
   },
   "live_animations": "LIVE ANIMATIONS",
   "duration_scale": "DURATION SCALE",
+  "easing_tokens": "EASING TOKENS",
+  "easing_use": {
+    "default": "General transitions",
+    "bounce": "Playful / spring",
+    "sharp": "Quick micro-interactions",
+    "smooth": "Entrance animations"
+  },
   "_props": {
     "animation-system": {
       "name": "Animation name from the catalog",

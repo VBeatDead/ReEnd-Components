@@ -7,6 +7,7 @@
         "items": {
           "getting-started": "Getting Started",
           "install-package": "Install Package",
+          "cli-usage": "CLI — Copy-Paste",
           "tailwind-setup": "Tailwind Setup",
           "import-styles": "Import Styles",
           "use-components": "Use Components",
@@ -25,7 +26,10 @@
           "spacing-grid": "Spacing & Grid",
           "background-surface": "Background & Surface",
           "iconography": "Iconography",
-          "illustration": "Illustration Style"
+          "illustration": "Illustration Style",
+          "panel-glass": "Glass Panels",
+          "glow-shadows": "Glow Shadows",
+          "search-highlight": "Search Highlight"
         }
       },
       "core-components": {
@@ -36,29 +40,35 @@
           "cards": "Cards",
           "forms-input": "Forms & Input",
           "number-input": "Number Input",
+          "accordion": "Accordion",
           "nav-header": "Nav — Header",
           "nav-sidebar": "Nav — Sidebar",
           "nav-tabs": "Nav — Tabs",
           "nav-breadcrumb": "Nav — Breadcrumb",
           "nav-pagination": "Nav — Pagination",
           "footer": "Footer",
+          "operator-card": "Operator Card",
+          "link-card": "Link Card",
+          "view-toggle": "View Toggle",
+          "otp-input": "OTP Input",
+          "date-picker": "Date Picker",
+          "rich-text-editor": "Rich Text Editor",
           "tactical-panel": "Tactical Panel",
           "holo-card": "Holo Card"
         }
       },
       "data-display": {
         "title": "DATA DISPLAY",
-        "description": "Table, list, chart, badge, timeline, and data visualization components.",
+        "description": "Table, list, stat, avatar, badge, timeline, progress, charts, and data visualization components.",
         "items": {
           "table": "Table",
           "list": "List & List Item",
           "stat-metric": "Stat & Metric",
           "timeline": "Timeline",
-          "accordion": "Accordion",
           "avatar": "Avatar",
-          "tags-badges": "Tags & Badges",
+          "tags-badges": "Tags, Badges & Labels",
           "progress-stepper": "Progress & Stepper",
-          "tactical-badge": "Tactical Badge",
+          "charts": "Charts",
           "coordinate-tag": "Coordinate Tag",
           "radar-chart": "Radar Chart"
         }
@@ -73,12 +83,10 @@
           "loading-skeleton": "Loading & Skeleton",
           "empty-state": "Empty State",
           "error-pages": "Error Pages",
-          "offline-state": "Offline State",
-          "success-state": "Success State",
+          "offline-state": "Connectivity & States",
           "inline-validation": "Inline Validation",
           "banner-alert": "Banner & Alert",
-          "diamond-loader": "Diamond Loader",
-          "warning-banner": "Warning Banner"
+          "diamond-loader": "Diamond Loader"
         }
       },
       "interactive": {
@@ -120,7 +128,18 @@
           "back-to-top": "Back to Top",
           "copy-clipboard": "Copy to Clipboard",
           "dropdown": "Dropdown",
-          "context-menu": "Context Menu"
+          "context-menu": "Context Menu",
+          "filter-bar": "Filter Bar",
+          "sort-control": "Sort Control",
+          "bottom-sheet": "Bottom Sheet",
+          "pull-to-refresh": "Pull to Refresh",
+          "swipeable-item": "Swipeable Item",
+          "carousel": "Carousel",
+          "resizable": "Resizable Panels",
+          "rating": "Rating",
+          "file-upload": "File Upload",
+          "session-timeout": "Session Timeout Modal",
+          "theme-switcher": "Theme Switcher"
         }
       },
       "animation": {
@@ -155,7 +174,24 @@
           "accessibility": "Accessibility",
           "performance": "Performance",
           "design-tokens": "Design Tokens",
-          "naming-conventions": "Naming Conventions"
+          "naming-conventions": "Naming Conventions",
+          "behavioral-rules": "Behavioral Rules",
+          "timing-focus": "Timing, Focus & Z-Index",
+          "scroll-touch-rules": "Scroll & Touch",
+          "form-action-rules": "Forms & Actions",
+          "notification-media": "Notifications & Media",
+          "consistency-sizing": "Standards & Sizing",
+          "auth-layouts": "Auth Layouts",
+          "pricing-tables": "Pricing Tables",
+          "mega-menu": "Mega Menu",
+          "kanban": "Kanban Board",
+          "language-switcher": "Language Switcher",
+          "print-styles": "Print Styles",
+          "fab": "FAB / Chat Widget",
+          "comments": "Comments",
+          "spoiler-tags": "Spoiler Tags",
+          "ad-placements": "Ad Placements",
+          "audio-player": "Audio Player"
         }
       },
       "changelog": {

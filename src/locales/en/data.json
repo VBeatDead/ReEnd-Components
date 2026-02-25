@@ -21,6 +21,8 @@
     "diamond_bullet": "DIAMOND BULLET",
     "numbered": "NUMBERED",
     "key_value": "KEY-VALUE",
+    "link_list": "LINK LIST",
+    "link_items": ["Operator Roster", "Mission Briefing", "System Status", "Resource Depot"],
     "diamond_items": ["Reconnaissance", "Deployment", "Extraction", "Analysis"],
     "numbered_items": [
       "Initialize System",
@@ -81,7 +83,19 @@
   },
   "tags": {
     "title": "Tags, Badges & Labels",
-    "description": "Tag font: Orbitron 10px, uppercase. Diamond-shaped badges. Semantic colors.",
+    "description": "Three distinct label primitives: Tags (TacticalBadge — clip-corner-sm, ◆ prefix), Badges (semantic color spans with border), and Labels (minimal status text). Use Tags for categorization, Badges for counts/states, Labels for inline status.",
+    "section_tags": "TAGS",
+    "section_badges": "BADGES",
+    "section_labels": "LABELS",
+    "section_badge_count": "BADGE COUNT",
+    "section_status_dots": "STATUS DOTS",
+    "tag_labels": {
+      "default": "ALPHA SQUAD",
+      "success": "DEPLOYED",
+      "warning": "STANDBY",
+      "danger": "CRITICAL",
+      "info": "RECON"
+    },
     "labels": {
       "default": "DEFAULT",
       "primary": "PRIMARY",
@@ -91,12 +105,23 @@
       "danger": "DANGER",
       "rare": "RARE"
     },
+    "label_texts": {
+      "active": "ACTIVE",
+      "pending": "PENDING",
+      "complete": "COMPLETE",
+      "archived": "ARCHIVED",
+      "draft": "DRAFT"
+    },
     "removable": "REMOVABLE",
     "badge_count": "BADGE COUNT:",
     "status": {
       "online": "Online",
       "offline": "Offline",
       "busy": "Busy"
+    },
+    "playground": {
+      "type_label": "Type",
+      "text_default": "ALPHA SQUAD"
     }
   },
   "progress": {
@@ -152,11 +177,14 @@
       "status": "Status diamond indicator color"
     },
     "tags-badges": {
-      "label": "Tag display text",
+      "tactical_badge": "TacticalBadge — signature component with clip-corner-sm and ◆ prefix. Variants: default (yellow), success (green), warning (yellow/amber), danger (red), info (cyan).",
+      "badge": "Inline span with semantic border and tinted background. Variants: default / primary / info / success / warning / danger / rare.",
+      "label_style": "Minimal uppercase status text without border. Color-coded by status type (active→green, pending→orange, complete→blue, archived→gray).",
+      "label": "Display text for the tag or badge",
       "variant": "Semantic color variant",
-      "removable": "Shows x remove button",
+      "removable": "Shows × remove button",
       "onRemove": "Callback when remove button is clicked",
-      "count": "Badge count number (renders as count badge)"
+      "count": "Badge count number (renders as clip-corner-sm count chip)"
     },
     "progress-stepper": {
       "value": "Progress percentage (0-100)",
@@ -165,5 +193,9 @@
       "color": "Progress bar color",
       "showLabel": "Show percentage label"
     }
+  },
+  "charts": {
+    "title": "Charts (Recharts)",
+    "description": "Recharts integration with Endfield design tokens. Use CHART_COLORS array and endfieldChartTheme for consistent styling. Chart colors map to --chart-1 through --chart-8."
   }
 }

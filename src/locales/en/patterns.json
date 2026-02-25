@@ -5,6 +5,8 @@
     "homepage": "HOMEPAGE",
     "documentation": "DOCUMENTATION",
     "blog_list": "BLOG LIST",
+    "blog_post": "BLOG POST",
+    "error_page": "ERROR PAGE",
     "header": "Header",
     "hero": "Hero 100vh",
     "features": "Features 3-col",
@@ -18,7 +20,16 @@
     "title_block": "Title",
     "filter": "Filter Tags",
     "post_grid": "Post Grid 2-col",
-    "pagination": "Pagination"
+    "pagination": "Pagination",
+    "back_link": "← Back",
+    "post_meta": "Date · Author · Tags",
+    "post_hero": "Hero Image",
+    "post_tags": "Post Tags",
+    "prev_next": "Prev / Next Post",
+    "error_code": "Error Code (Glitch)",
+    "error_title_glitch": "Page Title + Glitch",
+    "error_desc": "Description",
+    "error_cta": "Return Home / Open Docs"
   },
   "section_patterns": {
     "title": "Section Patterns",
@@ -30,7 +41,13 @@
     "feature_1": "FEATURE 1",
     "feature_2": "FEATURE 2",
     "feature_3": "FEATURE 3",
-    "description_text_short": "Description text."
+    "description_text_short": "Description text.",
+    "alternating_label": "ALTERNATING LAYOUT",
+    "text_left": "TEXT — IMAGE →",
+    "text_right": "← IMAGE — TEXT",
+    "testimonial_label": "TESTIMONIAL",
+    "testimonial_quote": "\"The Endfield design system gave our team a consistent visual language that scales across every deployment.\"",
+    "testimonial_author": "OPERATOR CHEN · Lead Engineer, Rhodes Island"
   },
   "responsive": {
     "title": "Responsive Breakpoints",
@@ -126,6 +143,74 @@
     "arrow_tokens": "→ Design tokens",
     "arrow_base": "→ Reset, typography",
     "arrow_animations": "→ Keyframes"
+  },
+  "behavioral_rules": {
+    "title": "Behavioral Rules",
+    "description": "Overview of invisible interaction contracts from sections 98–111. Use the sub-section links below to navigate to specific rule groups: timing & response, focus management, z-index, scroll behavior, touch targets, form contracts, destructive actions, error recovery, notifications, media queries, consistency standards, sizing matrix, and CLS prevention."
+  },
+  "timing_focus": {
+    "title": "§98–100 · Timing, Focus & Z-Index",
+    "description": "Doherty Threshold timing rules, debounce/throttle patterns, keyboard navigation & focus trap rules, escape overlay hierarchy, and z-index stacking tokens."
+  },
+  "scroll_touch_rules": {
+    "title": "§101–102 · Scroll & Touch",
+    "description": "Scroll behavior rules for all navigation types, overscroll-behavior utilities, touch target size standards by breakpoint, and safe area CSS variables for iOS notch."
+  },
+  "form_action_rules": {
+    "title": "§103–105 · Forms & Actions",
+    "description": "Form behavior contracts: disable-on-submit, autosave indicator states, destructive action severity table with undo windows, and error recovery hierarchy with auto-retry backoff."
+  },
+  "notification_media": {
+    "title": "§106–107 · Notifications & Media Queries",
+    "description": "Toast notification rules: duration per severity, hover-pause, max visible, position policy. Media query patterns for prefers-reduced-motion, forced-colors, prefers-contrast, and pointer type."
+  },
+  "consistency_sizing": {
+    "title": "§108–111 · Standards & Sizing",
+    "description": "Consistency standards for all component types, responsive sizing matrix, link & navigation behavior table, and CLS prevention rules with Core Web Vitals score targets."
+  },
+  "auth_layouts": {
+    "title": "Auth Layouts",
+    "description": "Recommended layout patterns for authentication pages: split-panel (40% form / 60% visual), centered card, and fullscreen immersive. Responsive — visual panel hidden on mobile."
+  },
+  "pricing_tables": {
+    "title": "Pricing Tables",
+    "description": "Multi-tier subscription cards with feature lists, recommended badge, and Endfield-styled CTA buttons. Use sharp borders and ◆ feature list icons."
+  },
+  "mega_menu": {
+    "title": "Mega Menu",
+    "description": "Multi-column dropdown navigation for complex content hierarchies. Uses z-index-dropdown (100), Bender font column headers, and ◆ list item bullets."
+  },
+  "kanban": {
+    "title": "Kanban Board",
+    "description": "Column-based task management UI with status-colored headers, card drag indicators, and + ADD TASK ghost button at column bottom."
+  },
+  "language_switcher": {
+    "title": "Language Switcher",
+    "description": "Active language highlighted with border-primary + bg-primary/8. Integrates with i18next changeLanguage and URL prefix routing."
+  },
+  "print_styles": {
+    "title": "Print Styles",
+    "description": "Five utility classes for print control: .print-hidden, .print-only, .print-break-before, .print-break-after, .print-no-break. Already included in index.css."
+  },
+  "fab": {
+    "title": "FAB / Chat Widget",
+    "description": "Diamond-shaped floating action button using clip-path polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%). Fixed positioning with z-index-overlay. Glow on hover."
+  },
+  "comments": {
+    "title": "Comments",
+    "description": "Threaded comment layout with diamond avatar placeholder, Bender font username, nested replies via border-left indent, and ◆ like counter."
+  },
+  "spoiler_tags": {
+    "title": "Spoiler Tags",
+    "description": "SpoilerBlock wraps content in a blur overlay with a [REVEAL CONTENT] button. SpoilerInline hides inline text with the .spoiler CSS class. Both use aria-expanded."
+  },
+  "ad_placements": {
+    "title": "Ad Placements",
+    "description": "Pre-sized ad slot containers (.ad-slot--leaderboard, --sidebar, --in-article) with min-height reservations to prevent Cumulative Layout Shift (CLS = 0)."
+  },
+  "audio_player": {
+    "title": "Audio Player",
+    "description": "Inline audio player with diamond play button, 4px progress track, and Orbitron time display. Optional persistent mini-player (56px sticky bar) for music playback."
   },
   "_props": {
     "page-templates": {

@@ -7,6 +7,7 @@
         "items": {
           "getting-started": "Memulai",
           "install-package": "Instal Paket",
+          "cli-usage": "CLI — Salin-Tempel",
           "tailwind-setup": "Pengaturan Tailwind",
           "import-styles": "Import Styles",
           "use-components": "Gunakan Komponen",
@@ -25,7 +26,10 @@
           "spacing-grid": "Spacing & Grid",
           "background-surface": "Background & Surface",
           "iconography": "Ikonografi",
-          "illustration": "Gaya Ilustrasi"
+          "illustration": "Gaya Ilustrasi",
+          "panel-glass": "Panel Kaca",
+          "glow-shadows": "Bayangan Cahaya",
+          "search-highlight": "Sorotan Pencarian"
         }
       },
       "core-components": {
@@ -36,12 +40,19 @@
           "cards": "Kartu",
           "forms-input": "Form & Input",
           "number-input": "Input Angka",
+          "accordion": "Accordion",
           "nav-header": "Nav — Header",
           "nav-sidebar": "Nav — Sidebar",
           "nav-tabs": "Nav — Tab",
           "nav-breadcrumb": "Nav — Breadcrumb",
           "nav-pagination": "Nav — Pagination",
           "footer": "Footer",
+          "operator-card": "Kartu Operator",
+          "link-card": "Kartu Tautan",
+          "view-toggle": "Toggle Tampilan",
+          "otp-input": "Input OTP",
+          "date-picker": "Pemilih Tanggal",
+          "rich-text-editor": "Editor Teks Kaya",
           "tactical-panel": "Tactical Panel",
           "holo-card": "Holo Card"
         }
@@ -54,11 +65,10 @@
           "list": "Daftar & Item Daftar",
           "stat-metric": "Stat & Metrik",
           "timeline": "Timeline",
-          "accordion": "Accordion",
           "avatar": "Avatar",
-          "tags-badges": "Tag & Badge",
+          "tags-badges": "Tag, Lencana & Label",
           "progress-stepper": "Progress & Stepper",
-          "tactical-badge": "Tactical Badge",
+          "charts": "Charts",
           "coordinate-tag": "Coordinate Tag",
           "radar-chart": "Radar Chart"
         }
@@ -73,12 +83,10 @@
           "loading-skeleton": "Loading & Skeleton",
           "empty-state": "Status Kosong",
           "error-pages": "Halaman Error",
-          "offline-state": "Status Offline",
-          "success-state": "Status Sukses",
+          "offline-state": "Koneksi & Status",
           "inline-validation": "Validasi Inline",
           "banner-alert": "Banner & Alert",
-          "diamond-loader": "Diamond Loader",
-          "warning-banner": "Warning Banner"
+          "diamond-loader": "Diamond Loader"
         }
       },
       "interactive": {
@@ -120,7 +128,18 @@
           "back-to-top": "Kembali ke Atas",
           "copy-clipboard": "Salin ke Clipboard",
           "dropdown": "Dropdown",
-          "context-menu": "Menu Konteks"
+          "context-menu": "Menu Konteks",
+          "filter-bar": "Bar Filter",
+          "sort-control": "Kontrol Urutan",
+          "bottom-sheet": "Bottom Sheet",
+          "pull-to-refresh": "Pull to Refresh",
+          "swipeable-item": "Item Geser",
+          "carousel": "Carousel",
+          "resizable": "Panel Resizable",
+          "rating": "Rating",
+          "file-upload": "Unggah File",
+          "session-timeout": "Modal Timeout Sesi",
+          "theme-switcher": "Pengalih Tema"
         }
       },
       "animation": {
@@ -155,7 +174,24 @@
           "accessibility": "Aksesibilitas",
           "performance": "Performa",
           "design-tokens": "Design Tokens",
-          "naming-conventions": "Konvensi Penamaan"
+          "naming-conventions": "Konvensi Penamaan",
+          "behavioral-rules": "Aturan Perilaku",
+          "timing-focus": "Timing, Fokus & Z-Index",
+          "scroll-touch-rules": "Scroll & Sentuh",
+          "form-action-rules": "Form & Aksi",
+          "notification-media": "Notifikasi & Media",
+          "consistency-sizing": "Standar & Ukuran",
+          "auth-layouts": "Layout Autentikasi",
+          "pricing-tables": "Tabel Harga",
+          "mega-menu": "Mega Menu",
+          "kanban": "Papan Kanban",
+          "language-switcher": "Pengalih Bahasa",
+          "print-styles": "Gaya Cetak",
+          "fab": "FAB / Widget Chat",
+          "comments": "Komentar",
+          "spoiler-tags": "Tag Spoiler",
+          "ad-placements": "Penempatan Iklan",
+          "audio-player": "Pemutar Audio"
         }
       },
       "changelog": {

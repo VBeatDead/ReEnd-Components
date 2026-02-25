@@ -47,9 +47,13 @@
   "scroll": {
     "title": "Scroll & Kursor",
     "description": "Scrollbar 6px, thumb persegi. Progress bar scroll fixed atas. Kursor kustom opsional.",
-    "scroll_progress": "Bar Progres Scroll",
+    "scroll_progress": "Progres Scroll Langsung (scroll di dalam kotak)",
+    "scroll_pct_label": "SCROLL",
     "custom_scrollbar": "Scrollbar Kustom (6px, thumb persegi)",
-    "scroll_line_text": "Baris {{number}}: Konten scroll untuk menguji gaya scrollbar kustom."
+    "scroll_line_text": "Baris {{number}}: Konten scroll untuk menguji gaya scrollbar kustom.",
+    "cursor_styles": "Katalog Gaya Kursor (arahkan ke setiap sel)",
+    "scroll_progress_component": "Komponen ScrollProgress — bar atas tetap yang memantau window.scrollY",
+    "back_to_top_label": "BackToTop — muncul setelah scroll 300px"
   },
   "_props": {
     "hero-section": {

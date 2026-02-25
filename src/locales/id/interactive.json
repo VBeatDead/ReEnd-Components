@@ -8,7 +8,10 @@
       "hover": "HOVER",
       "active": "ACTIVE",
       "focus": "FOCUS",
-      "disabled": "DISABLED"
+      "disabled": "DISABLED",
+      "loading": "LOADING",
+      "error": "ERROR",
+      "selected": "SELECTED"
     },
     "rows": {
       "button": "Button",
@@ -16,18 +19,38 @@
       "card": "Card",
       "link": "Link",
       "nav_item": "Item navigasi",
-      "tab": "Tab"
+      "tab": "Tab",
+      "checkbox": "Checkbox",
+      "table_row": "Baris tabel",
+      "tag": "Tag / Badge",
+      "accordion": "Accordion",
+      "dropdown_item": "Item dropdown",
+      "sidebar_link": "Link sidebar"
     }
   },
   "micro_interactions": {
     "title": "Mikro-Interaksi & Umpan Balik",
-    "description": "Ripple klik, umpan balik salin, animasi toggle, ekspansi accordion.",
+    "description": "Ripple klik, umpan balik salin, toggle suka/favorit, toggle switch, hitung-naik, hover reveal, ekspansi accordion.",
     "click_me": "KLIK SAYA",
     "ripple_effect": "Efek ripple",
-    "favorite": "Favorit",
+    "like": "Suka",
+    "unlike": "Batal suka",
+    "liked": "DISUKAI",
+    "unliked": "SUKA",
+    "favorite": "Favorit (suka/batal)",
     "copied": "Tersalin!",
     "copy": "Salin",
-    "copy_feedback": "Umpan balik salin"
+    "copy_feedback": "Umpan balik salin",
+    "count_up_label": "Animasi hitung-naik",
+    "count_up_trigger": "ANIMASI",
+    "toggle_label": "Toggle",
+    "toggle_on": "ON",
+    "toggle_off": "OFF",
+    "hover_reveal_label": "Arahkan kursor",
+    "hover_reveal_effect": "Hover reveal",
+    "accordion_trigger": "PERLUAS BAGIAN",
+    "accordion_content": "Konten yang diperluas terungkap dengan animasi halus dan easing yang tepat.",
+    "accordion_effect": "Ekspansi accordion"
   },
   "hover_effects": {
     "title": "Katalog Efek Hover",
@@ -52,21 +75,35 @@
       "code_block": "Blok kode",
       "code_block_effect": "Tombol salin muncul (fade in)",
       "avatar": "Avatar",
-      "avatar_effect": "Cincin cahaya halus"
+      "avatar_effect": "Cincin cahaya halus",
+      "link": "Link",
+      "link_effect": "Warna cerah (#7EC8E3) + garis bawah muncul",
+      "icon_button": "Tombol ikon",
+      "icon_button_effect": "Bg → kuning/5, border → tint kuning",
+      "tag": "Tag / Badge",
+      "tag_effect": "Border cerah, bg sedikit cerah",
+      "link_list_item": "Item daftar tautan",
+      "link_list_item_effect": "Tint bg + panah geser dari kiri",
+      "footer_link": "Link footer",
+      "footer_link_effect": "Warna → kuning (#FFD429)",
+      "timeline_node": "Node timeline",
+      "timeline_node_effect": "scale(1.2) + warna node lebih cerah",
+      "stat_number": "Angka statistik",
+      "stat_number_effect": "Glow pulse halus di sekitar nilai"
     }
   },
   "focus_keyboard": {
     "title": "Fokus & Navigasi Keyboard",
-    "description": "Cincin fokus: 2px solid #FFD429, offset 2px. Tabel pintasan keyboard.",
+    "description": "Cincin fokus: 2px solid hsl(var(--ef-yellow)), offset 2px. Input menggunakan border + box-shadow sebagai pengganti outline.",
     "focus_state": "STATUS FOKUS",
     "shortcuts": {
-      "tab": "Tab",
-      "tab_desc": "Navigasi maju",
+      "tab": "Tab / Shift+Tab",
+      "tab_desc": "Navigasi maju / mundur",
       "enter": "Enter / Space",
       "enter_desc": "Aktifkan",
       "escape": "Escape",
       "escape_desc": "Tutup overlay",
-      "cmd_k": "⌘K",
+      "cmd_k": "⌘K / Ctrl+K",
       "cmd_k_desc": "Palet perintah",
       "arrows": "Tombol panah",
       "arrows_desc": "Navigasi menu",
@@ -76,10 +113,13 @@
   },
   "drag_drop": {
     "title": "Seret & Lepas",
-    "description": "Dapat diseret: kursor grab. Zona lepas: border putus-putus, status aktif kuning.",
+    "description": "Dapat diseret: kursor grab, opacity 0.5 + border kuning putus-putus saat menyeret. Zona lepas: border putus-putus, status aktif kuning, status tolak merah.",
     "drag_me": "⠿ Seret saya",
+    "drag_status": "Menyeret…",
     "drop_zone": "Zona lepas",
-    "active_zone": "Zona aktif"
+    "active_zone": "Zona aktif",
+    "reject_zone": "Zona tolak",
+    "drop_hint": "Seret elemen ke setiap zona untuk melihat status aktif dan tolak."
   },
   "selection": {
     "title": "Seleksi & Multi-Seleksi",
@@ -87,7 +127,8 @@
     "option_a": "Opsi A",
     "option_b": "Opsi B",
     "option_c": "Opsi C",
-    "selected_count": "3 terpilih",
+    "selected_count": "{{count}} terpilih",
+    "none_selected": "Pilih item di atas",
     "delete_btn": "HAPUS",
     "export_btn": "EKSPOR"
   },
@@ -103,8 +144,8 @@
       "shortcuts": "Definisi pintasan keyboard kustom",
       "trapFocus": "Jebak fokus dalam container (untuk modal)",
       "api": {
-        "useFocusTrap": "Menjebak fokus keyboard dalam elemen container. Digunakan untuk modal dan dialog.",
-        "useShortcut": "Mendaftarkan pintasan keyboard global dengan pembersihan otomatis."
+        "useFocusTrap": "Menjebak fokus keyboard dalam elemen container. Terima ref dan boolean active opsional. Digunakan untuk modal dan dialog.",
+        "useShortcut": "Mendaftarkan pintasan keyboard global dengan pembersihan otomatis saat unmount. Mendukung opsi modifier meta/ctrl/shift."
       }
     },
     "drag-drop": {

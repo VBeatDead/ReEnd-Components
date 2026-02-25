@@ -2,6 +2,39 @@
   "voice_tone": {
     "title": "Voice & Tone",
     "description": "Authoritative, concise, technical, calm, forward-looking. User = 'Endministrator'.",
+    "brand_voice_heading": "BRAND VOICE ATTRIBUTES",
+    "brand_voice_headers": {
+      "attribute": "ATTRIBUTE",
+      "description": "DESCRIPTION",
+      "avoid": "AVOID"
+    },
+    "brand_voice": {
+      "authoritative": {
+        "attribute": "Authoritative",
+        "description": "Commands respect. Definitive statements.",
+        "avoid": "Hedging, uncertain language"
+      },
+      "concise": {
+        "attribute": "Concise",
+        "description": "Maximum information, minimum words.",
+        "avoid": "Verbose explanations"
+      },
+      "technical": {
+        "attribute": "Technical",
+        "description": "Embrace domain-specific terminology.",
+        "avoid": "Oversimplified language"
+      },
+      "calm": {
+        "attribute": "Calm",
+        "description": "Steady under pressure. No panic language.",
+        "avoid": "Alarmist messaging"
+      },
+      "forward_looking": {
+        "attribute": "Forward-Looking",
+        "description": "Progress-oriented, operational.",
+        "avoid": "Retrospective dwelling"
+      }
+    },
     "headers": {
       "context": "CONTEXT",
       "tone": "TONE",
@@ -32,6 +65,11 @@
         "context": "Onboarding",
         "tone": "Welcoming",
         "example": "\"Welcome back, Endministrator.\""
+      },
+      "warning": {
+        "context": "Warning",
+        "tone": "Direct, non-alarming",
+        "example": "\"Maintenance scheduled. Save your work.\""
       }
     },
     "terminology": "TERMINOLOGY",
@@ -63,17 +101,40 @@
         "use": "DELETE ITEM",
         "avoid": "\"Remove\""
       },
+      "cancel": {
+        "action": "Cancel",
+        "use": "GO BACK",
+        "avoid": "\"No\""
+      },
       "navigate": {
         "action": "Navigate",
         "use": "VIEW DETAILS",
         "avoid": "\"Click Here\""
+      },
+      "external": {
+        "action": "External Link",
+        "use": "↗ GITHUB",
+        "avoid": "\"Open Link\""
       },
       "create": {
         "action": "Create",
         "use": "CREATE PROJECT",
         "avoid": "\"Add\""
       }
-    }
+    },
+    "nav_heading": "NAVIGATION LABELS",
+    "nav_note": "1–2 words, uppercase, no articles",
+    "nav_items": ["HOME", "DOCS", "BLOG", "ABOUT"],
+    "form_heading": "FORM LABELS",
+    "form_note": "Uppercase, required * in red, optional in muted",
+    "form_required": "Required",
+    "form_optional": "Optional",
+    "dialog_heading": "CONFIRMATION DIALOGS",
+    "dialog_note": "State action + consequences. Destructive CTA right, Cancel left.",
+    "dialog_example_title": "DELETE RECORD",
+    "dialog_example_body": "This will permanently remove the record and all associated data. This action cannot be undone.",
+    "dialog_cancel": "CANCEL",
+    "dialog_confirm": "DELETE RECORD"
   },
   "placeholder": {
     "title": "Placeholder Text Standards",
@@ -87,6 +148,10 @@
         "label": "USERNAME",
         "placeholder": "Enter your callsign..."
       },
+      "password": {
+        "label": "PASSWORD",
+        "placeholder": "••••••••"
+      },
       "search": {
         "label": "SEARCH",
         "placeholder": "Search documentation..."
@@ -95,9 +160,25 @@
         "label": "URL",
         "placeholder": "https://example.com"
       },
+      "message": {
+        "label": "MESSAGE",
+        "placeholder": "Type your message here..."
+      },
+      "code": {
+        "label": "CODE",
+        "placeholder": "// Enter code here..."
+      },
+      "file": {
+        "label": "FILE",
+        "placeholder": "Drag files here or click to upload"
+      },
       "date": {
         "label": "DATE",
         "placeholder": "YYYY.MM.DD"
+      },
+      "tags": {
+        "label": "TAGS",
+        "placeholder": "Add tag..."
       }
     }
   },
@@ -136,6 +217,18 @@
       "permission_denied": {
         "validation": "Permission denied",
         "message": "Access restricted. Insufficient clearance level."
+      },
+      "file_too_large": {
+        "validation": "File too large",
+        "message": "File exceeds the [X] MB limit. Compress or choose a smaller file."
+      },
+      "not_found": {
+        "validation": "Not found",
+        "message": "Target not located. Verify the ID and try again."
+      },
+      "mismatch": {
+        "validation": "Mismatch",
+        "message": "Confirmation does not match. Re-enter to verify."
       }
     }
   },
@@ -160,6 +253,10 @@
       "relative": {
         "label": "Relative",
         "value": "3 hours ago"
+      },
+      "blog_meta": {
+        "label": "Blog meta",
+        "value": "15.02.2026"
       }
     },
     "number": {
@@ -191,9 +288,26 @@
     "description": "Single line ellipsis, multi-line clamp, break-word for long strings.",
     "single_line": "Single line (truncate)",
     "multi_line": "Multi-line (line-clamp-2)",
+    "multi_line_3": "Multi-line (line-clamp-3)",
     "break_word": "Break word",
     "sample_single": "This is a very long text that will be truncated with an ellipsis at the end of the line.",
     "sample_multi": "This is a very long text that spans multiple lines. It will be clamped to exactly 2 lines with an ellipsis. Additional content will be hidden from view.",
-    "sample_break": "superlongstringwithoutanyspaces_or_breaks_that_needs_to_be_broken_across_lines"
+    "sample_multi_3": "This is a longer text that spans multiple lines. It will be clamped to exactly 3 lines with an ellipsis at the end. Any content beyond the third line will be hidden from view and not accessible to the user.",
+    "sample_break": "superlongstringwithoutanyspaces_or_breaks_that_needs_to_be_broken_across_lines",
+    "rules_heading": "ELEMENT TRUNCATION RULES",
+    "rules_headers": {
+      "element": "ELEMENT",
+      "max_lines": "MAX LINES",
+      "overflow": "OVERFLOW"
+    },
+    "rules": {
+      "card_title": { "element": "Card title", "max_lines": "2", "overflow": "Ellipsis" },
+      "card_description": { "element": "Card description", "max_lines": "3", "overflow": "Ellipsis" },
+      "nav_item": { "element": "Nav item", "max_lines": "1", "overflow": "Ellipsis" },
+      "table_cell": { "element": "Table cell", "max_lines": "1", "overflow": "Ellipsis + Tooltip" },
+      "tag_text": { "element": "Tag text", "max_lines": "1", "overflow": "Ellipsis" },
+      "sidebar_link": { "element": "Sidebar link", "max_lines": "1", "overflow": "Ellipsis" },
+      "toast_message": { "element": "Toast message", "max_lines": "4", "overflow": "\"Show more\"" }
+    }
   }
 }
