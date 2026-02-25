@@ -2,11 +2,11 @@ import * as React from "react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import { GlitchText } from "../signature/glitch-text";
-import { DataStream } from "../signature/data-stream";
-import { TacticalPanel } from "../signature/tactical-panel";
-import { HUDOverlay } from "../signature/hud-overlay";
-import { RadarChart } from "../signature/radar-chart";
+import { GlitchText } from "../../signature/glitch-text";
+import { DataStream } from "../../signature/data-stream";
+import { TacticalPanel } from "../../signature/tactical-panel";
+import { HUDOverlay } from "../../signature/hud-overlay";
+import { RadarChart } from "../../signature/radar-chart";
 
 // ─── GlitchText ─────────────────────────────────────────────────────────────
 
