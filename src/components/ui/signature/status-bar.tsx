@@ -71,9 +71,8 @@ const StatusBar = React.forwardRef<HTMLDivElement, StatusBarProps>(
     const ratio = max > 0 ? clampedValue / max : 0;
     const filledCount = Math.round(ratio * segments);
 
-    /* Auto-danger color for health bar at low values */
     const resolveFill = (segIdx: number): string => {
-      if (segIdx >= filledCount) return "bg-white/8";
+      if (segIdx >= filledCount) return "bg-surface-2";
       if (variant === "health") {
         if (ratio <= 0.15) return "bg-destructive";
         if (ratio <= 0.3) return "bg-ef-orange";

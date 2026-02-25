@@ -53,7 +53,7 @@ function SkeletonRow({ colCount }: { colCount: number }) {
   return (
     <tr>
       {Array.from({ length: colCount }).map((_, i) => (
-        <td key={i} className="px-4 py-3 border-b border-white/[0.04]">
+        <td key={i} className="px-4 py-3 border-b border-border">
           <div
             className={cn(
               "h-3 bg-surface-2 animate-skeleton",
@@ -116,7 +116,7 @@ function TacticalTableInner<T extends Record<string, unknown>>(
                   key={col.key}
                   scope="col"
                   className={cn(
-                    "px-4 py-3 border-b border-white/10 bg-surface-0 sticky top-0 z-10",
+                    "px-4 py-3 border-b border-border bg-surface-0 sticky top-0 z-10",
                     "font-mono text-[11px] font-bold tracking-[0.12em] uppercase text-muted-foreground",
                     col.width ?? "",
                     ALIGN_CLASS[col.align ?? "left"],
@@ -188,7 +188,7 @@ function TacticalTableInner<T extends Record<string, unknown>>(
                     isSelected
                       ? "bg-primary/[0.06]"
                       : isEven
-                        ? "bg-white/[0.015] hover:bg-primary/[0.03]"
+                        ? "bg-surface-1 hover:bg-primary/[0.03]"
                         : "hover:bg-primary/[0.03]",
                     selectable && "cursor-pointer focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary",
                   )}
@@ -197,7 +197,7 @@ function TacticalTableInner<T extends Record<string, unknown>>(
                     <td
                       key={col.key}
                       className={cn(
-                        "px-4 py-3 text-[14px] text-foreground border-b border-white/[0.04]",
+                        "px-4 py-3 text-[14px] text-foreground border-b border-border",
                         ALIGN_CLASS[col.align ?? "left"],
                       )}
                     >

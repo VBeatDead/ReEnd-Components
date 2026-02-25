@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 /* ── Rarity config ────────────────────────────────────────────────────────── */
 
 const RARITY_STAR_COLORS: Record<number, string> = {
-  1: "text-white/40",
+  1: "text-muted-foreground/60",
   2: "text-ef-green/70",
   3: "text-ef-blue/80",
   4: "text-ef-purple",
@@ -26,7 +26,7 @@ const STAT_FILL: Record<string, string> = {
 
 const operatorCardVariants = cva(
   [
-    "relative bg-surface-1 border border-white/8 overflow-hidden transition-all duration-300",
+    "relative bg-surface-1 border border-border overflow-hidden transition-all duration-300",
     "before:absolute before:top-0 before:left-0 before:w-5 before:h-5",
     "before:border-t-2 before:border-l-2 before:border-primary/40 before:pointer-events-none",
   ].join(" "),
@@ -113,7 +113,7 @@ function RarityStars({ rarity }: { rarity: number }) {
         </span>
       ))}
       {Array.from({ length: 6 - rarity }).map((_, i) => (
-        <span key={`e-${i}`} className="text-white/15">
+        <span key={`e-${i}`} className="text-muted-foreground/30">
           ◇
         </span>
       ))}
@@ -237,7 +237,7 @@ const OperatorCard = React.forwardRef<HTMLDivElement, OperatorCardProps>(
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="font-mono text-[9px] uppercase tracking-wider border border-white/10 px-1.5 py-0.5 text-muted-foreground/60"
+                className="font-mono text-[9px] uppercase tracking-wider border border-border px-1.5 py-0.5 text-muted-foreground/60"
               >
                 {tag}
               </span>
@@ -247,7 +247,7 @@ const OperatorCard = React.forwardRef<HTMLDivElement, OperatorCardProps>(
 
         {/* Stats */}
         {stats && stats.length > 0 && (
-          <div className="space-y-2 pt-2 border-t border-white/6">
+          <div className="space-y-2 pt-2 border-t border-border">
             {stats.map((stat) => {
               const maxVal = stat.max ?? stat.value;
               const pct =
@@ -259,7 +259,7 @@ const OperatorCard = React.forwardRef<HTMLDivElement, OperatorCardProps>(
                   <span className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground w-8 shrink-0">
                     {stat.label}
                   </span>
-                  <div className="flex-1 h-1 bg-white/8 overflow-hidden">
+                  <div className="flex-1 h-1 bg-surface-2 overflow-hidden">
                     <div
                       className={cn("h-full transition-all duration-500", fill)}
                       style={{ width: `${pct}%` }}

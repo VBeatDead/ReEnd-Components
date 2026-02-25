@@ -11,7 +11,7 @@ const frequencyBarsVariants = cva("flex items-end gap-px", {
       success: "[&>span]:bg-ef-green",
       danger: "[&>span]:bg-destructive",
       info: "[&>span]:bg-ef-blue",
-      muted: "[&>span]:bg-white/20",
+      muted: "[&>span]:bg-muted-foreground/40",
     },
   },
   defaultVariants: { color: "primary" },

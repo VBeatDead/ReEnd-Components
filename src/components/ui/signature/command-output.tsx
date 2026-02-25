@@ -64,18 +64,18 @@ const CommandOutput = React.forwardRef<HTMLDivElement, CommandOutputProps>(
       <div
         ref={ref}
         className={cn(
-          "bg-[#0F0F0F] border border-white/8 font-mono text-[13px]",
+          "bg-background border border-border font-mono text-[13px]",
           className,
         )}
         {...props}
       >
         {/* Header */}
         {showHeader && (
-          <div className="flex items-center gap-2 px-4 py-2 border-b border-white/8">
+          <div className="flex items-center gap-2 px-4 py-2 border-b border-border">
             <div className="flex gap-1">
-              <span className="w-2.5 h-2.5 bg-white/10" />
-              <span className="w-2.5 h-2.5 bg-white/10" />
-              <span className="w-2.5 h-2.5 bg-white/10" />
+              <span className="w-2.5 h-2.5 bg-surface-2" />
+              <span className="w-2.5 h-2.5 bg-surface-2" />
+              <span className="w-2.5 h-2.5 bg-surface-2" />
             </div>
             <span className="font-mono text-[10px] text-muted-foreground/60 uppercase tracking-[0.15em] mx-auto">
               {headerText}
@@ -103,7 +103,7 @@ const CommandOutput = React.forwardRef<HTMLDivElement, CommandOutputProps>(
             return (
               <div
                 key={key}
-                className="flex gap-3 px-4 py-0.5 hover:bg-white/[0.02] transition-colors"
+                className="flex gap-3 px-4 py-0.5 hover:bg-surface-1 transition-colors"
               >
                 {/* Prefix */}
                 <span

@@ -15,7 +15,7 @@ const missionCardVariants = cva(
   {
     variants: {
       priority: {
-        low: "border-white/8",
+        low: "border-border",
         medium: "border-ef-blue/30",
         high: "border-ef-orange/40",
         critical: "border-ef-red/50 shadow-[0_0_12px_rgba(255,71,87,0.1)]",
@@ -45,7 +45,7 @@ const STATUS_CONFIG = {
   },
   completed: {
     label: "COMPLETED",
-    cls: "text-muted-foreground border-white/20 bg-white/5",
+    cls: "text-muted-foreground border-border bg-surface-1",
   },
   failed: {
     label: "FAILED",
@@ -135,7 +135,7 @@ const MissionCard = React.forwardRef<HTMLDivElement, MissionCardProps>(
         {...props}
       >
         {/* ── Header ── */}
-        <div className="flex items-center justify-between px-4 py-2.5 border-b border-white/8 bg-surface-0">
+        <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-surface-0">
           <span
             className={cn(
               "font-mono text-[10px] font-semibold tracking-[0.1em] uppercase",
@@ -184,7 +184,7 @@ const MissionCard = React.forwardRef<HTMLDivElement, MissionCardProps>(
                   aria-valuemin={0}
                   aria-valuemax={100}
                   aria-label="Mission progress"
-                  className="flex-1 h-1 bg-white/8 overflow-hidden"
+                  className="flex-1 h-1 bg-surface-2 overflow-hidden"
                 >
                   <div
                     className="h-full bg-primary transition-all duration-500"
@@ -207,7 +207,7 @@ const MissionCard = React.forwardRef<HTMLDivElement, MissionCardProps>(
                   {tags.map((tag) => (
                     <span
                       key={tag}
-                      className="font-mono text-[9px] uppercase tracking-wider border border-white/10 px-1.5 py-0.5 text-muted-foreground/60"
+                      className="font-mono text-[9px] uppercase tracking-wider border border-border px-1.5 py-0.5 text-muted-foreground/60"
                     >
                       {tag}
                     </span>
