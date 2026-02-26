@@ -4,6 +4,7 @@
 [![npm downloads](https://img.shields.io/npm/dm/reend-components)](https://www.npmjs.com/package/reend-components)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![CI](https://github.com/VBeatDead/ReEnd-Components/actions/workflows/ci.yml/badge.svg)](https://github.com/VBeatDead/ReEnd-Components/actions/workflows/ci.yml)
+[![bundlephobia](https://img.shields.io/bundlephobia/minzip/reend-components)](https://bundlephobia.com/package/reend-components)
 
 **The only React component library built for tactical, sci-fi, and gaming-inspired UI.**
 

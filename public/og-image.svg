@@ -1,57 +1,129 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0a0a0f"/>
-      <stop offset="100%" style="stop-color:#111118"/>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0A0A0F"/>
+      <stop offset="100%" stop-color="#0D0D16"/>
     </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" style="stop-color:#c8a560"/>
-      <stop offset="100%" style="stop-color:#e8c878"/>
+    <linearGradient id="glow-h" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFD429" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#FFD429" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#FFD429" stop-opacity="0"/>
     </linearGradient>
+    <linearGradient id="line-r" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FFD429" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#FFD429" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="fy">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="fs">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
-  
+
   <!-- Background -->
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  
-  <!-- Grid lines -->
-  <g stroke="#1a1a25" stroke-width="0.5" opacity="0.5">
-    <line x1="0" y1="0" x2="1200" y2="630"/>
-    <line x1="1200" y1="0" x2="0" y2="630"/>
-    <line x1="600" y1="0" x2="600" y2="630"/>
+  <rect width="1200" height="630" fill="url(#bg-grad)"/>
+
+  <!-- Grid -->
+  <g stroke="#FFD429" stroke-width="0.4" opacity="0.04">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
     <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="120" y1="0" x2="120" y2="630"/>
+    <line x1="240" y1="0" x2="240" y2="630"/>
+    <line x1="360" y1="0" x2="360" y2="630"/>
+    <line x1="480" y1="0" x2="480" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="720" y1="0" x2="720" y2="630"/>
+    <line x1="840" y1="0" x2="840" y2="630"/>
+    <line x1="960" y1="0" x2="960" y2="630"/>
+    <line x1="1080" y1="0" x2="1080" y2="630"/>
   </g>
-  
+
   <!-- Corner brackets -->
-  <g stroke="#c8a560" stroke-width="2" fill="none" opacity="0.6">
-    <!-- Top-left -->
-    <path d="M 40,40 L 40,80 M 40,40 L 80,40"/>
-    <!-- Top-right -->
-    <path d="M 1160,40 L 1160,80 M 1160,40 L 1120,40"/>
-    <!-- Bottom-left -->
-    <path d="M 40,590 L 40,550 M 40,590 L 80,590"/>
-    <!-- Bottom-right -->
-    <path d="M 1160,590 L 1160,550 M 1160,590 L 1120,590"/>
+  <g stroke="#FFD429" stroke-width="2" fill="none" opacity="0.85">
+    <polyline points="48,88 48,48 88,48"/>
+    <polyline points="1112,48 1152,48 1152,88"/>
+    <polyline points="48,542 48,582 88,582"/>
+    <polyline points="1112,582 1152,582 1152,542"/>
   </g>
-  
-  <!-- Diamond marker -->
-  <polygon points="600,180 616,200 600,220 584,200" fill="#c8a560"/>
-  
+
   <!-- System label -->
-  <text x="600" y="265" text-anchor="middle" font-family="monospace" font-size="12" letter-spacing="6" fill="#c8a560" opacity="0.8">EF-SYS // DESIGN SYSTEM</text>
-  
-  <!-- Title -->
-  <text x="600" y="330" text-anchor="middle" font-family="sans-serif" font-size="56" font-weight="bold" letter-spacing="4" fill="#f0f0f0">ENDFIELD</text>
-  <text x="600" y="385" text-anchor="middle" font-family="sans-serif" font-size="32" font-weight="bold" letter-spacing="8" fill="#c8a560">DESIGN SYSTEM</text>
-  
-  <!-- Version -->
-  <text x="600" y="430" text-anchor="middle" font-family="monospace" font-size="16" letter-spacing="4" fill="#666" opacity="0.8">v2.0 — COMPLETE EDITION</text>
-  
-  <!-- Description -->
-  <text x="600" y="480" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#888">Sci-Fi Industrial Futurism · 87+ Components · React + TypeScript</text>
-  
-  <!-- Bottom line -->
-  <line x1="200" y1="540" x2="1000" y2="540" stroke="url(#accent)" stroke-width="1" opacity="0.3"/>
-  
-  <!-- Bottom label -->
-  <text x="600" y="570" text-anchor="middle" font-family="monospace" font-size="10" letter-spacing="4" fill="#555">ARKNIGHTS: ENDFIELD — COMPONENT EXPLORER</text>
+  <text x="76" y="72" font-family="'Courier New',monospace" font-size="11" fill="#FFD429" opacity="0.45" letter-spacing="3">SYS::COMPONENT_REGISTRY v1.1.0</text>
+  <text x="1124" y="72" font-family="'Courier New',monospace" font-size="11" fill="#FFD429" opacity="0.45" letter-spacing="2" text-anchor="end">ENDFIELD::UI</text>
+
+  <!-- Central horizontal glow line -->
+  <rect x="0" y="313" width="1200" height="1.5" fill="url(#glow-h)"/>
+
+  <!-- Diamond logo — centered vertically on left zone -->
+  <g transform="translate(120, 255)" filter="url(#fy)">
+    <polygon points="58,0 116,58 58,116 0,58" fill="none" stroke="#FFD429" stroke-width="1.5" opacity="0.8"/>
+    <polygon points="58,20 96,58 58,96 20,58" fill="#FFD429" opacity="0.08"/>
+    <polygon points="58,38 76,58 58,76 40,58" fill="#FFD429" opacity="0.95"/>
+    <line x1="58" y1="0" x2="58" y2="20" stroke="#FFD429" stroke-width="1" opacity="0.3"/>
+    <line x1="58" y1="96" x2="58" y2="116" stroke="#FFD429" stroke-width="1" opacity="0.3"/>
+    <line x1="0" y1="58" x2="20" y2="58" stroke="#FFD429" stroke-width="1" opacity="0.3"/>
+    <line x1="96" y1="58" x2="116" y2="58" stroke="#FFD429" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Connector line -->
+  <rect x="256" y="314" width="120" height="1.5" fill="url(#line-r)" opacity="0.6"/>
+
+  <!-- Main title -->
+  <text x="296" y="257" font-family="'Courier New',Courier,monospace" font-size="68" font-weight="700" fill="#EBEBEB" letter-spacing="-2">ReEnd</text>
+  <text x="296" y="335" font-family="'Courier New',Courier,monospace" font-size="68" font-weight="700" fill="#FFD429" letter-spacing="-2" filter="url(#fs)">Components</text>
+
+  <!-- Tagline -->
+  <text x="296" y="382" font-family="'Courier New',Courier,monospace" font-size="19" fill="#666" letter-spacing="0.5">The only React library built for sci-fi, tactical &amp; gaming UI.</text>
+
+  <!-- Divider -->
+  <rect x="296" y="406" width="700" height="1" fill="#232330"/>
+
+  <!-- Stats -->
+  <text x="296" y="441" font-family="'Courier New',Courier,monospace" font-size="34" font-weight="700" fill="#FFD429">75+</text>
+  <text x="296" y="462" font-family="'Courier New',Courier,monospace" font-size="12" fill="#444" letter-spacing="2">COMPONENTS</text>
+
+  <rect x="422" y="420" width="1" height="48" fill="#232330"/>
+
+  <text x="438" y="441" font-family="'Courier New',Courier,monospace" font-size="34" font-weight="700" fill="#EBEBEB">1166</text>
+  <text x="438" y="462" font-family="'Courier New',Courier,monospace" font-size="12" fill="#444" letter-spacing="2">TESTS</text>
+
+  <rect x="566" y="420" width="1" height="48" fill="#232330"/>
+
+  <text x="582" y="441" font-family="'Courier New',Courier,monospace" font-size="34" font-weight="700" fill="#EBEBEB">4</text>
+  <text x="582" y="462" font-family="'Courier New',Courier,monospace" font-size="12" fill="#444" letter-spacing="2">HOOKS</text>
+
+  <rect x="638" y="420" width="1" height="48" fill="#232330"/>
+
+  <text x="654" y="441" font-family="'Courier New',Courier,monospace" font-size="34" font-weight="700" fill="#EBEBEB">CLI</text>
+  <text x="654" y="462" font-family="'Courier New',Courier,monospace" font-size="12" fill="#444" letter-spacing="2">npx reend-ui</text>
+
+  <!-- Bottom left -->
+  <text x="76" y="560" font-family="'Courier New',monospace" font-size="15" fill="#FFD429" opacity="0.65" letter-spacing="1">reend-components.pages.dev</text>
+  <text x="76" y="586" font-family="'Courier New',monospace" font-size="13" fill="#444" letter-spacing="1">npm install reend-components</text>
+
+  <!-- Right side badges -->
+  <g transform="translate(900, 480)">
+    <rect width="220" height="34" fill="#13131E" stroke="#1E1E2E" stroke-width="1"/>
+    <rect width="3" height="34" fill="#FFD429"/>
+    <text x="14" y="22" font-family="'Courier New',monospace" font-size="13" fill="#FFD429" letter-spacing="1">MIT · Open Source</text>
+  </g>
+  <g transform="translate(900, 524)">
+    <rect width="220" height="34" fill="#13131E" stroke="#1E1E2E" stroke-width="1"/>
+    <rect width="3" height="34" fill="#4DA8DA"/>
+    <text x="14" y="22" font-family="'Courier New',monospace" font-size="13" fill="#4DA8DA" letter-spacing="1">WCAG 2.1 AA · Dark-first</text>
+  </g>
+  <g transform="translate(900, 568)">
+    <rect width="220" height="34" fill="#13131E" stroke="#1E1E2E" stroke-width="1"/>
+    <rect width="3" height="34" fill="#6BCB77"/>
+    <text x="14" y="22" font-family="'Courier New',monospace" font-size="13" fill="#6BCB77" letter-spacing="1">TypeScript · Radix UI</text>
+  </g>
+
+  <!-- Bottom scan line -->
+  <rect x="0" y="614" width="1200" height="1" fill="url(#glow-h)" opacity="0.4"/>
+  <text x="1124" y="600" font-family="'Courier New',monospace" font-size="10" fill="#2A2A3A" letter-spacing="2" text-anchor="end">ARKNIGHTS: ENDFIELD INSPIRED</text>
 </svg>

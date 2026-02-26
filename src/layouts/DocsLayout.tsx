@@ -11,6 +11,7 @@ import { SectionHeader } from "@/components/docs/SectionHeader";
 import { SectionNav } from "@/components/docs/SectionNav";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { useLocalizedPath } from "@/hooks/useLocalizedPath";
+import { usePageMeta } from "@/hooks/use-page-meta";
 import { AnimatePresence, motion } from "framer-motion";
 import { Suspense } from "react";
 
@@ -44,6 +45,8 @@ const DocsLayout = () => {
   const activeSection = useMemo(() => {
     return sidebarData.find((s) => s.slug === slug) ?? null;
   }, [sidebarData, slug]);
+
+  usePageMeta(slug);
 
   const hashActiveId = useMemo(() => {
     const hash = location.hash.slice(1);
