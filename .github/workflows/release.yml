@@ -1,0 +1,49 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          registry-url: https://registry.npmjs.org
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library & CLI
+        run: npm run build:lib && npm run build:cli
+
+      - name: Verify output files
+        run: |
+          test -f dist/lib/index.mjs  || { echo "❌ missing dist/lib/index.mjs";  exit 1; }
+          test -f dist/lib/index.cjs  || { echo "❌ missing dist/lib/index.cjs";  exit 1; }
+          test -f dist/lib/index.d.ts || { echo "❌ missing dist/lib/index.d.ts"; exit 1; }
+          test -f dist/lib/style.css  || { echo "❌ missing dist/lib/style.css";  exit 1; }
+          test -f dist/bin/cli.cjs    || { echo "❌ missing dist/bin/cli.cjs";    exit 1; }
+          echo "✅ All output files present"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/lib/index.mjs
+            dist/lib/index.cjs
+            dist/lib/style.css
+            dist/bin/cli.cjs
