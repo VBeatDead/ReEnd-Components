@@ -47,7 +47,11 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
             const isCurrent = state === "current";
             const isLast = i === steps.length - 1;
             const marker = isComplete || isCurrent ? "◆" : "◇";
-            const stateLabel = isComplete ? "completed" : isCurrent ? "current" : "upcoming";
+            const stateLabel = isComplete
+              ? "completed"
+              : isCurrent
+                ? "current"
+                : "upcoming";
 
             return (
               <div
@@ -106,72 +110,77 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
       );
     }
 
-    // Horizontal (default)
     return (
-      <div
-        ref={ref}
-        role="list"
-        aria-label="Progress steps"
-        className={cn("flex items-start w-full min-w-max", className)}
-        {...props}
-      >
-        {steps.map((step, i) => {
-          const state = getStepState(i, currentStep);
-          const isComplete = state === "complete";
-          const isCurrent = state === "current";
-          const isLast = i === steps.length - 1;
-          const marker = isComplete || isCurrent ? "◆" : "◇";
-          const stateLabel = isComplete ? "completed" : isCurrent ? "current" : "upcoming";
+      <div className="overflow-x-auto">
+        <div
+          ref={ref}
+          role="list"
+          aria-label="Progress steps"
+          className={cn("flex items-start min-w-full", className)}
+          {...props}
+        >
+          {steps.map((step, i) => {
+            const state = getStepState(i, currentStep);
+            const isComplete = state === "complete";
+            const isCurrent = state === "current";
+            const isLast = i === steps.length - 1;
+            const marker = isComplete || isCurrent ? "◆" : "◇";
+            const stateLabel = isComplete
+              ? "completed"
+              : isCurrent
+                ? "current"
+                : "upcoming";
 
-          return (
-            <React.Fragment key={i}>
-              <div
-                role="listitem"
-                aria-label={`Step ${i + 1} of ${steps.length}: ${step.label}, ${stateLabel}`}
-                aria-current={isCurrent ? "step" : undefined}
-                className="flex flex-col items-center flex-shrink-0"
-              >
-                <span
-                  className={cn(
-                    "font-mono text-[13px] leading-none mb-1.5",
-                    isComplete && "text-primary",
-                    isCurrent &&
-                      "text-primary drop-shadow-[0_0_6px_rgba(255,212,41,0.6)]",
-                    !isComplete && !isCurrent && "text-muted-foreground/40",
-                  )}
-                  aria-hidden="true"
-                >
-                  {marker}
-                </span>
-                <p
-                  className={cn(
-                    "font-display text-[11px] uppercase tracking-wider mt-1",
-                    isCurrent && "text-foreground font-semibold",
-                    isComplete && "text-primary",
-                    !isComplete && !isCurrent && "text-muted-foreground/60",
-                  )}
-                >
-                  {step.label}
-                </p>
-                {step.description && (
-                  <p className="text-[12px] text-muted-foreground/60 mt-0.5 text-center">
-                    {step.description}
-                  </p>
-                )}
-              </div>
-
-              {/* Connector between steps */}
-              {!isLast && (
+            return (
+              <React.Fragment key={i}>
                 <div
-                  className={cn(
-                    "flex-1 h-px self-start mt-[0.45em] mx-2",
-                    isComplete ? "bg-primary" : "bg-border",
+                  role="listitem"
+                  aria-label={`Step ${i + 1} of ${steps.length}: ${step.label}, ${stateLabel}`}
+                  aria-current={isCurrent ? "step" : undefined}
+                  className="flex flex-col items-center flex-shrink-0"
+                >
+                  <span
+                    className={cn(
+                      "font-mono text-[13px] leading-none mb-1.5",
+                      isComplete && "text-primary",
+                      isCurrent &&
+                        "text-primary drop-shadow-[0_0_6px_rgba(255,212,41,0.6)]",
+                      !isComplete && !isCurrent && "text-muted-foreground/40",
+                    )}
+                    aria-hidden="true"
+                  >
+                    {marker}
+                  </span>
+                  <p
+                    className={cn(
+                      "font-display text-[11px] uppercase tracking-wider mt-1 whitespace-nowrap",
+                      isCurrent && "text-foreground font-semibold",
+                      isComplete && "text-primary",
+                      !isComplete && !isCurrent && "text-muted-foreground/60",
+                    )}
+                  >
+                    {step.label}
+                  </p>
+                  {step.description && (
+                    <p className="text-[12px] text-muted-foreground/60 mt-0.5 text-center whitespace-nowrap">
+                      {step.description}
+                    </p>
                   )}
-                />
-              )}
-            </React.Fragment>
-          );
-        })}
+                </div>
+
+                {/* Connector between steps */}
+                {!isLast && (
+                  <div
+                    className={cn(
+                      "flex-1 min-w-[16px] h-px self-start mt-[0.45em] mx-2",
+                      isComplete ? "bg-primary" : "bg-border",
+                    )}
+                  />
+                )}
+              </React.Fragment>
+            );
+          })}
+        </div>
       </div>
     );
   },

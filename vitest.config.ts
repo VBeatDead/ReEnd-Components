@@ -13,7 +13,8 @@ export default defineConfig({
       provider: "v8",
       include: [
         "src/components/ui/*.{ts,tsx}",
-        "src/hooks/use-toast.ts",
+        "src/components/ui/signature/*.{ts,tsx}",
+        "src/hooks/*.ts",
         "src/lib/utils.ts",
       ],
       exclude: [

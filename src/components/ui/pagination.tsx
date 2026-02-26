@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 /* ── Variants ─────────────────────────────────────────────────────────────── */
 
 const paginationItemVariants = cva(
-  "font-mono text-[12px] w-9 h-9 flex items-center justify-center transition-all border",
+  "font-display text-[12px] w-9 h-9 flex items-center justify-center transition-all border",
   {
     variants: {
       active: {

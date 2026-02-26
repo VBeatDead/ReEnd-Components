@@ -5,7 +5,141 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.1.0] - 2026-02-26
+
+### Added
+
+#### New Components (28)
+
+**Form & Input**
+- **`OTPInput`** — Orbitron font, 48×56px boxes, `success` prop (green border + text), `onResend` + `resendCooldown` timer, paste support, `animate-shake` on error
+- **`DatePicker`** — Full rewrite: custom calendar via `@radix-ui/react-popover`. Diamond clip-path selected day, MO–SU headers, ◂/▸ month nav, ◂◂/▸▸ year-jump, TODAY/CLEAR footer, `minDate`/`maxDate`, YYYY.MM.DD display format
+- **`Rating`** — Diamond ◆/◇ rating with configurable `max`, `precision`, hover preview, keyboard navigation, ARIA slider role
+- **`FileUpload`** — 8 drag states (including `drag-invalid`), per-file list with 80×80px image thumbnails, 3px progress bar per file, Orbitron filename display, `[SELECT FILES]` button in idle state
+- **`RichTextEditor`** — Toolbar: B/I/U/S/H1–H3/quote/ol/ul/link/image/divider. MARKDOWN/PREVIEW toggle, character count, `maxLength` enforcement. Zero external dependencies
+
+**Overlay & Utility**
+- **`BackToTop`** — Configurable scroll threshold, smooth/instant scroll, fixed positioning
+- **`BottomSheet`** — Drag-to-dismiss gesture (120px threshold), snap points, portal render, backdrop `bg-black/60`
+- **`Carousel`** + **`CarouselItem`** — Arrow key navigation, `role="region"` + `aria-roledescription`, dot indicators with `role="tab"`, `overflow-x-hidden` track
+- **`CommandPalette`** — Cmd+K / Ctrl+K trigger, fuzzy search via Fuse.js, action groups, keyboard navigation, `useCommandPalette` hook exported
+- **`ContextMenu`** — Right-click trigger, nested submenus, keyboard navigation, portal render
+- **`CookieConsent`** — Banner + modal variants, preference category toggles, `onAccept`/`onDecline`/`onCustomize` callbacks
+- **`CopyClipboard`** — Click-to-copy with ✓ success feedback and configurable timeout
+- **`Dropdown`** + **`DropdownItem`** — Portal-based `getBoundingClientRect` positioning, outside click/scroll/resize close, ARIA `menu`/`menuitem`
+- **`FilterBar`** + **`FilterChip`** — Portal dropdown with flip-upward detection, ARIA `listbox`/`option`, `aria-haspopup`/`aria-expanded`
+- **`Footer`** — Multi-column layout with Endfield theming, logo slot, link columns, social icons
+- **`Resizable`** + **`ResizablePanel`** + **`ResizableHandle`** — `react-resizable-panels` v4 integration, string `%` sizes
+- **`ScrollProgress`** — Fixed/sticky variants, ARIA `progressbar`, `forwardRef`
+- **`SessionTimeoutModal`** — Countdown timer, corner bracket decoration, color-coded progress bar (`text-ef-red`/`text-ef-orange`), `variant="primary"` button
+- **`ViewToggle`** — Grid/list view toggle with `React.forwardRef` + `displayName`
+
+**Data Display**
+- **`Chart`** — Recharts wrapper with Endfield color palette (`--chart-1` through `--chart-8`) and design token theming
+- **`List`** + **`ListItem`** — Ordered/unordered/description list variants with type aliases
+- **`SortControl`** — Tri-state sort cycling (asc → desc → none), ▲/▼ indicators, Orbitron labels
+- **`SpoilerBlock`** — Click-to-reveal hidden content, `hsl(var(--foreground))` background (white dark / black light)
+- **`Stat`** — Metric display card with label/value/trend/icon slots
+- **`Table`** + **`TableRow`** + **`TableHead`** + **`TableCell`** — Semantic tokens (`hover:bg-primary/[0.03]`, `even:bg-foreground/[0.015]`), interactive column sort with `useState`
+- **`ThemeSwitcher`** — Sun/Moon lucide icons, 360° spin animation, bidirectional sync via `ef-theme-change` `CustomEvent` with `ThemeProvider`
+
+**Mobile**
+- **`PullToRefresh`** — 5-phase state machine (idle → pulling → threshold → refreshing → complete), diamond spinner, haptic feedback via `navigator.vibrate`
+- **`SwipeableItem`** — Touch-swipeable list item with left/right action reveal at 80px, auto-trigger at 160px, pointer event handling
+
+#### New Hooks (4)
+- **`useFocusTrap`** — Traps Tab/Shift+Tab within a container ref. Returns ref to attach to boundary element. Auto-cleanup on unmount
+- **`useShortcut`** — Global keyboard shortcuts with `meta`/`ctrl`/`shift` modifier support. Auto-cleanup on unmount
+- **`useInView`** — `IntersectionObserver` wrapper with `threshold`, `once` option, reduced-motion awareness, SSR-safe fallback
+- **`useStagger`** — Returns `string[]` of CSS delay values for staggered entrance animations based on item count and base delay
+
+#### CSS Utilities (`src/styles/utilities.css`)
+- New standalone `utilities.css` bundled into `dist/lib/style.css` for npm consumers
+- 11 new animation keyframes: `shake`, `slideUp`, `particleDrift`, `switchThumbSpin`, `fadeInDown`, `slideInRight`, `scaleIn`, `rotate`, `loadingDot`, `dialog-in`, `accordion-open/close`
+- Corresponding `animate-*` classes for all new keyframes
+- `.panel-glass`, `.panel-glass-light`, `.panel-glass-dark`, `.scanline-overlay`, `.light .scanline-overlay::after`, `.spoiler`/`.spoiler[data-revealed]`
+
+#### Design Tokens
+- Semantic text tokens: `--text-primary`, `--text-secondary`, `--text-tertiary`, `--text-disabled`, `--text-inverse`, `--text-error`, `--text-success`, `--text-warning`, `--text-info`, `--text-muted`
+- Glow: `--ef-yellow-glow`
+- Border aliases: `--border-subtle`, `--border-default`
+- Font references: `--font-display`, `--font-ui`, `--font-mono`, `--font-body`, `--font-decorative`
+- Light mode overrides for all new tokens in both `variables.css` and `index.css`
+
+#### i18n
+- EN + ID translations for all 28 new components and 4 new hooks (24 locale files updated)
+- CLI usage section in `install.json` — all 4 commands documented in both languages
+- `useFocusTrap`, `useShortcut`, `useInView`, `useStagger` added to API Reference translations
+
+### Changed
+
+#### Enhanced Components (17)
+- **`Accordion`** — Single rotating `+` indicator (rotates 45° → × on open), cubic-bezier easing via `utilities.css`
+- **`Alert`** — 4 variants (info/warning/danger/success), dismissible with `onDismiss`, ARIA `role="alert"`, decorative icons `aria-hidden`
+- **`Avatar`** — Diamond glow hover via `drop-shadow` (works with `clip-corner-sm`); per-size fallback text scaling: `xs→text-[10px]` through `2xl→text-4xl`
+- **`Button`** — Loading state refinements
+- **`Card`** — Sub-component refinements
+- **`Dialog`** — 5 sizes (sm/md/lg/xl/fullscreen), `backdrop-blur-sm`, `animate-dialog-in` open animation
+- **`EmptyState`** — 5 named presets (empty/error/offline/search/permission)
+- **`Pagination`** — Refinements
+- **`Popover`** — `z-50` → `z-[100]` to clear sticky headers
+- **`Progress`** — Shimmer animation improvements
+- **`Skeleton`** — 4 variants: `line`, `circle`, `card`, `avatar`
+- **`Sonner`** — All hardcoded hex colors (`#CCC`, `#666`) replaced with `text-muted-foreground`; `hover:!text-white` → `hover:!text-foreground`
+- **`Stepper`** — Removed `-mx-1 px-1` from overflow wrapper (was causing unnecessary horizontal scrollbar)
+- **`Switch`** — Full diamond thumb redesign: `clipPath: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)`. Spin animation on toggle via `key={spinKey}` remount strategy. `bg-primary-foreground` (on) / `bg-foreground/80` (off)
+- **`Tabs`** — `TabsList` changed from `overflow-x-auto` to `flex-wrap` to prevent horizontal scroll overflow
+- **`Timeline`** — Refinements
+- **`Tooltip`** — Refinements
+
+#### Signature Components (7)
+- **`CommandOutput`** — Expanded API, token-compliant colors
+- **`FrequencyBars`** — Configurable bar count, color theming
+- **`MatrixGrid`** — Responsive sizing, accessibility labels
+- **`MissionCard`** — Status indicators, collapsible details
+- **`OperatorCard`** — Enhanced layout, ViewToggle integration support
+- **`StatusBar`** — Dynamic segments, ARIA roles
+- **`TacticalTable`** — Sortable columns, design token compliance
+
+#### Docs Site
+- **`DocsHeader`** logo — replaced `<img>` with CSS mask (`WebkitMask`/`mask`) so icon renders in `hsl(var(--foreground))`, visible in all modes
+- **`DocsSidebar`** — Fixed `filteredData` useMemo missing `sidebarData` in deps (sidebar never re-rendered on language switch)
+- **`ComponentPreview`** — Fixed `ViewportFrame` using `t()` without `useTranslation`
+- **`PlaygroundControlField`** — Diamond toggle dark mode fix: `bg-primary-foreground` when ON (near-black, visible on yellow track)
+- **`ThemeProvider`** — Bidirectional sync via `ef-theme-change` `CustomEvent`; loop prevention via functional state updater
+- **`sidebarData`** — Removed `view-toggle`, `success-state`; added `cli-usage`, `rich-text-editor`, all new component IDs
+- All 11 section files rewritten with complete demos, `code` props on all `ComponentPreview`, design token compliance, ARIA attributes
+
+#### Build & Tooling
+- `vite.config.ts` — Manual chunks: `sandpack` (@codesandbox + @babel + @stitches), `codemirror`, `lezer`, `radix`, `charts`, `icons`, `i18n`. `chunkSizeWarningLimit: 600`
+- CI `MAX_MJS` limit: 130 kB → 300 kB (actual bundle is ~230 kB MJS)
+- CI: added `npm run build:cli` step, `dist/bin/cli.cjs` and `dist/lib/style.css` existence checks
+
+### Fixed
+- **CLI registry** — `date-picker` missing `@radix-ui/react-popover` dep (component was fully rewritten per Section 71 spec)
+- **CLI registry** — `holo-card` had false `framer-motion` dep (uses pure CSS/React state)
+- **CLI registry** — `data-stream` missing `framer-motion` dep (imports `motion`, `AnimatePresence`)
+- **`animate-dialog-in`** — was missing from `tailwind.config.ts` and `index.css`; dialog had no open animation
+- **`animate-shake`** — was missing from `utilities.css`; OTP error shake was broken for npm users
+- **`RatingProps.onChange`** — `Omit<HTMLAttributes, "onChange">` pattern resolves type conflict
+- **`SessionTimeoutModal`** — `variant="default"` → `variant="primary"` to match Button API
+- **`list.tsx` / `stat.tsx`** — empty `interface X extends Y {}` converted to `type X = Y` aliases (lint errors)
+
+### Tests
+- **1166 tests** across **26 files**, 0 failures
+- Restructured: 24 flat files → 26 organized files
+  - Deleted 6 old monolithic files (accordion-tabs, button-badge, signature-cards/core/hud/panel)
+  - Added `ui/__tests__/signature/` subdirectory (4 files)
+  - Added `sections/__tests__/` directory (4 integration test files)
+  - Split monolithic files into focused single-concern files
+- `vitest.config.ts` coverage now includes `src/hooks/*.ts` and `src/components/ui/signature/*.{ts,tsx}`
+- Added `PointerEvent` polyfill to `src/test/setup.ts` for pointer-gesture components
+
+### Bundle
+- Library: **230.92 kB MJS** / 242.10 kB CJS (49.69 kB gzip)
+- Docs site: 0 chunk size warnings after `manualChunks` split
+
+---
 
 ## [1.0.0] - 2026-02-20
 
@@ -43,6 +177,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `Stepper`: upcoming markers `text-white/20` → `text-muted-foreground/40`; connectors `bg-white/10` → `bg-border`
   - `Breadcrumb`: separator `text-white/20` → `text-muted-foreground/40`
   - `EmptyState`: icon container `text-white/15` → `text-muted-foreground/30`
+
+---
 
 ## [0.4.0] - 2026-02-20
 
@@ -94,7 +230,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Library bundle** updated to include all components (Tier 4A–6)
 - **`src/components/ui/index.ts`** — added exports for Timeline, TimelineItem, timelineItemVariants, Stepper, Pagination, paginationItemVariants, Breadcrumb, NumberInput, numberInputVariants, Skeleton, EmptyState, Alert and all new Signature components
 - **`package.json`** — added `bin` field for `reend-ui` CLI; `prepublishOnly` now runs `build:lib && build:cli`; added `esbuild`, `commander`, `chalk`, `prompts`, `@codesandbox/sandpack-react` to devDependencies
-- **`.gitignore`** — added `CLAUDE.md` (AI instruction file, kept local only)
+
+---
 
 ## [0.3.0] - 2026-02-19
 
@@ -118,60 +255,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `ContentMediaSection.tsx` — Dividers section now uses `<Separator>` with `variant="default"` and `variant="glow"`
 - **Library bundle size** — 62.00 kB MJS / 44.86 kB CJS (under 70 kB Month 2 target)
 - **`vite.lib.config.ts`** — Added all 5 Tier 3 Radix packages to `external` list: `@radix-ui/react-accordion`, `@radix-ui/react-tabs`, `@radix-ui/react-popover`, `@radix-ui/react-dialog`, `@radix-ui/react-separator`
-- **`.gitignore`** — Added `CLAUDE.md` entry so local AI instruction file is never tracked by git
 
 ### Fixed
 
 - `separator.tsx` — Resolved TypeScript conflict where `orientation` prop was defined in both Radix's `ComponentPropsWithoutRef` and CVA's `VariantProps`. Fixed via `Omit<ComponentPropsWithoutRef<Root>, "orientation">` to let CVA's type take precedence; runtime resolves `null` to `"horizontal"` default.
 
-## [Unreleased — Tier 2, v0.2.x pre-release]
-
-### Added
-
-- **`Checkbox`** — `@radix-ui/react-checkbox` powered. Square 18×18px border-2. Unchecked: `border-white/25` / hover `border-primary/60`. Checked: `bg-primary` + `◆` indicator. Indeterminate: `bg-primary/50` + `−` indicator. `label` + `helperText` props. Focus ring yellow. Disabled: `opacity-40`.
-- **`RadioGroup`** + **`RadioGroupItem`** — `@radix-ui/react-radio-group`. Diamond swap: `◇` (muted) unchecked → `◆` (primary) checked via `group-data-[state=...]` Tailwind. `label` + `helperText` props on item.
-- **`Switch`** — `@radix-ui/react-switch`. Square 44×24px track (`rounded-none`). Off: `bg-white/10 border-white/15`. On: `bg-primary`. Thumb: `w-5 h-5 bg-white translate-x-5` on checked. `label`, `offLabel`, `onLabel` props.
-- **`Select`** — `@radix-ui/react-select`. Full sub-component API: `Select`, `SelectGroup`, `SelectValue`, `SelectTrigger`, `SelectContent`, `SelectLabel`, `SelectItem`, `SelectSeparator`, `SelectScrollUpButton`, `SelectScrollDownButton`. Trigger styled like `Input` (border/focus/disabled states consistent). Content: `bg-surface-2`. Item: yellow hover. `danger` prop on item for destructive actions. Uses `▾`/`▴` text chars (no lucide-react dependency).
-- **`Avatar`** + **`AvatarImage`** + **`AvatarFallback`** — `@radix-ui/react-avatar`. `clip-corner-sm` shape (NOT circle). 6 sizes: `xs`(24px) / `sm`(32px) / `md`(40px) / `lg`(56px) / `xl`(80px) / `2xl`(120px). Status diamond dot `◆` at bottom-right: `online`(`ef-green`) / `offline`(`muted`) / `busy`(`destructive`) / `away`(`ef-orange`). Exports `avatarVariants`.
-- **`Progress`** — `@radix-ui/react-progress`. 4 color variants: `default`(primary) / `success`(ef-green) / `danger`(destructive) / `info`(ef-blue). 3 sizes: `sm`(h-1) / `md`(h-1.5, default) / `lg`(h-2.5). `showLabel` shows right-aligned `font-mono` percent. Indeterminate: `animate-skeleton` shimmer. Fill uses `ease-smooth` transition. Value auto-clamped 0–100. Exports `progressTrackVariants`, `progressFillVariants`.
-- **Test coverage** — 73 new tests added (342 total across 9 test files):
-  - `__tests__/interactive.test.tsx` — 41 tests (Checkbox, RadioGroup, Switch, Select)
-  - `__tests__/display.test.tsx` — 32 tests (Avatar, Progress)
-
-### Changed
-
-- **Docs site demos** updated to use real library imports (not inline HTML):
-  - `FormsDemo.tsx` — Checkbox/Radio sections now use `<Checkbox>`, `<RadioGroup>`, `<RadioGroupItem>`; Toggle now uses `<Switch>`; Select dropdown uses `<Select>`, `<SelectTrigger>`, etc. from `reend-components`
-  - `DataDisplaySection.tsx` — Avatar and Progress sections now use real `<Avatar>` / `<Progress>` library components
-- **Library bundle size** — 53.13 kB MJS / 37.85 kB CJS (under 70 kB Month 2 target)
-- **`vite.lib.config.ts`** — Added all 6 Tier 2 Radix packages to `external` list: `@radix-ui/react-checkbox`, `@radix-ui/react-radio-group`, `@radix-ui/react-switch`, `@radix-ui/react-select`, `@radix-ui/react-avatar`, `@radix-ui/react-progress`
-
-- **`Button`** — 6 CVA variants (`primary`, `secondary`, `ghost`, `danger`, `link`, `icon`) + 5 size variants (`xs`, `sm`, `md`, `lg`, `xl`) + `loading` state (diamond spinner, `aria-busy`, `disabled`) + `asChild` via `@radix-ui/react-slot`. Exports `buttonVariants`.
-- **`Badge`** — 7 color variants (`default`, `primary`, `info`, `success`, `warning`, `danger`, `purple`) + `removable` prop with `onRemove` callback (`stopPropagation` handled). Exports `badgeVariants`.
-- **`Card`** — Root component with corner bracket decoration (top-left + bottom-right via Tailwind `before:`/`after:` pseudo-element utilities), `hoverable` (lift + shadow + bracket intensify on hover) and `selected` (yellow border + subtle background) boolean variants. Exports `cardVariants`.
-  - `CardHeader` — flex layout container for title + action slots
-  - `CardMeta` — overline label (`font-mono 10px uppercase tracking-[0.15em] text-primary`)
-  - `CardTitle` — display heading (`font-display text-sm font-bold uppercase`)
-  - `CardDescription` — muted body text (`text-sm text-muted-foreground leading-relaxed`)
-  - `CardBody` — main content area with `p-5` padding
-  - `CardFooter` — action row with `border-t border-border` separator
-- **`Input`** — Single-line text input built as a flex wrapper div (border + state on wrapper, inner `<input>` transparent). Props: `state` (`default`/`error`/`success`), `size` (`sm`=32px / `md`=44px / `lg`=52px), `leftElement`, `rightElement`. Focus ring: yellow glow (`rgba(255,212,41,0.1)`). Error ring: red glow (`rgba(255,71,87,0.1)`). Disabled: `opacity-40 cursor-not-allowed pointer-events-none`. Uses `Omit<InputHTMLAttributes, "size">` to avoid HTML `size` attr collision. Exports `inputWrapperVariants`.
-- **`Label`** — Form label (`font-display 11px uppercase tracking-widest text-muted-foreground`). `forwardRef` to `<label>`.
-- **`HelperText`** — Supporting text below inputs. `state` prop drives color: `default`→`text-muted-foreground`, `error`→`text-destructive`, `success`→`text-ef-green`. Font: `12px`.
-- **`Textarea`** — Multi-line input with all states matching `Input`. `resize-y`, `min-h-[120px]`. `showCount` prop shows character counter (bottom-right, `font-mono 11px`): muted below 80%, `text-ef-orange` at ≥80%, `text-destructive` above `maxLength`. Supports both controlled and uncontrolled usage. Exports `textareaVariants`.
-- **Test coverage** — 180 new tests added (269 total across 7 test files):
-  - `__tests__/button-badge.test.tsx` — 48 tests (Button + Badge)
-  - `__tests__/card.test.tsx` — 42 tests (Card + all 6 sub-components + composition)
-  - `__tests__/form.test.tsx` — 79 tests (Input, Label, HelperText, Textarea, composition)
-
-### Changed
-
-- **Docs site demos** updated to use real library imports (not inline HTML):
-  - `ButtonsDemo.tsx` — uses `<Button>` from `reend-components`
-  - `CardsDemo.tsx` — uses `<Card>`, `<CardBody>`, `<CardMeta>`, `<CardTitle>`, `<CardDescription>` from `reend-components`
-  - `FormsDemo.tsx` — uses `<Input>`, `<Label>`, `<HelperText>`, `<Textarea>` from `reend-components`; password field uses `rightElement` slot for eye toggle; search field uses `leftElement` + `rightElement` slots; textarea demo shows live character counter
-- **Library bundle size** — 39.70 kB MJS / 27.90 kB CJS (well under 50 kB Month 1 target)
-- **`npx tsc --noEmit`** — zero TypeScript errors across all source files and test files
+---
 
 ## [0.2.0] - 2026-02-19
 
@@ -222,6 +311,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Signature components no longer use `useTranslation` — all i18n strings replaced with hardcoded English defaults or configurable props
 - All Signature components implement `React.forwardRef` and set `displayName` for proper composability and React DevTools display
 
+---
+
 ## [0.1.0] - 2026-02-17
 
 ### Added
@@ -235,7 +326,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Internationalization** — English and Bahasa Indonesia docs (16 namespaces, ~1,425 translation keys)
 - **Dual build** — ESM (`index.mjs`) + CJS (`index.cjs`) + TypeScript declarations via `vite.lib.config.ts`
 
-[Unreleased]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.0.0...HEAD
+---
+
+[1.1.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.2.0...v0.3.0

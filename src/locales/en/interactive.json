@@ -8,7 +8,10 @@
       "hover": "HOVER",
       "active": "ACTIVE",
       "focus": "FOCUS",
-      "disabled": "DISABLED"
+      "disabled": "DISABLED",
+      "loading": "LOADING",
+      "error": "ERROR",
+      "selected": "SELECTED"
     },
     "rows": {
       "button": "Button",
@@ -16,18 +19,38 @@
       "card": "Card",
       "link": "Link",
       "nav_item": "Nav item",
-      "tab": "Tab"
+      "tab": "Tab",
+      "checkbox": "Checkbox",
+      "table_row": "Table row",
+      "tag": "Tag / Badge",
+      "accordion": "Accordion",
+      "dropdown_item": "Dropdown item",
+      "sidebar_link": "Sidebar link"
     }
   },
   "micro_interactions": {
     "title": "Micro-Interactions & Feedback",
-    "description": "Click ripple, copy feedback, toggle animation, accordion expand.",
+    "description": "Click ripple, copy feedback, like/favorite toggle, switch toggle, count-up, hover reveal, accordion expand.",
     "click_me": "CLICK ME",
     "ripple_effect": "Ripple effect",
-    "favorite": "Favorite",
+    "like": "Like",
+    "unlike": "Unlike",
+    "liked": "LIKED",
+    "unliked": "LIKE",
+    "favorite": "Favorite (like/unlike)",
     "copied": "Copied!",
     "copy": "Copy",
-    "copy_feedback": "Copy feedback"
+    "copy_feedback": "Copy feedback",
+    "count_up_label": "Count-up animation",
+    "count_up_trigger": "ANIMATE",
+    "toggle_label": "Toggle",
+    "toggle_on": "ON",
+    "toggle_off": "OFF",
+    "hover_reveal_label": "Hover me",
+    "hover_reveal_effect": "Hover reveal",
+    "accordion_trigger": "EXPAND SECTION",
+    "accordion_content": "Expanded content revealed with smooth animation and correct easing.",
+    "accordion_effect": "Accordion expand"
   },
   "hover_effects": {
     "title": "Hover Effects Catalog",
@@ -52,21 +75,35 @@
       "code_block": "Code block",
       "code_block_effect": "Copy button appears (fade in)",
       "avatar": "Avatar",
-      "avatar_effect": "Subtle glow ring"
+      "avatar_effect": "Subtle glow ring",
+      "link": "Link",
+      "link_effect": "Color lighten (#7EC8E3) + underline appear",
+      "icon_button": "Icon button",
+      "icon_button_effect": "Bg → yellow/5, border → yellow tint",
+      "tag": "Tag / Badge",
+      "tag_effect": "Border lighten, slight bg lighten",
+      "link_list_item": "Link list item",
+      "link_list_item_effect": "Bg tint + arrow slides in from left",
+      "footer_link": "Footer link",
+      "footer_link_effect": "Color → yellow (#FFD429)",
+      "timeline_node": "Timeline node",
+      "timeline_node_effect": "scale(1.2) + brighter node color",
+      "stat_number": "Stat number",
+      "stat_number_effect": "Subtle pulse glow around value"
     }
   },
   "focus_keyboard": {
     "title": "Focus & Keyboard Navigation",
-    "description": "Focus ring: 2px solid #FFD429, offset 2px. Keyboard shortcuts table.",
+    "description": "Focus ring: 2px solid hsl(var(--ef-yellow)), offset 2px. Inputs use border + box-shadow instead of outline.",
     "focus_state": "FOCUS STATE",
     "shortcuts": {
-      "tab": "Tab",
-      "tab_desc": "Navigate forward",
+      "tab": "Tab / Shift+Tab",
+      "tab_desc": "Navigate forward / backward",
       "enter": "Enter / Space",
       "enter_desc": "Activate",
       "escape": "Escape",
       "escape_desc": "Close overlay",
-      "cmd_k": "⌘K",
+      "cmd_k": "⌘K / Ctrl+K",
       "cmd_k_desc": "Command palette",
       "arrows": "Arrow keys",
       "arrows_desc": "Navigate menus",
@@ -76,10 +113,13 @@
   },
   "drag_drop": {
     "title": "Drag & Drop",
-    "description": "Draggable: cursor grab. Drop zone: dashed border, yellow active state.",
+    "description": "Draggable: cursor grab, opacity 0.5 + dashed yellow border while dragging. Drop zone: dashed border, yellow active state, red reject state.",
     "drag_me": "⠿ Drag me",
+    "drag_status": "Dragging…",
     "drop_zone": "Drop zone",
-    "active_zone": "Active zone"
+    "active_zone": "Active zone",
+    "reject_zone": "Reject zone",
+    "drop_hint": "Drag the element over each zone to see the active and reject states."
   },
   "selection": {
     "title": "Selection & Multi-Select",
@@ -87,7 +127,8 @@
     "option_a": "Option A",
     "option_b": "Option B",
     "option_c": "Option C",
-    "selected_count": "3 selected",
+    "selected_count": "{{count}} selected",
+    "none_selected": "Select items above",
     "delete_btn": "DELETE",
     "export_btn": "EXPORT"
   },
@@ -103,8 +144,8 @@
       "shortcuts": "Custom keyboard shortcut definitions",
       "trapFocus": "Trap focus within container (for modals)",
       "api": {
-        "useFocusTrap": "Traps keyboard focus within a container element. Used for modals and dialogs.",
-        "useShortcut": "Registers a global keyboard shortcut with automatic cleanup."
+        "useFocusTrap": "Traps keyboard focus within a container element. Pass a ref and optional active boolean. Used for modals and dialogs.",
+        "useShortcut": "Registers a global keyboard shortcut with automatic cleanup on unmount. Supports meta/ctrl/shift modifier options."
       }
     },
     "drag-drop": {

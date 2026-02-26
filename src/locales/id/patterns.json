@@ -5,6 +5,8 @@
     "homepage": "BERANDA",
     "documentation": "DOKUMENTASI",
     "blog_list": "DAFTAR BLOG",
+    "blog_post": "POSTING BLOG",
+    "error_page": "HALAMAN ERROR",
     "header": "Header",
     "hero": "Hero 100vh",
     "features": "Fitur 3-kolom",
@@ -18,7 +20,16 @@
     "title_block": "Judul",
     "filter": "Filter Tag",
     "post_grid": "Grid Posting 2-kolom",
-    "pagination": "Paginasi"
+    "pagination": "Paginasi",
+    "back_link": "← Kembali",
+    "post_meta": "Tanggal · Penulis · Tag",
+    "post_hero": "Gambar Hero",
+    "post_tags": "Tag Posting",
+    "prev_next": "Posting Sebelum / Selanjutnya",
+    "error_code": "Kode Error (Glitch)",
+    "error_title_glitch": "Judul Halaman + Glitch",
+    "error_desc": "Deskripsi",
+    "error_cta": "Kembali ke Beranda / Buka Dokumentasi"
   },
   "section_patterns": {
     "title": "Pola Bagian",
@@ -30,7 +41,13 @@
     "feature_1": "FITUR 1",
     "feature_2": "FITUR 2",
     "feature_3": "FITUR 3",
-    "description_text_short": "Teks deskripsi."
+    "description_text_short": "Teks deskripsi.",
+    "alternating_label": "TATA LETAK BERGANTIAN",
+    "text_left": "TEKS — GAMBAR →",
+    "text_right": "← GAMBAR — TEKS",
+    "testimonial_label": "TESTIMONIAL",
+    "testimonial_quote": "\"Sistem desain Endfield memberi tim kami bahasa visual yang konsisten dan dapat diskalakan di setiap penerapan.\"",
+    "testimonial_author": "OPERATOR CHEN · Lead Engineer, Rhodes Island"
   },
   "responsive": {
     "title": "Breakpoint Responsif",
@@ -126,6 +143,74 @@
     "arrow_tokens": "→ Design token",
     "arrow_base": "→ Reset, tipografi",
     "arrow_animations": "→ Keyframe"
+  },
+  "behavioral_rules": {
+    "title": "Aturan Perilaku",
+    "description": "Ikhtisar kontrak interaksi tak kasat mata dari seksi 98–111. Gunakan tautan sub-seksi di bawah untuk menavigasi ke grup aturan spesifik: timing & respons, manajemen fokus, z-index, perilaku scroll, target sentuh, kontrak form, aksi destruktif, pemulihan error, notifikasi, media query, standar konsistensi, matriks ukuran, dan pencegahan CLS."
+  },
+  "timing_focus": {
+    "title": "§98–100 · Timing, Fokus & Z-Index",
+    "description": "Aturan timing Doherty Threshold, pola debounce/throttle, navigasi keyboard & aturan focus trap, hierarki escape overlay, dan token urutan z-index."
+  },
+  "scroll_touch_rules": {
+    "title": "§101–102 · Scroll & Sentuh",
+    "description": "Aturan perilaku scroll untuk semua jenis navigasi, utilitas overscroll-behavior, standar ukuran target sentuh per breakpoint, dan variabel CSS safe area untuk iOS notch."
+  },
+  "form_action_rules": {
+    "title": "§103–105 · Form & Aksi",
+    "description": "Kontrak perilaku form: disable-on-submit, state indikator autosave, tabel tingkat keparahan aksi destruktif dengan jendela undo, dan hierarki pemulihan error dengan backoff auto-retry."
+  },
+  "notification_media": {
+    "title": "§106–107 · Notifikasi & Media Query",
+    "description": "Aturan notifikasi toast: durasi per tingkat keparahan, hover-pause, maksimal terlihat, kebijakan posisi. Pola media query untuk prefers-reduced-motion, forced-colors, prefers-contrast, dan tipe pointer."
+  },
+  "consistency_sizing": {
+    "title": "§108–111 · Standar & Ukuran",
+    "description": "Standar konsistensi untuk semua jenis komponen, matriks ukuran responsif, tabel perilaku tautan & navigasi, dan aturan pencegahan CLS dengan target skor Core Web Vitals."
+  },
+  "auth_layouts": {
+    "title": "Layout Autentikasi",
+    "description": "Pola tata letak yang direkomendasikan untuk halaman autentikasi: panel-terbagi (40% form / 60% visual), kartu terpusat, dan fullscreen imersif. Responsif — panel visual disembunyikan di mobile."
+  },
+  "pricing_tables": {
+    "title": "Tabel Harga",
+    "description": "Kartu langganan multi-tier dengan daftar fitur, lencana rekomendasi, dan tombol CTA bergaya Endfield. Gunakan border tajam dan ikon daftar fitur ◆."
+  },
+  "mega_menu": {
+    "title": "Mega Menu",
+    "description": "Navigasi dropdown multi-kolom untuk hierarki konten kompleks. Menggunakan z-index-dropdown (100), header kolom font Bender, dan bullet item daftar ◆."
+  },
+  "kanban": {
+    "title": "Papan Kanban",
+    "description": "UI manajemen tugas berbasis kolom dengan header berwarna status, indikator drag kartu, dan tombol ghost + TAMBAH TUGAS di bagian bawah kolom."
+  },
+  "language_switcher": {
+    "title": "Pengalih Bahasa",
+    "description": "Bahasa aktif disorot dengan border-primary + bg-primary/8. Terintegrasi dengan i18next changeLanguage dan routing prefiks URL."
+  },
+  "print_styles": {
+    "title": "Gaya Cetak",
+    "description": "Lima kelas utilitas untuk kontrol cetak: .print-hidden, .print-only, .print-break-before, .print-break-after, .print-no-break. Sudah termasuk dalam index.css."
+  },
+  "fab": {
+    "title": "FAB / Widget Chat",
+    "description": "Tombol aksi mengambang berbentuk berlian menggunakan clip-path polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%). Posisi fixed dengan z-index-overlay. Efek cahaya saat hover."
+  },
+  "comments": {
+    "title": "Komentar",
+    "description": "Tata letak komentar berjenjang dengan placeholder avatar berlian, font Bender untuk nama pengguna, balasan bertingkat via indent border-left, dan penghitung suka ◆."
+  },
+  "spoiler_tags": {
+    "title": "Tag Spoiler",
+    "description": "SpoilerBlock membungkus konten dalam overlay blur dengan tombol [UNGKAP KONTEN]. SpoilerInline menyembunyikan teks inline dengan kelas CSS .spoiler. Keduanya menggunakan aria-expanded."
+  },
+  "ad_placements": {
+    "title": "Penempatan Iklan",
+    "description": "Kontainer slot iklan berukuran pre-set (.ad-slot--leaderboard, --sidebar, --in-article) dengan reservasi min-height untuk mencegah Cumulative Layout Shift (CLS = 0)."
+  },
+  "audio_player": {
+    "title": "Pemutar Audio",
+    "description": "Pemutar audio inline dengan tombol play berlian, track progres 4px, dan tampilan waktu Orbitron. Mini-player persisten opsional (bilah sticky 56px) untuk pemutaran musik."
   },
   "_props": {
     "page-templates": {

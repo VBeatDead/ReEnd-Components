@@ -13,6 +13,8 @@ import {
   SkeletonAvatar,
   SkeletonCard,
 } from "../skeleton";
+import { Table, TableBody, TableHead, TableHeader, TableRow, TableCell } from "../table";
+import { Stepper } from "../stepper";
 
 /* ═══════════════════════════════════════════════════════════
    AVATAR
@@ -433,5 +435,202 @@ describe("SkeletonCard", () => {
   it("applies custom className", () => {
     render(<SkeletonCard className="sc-custom" />);
     expect(document.querySelector(".sc-custom")).not.toBeNull();
+  });
+});
+
+// ─── Avatar — hover glow follows clip-corner shape ────────────────────────────
+
+describe("Avatar hover styling", () => {
+  it("outer wrapper uses drop-shadow (not square ring) for hover glow", () => {
+    const { container } = render(
+      <Avatar>
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+    );
+    const wrapper = container.firstChild as HTMLElement;
+    // Should have drop-shadow class for shape-aware glow
+    expect(wrapper.className).toContain("drop-shadow");
+  });
+
+  it("outer wrapper does NOT use ring-offset (square ring removed)", () => {
+    const { container } = render(
+      <Avatar>
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+    );
+    const wrapper = container.firstChild as HTMLElement;
+    expect(wrapper.className).not.toContain("ring-offset");
+  });
+
+  it("outer wrapper does NOT use ring-2 class", () => {
+    const { container } = render(
+      <Avatar>
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+    );
+    const wrapper = container.firstChild as HTMLElement;
+    // Old: hover:ring-2 — should not be present anymore
+    expect(wrapper.className).not.toContain("ring-2");
+  });
+
+  it("inner AvatarRoot retains clip-corner-sm shape class", () => {
+    const { container } = render(
+      <Avatar>
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+    );
+    expect(container.querySelector(".clip-corner-sm")).not.toBeNull();
+  });
+});
+
+// ─── TableRow — semantic design token classes ─────────────────────────────────
+
+describe("TableRow semantic tokens", () => {
+  it("uses primary token for hover background (not hardcoded rgba)", () => {
+    const { container } = render(
+      <table>
+        <tbody>
+          <TableRow><TableCell>test</TableCell></TableRow>
+        </tbody>
+      </table>
+    );
+    const row = container.querySelector("tr")!;
+    // Should use design token class, not hardcoded rgba
+    expect(row.className).toContain("hover:bg-primary");
+    expect(row.className).not.toContain("rgba(255,212,41");
+  });
+
+  it("uses foreground token for even row stripe (not hardcoded rgba)", () => {
+    const { container } = render(
+      <table>
+        <tbody>
+          <TableRow><TableCell>test</TableCell></TableRow>
+        </tbody>
+      </table>
+    );
+    const row = container.querySelector("tr")!;
+    // Should use semantic token, not hardcoded white rgba
+    expect(row.className).toContain("even:bg-foreground");
+    expect(row.className).not.toContain("rgba(255,255,255");
+  });
+
+  it("selected row applies primary tint", () => {
+    const { container } = render(
+      <table>
+        <tbody>
+          <TableRow selected><TableCell>test</TableCell></TableRow>
+        </tbody>
+      </table>
+    );
+    const row = container.querySelector("tr")!;
+    expect(row.className).toContain("bg-primary/");
+  });
+
+  it("sortable TableHead renders sort indicators", () => {
+    render(
+      <table>
+        <TableHeader>
+          <TableRow>
+            <TableHead sortable sortDirection="asc">Name</TableHead>
+          </TableRow>
+        </TableHeader>
+        <TableBody><TableRow><TableCell>data</TableCell></TableRow></TableBody>
+      </table>
+    );
+    // aria-sort should be set on the sortable th
+    const th = document.querySelector("th")!;
+    expect(th.getAttribute("aria-sort")).toBe("ascending");
+  });
+});
+
+// ─── Avatar — icon text scales with avatar size ───────────────────────────────
+
+describe("Avatar fallback text scaling", () => {
+  it("xs avatar root has text-[10px] class", () => {
+    const cls = avatarVariants({ size: "xs" });
+    expect(cls).toContain("text-[10px]");
+  });
+
+  it("sm avatar root has text-xs class", () => {
+    const cls = avatarVariants({ size: "sm" });
+    expect(cls).toContain("text-xs");
+  });
+
+  it("md avatar root has text-sm class", () => {
+    const cls = avatarVariants({ size: "md" });
+    expect(cls).toContain("text-sm");
+  });
+
+  it("lg avatar root has text-lg class", () => {
+    const cls = avatarVariants({ size: "lg" });
+    expect(cls).toContain("text-lg");
+  });
+
+  it("xl avatar root has text-2xl class", () => {
+    const cls = avatarVariants({ size: "xl" });
+    expect(cls).toContain("text-2xl");
+  });
+
+  it("2xl avatar root has text-4xl class", () => {
+    const cls = avatarVariants({ size: "2xl" });
+    expect(cls).toContain("text-4xl");
+  });
+
+  it("xl Avatar root element has text-2xl in className", () => {
+    const { container } = render(
+      <Avatar size="xl">
+        <AvatarFallback>◆</AvatarFallback>
+      </Avatar>
+    );
+    const avatarRoot = container.querySelector(".h-20.w-20");
+    expect(avatarRoot).not.toBeNull();
+    expect(avatarRoot!.className).toContain("text-2xl");
+  });
+
+  it("AvatarFallback does NOT contain fixed clamp font-size", () => {
+    const { container } = render(
+      <Avatar size="xl">
+        <AvatarFallback>◆</AvatarFallback>
+      </Avatar>
+    );
+    const fallback = container.querySelector("[class*='items-center'][class*='justify-center']");
+    expect(fallback).not.toBeNull();
+    // The clamp-based text sizing was removed — fallback inherits from root
+    expect(fallback!.className).not.toContain("clamp");
+    expect(fallback!.className).not.toContain("text-[clamp");
+  });
+});
+
+// ─── Stepper — no excessive overflow scrollbar ────────────────────────────────
+
+describe("Stepper overflow fix", () => {
+  const STEPS = [
+    { label: "ALPHA" },
+    { label: "BRAVO" },
+    { label: "CHARLIE" },
+  ];
+
+  it("horizontal stepper wrapper does not use -mx-1 (overflow cause removed)", () => {
+    const { container } = render(<Stepper steps={STEPS} currentStep={1} />);
+    // Find the overflow-x-auto div wrapper
+    const wrapper = container.querySelector(".overflow-x-auto") as HTMLElement;
+    expect(wrapper).not.toBeNull();
+    // Should NOT have the -mx-1 negative margin hack
+    expect(wrapper.className).not.toContain("-mx-1");
+  });
+
+  it("horizontal stepper wrapper does not use px-1 padding hack", () => {
+    const { container } = render(<Stepper steps={STEPS} currentStep={1} />);
+    const wrapper = container.querySelector(".overflow-x-auto") as HTMLElement;
+    expect(wrapper).not.toBeNull();
+    expect(wrapper.className).not.toContain("px-1");
+  });
+
+  it("horizontal stepper renders all steps without scroll container issues", () => {
+    render(<Stepper steps={STEPS} currentStep={0} />);
+    expect(document.querySelector(".overflow-x-auto")).not.toBeNull();
+    expect(document.body.textContent).toContain("ALPHA");
+    expect(document.body.textContent).toContain("BRAVO");
+    expect(document.body.textContent).toContain("CHARLIE");
   });
 });

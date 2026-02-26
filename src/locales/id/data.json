@@ -21,6 +21,8 @@
     "diamond_bullet": "PELURU BERLIAN",
     "numbered": "BERNOMOR",
     "key_value": "KUNCI-NILAI",
+    "link_list": "DAFTAR TAUTAN",
+    "link_items": ["Daftar Operator", "Briefing Misi", "Status Sistem", "Depot Sumber Daya"],
     "diamond_items": ["Pengintaian", "Penempatan", "Ekstraksi", "Analisis"],
     "numbered_items": [
       "Inisialisasi Sistem",
@@ -81,7 +83,19 @@
   },
   "tags": {
     "title": "Tag, Lencana & Label",
-    "description": "Font tag: Orbitron 10px, huruf besar. Lencana berbentuk berlian. Warna semantik.",
+    "description": "Tiga primitif label berbeda: Tag (TacticalBadge — clip-corner-sm, awalan ◆), Lencana (span warna semantik dengan border), dan Label (teks status minimal). Gunakan Tag untuk kategorisasi, Lencana untuk jumlah/status, Label untuk status inline.",
+    "section_tags": "TAG",
+    "section_badges": "LENCANA",
+    "section_labels": "LABEL",
+    "section_badge_count": "JUMLAH LENCANA",
+    "section_status_dots": "TITIK STATUS",
+    "tag_labels": {
+      "default": "ALPHA SQUAD",
+      "success": "DITEMPATKAN",
+      "warning": "SIAGA",
+      "danger": "KRITIS",
+      "info": "PENGINTAIAN"
+    },
     "labels": {
       "default": "BAWAAN",
       "primary": "UTAMA",
@@ -91,12 +105,23 @@
       "danger": "BAHAYA",
       "rare": "LANGKA"
     },
+    "label_texts": {
+      "active": "AKTIF",
+      "pending": "TERTUNDA",
+      "complete": "SELESAI",
+      "archived": "DIARSIPKAN",
+      "draft": "DRAF"
+    },
     "removable": "DAPAT DIHAPUS",
     "badge_count": "JUMLAH LENCANA:",
     "status": {
       "online": "Daring",
       "offline": "Luring",
       "busy": "Sibuk"
+    },
+    "playground": {
+      "type_label": "Tipe",
+      "text_default": "ALPHA SQUAD"
     }
   },
   "progress": {
@@ -152,11 +177,14 @@
       "status": "Warna indikator diamond status"
     },
     "tags-badges": {
-      "label": "Teks tampilan tag",
+      "tactical_badge": "TacticalBadge — komponen signature dengan clip-corner-sm dan awalan ◆. Varian: default (kuning), success (hijau), warning (kuning/amber), danger (merah), info (cyan).",
+      "badge": "Span inline dengan border dan latar warna semantik. Varian: default / primary / info / success / warning / danger / rare.",
+      "label_style": "Teks status uppercase minimal tanpa border. Warna berdasarkan jenis status (active→hijau, pending→oranye, complete→biru, archived→abu).",
+      "label": "Teks tampilan untuk tag atau lencana",
       "variant": "Varian warna semantik",
-      "removable": "Menampilkan tombol hapus x",
+      "removable": "Menampilkan tombol hapus ×",
       "onRemove": "Callback ketika tombol hapus diklik",
-      "count": "Angka jumlah lencana (dirender sebagai lencana angka)"
+      "count": "Angka jumlah lencana (dirender sebagai chip clip-corner-sm)"
     },
     "progress-stepper": {
       "value": "Persentase progres (0-100)",
@@ -165,5 +193,9 @@
       "color": "Warna bilah progres",
       "showLabel": "Tampilkan label persentase"
     }
+  },
+  "charts": {
+    "title": "Charts (Recharts)",
+    "description": "Integrasi Recharts dengan design token Endfield. Gunakan array CHART_COLORS dan endfieldChartTheme untuk gaya yang konsisten. Warna chart dipetakan ke --chart-1 hingga --chart-8."
   }
 }

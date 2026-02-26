@@ -1,6 +1,6 @@
 import { ComponentPreview } from "../../docs/ComponentPreview";
 import { useState } from "react";
-import { Search, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Input, Label, HelperText } from "../../ui/input";
 import { Textarea } from "../../ui/textarea";
@@ -344,7 +344,7 @@ import { Textarea } from "reend-components";
           />
         </div>
 
-        {/* Search with icon + keyboard hint */}
+        {/* Search with diamond indicator + keyboard hint */}
         <div className="space-y-2">
           <Label htmlFor="ef-search">{t("forms.search")}</Label>
           <Input
@@ -352,9 +352,9 @@ import { Textarea } from "reend-components";
             type="text"
             placeholder={t("forms.search_placeholder")}
             className="w-full"
-            leftElement={<Search className="w-4 h-4" />}
+            leftElement={<span className="text-muted-foreground/60 text-xs select-none">◆</span>}
             rightElement={
-              <kbd className="font-mono text-[10px] bg-surface-2 px-1.5 py-0.5 border border-border text-muted-foreground">
+              <kbd className="font-mono text-[10px] bg-surface-2 px-1.5 py-0.5 border border-border text-muted-foreground shrink-0">
                 {t("forms.keyboard_shortcut")}
               </kbd>
             }

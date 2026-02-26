@@ -37,20 +37,17 @@ const MatrixGrid = React.forwardRef<HTMLDivElement, MatrixGridProps>(
       () => new Set<number>(),
     );
 
-    /* Detect reduced-motion preference */
     const prefersReduced = React.useMemo(() => {
       if (typeof window === "undefined") return false;
       return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     }, []);
 
-    /* Random activation loop */
     React.useEffect(() => {
       if (isStatic || prefersReduced) return;
 
       const id = setInterval(() => {
         setActiveDots((prev) => {
           const next = new Set(prev);
-          /* Activate random dots */
           for (let i = 0; i < total; i++) {
             if (Math.random() < activeProbability) {
               next.add(i);
@@ -89,7 +86,7 @@ const MatrixGrid = React.forwardRef<HTMLDivElement, MatrixGridProps>(
                 isStatic || prefersReduced ? "duration-0" : "duration-500",
                 activeDots.has(i)
                   ? cn("opacity-100", activeColor)
-                  : "opacity-10 bg-white",
+                  : "opacity-10 bg-foreground",
               )}
             />
           ))}

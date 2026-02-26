@@ -2,6 +2,39 @@
   "voice_tone": {
     "title": "Suara & Nada",
     "description": "Berwibawa, ringkas, teknis, tenang, berorientasi masa depan. Pengguna = 'Endministrator'.",
+    "brand_voice_heading": "ATRIBUT SUARA MEREK",
+    "brand_voice_headers": {
+      "attribute": "ATRIBUT",
+      "description": "DESKRIPSI",
+      "avoid": "HINDARI"
+    },
+    "brand_voice": {
+      "authoritative": {
+        "attribute": "Berwibawa",
+        "description": "Menunjukkan kepercayaan diri. Pernyataan definitif.",
+        "avoid": "Bahasa ragu-ragu"
+      },
+      "concise": {
+        "attribute": "Ringkas",
+        "description": "Informasi maksimal, kata minimal.",
+        "avoid": "Penjelasan berlebihan"
+      },
+      "technical": {
+        "attribute": "Teknis",
+        "description": "Gunakan terminologi domain yang tepat.",
+        "avoid": "Bahasa terlalu sederhana"
+      },
+      "calm": {
+        "attribute": "Tenang",
+        "description": "Stabil di bawah tekanan. Tanpa bahasa panik.",
+        "avoid": "Pesan yang menakutkan"
+      },
+      "forward_looking": {
+        "attribute": "Berorientasi Masa Depan",
+        "description": "Fokus pada kemajuan dan operasional.",
+        "avoid": "Terlalu banyak kilas balik"
+      }
+    },
     "headers": {
       "context": "KONTEKS",
       "tone": "NADA",
@@ -32,6 +65,11 @@
         "context": "Onboarding",
         "tone": "Ramah",
         "example": "\"Selamat datang kembali, Endministrator.\""
+      },
+      "warning": {
+        "context": "Peringatan",
+        "tone": "Langsung, tidak menakutkan",
+        "example": "\"Pemeliharaan dijadwalkan. Simpan pekerjaan Anda.\""
       }
     },
     "terminology": "TERMINOLOGI",
@@ -63,17 +101,40 @@
         "use": "HAPUS ITEM",
         "avoid": "\"Hapus\""
       },
+      "cancel": {
+        "action": "Batal",
+        "use": "KEMBALI",
+        "avoid": "\"Tidak\""
+      },
       "navigate": {
         "action": "Navigasi",
         "use": "LIHAT DETAIL",
         "avoid": "\"Klik Di Sini\""
+      },
+      "external": {
+        "action": "Tautan Eksternal",
+        "use": "↗ GITHUB",
+        "avoid": "\"Buka Tautan\""
       },
       "create": {
         "action": "Buat",
         "use": "BUAT PROYEK",
         "avoid": "\"Tambah\""
       }
-    }
+    },
+    "nav_heading": "LABEL NAVIGASI",
+    "nav_note": "1–2 kata, huruf besar, tanpa artikel",
+    "nav_items": ["HOME", "DOCS", "BLOG", "ABOUT"],
+    "form_heading": "LABEL FORMULIR",
+    "form_note": "Huruf besar, wajib * merah, opsional abu-abu",
+    "form_required": "Wajib",
+    "form_optional": "Opsional",
+    "dialog_heading": "DIALOG KONFIRMASI",
+    "dialog_note": "Nyatakan tindakan + konsekuensi. CTA destruktif di kanan, Batal di kiri.",
+    "dialog_example_title": "HAPUS REKAMAN",
+    "dialog_example_body": "Ini akan menghapus rekaman dan semua data terkait secara permanen. Tindakan ini tidak dapat dibatalkan.",
+    "dialog_cancel": "BATAL",
+    "dialog_confirm": "HAPUS REKAMAN"
   },
   "placeholder": {
     "title": "Standar Teks Placeholder",
@@ -87,6 +148,10 @@
         "label": "NAMA PENGGUNA",
         "placeholder": "Masukkan callsign Anda..."
       },
+      "password": {
+        "label": "KATA SANDI",
+        "placeholder": "••••••••"
+      },
       "search": {
         "label": "PENCARIAN",
         "placeholder": "Cari dokumentasi..."
@@ -95,9 +160,25 @@
         "label": "URL",
         "placeholder": "https://example.com"
       },
+      "message": {
+        "label": "PESAN",
+        "placeholder": "Ketik pesan Anda di sini..."
+      },
+      "code": {
+        "label": "KODE",
+        "placeholder": "// Masukkan kode di sini..."
+      },
+      "file": {
+        "label": "FILE",
+        "placeholder": "Seret file ke sini atau klik untuk unggah"
+      },
       "date": {
         "label": "TANGGAL",
         "placeholder": "YYYY.MM.DD"
+      },
+      "tags": {
+        "label": "TAG",
+        "placeholder": "Tambah tag..."
       }
     }
   },
@@ -136,6 +217,18 @@
       "permission_denied": {
         "validation": "Akses ditolak",
         "message": "Akses dibatasi. Tingkat izin tidak mencukupi."
+      },
+      "file_too_large": {
+        "validation": "File terlalu besar",
+        "message": "File melebihi batas [X] MB. Kompres atau pilih file lebih kecil."
+      },
+      "not_found": {
+        "validation": "Tidak ditemukan",
+        "message": "Target tidak ditemukan. Verifikasi ID dan coba lagi."
+      },
+      "mismatch": {
+        "validation": "Tidak cocok",
+        "message": "Konfirmasi tidak cocok. Masukkan ulang untuk memverifikasi."
       }
     }
   },
@@ -160,6 +253,10 @@
       "relative": {
         "label": "Relatif",
         "value": "3 jam yang lalu"
+      },
+      "blog_meta": {
+        "label": "Meta blog",
+        "value": "15.02.2026"
       }
     },
     "number": {
@@ -191,9 +288,26 @@
     "description": "Elipsis baris tunggal, clamp multi-baris, break-word untuk string panjang.",
     "single_line": "Baris tunggal (truncate)",
     "multi_line": "Multi-baris (line-clamp-2)",
+    "multi_line_3": "Multi-baris (line-clamp-3)",
     "break_word": "Pecah kata",
     "sample_single": "Ini adalah teks yang sangat panjang yang akan dipotong dengan elipsis di akhir baris.",
     "sample_multi": "Ini adalah teks yang sangat panjang yang mencakup beberapa baris. Akan di-clamp menjadi tepat 2 baris dengan elipsis. Konten tambahan akan disembunyikan.",
-    "sample_break": "superlongstringwithoutanyspaces_or_breaks_that_needs_to_be_broken_across_lines"
+    "sample_multi_3": "Ini adalah teks yang lebih panjang yang mencakup beberapa baris. Akan di-clamp menjadi tepat 3 baris dengan elipsis di akhir. Konten di luar baris ketiga akan disembunyikan dari tampilan pengguna.",
+    "sample_break": "superlongstringwithoutanyspaces_or_breaks_that_needs_to_be_broken_across_lines",
+    "rules_heading": "ATURAN PEMOTONGAN ELEMEN",
+    "rules_headers": {
+      "element": "ELEMEN",
+      "max_lines": "MAKS BARIS",
+      "overflow": "OVERFLOW"
+    },
+    "rules": {
+      "card_title": { "element": "Judul kartu", "max_lines": "2", "overflow": "Elipsis" },
+      "card_description": { "element": "Deskripsi kartu", "max_lines": "3", "overflow": "Elipsis" },
+      "nav_item": { "element": "Item navigasi", "max_lines": "1", "overflow": "Elipsis" },
+      "table_cell": { "element": "Sel tabel", "max_lines": "1", "overflow": "Elipsis + Tooltip" },
+      "tag_text": { "element": "Teks tag", "max_lines": "1", "overflow": "Elipsis" },
+      "sidebar_link": { "element": "Link sidebar", "max_lines": "1", "overflow": "Elipsis" },
+      "toast_message": { "element": "Pesan toast", "max_lines": "4", "overflow": "\"Tampilkan lagi\"" }
+    }
   }
 }

@@ -211,7 +211,7 @@ export const DataStream = () => {
       i++;
     }, 1200);
     return () => clearInterval(interval);
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     if (containerRef.current) {

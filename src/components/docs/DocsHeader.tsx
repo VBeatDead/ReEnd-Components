@@ -19,6 +19,7 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
   const [cmdOpen, setCmdOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const [isAnimating, setIsAnimating] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const animTimerRef = useRef<ReturnType<typeof setTimeout>>();
   const navigate = useNavigate();
   const location = useLocation();
@@ -26,23 +27,32 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
   const { t } = useTranslation(["common", "docs"]);
   const lp = useLocalizedPath();
 
-  const sidebarData = useMemo(() => getSidebarData((key, opts) => t(key, { ns: "docs", ...opts })), [t]);
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 10);
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
 
-  // Track which sidebar sections are collapsed (by section title)
+  const sidebarData = useMemo(
+    () => getSidebarData((key, opts) => t(key, { ns: "docs", ...opts })),
+    [t],
+  );
+
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
 
-  // Derive active slug from path
   const activeSlug = useMemo(() => {
-    const match = location.pathname.match(/(?:\/(?:en|id))?\/docs\/(.+?)(?:\/|$)/);
+    const match = location.pathname.match(
+      /(?:\/(?:en|id))?\/docs\/(.+?)(?:\/|$)/,
+    );
     return match?.[1] ?? null;
   }, [location.pathname]);
 
-  // Auto-expand section containing activeId
   const activeSectionTitle = useMemo(() => {
     if (!activeSlug) return null;
     const section = sidebarData.find((s) => s.slug === activeSlug);
     return section?.title ?? null;
-  }, [activeSlug]);
+  }, [activeSlug, sidebarData]);
 
   useEffect(() => {
     if (activeSectionTitle) {
@@ -54,10 +64,8 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
     setCollapsed((prev) => ({ ...prev, [title]: !prev[title] }));
   };
 
-  // Cleanup animation timer on unmount
   useEffect(() => () => clearTimeout(animTimerRef.current), []);
 
-  // ⌘K / Ctrl+K shortcut
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -71,13 +79,21 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 h-[64px] z-50 bg-background/85 backdrop-blur-xl border-b border-border">
+      <header
+        className={`fixed top-0 left-0 right-0 h-[64px] z-50 border-b border-border backdrop-blur-[12px] transition-colors duration-300 ${
+          scrolled ? "bg-background/95" : "bg-background/85"
+        }`}
+      >
         <div className="h-full flex items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className="lg:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
-              aria-label={mobileOpen ? t("common:aria.close_menu") : t("common:aria.open_menu")}
+              aria-label={
+                mobileOpen
+                  ? t("common:aria.close_menu")
+                  : t("common:aria.open_menu")
+              }
             >
               {mobileOpen ? (
                 <X className="w-5 h-5" />
@@ -91,13 +107,15 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
               role="link"
               title={t("common:actions.back_to_home")}
             >
-              <img
-                src="/icon.png"
-                alt={t("common:header.logo_alt")}
-                width={32}
-                height={32}
-                loading="eager"
-                className="w-8 h-8 object-contain"
+              {/* CSS mask renders icon as hsl(var(--foreground)) — follows design token */}
+              <div
+                className="w-8 h-8 shrink-0 bg-foreground transition-colors duration-300"
+                style={{
+                  WebkitMask: "url(/icon.png) no-repeat center / contain",
+                  mask: "url(/icon.png) no-repeat center / contain",
+                }}
+                role="img"
+                aria-label={t("common:header.logo_alt")}
               />
               <div>
                 <h1 className="font-display text-sm font-bold tracking-[0.08em] uppercase text-foreground">
@@ -112,19 +130,54 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
 
           <div className="hidden md:flex items-center gap-1">
             {[
-              { label: t("common:nav.docs"), target: lp("/docs") },
-              { label: t("common:nav.components"), target: lp("/docs/core-components") },
-              { label: t("common:nav.tokens"), target: lp("/docs/foundations") },
-              { label: t("common:nav.patterns"), target: lp("/docs/patterns") },
-            ].map(({ label, target }) => (
-              <button
-                key={label}
-                onClick={() => navigate(target)}
-                className="font-display text-xs font-semibold tracking-[0.08em] uppercase text-muted-foreground hover:text-primary px-4 py-2 transition-colors"
-              >
-                {label}
-              </button>
-            ))}
+              {
+                label: t("common:nav.docs"),
+                target: lp("/docs"),
+                slug: "__docs__",
+              },
+              {
+                label: t("common:nav.components"),
+                target: lp("/docs/core-components"),
+                slug: "core-components",
+              },
+              {
+                label: t("common:nav.tokens"),
+                target: lp("/docs/foundations"),
+                slug: "foundations",
+              },
+              {
+                label: t("common:nav.patterns"),
+                target: lp("/docs/patterns"),
+                slug: "patterns",
+              },
+            ].map(({ label, target, slug }) => {
+              const isNavActive =
+                slug === "__docs__"
+                  ? location.pathname.includes("/docs") && !activeSlug
+                  : activeSlug === slug;
+              return (
+                <button
+                  key={label}
+                  onClick={() => navigate(target)}
+                  className={`relative font-display text-xs font-semibold tracking-[0.08em] uppercase px-4 py-2 transition-colors ${
+                    isNavActive
+                      ? "text-primary"
+                      : "text-muted-foreground hover:text-primary"
+                  }`}
+                >
+                  {label}
+                  {isNavActive && (
+                    <span
+                      className="absolute bottom-0.5 left-1/2 -translate-x-1/2 text-primary leading-none select-none"
+                      style={{ fontSize: "6px" }}
+                      aria-hidden="true"
+                    >
+                      ◆
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
 
           <div className="flex items-center gap-2">
@@ -141,7 +194,9 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
             >
               <span
                 className={`block transition-all duration-500 ${isAnimating ? "rotate-[360deg] scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}`}
-                style={{ transitionTimingFunction: "cubic-bezier(0.25, 0.8, 0.25, 1)" }}
+                style={{
+                  transitionTimingFunction: "cubic-bezier(0.25, 0.8, 0.25, 1)",
+                }}
               >
                 {theme === "dark" ? (
                   <Sun className="w-4 h-4" />

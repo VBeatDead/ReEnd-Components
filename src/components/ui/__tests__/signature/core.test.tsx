@@ -3,12 +3,12 @@ import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
 import { Crosshair } from "lucide-react";
 
-import { CoordinateTag } from "../signature/coordinate-tag";
-import { DiamondLoader } from "../signature/diamond-loader";
-import { HoloCard } from "../signature/holo-card";
-import { ScanDivider } from "../signature/scan-divider";
-import { TacticalBadge } from "../signature/tactical-badge";
-import { WarningBanner } from "../signature/warning-banner";
+import { CoordinateTag } from "../../signature/coordinate-tag";
+import { DiamondLoader } from "../../signature/diamond-loader";
+import { HoloCard } from "../../signature/holo-card";
+import { ScanDivider } from "../../signature/scan-divider";
+import { TacticalBadge } from "../../signature/tactical-badge";
+import { WarningBanner } from "../../signature/warning-banner";
 
 // ─── CoordinateTag ──────────────────────────────────────────────────────────
 

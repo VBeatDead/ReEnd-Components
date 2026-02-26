@@ -46,6 +46,50 @@
     "paste": "Tempel",
     "delete": "Hapus"
   },
+  "filter_bar": {
+    "title": "Filter Bar",
+    "description": "Bar kompak untuk pemfilteran multi-pilih. Pemicu dropdown untuk setiap kategori filter. Chip aktif dengan tombol hapus. Slot pencarian inline opsional."
+  },
+  "sort_control": {
+    "title": "Kontrol Urutan",
+    "description": "Baris pengurutan tri-state: asc → desc → none. Indikator arah ▲/▼. Label huruf besar Orbitron. Mendukung beberapa kolom pengurutan."
+  },
+  "bottom_sheet": {
+    "title": "Bottom Sheet",
+    "description": "Overlay mobile yang meluncur dari bawah layar. Klik backdrop untuk menutup. Drag handle dengan gesture geser ke bawah (ambang batas 120px). Dukungan snap-point."
+  },
+  "pull_to_refresh": {
+    "title": "Pull to Refresh",
+    "description": "Pull-to-refresh mobile dengan 5-fase state machine: idle → pulling → threshold → refreshing → complete. Spinner diamond. Umpan balik haptic pada ambang batas."
+  },
+  "swipeable_item": {
+    "title": "Item Geser",
+    "description": "Item daftar yang dapat digeser dengan sentuhan. Geser kiri untuk menampilkan aksi kiri (muncul di kanan), geser kanan untuk menampilkan aksi kanan (muncul di kiri). Pemicu otomatis pada 160px."
+  },
+  "rating": {
+    "title": "Rating",
+    "description": "Selektor rating diamond ◆/◇. Pratinjau hover dengan navigasi keyboard (←/→). Max rating dan ukuran yang dapat dikonfigurasi. Mode read-only untuk tampilan."
+  },
+  "file_upload": {
+    "title": "Unggah File",
+    "description": "Zona unggah drag-and-drop dengan 8 status visual: idle, hover, dragging, drag-invalid, uploading (dengan progress bar), success, error, disabled. Daftar file per-item dengan thumbnail."
+  },
+  "session_timeout": {
+    "title": "Modal Timeout Sesi",
+    "description": "Dialog peringatan kedaluwarsa sesi yang akan segera terjadi. Hitung mundur dalam font Orbitron berubah oranye pada 2 menit, merah + berkedip pada 1 menit. Auto-logout pada 0:00."
+  },
+  "carousel": {
+    "title": "Carousel",
+    "description": "Carousel CSS scroll-snap dengan indikator dot diamond ◆/◇. Autoplay opsional. Tombol navigasi panah. Dukungan loop dan keyboard."
+  },
+  "resizable": {
+    "title": "Panel Resizable",
+    "description": "Tata letak panel yang dapat diubah ukurannya menggunakan react-resizable-panels. Handle resize bertema Endfield ◆. Mendukung pembagian panel horizontal dan vertikal."
+  },
+  "theme_switcher": {
+    "title": "Pengalih Tema",
+    "description": "Tombol toggle berlian untuk tema terang/gelap. Disimpan ke localStorage dengan kunci 'ef-theme'. Membaca status awal dari localStorage saat mount."
+  },
   "_props": {
     "command-palette": {
       "open": "Mengontrol visibilitas",
@@ -87,6 +131,80 @@
     "context-menu": {
       "items": "Item menu konteks dengan petunjuk pintasan keyboard opsional",
       "children": "Area target yang memicu menu konteks dengan klik kanan"
+    },
+    "filter-bar": {
+      "filters": "Array definisi filter dengan opsi",
+      "activeFilters": "Record filter id ke nilai terpilih",
+      "onFilterChange": "Callback saat filter berubah",
+      "chips": "Chip filter aktif untuk ditampilkan",
+      "onClearAll": "Callback hapus semua filter aktif",
+      "searchPlaceholder": "Placeholder input pencarian opsional",
+      "onSearchChange": "Callback untuk perubahan input pencarian"
+    },
+    "sort-control": {
+      "options": "Array definisi kolom sortable",
+      "activeId": "Id kolom pengurutan aktif saat ini",
+      "direction": "Arah pengurutan saat ini: asc | desc | none",
+      "onSortChange": "Callback dengan id dan arah baru"
+    },
+    "bottom-sheet": {
+      "open": "Mengontrol visibilitas sheet",
+      "onClose": "Dipanggil saat klik backdrop atau handle digeser ke bawah",
+      "title": "Judul header sheet opsional",
+      "maxHeight": "Tinggi maksimum sheet (default: 85vh)",
+      "children": "Konten sheet"
+    },
+    "pull-to-refresh": {
+      "onRefresh": "Fungsi async yang dipanggil saat refresh dipicu",
+      "threshold": "Jarak tarik dalam px sebelum refresh dipicu (default: 60)",
+      "refreshingLabel": "Label saat refresh (default: SYNCING...)",
+      "completeLabel": "Label setelah refresh (default: UPDATED)",
+      "disabled": "Menonaktifkan gesture tarik"
+    },
+    "swipeable-item": {
+      "leftSwipeAction": "Aksi yang terungkap oleh geser kiri (muncul di kanan)",
+      "rightSwipeAction": "Aksi yang terungkap oleh geser kanan (muncul di kiri)",
+      "revealThreshold": "Jarak untuk menampilkan panel aksi (default: 80px)",
+      "triggerThreshold": "Jarak untuk memicu aksi otomatis (default: 160px)",
+      "disabled": "Menonaktifkan gesture geser"
+    },
+    "rating": {
+      "value": "Nilai rating saat ini",
+      "defaultValue": "Nilai awal tidak terkontrol",
+      "max": "Jumlah diamond maksimum (default: 5)",
+      "onChange": "Callback dengan nilai rating baru",
+      "readOnly": "Menonaktifkan interaksi",
+      "size": "Varian ukuran: sm | md | lg"
+    },
+    "file-upload": {
+      "accept": "Filter tipe MIME atau ekstensi",
+      "multiple": "Izinkan pemilihan beberapa file",
+      "maxSize": "Ukuran file maksimum dalam byte",
+      "onFileSelect": "Dipanggil dengan array File yang dipilih",
+      "state": "Override status manual",
+      "progress": "Progres unggahan 0-100 (status uploading)",
+      "error": "Pesan error untuk ditampilkan"
+    },
+    "session-timeout": {
+      "open": "Status dialog terbuka",
+      "secondsRemaining": "Hitung mundur dari nilai ini",
+      "onExtend": "Dipanggil saat pengguna mengklik TETAP TERHUBUNG",
+      "onLogout": "Dipanggil saat pengguna mengklik KELUAR",
+      "onAutoLogout": "Dipanggil otomatis saat hitung mundur mencapai 0",
+      "warningAt": "Ambang batas detik untuk menampilkan gaya urgen (default: 60)"
+    },
+    "carousel": {
+      "autoPlay": "Aktifkan kemajuan slide otomatis",
+      "autoPlayInterval": "Milidetik antar slide (default: 5000)",
+      "showDots": "Tampilkan indikator dot diamond (default: true)",
+      "showArrows": "Tampilkan tombol prev/next (default: true)",
+      "loop": "Kembali ke slide pertama dari terakhir"
+    },
+    "resizable": {
+      "direction": "Arah pembagian panel: horizontal | vertical",
+      "defaultSize": "Ukuran awal dalam persentase",
+      "minSize": "Persentase ukuran panel minimum",
+      "maxSize": "Persentase ukuran panel maksimum"
     }
   }
 }

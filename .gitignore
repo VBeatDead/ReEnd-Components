@@ -42,5 +42,4 @@ coverage/
 
 # ═══ Misc ═══
 *.tgz
-docs/
-scripts/
+/docs/

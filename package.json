@@ -1,6 +1,6 @@
 {
   "name": "reend-components",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": false,
   "description": "Tactical, sci-fi, and gaming-inspired React component library — Arknights: Endfield Design System",
   "type": "module",
@@ -20,6 +20,7 @@
     },
     "./styles.css": "./dist/lib/style.css",
     "./variables.css": "./src/styles/variables.css",
+    "./utilities.css": "./src/styles/utilities.css",
     "./tailwind": {
       "import": "./src/tailwind-preset.ts",
       "require": "./src/tailwind-preset.ts"
@@ -80,6 +81,12 @@
     },
     "lucide-react": {
       "optional": true
+    },
+    "recharts": {
+      "optional": true
+    },
+    "react-resizable-panels": {
+      "optional": true
     }
   },
   "scripts": {
@@ -115,6 +122,8 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "react-resizable-panels": "^4.6.4",
+    "recharts": "^3.7.0",
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"

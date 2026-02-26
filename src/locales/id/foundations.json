@@ -80,6 +80,7 @@
     "primary_heading": "PALET UTAMA (GRAYSCALE)",
     "accent_heading": "WARNA AKSEN",
     "gradients_heading": "GRADIEN",
+    "dual_accent_heading": "DUAL ACCENT",
     "names": {
       "black": "Hitam",
       "soft": "Lembut",
@@ -93,6 +94,7 @@
       "white": "Putih",
       "pure_white": "Putih Murni",
       "yellow": "Kuning",
+      "lime": "Hijau Limau",
       "blue": "Biru",
       "cyan": "Sian",
       "red": "Merah",
@@ -122,6 +124,7 @@
     "body_sm_sample": "Teks body sekunder untuk deskripsi dan metadata.",
     "overline_sample": "TEKS OVERLINE",
     "code_sample": "const endfield = \"Talos-II\";",
+    "utility_classes_heading": "KELAS UTILITAS TEKS",
     "text_colors_heading": "PENETAPAN WARNA TEKS",
     "text_color_heading": "Judul",
     "text_color_body": "Body",
@@ -173,5 +176,17 @@
     "aspect_feature": "Fitur",
     "aspect_portrait": "Potret",
     "aspect_avatar": "Avatar"
+  },
+  "panel_glass": {
+    "title": "Panel Kaca (.panel-glass)",
+    "description": "Kelas utilitas glassmorphism dengan backdrop-filter blur. Mode gelap: kaca gelap (rgba(20,20,20,0.8)). Mode terang: kaca putih buram (rgba(255,255,255,0.88)). Tersedia tiga varian opacity."
+  },
+  "glow_shadows": {
+    "title": "Bayangan Cahaya",
+    "description": "Bayangan cahaya khas Endfield tanpa offset-Y — difusi radial murni. Empat varian: sm/md/lg dan accent (tint warna primary)."
+  },
+  "search_highlight": {
+    "title": "Highlight Pencarian & Spoiler",
+    "description": "Elemen <mark> bawaan dan kelas utilitas .spoiler. Mark menggunakan tint kuning dengan warna teks primary. Spoiler menyembunyikan konten hingga hover/fokus/klik — menggunakan warna foreground agar beradaptasi di mode gelap maupun terang."
   }
 }

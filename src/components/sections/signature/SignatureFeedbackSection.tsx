@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../../docs/ComponentPreview";
-import { DiamondLoader, WarningBanner } from "./primitives";
+import { DiamondLoader } from "./primitives";
 
 function SignatureFeedbackSection() {
   const { t } = useTranslation("signature");
@@ -53,60 +53,6 @@ function SignatureFeedbackSection() {
         </div>
       </ComponentPreview>
 
-      {/* WARNING BANNER */}
-      <ComponentPreview
-        id="warning-banner"
-        title={t("feedback.warning_banner.title")}
-        description={t("feedback.warning_banner.description")}
-        code={`<WarningBanner level="caution">Area ini dalam pengawasan ketat.</WarningBanner>`}
-        props={[
-          {
-            name: "level",
-            type: '"caution" | "alert" | "critical"',
-            default: '"caution"',
-            required: false,
-            description: t("feedback.warning_banner.prop_level"),
-          },
-          {
-            name: "children",
-            type: "ReactNode",
-            required: true,
-            description: t("feedback.warning_banner.prop_children"),
-          },
-        ]}
-        playground={{
-          componentName: "WarningBanner",
-          controls: [
-            {
-              name: "level",
-              type: "select",
-              options: ["caution", "alert", "critical"],
-              default: "caution",
-            },
-            {
-              name: "message",
-              label: "Message",
-              type: "text",
-              default: "System integrity compromised.",
-            },
-          ],
-          render: (v) => (
-            <WarningBanner level={v.level}>{v.message}</WarningBanner>
-          ),
-        }}
-      >
-        <div className="space-y-4">
-          <WarningBanner level="caution">
-            {t("demo.warning_caution_msg")}
-          </WarningBanner>
-          <WarningBanner level="alert">
-            {t("demo.warning_alert_msg")}
-          </WarningBanner>
-          <WarningBanner level="critical">
-            {t("demo.warning_critical_msg")}
-          </WarningBanner>
-        </div>
-      </ComponentPreview>
     </>
   );
 }

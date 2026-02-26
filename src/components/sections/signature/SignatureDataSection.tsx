@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../../docs/ComponentPreview";
-import { TacticalBadge, CoordinateTag } from "./primitives";
+import { CoordinateTag } from "./primitives";
 import RadarChart from "./RadarChart";
 
 function SignatureDataSection() {
@@ -8,64 +8,6 @@ function SignatureDataSection() {
 
   return (
     <>
-      {/* TACTICAL BADGE */}
-      <ComponentPreview
-        id="tactical-badge"
-        title={t("data.tactical_badge.title")}
-        description={t("data.tactical_badge.description")}
-        code={`<TacticalBadge variant="success">VERIFIED</TacticalBadge>`}
-        props={[
-          {
-            name: "variant",
-            type: '"default" | "success" | "warning" | "danger" | "info"',
-            default: '"default"',
-            required: false,
-            description: t("data.tactical_badge.prop_variant"),
-          },
-          {
-            name: "children",
-            type: "ReactNode",
-            required: true,
-            description: t("data.tactical_badge.prop_children"),
-          },
-        ]}
-        playground={{
-          componentName: "TacticalBadge",
-          controls: [
-            {
-              name: "variant",
-              type: "select",
-              options: ["default", "success", "warning", "danger", "info"],
-              default: "default",
-            },
-            { name: "label", label: "Label", type: "text", default: "ACTIVE" },
-          ],
-          render: (v) => (
-            <div className="flex items-center justify-center py-4">
-              <TacticalBadge variant={v.variant}>{v.label}</TacticalBadge>
-            </div>
-          ),
-        }}
-      >
-        <div className="flex flex-wrap gap-3 items-center">
-          <TacticalBadge variant="default">
-            {t("demo.badge_active")}
-          </TacticalBadge>
-          <TacticalBadge variant="success">
-            {t("demo.badge_verified")}
-          </TacticalBadge>
-          <TacticalBadge variant="warning">
-            {t("demo.badge_unstable")}
-          </TacticalBadge>
-          <TacticalBadge variant="danger">
-            {t("demo.badge_critical")}
-          </TacticalBadge>
-          <TacticalBadge variant="info">
-            {t("demo.badge_scanning")}
-          </TacticalBadge>
-        </div>
-      </ComponentPreview>
-
       {/* COORDINATE TAG */}
       <ComponentPreview
         id="coordinate-tag"

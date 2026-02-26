@@ -26,8 +26,8 @@ const DialogOverlay = React.forwardRef<
   <DialogPrimitive.Overlay
     ref={ref}
     className={cn(
-      "fixed inset-0 z-50 bg-black/75 backdrop-blur-sm",
-      "data-[state=open]:animate-fade-in-up",
+      "fixed inset-0 z-modal bg-black/75 backdrop-blur-[4px]",
+      "data-[state=open]:animate-fade-in",
       className,
     )}
     {...props}
@@ -39,8 +39,8 @@ DialogOverlay.displayName = "DialogOverlay";
 
 const dialogContentVariants = cva(
   [
-    "fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2",
-    "bg-surface-2 border border-border shadow-xl",
+    "fixed left-[50%] top-[50%] z-modal",
+    "bg-surface-3 border border-border shadow-xl",
     "flex flex-col max-h-[90vh]",
     "data-[state=open]:animate-dialog-in",
     "focus:outline-none",
@@ -48,10 +48,10 @@ const dialogContentVariants = cva(
   {
     variants: {
       size: {
-        sm: "w-full max-w-sm",
-        md: "w-full max-w-lg",
-        lg: "w-full max-w-2xl",
-        xl: "w-full max-w-4xl",
+        sm: "w-full max-w-[400px]",
+        md: "w-full max-w-[540px]",
+        lg: "w-full max-w-[720px]",
+        xl: "w-full max-w-[960px]",
         fullscreen: "w-screen h-screen max-w-none",
       },
     },
@@ -75,6 +75,12 @@ const DialogContent = React.forwardRef<
       {...props}
     >
       {children}
+      <DialogPrimitive.Close className="absolute right-4 top-4 text-muted-foreground hover:text-foreground transition-colors focus:outline-none">
+        <span className="font-mono text-sm" aria-hidden="true">
+          ✕
+        </span>
+        <span className="sr-only">Close</span>
+      </DialogPrimitive.Close>
     </DialogPrimitive.Content>
   </DialogPortal>
 ));
@@ -125,7 +131,7 @@ const DialogTitle = React.forwardRef<
   <DialogPrimitive.Title
     ref={ref}
     className={cn(
-      "font-display text-base font-semibold uppercase tracking-wider text-foreground",
+      "font-display text-base font-bold uppercase tracking-wider text-foreground",
       className,
     )}
     {...props}

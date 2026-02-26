@@ -2,10 +2,10 @@ import * as React from "react";
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
 
-import { MissionCard } from "../signature/mission-card";
-import { OperatorCard } from "../signature/operator-card";
-import { TacticalTable } from "../signature/tactical-table";
-import type { TacticalTableColumn } from "../signature/tactical-table";
+import { MissionCard } from "../../signature/mission-card";
+import { OperatorCard } from "../../signature/operator-card";
+import { TacticalTable } from "../../signature/tactical-table";
+import type { TacticalTableColumn } from "../../signature/tactical-table";
 
 // ─── MissionCard ─────────────────────────────────────────────────────────────
 

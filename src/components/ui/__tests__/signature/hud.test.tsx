@@ -2,12 +2,12 @@ import * as React from "react";
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, act } from "@testing-library/react";
 
-import { StatusBar } from "../signature/status-bar";
-import { CommandOutput } from "../signature/command-output";
-import type { LogEntry } from "../signature/command-output";
-import { MatrixGrid } from "../signature/matrix-grid";
-import { FrequencyBars } from "../signature/frequency-bars";
-import { CountdownTimer } from "../signature/countdown-timer";
+import { StatusBar } from "../../signature/status-bar";
+import { CommandOutput } from "../../signature/command-output";
+import type { LogEntry } from "../../signature/command-output";
+import { MatrixGrid } from "../../signature/matrix-grid";
+import { FrequencyBars } from "../../signature/frequency-bars";
+import { CountdownTimer } from "../../signature/countdown-timer";
 
 // ─── StatusBar ────────────────────────────────────────────────────────────────
 

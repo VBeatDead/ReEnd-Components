@@ -10,12 +10,12 @@ const avatarVariants = cva(
   {
     variants: {
       size: {
-        xs: "h-6 w-6",
-        sm: "h-8 w-8",
-        md: "h-10 w-10",
-        lg: "h-14 w-14",
-        xl: "h-20 w-20",
-        "2xl": "h-[120px] w-[120px]",
+        xs:  "h-6 w-6 text-[10px]",
+        sm:  "h-8 w-8 text-xs",
+        md:  "h-10 w-10 text-sm",
+        lg:  "h-14 w-14 text-lg",
+        xl:  "h-20 w-20 text-2xl",
+        "2xl": "h-[120px] w-[120px] text-4xl",
       },
     },
     defaultVariants: { size: "md" },
@@ -44,7 +44,7 @@ const Avatar = React.forwardRef<
   React.ElementRef<typeof AvatarPrimitive.Root>,
   AvatarProps
 >(({ className, size, status, ...props }, ref) => (
-  <div className="relative inline-flex shrink-0">
+  <div className="relative inline-flex shrink-0 transition-all duration-200 hover:drop-shadow-[0_0_6px_rgba(255,212,41,0.5)]">
     <AvatarPrimitive.Root
       ref={ref}
       className={cn(avatarVariants({ size }), className)}
@@ -98,7 +98,6 @@ const AvatarFallback = React.forwardRef<
     className={cn(
       "flex h-full w-full items-center justify-center",
       "bg-surface-2 font-display text-muted-foreground uppercase text-center",
-      "text-[clamp(8px,35%,28px)]",
       className,
     )}
     {...props}

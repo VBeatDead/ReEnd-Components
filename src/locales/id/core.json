@@ -226,12 +226,117 @@
     "prev": "SEBELUMNYA",
     "next": "BERIKUTNYA"
   },
+  "operator_card": {
+    "title": "Kartu Operator & Pengalih Tampilan",
+    "description": "Kartu seleksi operator 3:4 dengan berlian rarity (◆/◇). Termasuk ViewToggle untuk beralih tata letak grid/daftar dengan persistensi localStorage.",
+    "label": "◆ DAFTAR OPERATOR — KLIK UNTUK MEMILIH",
+    "selected_prefix": "◆ DIPILIH:",
+    "units_label": "UNIT"
+  },
+  "link_card": {
+    "title": "Kartu Tautan",
+    "description": "Kartu navigasi dengan ikon, judul, dan panah animasi (→). Hover mengangkat kartu dan menggeser panah ke kanan. Mendukung href untuk render anchor.",
+    "sample_1": "DATABASE OPERATOR",
+    "sample_2": "ARSIP MISI",
+    "sample_3": "MANUAL TAKTIS",
+    "sample_4": "PROTOKOL SISTEM"
+  },
+  "otp_input": {
+    "title": "Input OTP",
+    "description": "Field kata sandi sekali pakai dengan auto-advance, dukungan paste, dan animasi getar saat error. Font Orbitron, kotak 48×56px.",
+    "label": "◆ KODE VERIFIKASI",
+    "try_hint": "coba ketik atau tempel 6 angka",
+    "state_error": "STATUS ERROR",
+    "state_success": "STATUS SUKSES",
+    "state_disabled": "NONAKTIF",
+    "state_resend": "DENGAN TIMER KIRIM ULANG",
+    "_props": {
+      "length": "Jumlah digit OTP",
+      "value": "String nilai terkontrol",
+      "onChange": "Dipanggil setiap ketukan dengan nilai lengkap saat ini",
+      "onComplete": "Dipanggil saat semua digit terisi",
+      "error": "Memicu border merah dan animasi getar",
+      "success": "Memicu border hijau",
+      "disabled": "Menonaktifkan semua input",
+      "onResend": "Callback untuk tombol kirim ulang",
+      "resendCooldown": "Detik hitung mundur sebelum kirim ulang tersedia",
+      "resendLabel": "Label kustom untuk tombol kirim ulang"
+    }
+  },
+  "date_picker": {
+    "title": "Pemilih Tanggal",
+    "description": "Kalender kustom penuh dibangun dengan Radix Popover. Clip-path berlian pada tanggal terpilih. Format tampilan YYYY.MM.DD. Dukungan tanggal min/maks.",
+    "label_mission": "TANGGAL MISI",
+    "label_deployment": "TANGGAL PENEMPATAN",
+    "state_error": "STATUS ERROR",
+    "state_disabled": "NONAKTIF",
+    "state_compact": "KOMPAK (SM)",
+    "state_expanded": "DIPERLUAS (LG)",
+    "_props": {
+      "value": "String tanggal ISO (YYYY-MM-DD)",
+      "onChange": "Dipanggil dengan string tanggal ISO saat pemilihan",
+      "placeholder": "Teks tampilan saat tidak ada tanggal dipilih",
+      "size": "Varian tinggi tombol pemicu",
+      "error": "Pesan error atau boolean untuk border error",
+      "label": "Label field (Orbitron huruf besar)",
+      "minDate": "Tanggal sebelum ISO ini dinonaktifkan",
+      "maxDate": "Tanggal setelah ISO ini dinonaktifkan",
+      "disabled": "Menonaktifkan tombol pemicu"
+    }
+  },
+  "number_input": {
+    "title": "Input Angka",
+    "description": "Input numerik naik/turun dengan dukungan keyboard (Panah ↑/↓), pembatasan min/maks, kontrol langkah, dan tiga varian ukuran.",
+    "label_quantity": "JUMLAH",
+    "label_hp_pool": "POOL HP",
+    "label_step": "(langkah 50)",
+    "size_variants": "VARIAN UKURAN",
+    "size_sm": "SM",
+    "size_md": "MD",
+    "size_lg": "LG",
+    "state_disabled": "STATUS NONAKTIF",
+    "_props": {
+      "value": "Nilai terkontrol (membuat komponen terkontrol)",
+      "defaultValue": "Nilai awal untuk penggunaan tidak terkontrol",
+      "onChange": "Dipanggil dengan nilai numerik terbatas baru setiap perubahan",
+      "min": "Nilai minimum yang diizinkan. Tombol turun dinonaktifkan di batas ini",
+      "max": "Nilai maksimum yang diizinkan. Tombol naik dinonaktifkan di batas ini",
+      "step": "Jumlah naik atau turun per interaksi",
+      "size": "Varian tinggi — sm (32px), md (36px), lg (40px)",
+      "disabled": "Menonaktifkan kedua tombol dan field input"
+    },
+    "keyboard": {
+      "arrow_up": "Naik sebesar jumlah langkah",
+      "arrow_down": "Turun sebesar jumlah langkah",
+      "tab": "Pindahkan fokus ke field input"
+    }
+  },
+  "rich_text_editor": {
+    "title": "Editor Teks Kaya",
+    "description": "Editor WYSIWYG berbasis Markdown dengan toolbar (B/I/U/S, H1-H3, kutipan, daftar, tautan, gambar, pembatas), pengalih MARKDOWN/PREVIEW, dan penghitung karakter.",
+    "label_full": "◆ EDITOR PENUH — MARKDOWN + PENGALIH PREVIEW",
+    "label_char_limit": "BATAS KARAKTER (200)",
+    "state_disabled": "STATUS NONAKTIF",
+    "_props": {
+      "value": "String markdown terkontrol",
+      "onChange": "Dipanggil dengan string markdown lengkap setiap edit",
+      "placeholder": "Teks placeholder yang ditampilkan pada textarea kosong",
+      "maxLength": "Jumlah karakter maksimum — dipotong saat paste/format",
+      "minHeight": "Tinggi minimum area textarea/preview dalam px",
+      "mode": "Mode terkontrol — markdown atau preview",
+      "onModeChange": "Dipanggil saat pengguna beralih antar mode",
+      "disabled": "Menonaktifkan semua interaksi dan mengurangi opasitas"
+    }
+  },
   "footer": {
     "title": "Footer",
-    "description": "Latar kanvas, border-top. Grid 3 kolom. Judul kolom: Orbitron 12px huruf besar.",
+    "description": "Footer yang dapat digunakan ulang dengan sub-komponen FooterColumn dan FooterLink. Latar kanvas, border-top. Grid 3 kolom. Judul kolom menggunakan font-display (Orbitron) 12px huruf besar.",
     "props": {
+      "brand": "Nama merek yang ditampilkan di bar bawah",
+      "tagline": "Tagline / versi yang ditampilkan di bawah merek",
       "columns": "Kolom link footer",
       "copyright": "Teks hak cipta yang ditampilkan di bagian bawah",
+      "note": "Catatan penafian kecil di bawah hak cipta",
       "version": "Versi sistem yang ditampilkan di kanan bawah"
     },
     "product": "PRODUK",
@@ -248,7 +353,9 @@
     "privacy": "Privasi",
     "terms": "Ketentuan",
     "license": "Lisensi",
+    "brand_text": "REEND COMPONENTS",
     "copyright_text": "© 2026 Endfield Industries. Hak cipta dilindungi.",
-    "version_text": "EF-SYS v2.0.0"
+    "version_text": "EF-SYS v1.1.0 · Lisensi MIT",
+    "note_text": "Tidak berafiliasi dengan HyperGryph atau Yostar. Arknights: Endfield adalah merek dagang HyperGryph Co., Ltd."
   }
 }

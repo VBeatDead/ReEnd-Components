@@ -74,8 +74,8 @@ const TopoPatternDemo = () => {
               fill="none"
               stroke={
                 isNear
-                  ? `hsl(var(--primary) / ${(0.12 + intensity * 0.5).toFixed(2)})`
-                  : `hsl(var(--foreground) / 0.08)`
+                  ? `hsl(var(--primary) / ${(0.15 + intensity * 0.55).toFixed(2)})`
+                  : `hsl(var(--foreground) / 0.18)`
               }
               strokeWidth={c.major ? 1.2 : 0.5}
               className="transition-all duration-300"
@@ -103,7 +103,7 @@ const TopoPatternDemo = () => {
             textAnchor="middle"
             className="font-mono text-[7px]"
             fill="hsl(var(--muted-foreground))"
-            opacity={0.35}
+            opacity={0.55}
           >
             {l.label}
           </text>

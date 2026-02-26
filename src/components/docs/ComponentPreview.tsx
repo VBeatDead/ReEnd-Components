@@ -301,7 +301,7 @@ export const ComponentPreview = ({
       </div>
 
       {/* Component showcase — tabs + content as one unit (Shadcn/MUI pattern) */}
-      <div className="border border-border overflow-hidden">
+      <div className="relative border border-border overflow-hidden corner-brackets">
         {/* Tab bar */}
         <div
           role="tablist"
@@ -327,7 +327,7 @@ export const ComponentPreview = ({
               >
                 {tab.label}
                 {activeTab === tab.key && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary" />
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-primary shadow-glow-sm" />
                 )}
               </button>
             ))}
@@ -341,18 +341,18 @@ export const ComponentPreview = ({
             aria-labelledby={`${id}-tab-playground`}
             className="bg-surface-1"
           >
-            <div className="flex flex-col lg:flex-row">
+            <div className="flex flex-col md:flex-row">
               <div className="flex-1 p-6 sm:p-10 min-h-[220px] flex items-center justify-center">
                 <div className="w-full">{playground.render(pgValues)}</div>
               </div>
-              <div className="lg:w-[280px] border-t lg:border-t-0 lg:border-l border-border bg-surface-2 p-4 space-y-4">
+              <div className="md:w-[280px] border-t md:border-t-0 md:border-l border-border bg-surface-2 p-4 space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-display text-[10px] font-bold tracking-[0.12em] uppercase text-muted-foreground">
                     {t("component_preview.controls")}
                   </span>
                   <button
                     onClick={resetPg}
-                    className="p-1 text-muted-foreground hover:text-primary transition-colors"
+                    className="p-2 text-muted-foreground hover:text-primary transition-colors"
                     title={t("component_preview.reset")}
                     aria-label={t("component_preview.reset_playground")}
                   >
@@ -445,7 +445,7 @@ export const ComponentPreview = ({
                     onClick={() => setViewport(key)}
                     aria-label={label}
                     title={label}
-                    className={`p-1.5 rounded transition-colors ${
+                    className={`p-2 transition-colors ${
                       viewport === key
                         ? "text-primary bg-primary/10"
                         : "text-muted-foreground hover:text-foreground"

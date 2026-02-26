@@ -3,6 +3,12 @@
     "title": "Notification & Toast",
     "description": "Left border 3px semantic color. Auto-dismiss progress bar. Position: top-right.",
     "trigger": "SHOW TOAST",
+    "trigger_label": "LIVE DEMO",
+    "trigger_info": "INFO",
+    "trigger_success": "SUCCESS",
+    "trigger_warning": "WARNING",
+    "trigger_error": "ERROR",
+    "dismiss_label": "Dismiss notification",
     "toasts": [
       { "title": "SYSTEM INFO", "message": "New update available." },
       { "title": "OPERATION COMPLETE", "message": "Data saved successfully." },
@@ -19,6 +25,7 @@
     "cancel": "CANCEL",
     "delete": "DELETE",
     "confirm": "CONFIRM",
+    "close_label": "Close dialog",
     "playground": {
       "title_label": "Title",
       "show_footer_label": "Show Footer"
@@ -26,7 +33,7 @@
   },
   "tooltip": {
     "title": "Tooltip & Popover",
-    "description": "Tooltip: #222 bg, 12px, non-interactive. Popover: surface-2, shadow-lg, interactive.",
+    "description": "Tooltip: surface-2 bg, 12px font, non-interactive. Popover: surface-2, shadow-lg, interactive.",
     "tooltip_label": "TOOLTIP",
     "hover_me": "Hover me",
     "click_me": "Click me",
@@ -42,7 +49,9 @@
     "spinner": "SPINNER",
     "dots": "DOTS",
     "skeleton": "SKELETON",
-    "initializing": "INITIALIZING..."
+    "table_row_image": "TABLE ROW / IMAGE",
+    "initializing": "INITIALIZING...",
+    "loading_label": "Loading"
   },
   "empty_state": {
     "title": "Empty State",
@@ -68,30 +77,34 @@
     "maintenance_desc": "System under maintenance."
   },
   "offline": {
-    "title": "Offline State",
-    "description": "Full page and inline banner variants. Network status indicator.",
+    "title": "Connectivity & System States",
+    "description": "Connectivity indicators (offline banner, status dots) and system success confirmation patterns.",
     "banner_text": "You are currently offline. Some features may not be available.",
     "online": "ONLINE",
     "offline_label": "OFFLINE",
-    "slow": "SLOW"
-  },
-  "success": {
-    "title": "Success State / Confirmation",
-    "description": "Checkmark icon animated. Green accent. Minimal affirming text.",
+    "slow": "SLOW",
+    "connectivity_states_label": "CONNECTIVITY STATES",
+    "success_states_label": "SUCCESS STATE",
     "success_message": "Operation complete. Changes have been saved."
   },
   "validation": {
     "title": "Inline Validation",
-    "description": "Field-level: icon prefix ✕/✓/⚠. Real-time debounced 300ms, on-blur, on-submit.",
-    "password_error": "✕ Password must be at least 8 characters.",
-    "email_valid": "✓ Email is valid.",
-    "password_warning": "⚠ Consider using a stronger password."
+    "description": "Field-level validation states: error, success, warning. Real-time debounced 300ms, on-blur, on-submit.",
+    "password_error": "Password must be at least 8 characters.",
+    "email_valid": "Email is valid.",
+    "password_warning": "Consider using a stronger password."
   },
   "banner": {
-    "title": "Banner & Alert (Persistent)",
-    "description": "Inline alerts with semantic bg tint. Top-of-page banner: yellow bg, black text.",
+    "title": "Banner & Alert",
+    "description": "Inline alerts with semantic bg tint (info/success/warning/error). Top-of-page announcement banner. Endfield tactical warning with clip-corner and severity levels.",
     "info_message": "{type} alert message. Persistent and dismissible.",
-    "new_version": "◆ NEW VERSION AVAILABLE — UPDATE NOW"
+    "new_version": "◆ NEW VERSION AVAILABLE — UPDATE NOW",
+    "top_banner_label": "TOP BANNER",
+    "tactical_heading": "◆ SIGNATURE — TACTICAL WARNING",
+    "tactical_description": "Endfield-exclusive. Clip-corner with AlertTriangle icon. Three levels: CAUTION (yellow), ALERT (orange), CRITICAL (red).",
+    "warning_caution_msg": "Area under strict observation. Proceed with caution.",
+    "warning_alert_msg": "Anomaly detected in sector 7-B. Immediate response required.",
+    "warning_critical_msg": "System integrity compromised. Emergency protocols engaged."
   },
   "_props": {
     "toast-notification": {
@@ -104,7 +117,8 @@
       "api": {
         "toast_info": "Shows an info toast with blue left border and info icon.",
         "toast_success": "Shows a success toast with green left border and checkmark icon.",
-        "toast_error": "Shows an error toast with red left border and alert icon."
+        "toast_warning": "Shows a warning toast with orange left border and caution icon.",
+        "toast_error": "Shows an error toast with red left border and alert icon. Persists until dismissed."
       }
     },
     "modal-dialog": {
@@ -115,9 +129,6 @@
       "actions": "Footer action buttons",
       "variant": "Visual variant for destructive confirmations",
       "closeOnBackdrop": "Close when clicking backdrop overlay",
-      "api": {
-        "useModal": "Hook to manage modal open/close state with escape key handling built-in."
-      },
       "kbd": {
         "0": "Close the modal dialog",
         "1": "Move focus to the next element within the modal (focus trap)",
@@ -151,11 +162,8 @@
     },
     "offline-state": {
       "variant": "Display mode",
-      "onRetry": "Retry connection callback"
-    },
-    "success-state": {
-      "message": "Success message text",
-      "variant": "Display mode"
+      "onRetry": "Retry connection callback",
+      "message": "Success confirmation message text"
     },
     "inline-validation": {
       "status": "Validation state",
@@ -168,7 +176,8 @@
       "children": "Alert message content",
       "dismissible": "Shows close button",
       "variant": "Inline alert or full-width top banner",
-      "onDismiss": "Callback when dismissed"
+      "onDismiss": "Callback when dismissed",
+      "level": "Tactical warning severity level — caution (yellow), alert (orange), critical (red)"
     }
   }
 }

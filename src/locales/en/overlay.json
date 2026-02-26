@@ -46,6 +46,50 @@
     "paste": "Paste",
     "delete": "Delete"
   },
+  "filter_bar": {
+    "title": "Filter Bar",
+    "description": "Compact bar for multi-select filtering. Dropdown triggers for each filter category. Active chips with dismiss. Optional inline search slot."
+  },
+  "sort_control": {
+    "title": "Sort Control",
+    "description": "Tri-state sort row: asc → desc → none. ▲/▼ direction indicators. Orbitron uppercase labels. Supports multiple sort columns."
+  },
+  "bottom_sheet": {
+    "title": "Bottom Sheet",
+    "description": "Mobile-first overlay sliding up from the screen bottom. Backdrop click dismisses. Drag handle with swipe-down gesture (120px threshold). Snap-point support."
+  },
+  "pull_to_refresh": {
+    "title": "Pull to Refresh",
+    "description": "Mobile pull-to-refresh with 5-phase state machine: idle → pulling → threshold → refreshing → complete. Diamond spinner. Haptic feedback at threshold."
+  },
+  "swipeable_item": {
+    "title": "Swipeable Item",
+    "description": "Touch-swipeable list item. Drag left to reveal left action (appears on right), drag right to reveal right action (appears on left). Auto-triggers at 160px."
+  },
+  "rating": {
+    "title": "Rating",
+    "description": "Diamond ◆/◇ rating selector. Hover preview with keyboard navigation (←/→). Configurable max rating and size. Read-only mode for display."
+  },
+  "file_upload": {
+    "title": "File Upload",
+    "description": "Drag-and-drop upload zone with 8 visual states: idle, hover, dragging, drag-invalid, uploading (with progress bar), success, error, disabled. Per-file item list with thumbnails."
+  },
+  "session_timeout": {
+    "title": "Session Timeout Modal",
+    "description": "Dialog warning of imminent session expiry. Countdown in Orbitron font turns orange at 2 min, red + pulsing at 1 min. Auto-logout at 0:00."
+  },
+  "carousel": {
+    "title": "Carousel",
+    "description": "CSS scroll-snap carousel with ◆/◇ diamond dot indicators. Optional autoplay. Arrow navigation buttons. Loop and keyboard support."
+  },
+  "resizable": {
+    "title": "Resizable Panels",
+    "description": "Resizable panel layout using react-resizable-panels. Endfield-themed ◆ resize handle. Supports horizontal and vertical panel splits."
+  },
+  "theme_switcher": {
+    "title": "Theme Switcher",
+    "description": "Diamond toggle button for light/dark theme. Persists to localStorage under key 'ef-theme'. Reads initial state from localStorage on mount."
+  },
   "_props": {
     "command-palette": {
       "open": "Controls visibility",
@@ -87,6 +131,80 @@
     "context-menu": {
       "items": "Context menu items with optional keyboard shortcut hints",
       "children": "Target area that triggers context menu on right-click"
+    },
+    "filter-bar": {
+      "filters": "Array of filter definitions with options",
+      "activeFilters": "Record of filter id to selected values",
+      "onFilterChange": "Callback when filter changes",
+      "chips": "Active filter chips to display",
+      "onClearAll": "Clear all active filters callback",
+      "searchPlaceholder": "Optional search input placeholder",
+      "onSearchChange": "Callback for search input changes"
+    },
+    "sort-control": {
+      "options": "Array of sortable column definitions",
+      "activeId": "Currently active sort column id",
+      "direction": "Current sort direction: asc | desc | none",
+      "onSortChange": "Callback with id and new direction"
+    },
+    "bottom-sheet": {
+      "open": "Controls sheet visibility",
+      "onClose": "Called when backdrop clicked or handle dragged down",
+      "title": "Optional sheet header title",
+      "maxHeight": "Maximum height of sheet (default: 85vh)",
+      "children": "Sheet content"
+    },
+    "pull-to-refresh": {
+      "onRefresh": "Async function called when refresh triggered",
+      "threshold": "Pull distance in px before refresh triggers (default: 60)",
+      "refreshingLabel": "Label during refresh (default: SYNCING...)",
+      "completeLabel": "Label after refresh (default: UPDATED)",
+      "disabled": "Disables pull gesture"
+    },
+    "swipeable-item": {
+      "leftSwipeAction": "Action revealed by left swipe (shows on right)",
+      "rightSwipeAction": "Action revealed by right swipe (shows on left)",
+      "revealThreshold": "Distance to reveal action panel (default: 80px)",
+      "triggerThreshold": "Distance to auto-trigger action (default: 160px)",
+      "disabled": "Disables swipe gestures"
+    },
+    "rating": {
+      "value": "Current rating value",
+      "defaultValue": "Initial uncontrolled value",
+      "max": "Maximum number of diamonds (default: 5)",
+      "onChange": "Callback with new rating value",
+      "readOnly": "Disables interaction",
+      "size": "Size variant: sm | md | lg"
+    },
+    "file-upload": {
+      "accept": "MIME type or extension filter",
+      "multiple": "Allow multiple file selection",
+      "maxSize": "Maximum file size in bytes",
+      "onFileSelect": "Called with selected File array",
+      "state": "Manual state override",
+      "progress": "Upload progress 0-100 (uploading state)",
+      "error": "Error message to display"
+    },
+    "session-timeout": {
+      "open": "Dialog open state",
+      "secondsRemaining": "Countdown from this value",
+      "onExtend": "Called when user clicks STAY CONNECTED",
+      "onLogout": "Called when user clicks LOG OUT",
+      "onAutoLogout": "Called automatically when countdown reaches 0",
+      "warningAt": "Seconds threshold to show urgent styling (default: 60)"
+    },
+    "carousel": {
+      "autoPlay": "Enable automatic slide advancement",
+      "autoPlayInterval": "Milliseconds between slides (default: 5000)",
+      "showDots": "Show diamond dot indicators (default: true)",
+      "showArrows": "Show prev/next buttons (default: true)",
+      "loop": "Loop back to first slide from last"
+    },
+    "resizable": {
+      "direction": "Panel split direction: horizontal | vertical",
+      "defaultSize": "Initial size as percentage",
+      "minSize": "Minimum panel size percentage",
+      "maxSize": "Maximum panel size percentage"
     }
   }
 }

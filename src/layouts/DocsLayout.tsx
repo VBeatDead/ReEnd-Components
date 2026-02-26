@@ -34,7 +34,6 @@ const DocsLayout = () => {
 
   const sidebarData = useMemo(() => getSidebarData(t), [t]);
 
-  // Extract slug from path: /docs/core-components → "core-components"
   const slug = useMemo(() => {
     const match = location.pathname.match(
       /(?:\/(?:en|id))?\/docs\/(.+?)(?:\/|$)/,
@@ -42,51 +41,42 @@ const DocsLayout = () => {
     return match?.[1] ?? null;
   }, [location.pathname]);
 
-  // Determine active section from current route
   const activeSection = useMemo(() => {
     return sidebarData.find((s) => s.slug === slug) ?? null;
   }, [sidebarData, slug]);
 
-  // Determine active item from hash
   const hashActiveId = useMemo(() => {
     const hash = location.hash.slice(1);
     if (hash) return hash;
-    // Default to first item of the active section
     return activeSection?.items[0]?.id ?? "";
   }, [location.hash, activeSection]);
 
-  // Scroll spy: observe items in current section
   const sectionItemIds = useMemo(
     () => activeSection?.items.map((i) => i.id) ?? [],
     [activeSection],
   );
   const scrollSpyId = useScrollSpy(sectionItemIds);
 
-  // Scroll spy takes priority when user is scrolling within a section
   const activeId = scrollSpyId ?? hashActiveId;
 
-  // Handle navigation from sidebar/header/command palette
   const handleNavigate = useCallback(
     (id: string) => {
       const targetSlug = idToSlugMap[id];
       if (!targetSlug) return;
 
       if (targetSlug === slug) {
-        // Same section: just scroll to the element
         const el = document.getElementById(id);
         if (el) {
           el.scrollIntoView({ behavior: "smooth", block: "start" });
           window.history.replaceState(null, "", `#${id}`);
         }
       } else {
-        // Different section: navigate to route with hash
         navigate(lp(`/docs/${targetSlug}#${id}`));
       }
     },
     [slug, navigate, lp],
   );
 
-  // Scroll to hash after route change
   useEffect(() => {
     const hash = location.hash.slice(1);
     if (!hash) {
@@ -94,7 +84,6 @@ const DocsLayout = () => {
       return;
     }
 
-    // Wait for Suspense to resolve and section to render
     const scrollToHash = (attempt: number) => {
       const el = document.getElementById(hash);
       if (el) {
@@ -104,11 +93,9 @@ const DocsLayout = () => {
       }
     };
 
-    // Small delay for initial render
     setTimeout(() => scrollToHash(0), 50);
   }, [location.pathname, location.hash]);
 
-  // Update document title per section
   useEffect(() => {
     if (activeSection) {
       document.title = t("docs:layout.page_title_section", {
@@ -122,7 +109,6 @@ const DocsLayout = () => {
     };
   }, [activeSection, t]);
 
-  // Backward compat: redirect old /docs#item-id to /docs/slug#item-id
   useEffect(() => {
     if (!slug && location.hash) {
       const hash = location.hash.slice(1);
@@ -133,7 +119,6 @@ const DocsLayout = () => {
     }
   }, [slug, location.hash, navigate, lp]);
 
-  // Keyboard navigation: Alt+← / Alt+→ for prev/next section
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (!e.altKey) return;
@@ -154,8 +139,11 @@ const DocsLayout = () => {
 
   return (
     <div className="relative min-h-screen bg-background overflow-x-hidden">
-      <TopoBg className="opacity-20 fixed inset-0" />
-      {/* Skip navigation link */}
+      <div
+        className="fixed inset-0 bg-radial-glow pointer-events-none"
+        aria-hidden="true"
+      />
+      <TopoBg className="opacity-[0.12] fixed inset-0" />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[200] focus:bg-primary focus:text-primary-foreground focus:px-4 focus:py-2 focus:font-display focus:text-xs focus:tracking-[0.1em] focus:uppercase"

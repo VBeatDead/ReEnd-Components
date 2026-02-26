@@ -56,7 +56,7 @@ export const CodeBlock = ({
         </span>
         <button
           onClick={handleCopy}
-          className="opacity-0 group-hover:opacity-100 transition-opacity p-1 hover:text-primary"
+          className="opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity p-2 hover:text-primary"
           aria-label="Copy code"
         >
           {copied ? (

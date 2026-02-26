@@ -279,6 +279,38 @@ describe("Switch", () => {
     render(<Switch aria-label="toggle" disabled />);
     expect(screen.getByRole("switch")).toBeDisabled();
   });
+
+  it("renders diamond thumb via clip-path polygon", () => {
+    const { container } = render(<Switch aria-label="toggle" />);
+    const diamond = container.querySelector("[style*='polygon']");
+    expect(diamond).toBeInTheDocument();
+    expect(diamond?.getAttribute("style")).toContain("polygon(50% 0%");
+  });
+
+  it("does NOT apply animate-switch-spin on initial render (spinKey=0)", () => {
+    const { container } = render(<Switch aria-label="toggle" />);
+    const diamond = container.querySelector("[style*='polygon']");
+    expect(diamond).not.toHaveClass("animate-switch-spin");
+  });
+
+  it("applies animate-switch-spin on diamond after first toggle", () => {
+    const { container } = render(<Switch aria-label="toggle" />);
+    fireEvent.click(screen.getByRole("switch"));
+    const diamond = container.querySelector("[style*='polygon']");
+    expect(diamond).toHaveClass("animate-switch-spin");
+  });
+
+  it("diamond is bg-foreground/80 when unchecked, bg-primary-foreground when checked", () => {
+    const { container, rerender } = render(
+      <Switch aria-label="toggle" checked={false} onCheckedChange={() => {}} />
+    );
+    let diamond = container.querySelector("[style*='polygon']");
+    expect(diamond).toHaveClass("bg-foreground/80");
+
+    rerender(<Switch aria-label="toggle" checked onCheckedChange={() => {}} />);
+    diamond = container.querySelector("[style*='polygon']");
+    expect(diamond).toHaveClass("bg-primary-foreground");
+  });
 });
 
 /* ═══════════════════════════════════════════════════════════

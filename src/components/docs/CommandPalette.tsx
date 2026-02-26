@@ -55,7 +55,7 @@ export const CommandPalette = ({
 
   const filtered = useMemo(
     () => (query.trim() ? fuse.search(query).map((r) => r.item) : allItems),
-    [query],
+    [query, fuse, allItems],
   );
 
   // Group results by section

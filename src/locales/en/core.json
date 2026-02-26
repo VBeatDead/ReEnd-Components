@@ -226,12 +226,117 @@
     "prev": "PREV",
     "next": "NEXT"
   },
+  "operator_card": {
+    "title": "Operator Card & View Toggle",
+    "description": "Portrait 3:4 operator selection card with rarity diamonds (◆/◇). Includes ViewToggle for grid/list layout switching with localStorage persistence.",
+    "label": "◆ OPERATOR ROSTER — CLICK TO SELECT",
+    "selected_prefix": "◆ SELECTED:",
+    "units_label": "UNITS"
+  },
+  "link_card": {
+    "title": "Link Card",
+    "description": "Navigation card with icon, title, and animated arrow (→). Hover lifts card and shifts arrow right. Supports href for anchor rendering.",
+    "sample_1": "OPERATOR DATABASE",
+    "sample_2": "MISSION ARCHIVE",
+    "sample_3": "TACTICAL MANUAL",
+    "sample_4": "SYSTEM PROTOCOLS"
+  },
+  "otp_input": {
+    "title": "OTP Input",
+    "description": "One-time password field with auto-advance, paste support, and shake-on-error animation. Orbitron font, 48×56px boxes.",
+    "label": "◆ VERIFICATION CODE",
+    "try_hint": "try typing or pasting 6 digits",
+    "state_error": "ERROR STATE",
+    "state_success": "SUCCESS STATE",
+    "state_disabled": "DISABLED",
+    "state_resend": "WITH RESEND TIMER",
+    "_props": {
+      "length": "Number of OTP digits",
+      "value": "Controlled value string",
+      "onChange": "Called on each keystroke with full current value",
+      "onComplete": "Called when all digits are filled",
+      "error": "Triggers red border and shake animation",
+      "success": "Triggers green border",
+      "disabled": "Disables all inputs",
+      "onResend": "Callback for resend button",
+      "resendCooldown": "Countdown seconds before resend is available",
+      "resendLabel": "Custom label for resend button"
+    }
+  },
+  "date_picker": {
+    "title": "Date Picker",
+    "description": "Full custom calendar built with Radix Popover. Diamond clip-path on selected date. YYYY.MM.DD display format. Min/max date support.",
+    "label_mission": "MISSION DATE",
+    "label_deployment": "DEPLOYMENT DATE",
+    "state_error": "ERROR STATE",
+    "state_disabled": "DISABLED",
+    "state_compact": "COMPACT (SM)",
+    "state_expanded": "EXPANDED (LG)",
+    "_props": {
+      "value": "ISO date string (YYYY-MM-DD)",
+      "onChange": "Called with ISO date string on selection",
+      "placeholder": "Display text when no date selected",
+      "size": "Trigger button height variant",
+      "error": "Error message or boolean for error border",
+      "label": "Field label (Orbitron uppercase)",
+      "minDate": "Dates before this ISO date are disabled",
+      "maxDate": "Dates after this ISO date are disabled",
+      "disabled": "Disables the trigger button"
+    }
+  },
+  "number_input": {
+    "title": "Number Input",
+    "description": "Increment/decrement numeric input with keyboard support (Arrow ↑/↓), min/max clamping, step control, and three size variants.",
+    "label_quantity": "QUANTITY",
+    "label_hp_pool": "HP POOL",
+    "label_step": "(step 50)",
+    "size_variants": "SIZE VARIANTS",
+    "size_sm": "SM",
+    "size_md": "MD",
+    "size_lg": "LG",
+    "state_disabled": "DISABLED STATE",
+    "_props": {
+      "value": "Controlled value (makes component controlled)",
+      "defaultValue": "Initial value for uncontrolled usage",
+      "onChange": "Called with the new clamped numeric value on every change",
+      "min": "Minimum allowed value. Decrement button disables at this boundary",
+      "max": "Maximum allowed value. Increment button disables at this boundary",
+      "step": "Amount to increment or decrement per interaction",
+      "size": "Height variant — sm (32px), md (36px), lg (40px)",
+      "disabled": "Disables both buttons and the input field"
+    },
+    "keyboard": {
+      "arrow_up": "Increment by step amount",
+      "arrow_down": "Decrement by step amount",
+      "tab": "Move focus to input field"
+    }
+  },
+  "rich_text_editor": {
+    "title": "Rich Text Editor",
+    "description": "Markdown-powered WYSIWYG editor with toolbar (B/I/U/S, H1-H3, quote, lists, link, image, divider), MARKDOWN/PREVIEW toggle, and character count.",
+    "label_full": "◆ FULL EDITOR — MARKDOWN + PREVIEW TOGGLE",
+    "label_char_limit": "CHARACTER LIMIT (200)",
+    "state_disabled": "DISABLED STATE",
+    "_props": {
+      "value": "Controlled markdown string",
+      "onChange": "Called with full markdown string on every edit",
+      "placeholder": "Placeholder text shown in empty textarea",
+      "maxLength": "Maximum character count — truncates on paste/format",
+      "minHeight": "Minimum height of the textarea/preview pane in px",
+      "mode": "Controlled mode — markdown or preview",
+      "onModeChange": "Called when user switches between modes",
+      "disabled": "Disables all interactions and reduces opacity"
+    }
+  },
   "footer": {
     "title": "Footer",
-    "description": "Background canvas, border-top. 3-column grid. Column title: Orbitron 12px uppercase.",
+    "description": "Reusable Footer with FooterColumn and FooterLink sub-components. Background canvas, border-top. 3-column grid. Column titles use font-display (Orbitron) 12px uppercase.",
     "props": {
+      "brand": "Brand name displayed at bottom bar",
+      "tagline": "Tagline / version displayed below brand",
       "columns": "Footer link columns",
       "copyright": "Copyright text displayed at bottom",
+      "note": "Small disclaimer note below copyright",
       "version": "System version displayed bottom-right"
     },
     "product": "PRODUCT",
@@ -248,7 +353,9 @@
     "privacy": "Privacy",
     "terms": "Terms",
     "license": "License",
+    "brand_text": "REEND COMPONENTS",
     "copyright_text": "© 2026 Endfield Industries. All rights reserved.",
-    "version_text": "EF-SYS v2.0.0"
+    "version_text": "EF-SYS v1.1.0 · MIT License",
+    "note_text": "Not affiliated with HyperGryph or Yostar. Arknights: Endfield is a trademark of HyperGryph Co., Ltd."
   }
 }

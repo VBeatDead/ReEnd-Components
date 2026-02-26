@@ -15,7 +15,7 @@ const progressTrackVariants = cva(
         lg: "h-2.5",
       },
     },
-    defaultVariants: { size: "md" },
+    defaultVariants: { size: "sm" },
   },
 );
 

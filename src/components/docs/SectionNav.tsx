@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { getSidebarData } from "./sidebarData";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLocalizedPath } from "@/hooks/useLocalizedPath";
 
@@ -43,7 +42,7 @@ export const SectionNav = () => {
           to={lp(`/docs/${prev.slug}`)}
           className="group flex items-center gap-3 p-4 bg-surface-1 border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-200"
         >
-          <ChevronLeft className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+          <span className="text-muted-foreground group-hover:text-primary transition-colors shrink-0 font-display text-sm leading-none">←</span>
           <div className="min-w-0">
             <span className="block font-mono text-[10px] text-muted-foreground uppercase tracking-[0.15em] mb-1">
               {t("common:actions.previous")}
@@ -70,7 +69,7 @@ export const SectionNav = () => {
               {next.title}
             </span>
           </div>
-          <ChevronRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
+          <span className="text-muted-foreground group-hover:text-primary transition-colors shrink-0 font-display text-sm leading-none">→</span>
         </Link>
       ) : (
         <div />

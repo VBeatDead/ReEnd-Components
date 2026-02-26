@@ -27,19 +27,17 @@ const HomePage = () => {
     t("chapter_labels.deploy"),
   ];
 
-  // Hide browser scrollbar for immersive storytelling.
-  // The page still scrolls — scroll-progress drives pinned-section animations.
   useEffect(() => {
     document.documentElement.classList.add("storytelling-mode");
     return () => document.documentElement.classList.remove("storytelling-mode");
   }, []);
 
   return (
-    // overflow-x-clip prevents horizontal overflow from wide Arsenal panels
-    // WITHOUT creating a new scroll container (unlike overflow-x-hidden which
-    // implicitly sets overflow-y:auto per CSS spec, potentially breaking position:sticky).
     <div className="min-h-screen bg-background text-foreground overflow-x-clip">
-      {/* Skip navigation for keyboard users */}
+      <div
+        className="fixed inset-0 bg-radial-glow pointer-events-none"
+        aria-hidden="true"
+      />
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:font-ui focus:text-xs focus:tracking-widest focus:uppercase focus:clip-corner-sm"
@@ -47,13 +45,11 @@ const HomePage = () => {
         {t("skip_to_main")}
       </a>
 
-      {/* Scroll progress bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-[2px] bg-primary z-50 origin-left"
         style={{ scaleX }}
       />
 
-      {/* Chapter navigation dots */}
       <ChapterIndicator chapters={5} labels={CHAPTER_LABELS} />
 
       {/* ═══ CHAPTERS ═══ */}

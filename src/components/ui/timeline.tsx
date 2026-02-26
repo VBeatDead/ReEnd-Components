@@ -47,8 +47,10 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
         <span
           className={cn(
             "absolute -left-[15px] top-0.5 font-mono text-[11px] leading-none select-none",
+            "transition-all duration-150 hover:scale-125",
             timelineItemVariants({ status }),
             status === "current" && "drop-shadow-[0_0_6px_rgba(255,212,41,0.6)]",
+            (status === "current" || status === "complete") && "hover:drop-shadow-[0_0_8px_rgba(255,212,41,0.8)]",
           )}
           aria-hidden="true"
         >
@@ -57,7 +59,7 @@ const TimelineItem = React.forwardRef<HTMLDivElement, TimelineItemProps>(
 
         {/* Date */}
         {date && (
-          <p className="font-mono text-[11px] text-muted-foreground/60 mb-1">{date}</p>
+          <p className="font-display text-[11px] text-muted-foreground/60 mb-1">{date}</p>
         )}
 
         {/* Title */}

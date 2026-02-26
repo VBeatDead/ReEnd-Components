@@ -3,6 +3,12 @@
     "title": "Notifikasi & Toast",
     "description": "Border kiri 3px warna semantik. Auto-dismiss progress bar. Posisi: kanan atas.",
     "trigger": "TAMPILKAN TOAST",
+    "trigger_label": "DEMO LANGSUNG",
+    "trigger_info": "INFO",
+    "trigger_success": "SUKSES",
+    "trigger_warning": "PERINGATAN",
+    "trigger_error": "ERROR",
+    "dismiss_label": "Tutup notifikasi",
     "toasts": [
       { "title": "INFO SISTEM", "message": "Pembaruan baru tersedia." },
       { "title": "OPERASI SELESAI", "message": "Data berhasil disimpan." },
@@ -19,6 +25,7 @@
     "cancel": "BATAL",
     "delete": "HAPUS",
     "confirm": "KONFIRMASI",
+    "close_label": "Tutup dialog",
     "playground": {
       "title_label": "Judul",
       "show_footer_label": "Tampilkan Footer"
@@ -26,7 +33,7 @@
   },
   "tooltip": {
     "title": "Tooltip & Popover",
-    "description": "Tooltip: latar #222, 12px, non-interaktif. Popover: surface-2, shadow-lg, interaktif.",
+    "description": "Tooltip: latar surface-2, font 12px, non-interaktif. Popover: surface-2, shadow-lg, interaktif.",
     "tooltip_label": "TOOLTIP",
     "hover_me": "Arahkan kursor",
     "click_me": "Klik saya",
@@ -42,7 +49,9 @@
     "spinner": "SPINNER",
     "dots": "DOTS",
     "skeleton": "SKELETON",
-    "initializing": "MENGINISIALISASI..."
+    "table_row_image": "BARIS TABEL / GAMBAR",
+    "initializing": "MENGINISIALISASI...",
+    "loading_label": "Memuat"
   },
   "empty_state": {
     "title": "State Kosong",
@@ -68,30 +77,34 @@
     "maintenance_desc": "Sistem dalam perbaikan."
   },
   "offline": {
-    "title": "State Offline",
-    "description": "Varian halaman penuh dan banner inline. Indikator status jaringan.",
+    "title": "Status Koneksi & Sistem",
+    "description": "Indikator konektivitas (banner offline, status dot) dan pola konfirmasi sukses sistem.",
     "banner_text": "Anda sedang offline. Beberapa fitur mungkin tidak tersedia.",
     "online": "ONLINE",
     "offline_label": "OFFLINE",
-    "slow": "LAMBAT"
-  },
-  "success": {
-    "title": "State Sukses / Konfirmasi",
-    "description": "Ikon centang animasi. Aksen hijau. Teks afirmasi minimal.",
+    "slow": "LAMBAT",
+    "connectivity_states_label": "STATUS KONEKSI",
+    "success_states_label": "STATE SUKSES",
     "success_message": "Operasi selesai. Perubahan telah disimpan."
   },
   "validation": {
     "title": "Validasi Inline",
-    "description": "Level field: awalan ikon ✕/✓/⚠. Real-time debounce 300ms, on-blur, on-submit.",
-    "password_error": "✕ Password harus minimal 8 karakter.",
-    "email_valid": "✓ Email valid.",
-    "password_warning": "⚠ Pertimbangkan untuk menggunakan password yang lebih kuat."
+    "description": "Status validasi level field: error, sukses, peringatan. Real-time debounce 300ms, on-blur, on-submit.",
+    "password_error": "Password harus minimal 8 karakter.",
+    "email_valid": "Email valid.",
+    "password_warning": "Pertimbangkan untuk menggunakan password yang lebih kuat."
   },
   "banner": {
-    "title": "Banner & Alert (Persisten)",
-    "description": "Alert inline dengan tint bg semantik. Banner atas halaman: bg kuning, teks hitam.",
+    "title": "Banner & Alert",
+    "description": "Alert inline dengan tint bg semantik (info/sukses/peringatan/error). Banner pengumuman atas halaman. Peringatan taktis Endfield dengan clip-corner dan level keparahan.",
     "info_message": "Pesan alert {type}. Persisten dan dapat ditutup.",
-    "new_version": "◆ VERSI BARU TERSEDIA — PERBARUI SEKARANG"
+    "new_version": "◆ VERSI BARU TERSEDIA — PERBARUI SEKARANG",
+    "top_banner_label": "BANNER ATAS",
+    "tactical_heading": "◆ SIGNATURE — PERINGATAN TAKTIS",
+    "tactical_description": "Eksklusif Endfield. Clip-corner dengan ikon AlertTriangle. Tiga level: CAUTION (kuning), ALERT (oranye), CRITICAL (merah).",
+    "warning_caution_msg": "Area dalam pengawasan ketat. Lanjutkan dengan hati-hati.",
+    "warning_alert_msg": "Anomali terdeteksi di sektor 7-B. Respons segera diperlukan.",
+    "warning_critical_msg": "Integritas sistem terganggu. Protokol darurat diaktifkan."
   },
   "_props": {
     "toast-notification": {
@@ -104,7 +117,8 @@
       "api": {
         "toast_info": "Menampilkan toast info dengan border kiri biru dan ikon info.",
         "toast_success": "Menampilkan toast sukses dengan border kiri hijau dan ikon centang.",
-        "toast_error": "Menampilkan toast error dengan border kiri merah dan ikon alert."
+        "toast_warning": "Menampilkan toast peringatan dengan border kiri oranye dan ikon peringatan.",
+        "toast_error": "Menampilkan toast error dengan border kiri merah dan ikon alert. Persisten hingga ditutup."
       }
     },
     "modal-dialog": {
@@ -115,9 +129,6 @@
       "actions": "Tombol aksi footer",
       "variant": "Varian visual untuk konfirmasi destruktif",
       "closeOnBackdrop": "Tutup ketika mengklik overlay backdrop",
-      "api": {
-        "useModal": "Hook untuk mengelola status buka/tutup modal dengan penanganan tombol escape bawaan."
-      },
       "kbd": {
         "0": "Menutup dialog modal",
         "1": "Pindahkan fokus ke elemen berikutnya dalam modal (jebakan fokus)",
@@ -151,11 +162,8 @@
     },
     "offline-state": {
       "variant": "Mode tampilan",
-      "onRetry": "Callback coba koneksi ulang"
-    },
-    "success-state": {
-      "message": "Teks pesan sukses",
-      "variant": "Mode tampilan"
+      "onRetry": "Callback coba koneksi ulang",
+      "message": "Teks pesan konfirmasi sukses"
     },
     "inline-validation": {
       "status": "Status validasi",
@@ -168,7 +176,8 @@
       "children": "Konten pesan alert",
       "dismissible": "Menampilkan tombol tutup",
       "variant": "Alert inline atau banner lebar penuh atas",
-      "onDismiss": "Callback ketika ditutup"
+      "onDismiss": "Callback ketika ditutup",
+      "level": "Level keparahan peringatan taktis — caution (kuning), alert (oranye), critical (merah)"
     }
   }
 }

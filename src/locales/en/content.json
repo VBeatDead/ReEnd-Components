@@ -47,9 +47,13 @@
   "scroll": {
     "title": "Scroll & Cursor",
     "description": "Scrollbar 6px, thumb square. Scroll progress bar fixed top. Custom cursor optional.",
-    "scroll_progress": "Scroll Progress Bar",
+    "scroll_progress": "Live Scroll Progress (scroll inside the box)",
+    "scroll_pct_label": "SCROLL",
     "custom_scrollbar": "Custom Scrollbar (6px, square thumb)",
-    "scroll_line_text": "Line {{number}}: Scroll content for testing custom scrollbar style."
+    "scroll_line_text": "Line {{number}}: Scroll content for testing custom scrollbar style.",
+    "cursor_styles": "Cursor Styles Catalog (hover each cell)",
+    "scroll_progress_component": "ScrollProgress Component — fixed top bar that tracks window.scrollY",
+    "back_to_top_label": "BackToTop — appears after 300px scroll"
   },
   "_props": {
     "hero-section": {

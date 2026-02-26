@@ -4,7 +4,8 @@ import { render, screen, fireEvent, act, cleanup } from "@testing-library/react"
 import { renderHook } from "@testing-library/react";
 
 import { EmptyState } from "../empty-state";
-import { Alert } from "../alert";
+import { Alert, TopBanner } from "../alert";
+import { SkeletonImage, SkeletonTableRow } from "../skeleton";
 import {
   Toast,
   ToastProvider,
@@ -200,6 +201,165 @@ describe("Alert", () => {
   it("applies custom className", () => {
     render(<Alert className="al-custom">msg</Alert>);
     expect(document.querySelector(".al-custom")).not.toBeNull();
+  });
+});
+
+// ─── EmptyState — new context variants ─────────────────────────────────────────
+
+describe("EmptyState new variants", () => {
+  it("empty-list preset", () => {
+    render(<EmptyState variant="empty-list" />);
+    expect(screen.getByText("NO ITEMS YET")).toBeInTheDocument();
+  });
+
+  it("no-notifications preset", () => {
+    render(<EmptyState variant="no-notifications" />);
+    expect(screen.getByText("NO NOTIFICATIONS")).toBeInTheDocument();
+  });
+
+  it("error-loading preset", () => {
+    render(<EmptyState variant="error-loading" />);
+    expect(screen.getByText("FAILED TO LOAD")).toBeInTheDocument();
+  });
+
+  it("no-permission preset", () => {
+    render(<EmptyState variant="no-permission" />);
+    expect(screen.getByText("ACCESS RESTRICTED")).toBeInTheDocument();
+  });
+
+  it("empty-filter preset", () => {
+    render(<EmptyState variant="empty-filter" />);
+    expect(screen.getByText("NO MATCHING RESULTS")).toBeInTheDocument();
+  });
+
+  it("inbox-zero preset", () => {
+    render(<EmptyState variant="inbox-zero" />);
+    expect(screen.getByText("INBOX ZERO")).toBeInTheDocument();
+  });
+
+  it("no-connection preset", () => {
+    render(<EmptyState variant="no-connection" />);
+    expect(screen.getByText("NO CONNECTION")).toBeInTheDocument();
+  });
+});
+
+// ─── TopBanner ──────────────────────────────────────────────────────────────────
+
+describe("TopBanner", () => {
+  it("renders children", () => {
+    render(<TopBanner>Update available</TopBanner>);
+    expect(screen.getByText("Update available")).toBeInTheDocument();
+  });
+
+  it("has role=banner", () => {
+    render(<TopBanner>msg</TopBanner>);
+    expect(screen.getByRole("banner")).toBeInTheDocument();
+  });
+
+  it("renders dismiss button by default", () => {
+    render(<TopBanner>msg</TopBanner>);
+    expect(screen.getByRole("button", { name: "Dismiss banner" })).toBeInTheDocument();
+  });
+
+  it("does not render dismiss button when dismissible=false", () => {
+    render(<TopBanner dismissible={false}>msg</TopBanner>);
+    expect(screen.queryByRole("button", { name: "Dismiss banner" })).toBeNull();
+  });
+
+  it("calls onDismiss when dismiss button clicked", () => {
+    const spy = vi.fn();
+    render(<TopBanner onDismiss={spy}>msg</TopBanner>);
+    fireEvent.click(screen.getByRole("button", { name: "Dismiss banner" }));
+    expect(spy).toHaveBeenCalledOnce();
+  });
+
+  it("forwards ref", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    render(<TopBanner ref={ref}>msg</TopBanner>);
+    expect(ref.current).not.toBeNull();
+    expect(ref.current?.tagName).toBe("DIV");
+  });
+
+  it("applies custom className", () => {
+    render(<TopBanner className="tb-custom">msg</TopBanner>);
+    expect(document.querySelector(".tb-custom")).not.toBeNull();
+  });
+});
+
+// ─── SkeletonImage ──────────────────────────────────────────────────────────────
+
+describe("SkeletonImage", () => {
+  it("renders without crashing", () => {
+    const { container } = render(<SkeletonImage />);
+    expect(container.firstChild).toBeTruthy();
+  });
+
+  it("has aria-hidden=true", () => {
+    const { container } = render(<SkeletonImage />);
+    expect(container.firstChild).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("accepts video aspect ratio", () => {
+    const { container } = render(<SkeletonImage aspectRatio="video" />);
+    expect(container.firstChild).toBeTruthy();
+  });
+
+  it("accepts square aspect ratio", () => {
+    const { container } = render(<SkeletonImage aspectRatio="square" />);
+    expect(container.firstChild).toBeTruthy();
+  });
+
+  it("accepts portrait aspect ratio", () => {
+    const { container } = render(<SkeletonImage aspectRatio="portrait" />);
+    expect(container.firstChild).toBeTruthy();
+  });
+
+  it("forwards ref", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    render(<SkeletonImage ref={ref} />);
+    expect(ref.current).not.toBeNull();
+  });
+
+  it("applies custom className", () => {
+    render(<SkeletonImage className="si-custom" />);
+    expect(document.querySelector(".si-custom")).not.toBeNull();
+  });
+});
+
+// ─── SkeletonTableRow ───────────────────────────────────────────────────────────
+
+describe("SkeletonTableRow", () => {
+  it("renders without crashing", () => {
+    const { container } = render(<SkeletonTableRow />);
+    expect(container.firstChild).toBeTruthy();
+  });
+
+  it("has aria-hidden=true", () => {
+    const { container } = render(<SkeletonTableRow />);
+    expect(container.firstChild).toHaveAttribute("aria-hidden", "true");
+  });
+
+  it("renders default 4 columns", () => {
+    const { container } = render(<SkeletonTableRow />);
+    const children = container.firstChild?.childNodes;
+    expect(children?.length).toBe(4);
+  });
+
+  it("renders custom column count", () => {
+    const { container } = render(<SkeletonTableRow columns={6} />);
+    const children = container.firstChild?.childNodes;
+    expect(children?.length).toBe(6);
+  });
+
+  it("forwards ref", () => {
+    const ref = React.createRef<HTMLDivElement>();
+    render(<SkeletonTableRow ref={ref} />);
+    expect(ref.current).not.toBeNull();
+  });
+
+  it("applies custom className", () => {
+    render(<SkeletonTableRow className="str-custom" />);
+    expect(document.querySelector(".str-custom")).not.toBeNull();
   });
 });
 
