@@ -171,7 +171,11 @@ const OperatorCard = React.forwardRef<HTMLDivElement, OperatorCardProps>(
   (
     { name, faction, rarity = 5, imageSrc, imageAlt, selected, className, ...props },
     ref,
-  ) => (
+  ) => {
+    // Fall back to the diamond placeholder when the portrait fails to load
+    // (dead CDN, offline) instead of showing a broken-image icon.
+    const [imgFailed, setImgFailed] = React.useState(false);
+    return (
     <div
       ref={ref}
       className={cn(
@@ -184,10 +188,13 @@ const OperatorCard = React.forwardRef<HTMLDivElement, OperatorCardProps>(
     >
       {/* Portrait area 3:4 */}
       <div className="clip-corner-sm aspect-[3/4] bg-surface-2 overflow-hidden">
-        {imageSrc ? (
+        {imageSrc && !imgFailed ? (
           <img
             src={imageSrc}
             alt={imageAlt ?? name}
+            loading="lazy"
+            decoding="async"
+            onError={() => setImgFailed(true)}
             className="w-full h-full object-cover"
           />
         ) : (
@@ -215,7 +222,8 @@ const OperatorCard = React.forwardRef<HTMLDivElement, OperatorCardProps>(
         )}
       </div>
     </div>
-  ),
+    );
+  },
 );
 OperatorCard.displayName = "OperatorCard";
 

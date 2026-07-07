@@ -3,6 +3,13 @@
   "latest": "LATEST",
   "versions": [
     {
+      "version": "v1.2.2",
+      "date": "July 7, 2026",
+      "items": [
+        "OperatorCard (core & Signature) — portraits that fail to load now fall back to the diamond placeholder or operator initials instead of a broken-image icon"
+      ]
+    },
+    {
       "version": "v1.2.1",
       "date": "July 7, 2026",
       "items": [

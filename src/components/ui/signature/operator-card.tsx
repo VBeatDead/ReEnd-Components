@@ -77,6 +77,9 @@ function OperatorAvatar({
   initials?: string;
   sizeClass: string;
 }) {
+  // Show initials when the avatar fails to load (dead CDN, offline)
+  // instead of a broken-image icon.
+  const [imgFailed, setImgFailed] = React.useState(false);
   return (
     <div
       className={cn(
@@ -89,12 +92,13 @@ function OperatorAvatar({
           "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%)",
       }}
     >
-      {src ? (
+      {src && !imgFailed ? (
         <img
           src={src}
           alt={name}
           loading="lazy"
           decoding="async"
+          onError={() => setImgFailed(true)}
           className="w-full h-full object-cover"
         />
       ) : (

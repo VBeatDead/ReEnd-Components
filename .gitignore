@@ -43,3 +43,7 @@ coverage/
 # ═══ Misc ═══
 *.tgz
 /docs/
+
+# Test/browser artifacts
+.playwright-mcp/
+*.jpeg

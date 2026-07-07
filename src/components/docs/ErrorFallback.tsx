@@ -1,6 +1,7 @@
 import { FallbackProps } from "react-error-boundary";
 import { AlertTriangle, RotateCcw } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui/button";
 
 export const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const { t } = useTranslation("common");
@@ -18,15 +19,10 @@ export const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
       <p className="font-mono text-[10px] text-destructive/70 max-w-md mb-6 break-all">
         {error.message}
       </p>
-      <button
-        onClick={resetErrorBoundary}
-        className="flex items-center gap-2 px-4 py-2 bg-surface-1 border border-border text-sm text-foreground hover:border-primary/50 hover:text-primary transition-colors"
-      >
+      <Button variant="secondary" size="sm" onClick={resetErrorBoundary}>
         <RotateCcw className="w-3.5 h-3.5" />
-        <span className="font-ui text-xs tracking-[0.08em] uppercase">
-          {t("actions.retry")}
-        </span>
-      </button>
+        {t("actions.retry")}
+      </Button>
     </div>
   );
 };

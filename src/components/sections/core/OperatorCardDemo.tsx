@@ -137,6 +137,7 @@ const [view, setView] = useState("grid");
                     alt={op.name}
                     loading="lazy"
                     decoding="async"
+                    onError={(e) => { e.currentTarget.style.display = "none"; }}
                     className="w-8 h-8 shrink-0 object-cover"
                   />
                 ) : (
@@ -151,7 +152,7 @@ const [view, setView] = useState("grid");
                   <p className="font-mono text-[10px] text-muted-foreground">{op.class} · {op.element}</p>
                 </div>
                 {op.icons.element && (
-                  <img src={op.icons.element} alt={op.element} loading="lazy" decoding="async" className="w-4 h-4 shrink-0 opacity-70" />
+                  <img src={op.icons.element} alt={op.element} loading="lazy" decoding="async" onError={(e) => { e.currentTarget.style.display = "none"; }} className="w-4 h-4 shrink-0 opacity-70" />
                 )}
                 <span className="font-mono text-[9px] text-primary/60 shrink-0">
                   {"◆".repeat(op.rarity)}{"◇".repeat(6 - op.rarity)}

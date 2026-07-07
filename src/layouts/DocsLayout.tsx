@@ -12,6 +12,8 @@ import { SectionNav } from "@/components/docs/SectionNav";
 import { useScrollSpy } from "@/hooks/use-scroll-spy";
 import { useLocalizedPath } from "@/hooks/useLocalizedPath";
 import { usePageMeta } from "@/hooks/use-page-meta";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { BackToTop } from "@/components/ui/back-to-top";
 import { AnimatePresence, motion } from "framer-motion";
 import { Suspense } from "react";
 
@@ -99,18 +101,8 @@ const DocsLayout = () => {
     setTimeout(() => scrollToHash(0), 50);
   }, [location.pathname, location.hash]);
 
-  useEffect(() => {
-    if (activeSection) {
-      document.title = t("docs:layout.page_title_section", {
-        section: activeSection.title,
-      });
-    } else {
-      document.title = t("docs:layout.page_title_default");
-    }
-    return () => {
-      document.title = t("docs:layout.page_title_base");
-    };
-  }, [activeSection, t]);
+  // document.title is owned by usePageMeta(slug) above — setting it here too
+  // made the tab title race between two formats and diverge from og:title.
 
   useEffect(() => {
     if (!slug && location.hash) {
@@ -142,6 +134,7 @@ const DocsLayout = () => {
 
   return (
     <div className="relative min-h-screen bg-background overflow-x-hidden">
+      <ScrollProgress />
       <div
         className="fixed inset-0 bg-radial-glow pointer-events-none"
         aria-hidden="true"
@@ -187,6 +180,7 @@ const DocsLayout = () => {
           </div>
         </div>
       </main>
+      <BackToTop threshold={600} />
     </div>
   );
 };

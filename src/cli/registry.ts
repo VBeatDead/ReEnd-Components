@@ -10,7 +10,7 @@ export interface ComponentEntry {
 }
 
 /** Single source of truth for the CLI version — kept in sync by scripts/sync-release.ts */
-export const CLI_VERSION = "1.2.1";
+export const CLI_VERSION = "1.2.2";
 
 const GITHUB_RAW_ROOT =
   "https://raw.githubusercontent.com/VBeatDead/ReEnd-Components";

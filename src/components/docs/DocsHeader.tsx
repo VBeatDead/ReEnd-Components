@@ -1,8 +1,8 @@
-import { useState, useEffect, useRef, useMemo } from "react";
-import { Menu, X, Search, Sun, Moon, ChevronDown } from "lucide-react";
+import { useState, useEffect, useMemo } from "react";
+import { Menu, X, Search, ChevronDown } from "lucide-react";
 import { getSidebarData } from "./sidebarData";
 import { CommandPalette } from "./CommandPalette";
-import { useTheme } from "./ThemeProvider";
+import { ThemeSwitcher } from "@/components/ui/theme-switcher";
 import { useNavigate, useLocation } from "react-router-dom";
 import { TopoBg } from "@/components/home/signature";
 import { useTranslation } from "react-i18next";
@@ -17,10 +17,7 @@ interface DocsHeaderProps {
 export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [cmdOpen, setCmdOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
-  const [isAnimating, setIsAnimating] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const animTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileFilter, setMobileFilter] = useState("");
@@ -63,8 +60,6 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
   const toggleSection = (title: string) => {
     setCollapsed((prev) => ({ ...prev, [title]: !prev[title] }));
   };
-
-  useEffect(() => () => clearTimeout(animTimerRef.current), []);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -182,29 +177,9 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
 
           <div className="flex items-center gap-2">
             <LanguageSwitcher />
-            <button
-              onClick={() => {
-                setIsAnimating(true);
-                toggleTheme();
-                const tm = setTimeout(() => setIsAnimating(false), 500);
-                animTimerRef.current = tm;
-              }}
-              className="relative p-2 text-muted-foreground hover:text-primary transition-colors overflow-hidden"
-              aria-label={t("common:theme.toggle")}
-            >
-              <span
-                className={`block transition-all duration-500 ${isAnimating ? "rotate-[360deg] scale-0 opacity-0" : "rotate-0 scale-100 opacity-100"}`}
-                style={{
-                  transitionTimingFunction: "cubic-bezier(0.25, 0.8, 0.25, 1)",
-                }}
-              >
-                {theme === "dark" ? (
-                  <Sun className="w-4 h-4" />
-                ) : (
-                  <Moon className="w-4 h-4" />
-                )}
-              </span>
-            </button>
+            {/* Library ThemeSwitcher — shares the ef-theme storage key and
+                ef-theme-change event with ThemeProvider, so both stay in sync */}
+            <ThemeSwitcher aria-label={t("common:theme.toggle")} />
             <button
               onClick={() => setCmdOpen(true)}
               className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-surface-1 border border-border text-muted-foreground text-xs hover:border-primary/30 hover:text-foreground transition-colors cursor-pointer"
