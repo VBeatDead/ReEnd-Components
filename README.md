@@ -105,7 +105,7 @@ import { Button } from "reend-components";
 Copy-paste components directly into your project (shadcn-style):
 
 ```bash
-npx reend-ui init           # set up config and CSS variables
+npx reend-ui init           # set up config, cn helper (lib/utils.ts), CSS variables
 npx reend-ui add button     # copy button.tsx into your project
 npx reend-ui list           # list all available components
 npx reend-ui update button  # update a component to latest
@@ -326,7 +326,7 @@ npm run dev         # docs dev server at :8080
 npm run build       # build docs SPA
 npm run build:lib   # build library → dist/lib/
 npm run build:cli   # build CLI → dist/bin/cli.cjs
-npm run test        # run 1166 tests across 26 files
+npm run test        # run 1242 tests across 27 files
 npm run lint        # ESLint
 ```
 
