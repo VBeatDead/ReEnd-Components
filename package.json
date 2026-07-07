@@ -1,6 +1,6 @@
 {
   "name": "reend-components",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": false,
   "description": "Tactical, sci-fi, and gaming-inspired React component library — Arknights: Endfield Design System",
   "type": "module",
@@ -22,9 +22,10 @@
     "./variables.css": "./src/styles/variables.css",
     "./utilities.css": "./src/styles/utilities.css",
     "./tailwind": {
-      "import": "./src/tailwind-preset.ts",
-      "require": "./src/tailwind-preset.ts"
-    }
+      "import": "./dist/tailwind/index.mjs",
+      "require": "./dist/tailwind/index.cjs"
+    },
+    "./package.json": "./package.json"
   },
   "bin": {
     "reend-ui": "dist/bin/cli.cjs"
@@ -32,11 +33,15 @@
   "files": [
     "dist/lib",
     "dist/bin",
+    "dist/tailwind",
     "src/styles",
     "src/tailwind-preset.ts",
     "README.md",
     "LICENSE"
   ],
+  "engines": {
+    "node": ">=20"
+  },
   "sideEffects": [
     "**/*.css"
   ],
@@ -70,7 +75,10 @@
     "framer-motion": ">=10.0.0",
     "lucide-react": ">=0.400.0",
     "react": "^18.0.0 || ^19.0.0",
-    "react-dom": "^18.0.0 || ^19.0.0"
+    "react-dom": "^18.0.0 || ^19.0.0",
+    "react-resizable-panels": ">=4.0.0",
+    "recharts": ">=3.0.0",
+    "tailwindcss": ">=3.4.0"
   },
   "peerDependenciesMeta": {
     "tailwindcss": {
@@ -91,14 +99,14 @@
   },
   "scripts": {
     "dev": "vite",
-    "prebuild": "node --experimental-strip-types scripts/sync-release.ts",
+    "prebuild": "tsx scripts/sync-release.ts",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "build:lib": "vite build --config vite.lib.config.ts",
     "build:cli": "node scripts/build-cli.mjs",
     "prepublishOnly": "npm run build:lib && npm run build:cli",
-    "version": "node --experimental-strip-types scripts/sync-release.ts && git add CHANGELOG.md public/llms.txt",
-    "sync": "node --experimental-strip-types scripts/sync-release.ts",
+    "version": "tsx scripts/sync-release.ts && git add CHANGELOG.md public/llms.txt public/sitemap.xml src/cli/registry.ts",
+    "sync": "tsx scripts/sync-release.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
@@ -122,8 +130,6 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "react-resizable-panels": "^4.6.4",
-    "recharts": "^3.7.0",
     "sonner": "^1.7.4",
     "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
@@ -146,6 +152,7 @@
     "eslint": "^9.32.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-security": "^4.0.0",
     "framer-motion": "^12.34.0",
     "fuse.js": "^7.1.0",
     "globals": "^15.15.0",
@@ -159,9 +166,12 @@
     "react-dom": "^18.3.1",
     "react-error-boundary": "^6.1.1",
     "react-i18next": "^16.5.4",
+    "react-resizable-panels": "^4.6.4",
     "react-router-dom": "^6.30.1",
+    "recharts": "^3.7.0",
     "shiki": "^3.22.0",
     "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.0",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.38.0",
     "vite": "^5.4.19",

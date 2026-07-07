@@ -6,14 +6,16 @@
       "operator": "OPERATOR",
       "class": "KELAS",
       "rarity": "RARITAS",
-      "status": "STATUS"
+      "status": "STATUS",
+      "element": "TIER / ELEMEN"
     },
     "status_labels": {
       "active": "Aktif",
       "deployed": "Ditempatkan",
       "standby": "Siaga"
     },
-    "showing_pagination": "Menampilkan 1-5 dari 124"
+    "showing_pagination": "Menampilkan 1-5 dari 23",
+    "showing_live": "Data langsung dari Arknights: Endfield"
   },
   "list": {
     "title": "Daftar & Item Daftar",
@@ -40,10 +42,10 @@
     "title": "Statistik & Tampilan Metrik",
     "description": "Nilai: Orbitron 48px tebal kuning. Label: Orbitron 11px huruf besar abu-abu. Tren: ▲/▼.",
     "labels": {
-      "total_ops": "TOTAL OPERASI",
-      "active_units": "UNIT AKTIF",
-      "error_rate": "TINGKAT ERROR",
-      "uptime": "WAKTU AKTIF"
+      "total_ops": "TOTAL OPERATOR",
+      "active_units": "OPERATOR BINTANG 6",
+      "error_rate": "ELEMEN",
+      "uptime": "KELAS"
     }
   },
   "timeline": {

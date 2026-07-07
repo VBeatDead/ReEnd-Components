@@ -1,11 +1,29 @@
 import { existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import chalk from "chalk";
-import { REGISTRY } from "../registry.js";
+import {
+  REGISTRY,
+  BASE_DEPS,
+  CLI_VERSION,
+  getFileUrl,
+  getHookUrl,
+} from "../registry.js";
 import { readConfig, fetchText, log } from "../utils.js";
 
-const GITHUB_RAW_BASE =
-  "https://raw.githubusercontent.com/VBeatDead/ReEnd-Components/main/src/components/ui";
+/**
+ * Fetch a registry file pinned to this CLI's release tag so installed CLIs
+ * keep working even after main moves on. Falls back to main when the tag
+ * does not exist yet (e.g. pre-release builds).
+ */
+async function fetchRegistryFile(
+  urlFor: (ref: string) => string,
+): Promise<string> {
+  try {
+    return await fetchText(urlFor(`v${CLI_VERSION}`));
+  } catch {
+    return fetchText(urlFor("main"));
+  }
+}
 
 /* ── Add command ─────────────────────────────────────────────────────────── */
 
@@ -23,6 +41,10 @@ export async function runAdd(
   }
 
   const outputDir = join(cwd, config.outputDir);
+  // Components import cn from "../../lib/utils" and hooks from "../../hooks",
+  // so both live two levels above the component output directory.
+  const projectBase = join(outputDir, "..", "..");
+  const hooksDir = join(projectBase, "hooks");
   const depsToInstall = new Set<string>();
   const added: string[] = [];
   const skipped: string[] = [];
@@ -38,32 +60,46 @@ export async function runAdd(
 
     log.info(`Adding ${chalk.cyan(entry.displayName)}...`);
 
-    let componentSuccess = true;
-    for (const file of entry.files) {
-      const destPath = join(outputDir, file);
-      const destDir = dirname(destPath);
+    const targets: Array<{ file: string; dest: string; hook: boolean }> = [
+      ...entry.files.map((file) => ({
+        file,
+        dest: join(outputDir, file),
+        hook: false,
+      })),
+      ...(entry.hooks ?? []).map((file) => ({
+        file,
+        dest: join(hooksDir, file),
+        hook: true,
+      })),
+    ];
 
-      if (existsSync(destPath) && !opts.overwrite) {
-        log.warn(`  ${file} already exists — use --overwrite to replace`);
+    let componentSuccess = true;
+    for (const { file, dest, hook } of targets) {
+      const destDir = dirname(dest);
+      const label = hook ? `hooks/${file}` : file;
+
+      if (existsSync(dest) && !opts.overwrite) {
+        log.warn(`  ${label} already exists — use --overwrite to replace`);
         skipped.push(entry.displayName);
         componentSuccess = false;
         continue;
       }
 
       try {
-        const url = `${GITHUB_RAW_BASE}/${file}`;
-        log.step(`Fetching ${file}...`);
-        const content = await fetchText(url);
+        log.step(`Fetching ${label}...`);
+        const content = await fetchRegistryFile((ref) =>
+          hook ? getHookUrl(file, ref) : getFileUrl(file, ref),
+        );
 
         if (!existsSync(destDir)) {
           mkdirSync(destDir, { recursive: true });
         }
 
-        writeFileSync(destPath, content, "utf-8");
-        log.success(`  Added → ${config.outputDir}/${file}`);
+        writeFileSync(dest, content, "utf-8");
+        log.success(`  Added → ${label}`);
       } catch (err) {
         const message = err instanceof Error ? err.message : String(err);
-        log.error(`  Failed to fetch ${file}: ${message}`);
+        log.error(`  Failed to fetch ${label}: ${message}`);
         componentSuccess = false;
         failed.push(entry.displayName);
       }
@@ -89,23 +125,23 @@ export async function runAdd(
     log.error(`Failed: ${failed.join(", ")}`);
   }
 
+  if (added.length > 0) {
+    for (const dep of BASE_DEPS) {
+      depsToInstall.add(dep);
+    }
+  }
+
   if (depsToInstall.size > 0) {
     const deps = Array.from(depsToInstall).join(" ");
     log.blank();
-    console.log(chalk.bold.yellow("  ⚡ Install peer dependencies:\n"));
+    console.log(chalk.bold.yellow("  ⚡ Install dependencies:\n"));
     console.log(chalk.cyan(`  npm install ${deps}`) + "\n");
   }
 
-  if (added.length > 0) {
+  if (added.length > 0 && !existsSync(join(projectBase, "lib", "utils.ts"))) {
     log.blank();
-    console.log(
-      chalk.dim(
-        "  Components require the cn() utility. Add to your project:\n",
-      ),
-    );
-    console.log(chalk.white("  import { cn } from 'reend-components'") + "\n");
-    console.log(
-      chalk.dim("  Or copy the cn utility from: lib/utils.ts") + "\n",
+    log.warn(
+      "lib/utils.ts (cn helper) not found — run `npx reend-ui init` to create it.",
     );
   }
 }

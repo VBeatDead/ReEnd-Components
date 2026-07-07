@@ -1,5 +1,6 @@
 import { Command } from "commander";
 import chalk from "chalk";
+import { CLI_VERSION } from "./registry.js";
 import { runInit } from "./commands/init.js";
 import { runAdd } from "./commands/add.js";
 import { runList } from "./commands/list.js";
@@ -17,7 +18,7 @@ program
       "◆ ReEnd UI — Arknights: Endfield React Component Library\n",
     ) + chalk.dim("  Shadcn-style copy-paste workflow for ReEnd components.\n"),
   )
-  .version("1.1.0");
+  .version(CLI_VERSION);
 
 /* ── init ─────────────────────────────────────────────────────────────────── */
 

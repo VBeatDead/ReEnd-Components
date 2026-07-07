@@ -23,4 +23,12 @@ export default tseslint.config(
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
+  {
+    // Library files intentionally export variants/hooks alongside components
+    // (shadcn-style) — fast refresh does not apply to the published library.
+    files: ["src/components/ui/**/*.{ts,tsx}", "src/hooks/**/*.ts"],
+    rules: {
+      "react-refresh/only-export-components": "off",
+    },
+  },
 );

@@ -5,6 +5,44 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.0] - 2026-07-07
+
+### Security
+
+- **`RichTextEditor`** — Fixed XSS in markdown preview (`dangerouslySetInnerHTML`):
+  - HTML input now escaped before rendering — raw `<script>`, `<img onerror>` etc. in user text render as escaped text, not executable HTML
+  - Blocked unsafe URL protocols in markdown links: `javascript:`, `data:`, `vbscript:`, `blob:`, `file:`
+  - Fixed protocol-relative URL bypass — `//evil.com` now rejected; only `https:`, `http:`, `mailto:`, and root-relative `/path` are allowed
+- **HTTP headers** — Added `Strict-Transport-Security` (preload) and a full `Content-Security-Policy` (frame-ancestors none, base-uri self, form-action none); expanded `Permissions-Policy` with `payment=()`, `usb=()`
+- **Security test suite** — 70+ new tests covering URL sanitization, XSS, headers, path traversal, dependency hygiene, and resource abuse
+
+### Added
+
+- **CLI: `init` scaffolds `lib/utils.ts`** — the `cn()` helper every component imports is now created for you, with base dependency guidance (`clsx`, `tailwind-merge`, `class-variance-authority`)
+- **CLI: `toast` component** — `reend-ui add toast` installs `toast.tsx`, `toaster.tsx`, and the `use-toast` hook (new hook-file support in the registry)
+- **CLI: release-pinned fetching** — `add`/`update` fetch component sources from the matching release tag, falling back to `main`
+- **Compiled Tailwind preset** — `reend-components/tailwind` now resolves to `dist/tailwind/index.{mjs,cjs}`, so it works from plain `tailwind.config.js` (CJS/ESM), not just TypeScript configs
+- **PNG social image** — `og-image.png` (1200×630) replaces the SVG that social platforms refuse to render
+- **Localized page meta** — per-section meta descriptions now ship in English and Indonesian; `og:url` and canonical are language-aware
+- **Auto-generated `sitemap.xml`** — derived from the router config on every release, with fresh `lastmod`
+- **Web app manifest** (`site.webmanifest`) and `engines.node >= 20`
+
+### Changed
+
+- **`recharts` and `react-resizable-panels` are now optional peer dependencies** — install them yourself if you use `Chart` or `Resizable`; they are no longer forced onto every consumer
+- **CLI registry dependency lists completed** — `lucide-react` declared where used (`theme-switcher`, `warning-banner`, `tactical-panel`, `data-stream`, `toast`); `session-timeout-modal` now ships its internal `dialog.tsx`/`button.tsx` with the required Radix packages
+- **Release scripts run via `tsx`** — `npm run build` and `npm version` work on Node 20 (previously required Node 22.6+)
+
+### Fixed
+
+- **Initial bundle preloaded ~1.3 MB of lazy code** — Vite's preload helper and `clsx` were hoisted into the `sandpack`/`charts` chunks, dragging the live-editor and chart bundles into first paint; initial JS is now 656 kB raw (−67 %)
+- **Conflicting SEO signals** — duplicate `<link rel="canonical">` per page, `/en/...` vs bare-path mismatch with the sitemap, and per-section meta descriptions being overwritten by the generic ones
+- **`CountdownTimer`** — `aria-label` no longer reports stale seconds to screen readers
+- **Live-data demos** — API fetches now abort on unmount and check HTTP status before parsing
+- **Duplicate `slide-up` keyframe** in the Tailwind preset
+
+---
+
 ## [1.1.0] - 2026-02-26
 
 ### Added
@@ -328,6 +366,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
+[1.1.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.4.0...v1.0.0
+[0.4.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.3.0...v0.4.0
+[0.3.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.2.0...v0.3.0
+[0.2.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.1.0...v0.2.0
+[0.1.0]: https://github.com/VBeatDead/ReEnd-Components/releases/tag/v0.1.0
+
+[Unreleased]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.4.0...v1.0.0
 [0.4.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.3.0...v0.4.0

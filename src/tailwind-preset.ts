@@ -369,7 +369,6 @@ const reendPreset: Partial<Config> = {
         "frequency-bar": "frequency-bar 0.8s ease-in-out infinite alternate",
         "slide-up": "slideUp 0.3s var(--ease-sharp, ease) forwards",
         shake: "shake 0.4s var(--ease-sharp, ease)",
-        "slide-up": "slideUp 0.3s var(--ease-sharp, ease) forwards",
         "particle-drift": "particleDrift 3s ease-in-out infinite",
       },
     },

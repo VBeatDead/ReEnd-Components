@@ -127,8 +127,7 @@ function ButtonsDemo() {
           { name: "disabled", type: "boolean", default: false },
           { name: "loading", type: "boolean", default: false },
         ],
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        render: (v: any) => (
+        render: (v: Record<string, string | number | boolean>) => (
           <div className="flex items-center justify-center">
             <Button
               variant={v.variant}

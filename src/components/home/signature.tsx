@@ -97,6 +97,7 @@ export const Counter = ({ value, label }: { value: number; label: string }) => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components -- pure SVG helper shared with the topo demo
 export const generateTopoContours = (
   vw: number,
   vh: number,

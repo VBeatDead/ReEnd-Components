@@ -23,6 +23,7 @@ export const MOTION_CONFIG = {
 } as const;
 
 // ═══ RESPONSIVE HOOK ═══
+// eslint-disable-next-line react-refresh/only-export-components -- shared hook for the storytelling chapters in this file
 export const useStorytellingConfig = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);

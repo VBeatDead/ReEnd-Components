@@ -60,6 +60,8 @@ jobs:
           test -f dist/lib/index.d.ts || { echo "❌ missing dist/lib/index.d.ts"; exit 1; }
           test -f dist/lib/style.css  || { echo "❌ missing dist/lib/style.css";  exit 1; }
           test -f dist/bin/cli.cjs    || { echo "❌ missing dist/bin/cli.cjs";    exit 1; }
+          test -f dist/tailwind/index.mjs || { echo "❌ missing dist/tailwind/index.mjs"; exit 1; }
+          test -f dist/tailwind/index.cjs || { echo "❌ missing dist/tailwind/index.cjs"; exit 1; }
           echo "✅ All output files present"
 
       - name: Bundle size check

@@ -6,14 +6,16 @@
       "operator": "OPERATOR",
       "class": "CLASS",
       "rarity": "RARITY",
-      "status": "STATUS"
+      "status": "STATUS",
+      "element": "TIER / ELEMENT"
     },
     "status_labels": {
       "active": "Active",
       "deployed": "Deployed",
       "standby": "Standby"
     },
-    "showing_pagination": "Showing 1-5 of 124"
+    "showing_pagination": "Showing 1-5 of 23",
+    "showing_live": "Live data from Arknights: Endfield"
   },
   "list": {
     "title": "List & List Item",
@@ -40,10 +42,10 @@
     "title": "Stat & Metric Display",
     "description": "Value: Orbitron 48px bold yellow. Label: Orbitron 11px uppercase gray. Trend: ▲/▼.",
     "labels": {
-      "total_ops": "TOTAL OPS",
-      "active_units": "ACTIVE UNITS",
-      "error_rate": "ERROR RATE",
-      "uptime": "UPTIME"
+      "total_ops": "TOTAL OPERATORS",
+      "active_units": "6★ OPERATORS",
+      "error_rate": "ELEMENTS",
+      "uptime": "CLASSES"
     }
   },
   "timeline": {

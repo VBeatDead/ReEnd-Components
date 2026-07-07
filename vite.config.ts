@@ -15,6 +15,13 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
+    proxy: {
+      "/ef-api": {
+        target: "https://api.infgame.site",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/ef-api/, ""),
+      },
+    },
   },
   define: {
     __REEND_VERSION__: JSON.stringify(version),
@@ -30,6 +37,19 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          // ── Shared micro-modules → eager vendor chunk ────────────────────
+          // These are imported by both the entry and the lazy chunks below.
+          // Left unmatched, Rollup hoists them INTO a lazy manual chunk
+          // (sandpack/charts), which makes the entry statically depend on it
+          // and preloads ~1.3 MB of editor/chart code on first paint.
+          if (id.includes("vite/preload-helper")) return "vendor";
+          if (id.includes("commonjsHelpers")) return "vendor";
+          if (id.includes("node_modules/clsx")) return "vendor";
+          if (id.includes("node_modules/tailwind-merge")) return "vendor";
+          if (id.includes("node_modules/class-variance-authority"))
+            return "vendor";
+          if (id.includes("node_modules/@babel/runtime")) return "vendor";
+
           // ── Core framework ──────────────────────────────────────────────
           if (id.includes("node_modules/react-dom")) return "vendor";
           if (id.includes("node_modules/react/")) return "vendor";
@@ -42,7 +62,6 @@ export default defineConfig(({ mode }) => ({
           if (id.includes("node_modules/shiki")) return "shiki";
 
           // ── Live sandbox editor sub-layers (lazy-loaded, Playground tab only)
-          // Split into 3 named chunks so each stays under ~500 kB
           if (id.includes("node_modules/@lezer")) return "lezer";
           if (id.includes("node_modules/@codemirror")) return "codemirror";
           if (

@@ -76,12 +76,22 @@ export async function runInit(cwd: string): Promise<void> {
     log.success(`Created directory: ${response.outputDir as string}`);
   }
 
+  // Components import cn from "../../lib/utils" relative to the output dir,
+  // so lib/ and styles/ live two levels above it (project or src root).
+  const projectBase = join(outDir, "..", "..");
+  createCnUtility(projectBase);
+
   if (response.cssVariables) {
-    await copyVariablesCss(cwd, response.outputDir as string);
+    await copyVariablesCss(cwd, projectBase);
   }
 
   log.blank();
   console.log(chalk.bold.white("  ◆ NEXT STEPS\n"));
+  console.log(chalk.dim("  Install the base dependencies used by every component:\n"));
+  console.log(
+    chalk.cyan("  npm install clsx tailwind-merge class-variance-authority") +
+      "\n",
+  );
   console.log(
     chalk.dim("  Add the ReEnd Tailwind preset to your tailwind config:\n"),
   );
@@ -101,8 +111,30 @@ export async function runInit(cwd: string): Promise<void> {
   console.log(chalk.cyan("  npx reend-ui add button") + "\n");
 }
 
-async function copyVariablesCss(cwd: string, outputDir: string): Promise<void> {
-  const stylesDir = join(cwd, "styles");
+const CN_UTILITY = `import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+`;
+
+function createCnUtility(projectBase: string): void {
+  const libDir = join(projectBase, "lib");
+  const destPath = join(libDir, "utils.ts");
+  if (existsSync(destPath)) {
+    log.step("lib/utils.ts already exists — keeping yours");
+    return;
+  }
+  if (!existsSync(libDir)) {
+    mkdirSync(libDir, { recursive: true });
+  }
+  writeFileSync(destPath, CN_UTILITY, "utf-8");
+  log.success("Created lib/utils.ts (cn helper)");
+}
+
+async function copyVariablesCss(cwd: string, projectBase: string): Promise<void> {
+  const stylesDir = join(projectBase, "styles");
   if (!existsSync(stylesDir)) {
     mkdirSync(stylesDir, { recursive: true });
   }

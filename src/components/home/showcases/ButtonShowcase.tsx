@@ -114,6 +114,7 @@ export const CardShowcase = () => {
   );
 };
 
+// eslint-disable-next-line react-refresh/only-export-components -- static token data consumed by sibling showcases
 export const colorTokens = [
   { name: "Primary", var: "--primary", sample: "bg-primary" },
   { name: "Destructive", var: "--destructive", sample: "bg-destructive" },

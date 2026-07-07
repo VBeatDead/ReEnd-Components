@@ -23,10 +23,11 @@ export async function runUpdate(
 
   let targets = components;
   if (targets.length === 0) {
-    targets = Object.keys(REGISTRY).filter((name) => {
-      const entry = REGISTRY[name];
-      return entry.files.some((f) => existsSync(join(outputDir, f)));
-    });
+    // Only the first file identifies the component — later files are shared
+    // internals (e.g. session-timeout-modal also ships dialog.tsx/button.tsx).
+    targets = Object.keys(REGISTRY).filter((name) =>
+      existsSync(join(outputDir, REGISTRY[name].files[0])),
+    );
 
     if (targets.length === 0) {
       log.warn("No installed components found. Use: npx reend-ui add <name>");
@@ -47,7 +48,7 @@ export async function runUpdate(
       log.error(`Unknown component: "${name}"`);
       continue;
     }
-    const isInstalled = entry.files.some((f) => existsSync(join(outputDir, f)));
+    const isInstalled = existsSync(join(outputDir, entry.files[0]));
     if (isInstalled) {
       existing.push(name);
     } else {

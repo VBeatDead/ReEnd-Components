@@ -3,6 +3,20 @@
   "latest": "TERBARU",
   "versions": [
     {
+      "version": "v1.2.0",
+      "date": "7 Juli 2026",
+      "items": [
+        "Patch keamanan — RichTextEditor: perbaikan XSS pada pratinjau markdown; input HTML kini di-escape sebelum ditampilkan sehingga tag <script> dan <img onerror> muncul sebagai teks biasa, bukan dieksekusi; URL berbahaya diblokir pada tautan markdown (javascript:, data:, vbscript:, blob:, file:, dan protocol-relative //evil.com)",
+        "Header keamanan — menambahkan Strict-Transport-Security dan Content-Security-Policy lengkap; 70+ test keamanan baru mencakup XSS, header, path traversal, dan higiene dependensi",
+        "CLI — init kini membuat lib/utils.ts (helper cn()) beserta panduan dependensi dasar; `add toast` baru memasang toast, toaster, dan hook use-toast; sumber komponen diambil dari tag rilis yang sesuai dengan fallback ke main; daftar dependensi registry dilengkapi",
+        "Preset Tailwind kini dikompilasi ke dist/tailwind/index.{mjs,cjs} — dapat dipakai dari tailwind.config.js biasa, tidak hanya konfigurasi TypeScript",
+        "Performa — memperbaiki bundle awal yang memuat ~1,3 MB kode editor/chart yang seharusnya lazy; JavaScript awal kini 656 kB raw (−67%)",
+        "SEO — gambar sosial PNG (og-image.png, 1200×630), canonical tunggal yang sadar bahasa, hreflang konsisten dengan sitemap, deskripsi meta per-bagian terlokalisasi (EN/ID), sitemap.xml ter-generate otomatis, dan web app manifest",
+        "Perubahan — recharts dan react-resizable-panels kini menjadi peer dependency opsional: pasang sendiri jika memakai Chart atau Resizable",
+        "Perbaikan — aria-label CountdownTimer tidak lagi menampilkan detik basi; demo data live membatalkan fetch saat unmount dan memeriksa status HTTP; skrip rilis berjalan via tsx (kompatibel Node 20)"
+      ]
+    },
+    {
       "version": "v1.1.0",
       "date": "26 Februari 2026",
       "items": [

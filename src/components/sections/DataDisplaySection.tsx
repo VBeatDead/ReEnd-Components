@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ComponentPreview } from "../docs/ComponentPreview";
 import { useTranslation } from "react-i18next";
 import {
@@ -8,22 +8,23 @@ import {
 import { CHART_COLORS } from "../ui/chart";
 import SignatureDataSection from "./signature/SignatureDataSection";
 
-const CHART_DATA = [
-  { name: "JAN", operators: 42, missions: 31 },
-  { name: "FEB", operators: 58, missions: 45 },
-  { name: "MAR", operators: 35, missions: 52 },
-  { name: "APR", operators: 71, missions: 38 },
-  { name: "MAY", operators: 89, missions: 67 },
-  { name: "JUN", operators: 64, missions: 55 },
+const API_BASE = import.meta.env.DEV ? "/ef-api" : "https://api.infgame.site";
+
+const FALLBACK_ELEMENT_DATA = [
+  { name: "PHYSICAL", value: 6 },
+  { name: "CRYO", value: 6 },
+  { name: "HEAT", value: 4 },
+  { name: "ELECTRIC", value: 4 },
+  { name: "NATURE", value: 3 },
 ];
 
-function ChartDemo() {
+function ChartDemo({ data }: { data: { name: string; value: number }[] }) {
   return (
     <div className="bg-surface-1 border border-border p-4">
-      <p className="font-display text-xs font-bold uppercase tracking-wider text-foreground mb-1">OPERATOR DEPLOYMENT</p>
-      <p className="text-[11px] text-muted-foreground mb-4">Monthly active operators vs missions completed</p>
+      <p className="font-display text-xs font-bold uppercase tracking-wider text-foreground mb-1">OPERATOR DISTRIBUTION — BY ELEMENT</p>
+      <p className="text-[11px] text-muted-foreground mb-4">Arknights: Endfield character count per element type</p>
       <ResponsiveContainer width="100%" height={180}>
-        <BarChart data={CHART_DATA} barGap={2}>
+        <BarChart data={data} barGap={2}>
           <CartesianGrid vertical={false} stroke="hsl(var(--border))" strokeOpacity={0.4} />
           <XAxis
             dataKey="name"
@@ -36,6 +37,7 @@ function ChartDemo() {
             axisLine={false}
             tickLine={false}
             width={28}
+            allowDecimals={false}
           />
           <Tooltip
             contentStyle={{
@@ -46,11 +48,14 @@ function ChartDemo() {
               fontSize: 11,
             }}
             cursor={{ fill: "hsl(var(--primary) / 0.05)" }}
+            formatter={(v: number) => [`${v} operators`, "COUNT"]}
           />
-          <Bar dataKey="operators" fill={CHART_COLORS[0]} maxBarSize={24} />
-          <Bar dataKey="missions" fill={CHART_COLORS[1]} maxBarSize={24} />
+          <Bar dataKey="value" fill={CHART_COLORS[0]} maxBarSize={32} />
         </BarChart>
       </ResponsiveContainer>
+      <p className="font-mono text-[9px] text-muted-foreground/50 text-right mt-2">
+        <a href="https://endfield.gryphline.com/" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground underline">Arknights: Endfield</a> © HyperGryph Co., Ltd.
+      </p>
     </div>
   );
 }
@@ -82,10 +87,73 @@ import {
 import { Stat, StatGrid } from "../ui/stat";
 import { type SortDirection } from "../ui/table";
 
+interface CharacterListItem {
+  slug: string;
+  name: string;
+  rarity: number;
+  class: string;
+  element: string;
+  ratings: { archetype: string; tier: string; content: string }[] | null;
+}
+
+interface StatsData {
+  total: number;
+  by_rarity: Record<string, number>;
+  by_element: Record<string, number>;
+  by_class: Record<string, number>;
+}
+
+const FALLBACK_CHARACTERS: CharacterListItem[] = [
+  { slug: "laevatain", name: "Laevatain", rarity: 6, class: "Guard", element: "Heat", ratings: [{ archetype: "Main Damage", tier: "T0", content: "Umbral Monument" }] },
+  { slug: "ardelia", name: "Ardelia", rarity: 6, class: "Caster", element: "Electric", ratings: [{ archetype: "Main Damage", tier: "T0", content: "Umbral Monument" }] },
+  { slug: "ember", name: "Ember", rarity: 6, class: "Defender", element: "Heat", ratings: [{ archetype: "Survivalist", tier: "T1", content: "Umbral Monument" }] },
+  { slug: "chen-qianyu", name: "Chen Qianyu", rarity: 6, class: "Striker", element: "Physical", ratings: [{ archetype: "Main Damage", tier: "T0.5", content: "Umbral Monument" }] },
+  { slug: "akekuri", name: "Akekuri", rarity: 4, class: "Vanguard", element: "Heat", ratings: [{ archetype: "Amplifier", tier: "T0.5", content: "Umbral Monument" }] },
+];
+
+const FALLBACK_STATS: StatsData = {
+  total: 23,
+  by_rarity: { "6": 9, "5": 9, "4": 5 },
+  by_element: { Physical: 6, Cryo: 6, Heat: 4, Electric: 4, Nature: 3 },
+  by_class: { Striker: 5, Guard: 4, Supporter: 4, Vanguard: 4, Caster: 3, Defender: 3 },
+};
+
 export function DataDisplaySection() {
   const { t } = useTranslation("data");
   const [sortCol, setSortCol] = useState<string | null>(null);
   const [sortDir, setSortDir] = useState<SortDirection>(null);
+  const [characters, setCharacters] = useState<CharacterListItem[]>(FALLBACK_CHARACTERS);
+  const [stats, setStats] = useState<StatsData>(FALLBACK_STATS);
+  const [elementData, setElementData] = useState(FALLBACK_ELEMENT_DATA);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const fetchJson = (path: string) =>
+      fetch(`${API_BASE}${path}`, { signal: controller.signal }).then((r) =>
+        r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)),
+      );
+
+    fetchJson("/api/characters?page_size=5&sort=rarity&order=desc")
+      .then((data) => { if (data.data?.length) setCharacters(data.data.slice(0, 5)); })
+      .catch(() => {
+        // API unreachable or aborted — FALLBACK_CHARACTERS stays rendered
+      });
+
+    fetchJson("/api/stats")
+      .then((data) => {
+        if (!data.data) return;
+        setStats(data.data);
+        const entries = Object.entries(data.data.by_element as Record<string, number>)
+          .map(([name, value]) => ({ name: name.toUpperCase(), value }))
+          .sort((a, b) => b.value - a.value);
+        if (entries.length) setElementData(entries);
+      })
+      .catch(() => {
+        // API unreachable or aborted — FALLBACK_STATS / FALLBACK_ELEMENT_DATA stay rendered
+      });
+
+    return () => controller.abort();
+  }, []);
 
   const handleSort = (col: string) => {
     if (sortCol !== col) {
@@ -175,42 +243,43 @@ export function DataDisplaySection() {
                 <TableHead sortable sortDirection={sortCol === "operator" ? sortDir : null} onSort={() => handleSort("operator")}>{t("table.headers.operator")}</TableHead>
                 <TableHead sortable sortDirection={sortCol === "class" ? sortDir : null} onSort={() => handleSort("class")}>{t("table.headers.class")}</TableHead>
                 <TableHead sortable sortDirection={sortCol === "rarity" ? sortDir : null} onSort={() => handleSort("rarity")}>{t("table.headers.rarity")}</TableHead>
-                <TableHead sortable sortDirection={sortCol === "status" ? sortDir : null} onSort={() => handleSort("status")}>{t("table.headers.status")}</TableHead>
+                <TableHead sortable sortDirection={sortCol === "element" ? sortDir : null} onSort={() => handleSort("element")}>{t("table.headers.element", { defaultValue: "ELEMENT" })}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {[
-                ["Amiya", "Caster", "\u2605\u2605\u2605\u2605\u2605", "Active"],
-                ["Ch'en", "Guard", "\u2605\u2605\u2605\u2605\u2605\u2605", "Deployed"],
-                ["Silverash", "Guard", "\u2605\u2605\u2605\u2605\u2605\u2605", "Standby"],
-                ["Exusiai", "Sniper", "\u2605\u2605\u2605\u2605\u2605\u2605", "Active"],
-                ["Kal'tsit", "Medic", "\u2605\u2605\u2605\u2605\u2605\u2605", "Deployed"],
-              ].map(([name, cls, rarity, status]) => (
-                <TableRow key={name}>
-                  <TableCell className="font-medium whitespace-nowrap">
-                    {name}
-                  </TableCell>
-                  <TableCell className="text-muted-foreground">
-                    {cls}
-                  </TableCell>
-                  <TableCell className="text-primary font-mono text-xs">
-                    {rarity}
-                  </TableCell>
-                  <TableCell>
-                    <span
-                      className={`font-ui text-[10px] tracking-[0.12em] uppercase px-2 py-1 border whitespace-nowrap ${status === "Active" ? "text-ef-green border-ef-green/40 bg-ef-green/[0.08]" : status === "Deployed" ? "text-ef-blue border-ef-blue/40 bg-ef-blue/[0.08]" : "text-muted-foreground border-border bg-foreground/[0.03]"}`}
-                    >
-                      {t(`table.status_labels.${status.toLowerCase()}`)}
-                    </span>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {characters.map((char) => {
+                const tier = char.ratings?.[0]?.tier ?? null;
+                const tierColor = tier === "T0" ? "text-ef-yellow border-ef-yellow/40 bg-ef-yellow/[0.08]"
+                  : tier === "T0.5" ? "text-primary border-primary/40 bg-primary/[0.06]"
+                  : tier === "T1" ? "text-ef-blue border-ef-blue/40 bg-ef-blue/[0.08]"
+                  : "text-muted-foreground border-border bg-foreground/[0.03]";
+                return (
+                  <TableRow key={char.slug}>
+                    <TableCell className="font-medium whitespace-nowrap">
+                      {char.name}
+                    </TableCell>
+                    <TableCell className="text-muted-foreground">
+                      {char.class}
+                    </TableCell>
+                    <TableCell className="text-primary font-mono text-xs">
+                      {"◆".repeat(char.rarity)}{"◇".repeat(6 - char.rarity)}
+                    </TableCell>
+                    <TableCell>
+                      <span className={`font-ui text-[10px] tracking-[0.12em] uppercase px-2 py-1 border whitespace-nowrap ${tierColor}`}>
+                        {tier ?? char.element}
+                      </span>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
             <TableFooter>
               <TableRow className="border-0 hover:bg-transparent even:bg-transparent">
                 <TableCell colSpan={2}>
                   <span className="text-xs text-muted-foreground">
-                    {t("table.showing_pagination")}
+                    {t("table.showing_live", { defaultValue: `Showing 1–${characters.length} of ${stats.total}` })}
+                    {" · "}
+                    <a href="https://endfield.gryphline.com/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground/60 hover:text-muted-foreground underline">© HyperGryph</a>
                   </span>
                 </TableCell>
                 <TableCell colSpan={2} className="text-right">
@@ -408,30 +477,29 @@ export function DataDisplaySection() {
       >
         <StatGrid className="grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
           <Stat
-            label={t("stats.labels.total_ops")}
-            value="12,847"
-            trend="up"
-            trendValue="+12.5%"
-          />
-          <Stat
-            label={t("stats.labels.active_units")}
-            value="342"
-            trend="up"
-            trendValue="+3.2%"
-          />
-          <Stat
-            label={t("stats.labels.error_rate")}
-            value="0.02%"
-            trend="down"
-            trendValue="-8.1%"
-          />
-          <Stat
-            label={t("stats.labels.uptime")}
-            value="99.97%"
+            label={t("stats.labels.total_ops", { defaultValue: "TOTAL OPERATORS" })}
+            value={String(stats.total)}
             trend="neutral"
-            trendValue="0.0%"
+          />
+          <Stat
+            label={t("stats.labels.active_units", { defaultValue: "6★ OPERATORS" })}
+            value={String(stats.by_rarity["6"] ?? 9)}
+            trend="neutral"
+          />
+          <Stat
+            label={t("stats.labels.error_rate", { defaultValue: "ELEMENTS" })}
+            value={String(Object.keys(stats.by_element).length)}
+            trend="neutral"
+          />
+          <Stat
+            label={t("stats.labels.uptime", { defaultValue: "CLASSES" })}
+            value={String(Object.keys(stats.by_class).length)}
+            trend="neutral"
           />
         </StatGrid>
+        <p className="font-mono text-[9px] text-muted-foreground/50 text-right mt-1">
+          <a href="https://endfield.gryphline.com/" target="_blank" rel="noopener noreferrer" className="hover:text-muted-foreground underline">Arknights: Endfield</a> © HyperGryph Co., Ltd.
+        </p>
       </ComponentPreview>
 
       {/* Timeline */}
@@ -1072,7 +1140,7 @@ const steps: StepItem[] = [
           </div>
           <div>
             <p className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-2">&#9670; LIVE DEMO — BAR CHART</p>
-            <ChartDemo />
+            <ChartDemo data={elementData} />
           </div>
           <p className="text-xs text-muted-foreground">
             Install recharts as a peer dep: <code className="font-mono text-primary">npm install recharts</code>.

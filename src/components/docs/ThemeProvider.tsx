@@ -9,6 +9,7 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType>({ theme: "dark", toggleTheme: () => {} });
 
+// eslint-disable-next-line react-refresh/only-export-components -- context hook lives with its provider by design
 export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }: { children: ReactNode }) => {

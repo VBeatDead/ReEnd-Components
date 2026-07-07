@@ -109,7 +109,79 @@ try {
   process.exit(1);
 }
 
-// ─── 5. Update CHANGELOG.md footer links ─────────────────────────────────────
+// ─── 4b. Regenerate public/sitemap.xml from DOC_SECTIONS ─────────────────────
+// Keeps URLs in lockstep with the router config and lastmod fresh per release.
+
+try {
+  const today = new Date().toISOString().slice(0, 10);
+  const urlEntry = (
+    enPath: string,
+    idPath: string,
+    loc: string,
+    changefreq: string,
+    priority: string,
+  ) => `  <url>
+    <loc>${BASE_URL}${loc}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${changefreq}</changefreq>
+    <priority>${priority}</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="${BASE_URL}${enPath}" />
+    <xhtml:link rel="alternate" hreflang="id" href="${BASE_URL}${idPath}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${BASE_URL}${enPath}" />
+  </url>`;
+
+  const pagePair = (
+    enPath: string,
+    idPath: string,
+    changefreq: string,
+    priority: string,
+  ) => [
+    urlEntry(enPath, idPath, enPath, changefreq, priority),
+    urlEntry(enPath, idPath, idPath, changefreq, priority),
+  ];
+
+  const entries = [
+    ...pagePair("/", "/id/", "weekly", "1.0"),
+    ...pagePair("/docs", "/id/docs", "monthly", "0.9"),
+    ...DOC_SECTIONS.flatMap((s) =>
+      pagePair(`/docs/${s.slug}`, `/id/docs/${s.slug}`, "monthly", "0.8"),
+    ),
+  ];
+
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${entries.join("\n")}
+</urlset>
+`;
+  writeFileSync(join(root, "public", "sitemap.xml"), sitemap, "utf-8");
+  console.log(`✓ public/sitemap.xml → ${entries.length} URLs, lastmod ${today}`);
+} catch (err) {
+  console.error("✗ Failed to generate public/sitemap.xml:", err);
+  process.exit(1);
+}
+
+// ─── 5. Sync CLI_VERSION in src/cli/registry.ts ──────────────────────────────
+
+try {
+  const registryPath = join(root, "src", "cli", "registry.ts");
+  const registrySrc = readFileSync(registryPath, "utf-8");
+  const updated = registrySrc.replace(
+    /export const CLI_VERSION = "[^"]*";/,
+    `export const CLI_VERSION = "${version}";`,
+  );
+  if (updated !== registrySrc) {
+    writeFileSync(registryPath, updated, "utf-8");
+    console.log(`✓ src/cli/registry.ts → CLI_VERSION ${version}`);
+  } else {
+    console.log(`✓ src/cli/registry.ts → CLI_VERSION already ${version}`);
+  }
+} catch (err) {
+  console.error("✗ Failed to sync CLI_VERSION in src/cli/registry.ts:", err);
+  process.exit(1);
+}
+
+// ─── 6. Update CHANGELOG.md footer links ─────────────────────────────────────
 
 const repoUrl = "https://github.com/VBeatDead/ReEnd-Components";
 const allVersions = changelogJson.versions.map((v) => v.version);

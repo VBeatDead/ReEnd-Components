@@ -3,6 +3,20 @@
   "latest": "LATEST",
   "versions": [
     {
+      "version": "v1.2.0",
+      "date": "July 7, 2026",
+      "items": [
+        "Security patch — RichTextEditor: fixed XSS in markdown preview; HTML input is now escaped before rendering so raw <script> and <img onerror> tags are displayed as text, not executed; blocked javascript:, data:, vbscript:, blob:, file: URL protocols and protocol-relative (//evil.com) links in markdown",
+        "Security headers — added Strict-Transport-Security and a full Content-Security-Policy; 70+ new security tests covering XSS, headers, path traversal, and dependency hygiene",
+        "CLI — init now scaffolds lib/utils.ts (the cn() helper) with base dependency guidance; new `add toast` installs toast, toaster, and the use-toast hook; component sources are fetched from the matching release tag with a main fallback; registry dependency lists completed",
+        "Tailwind preset is now compiled to dist/tailwind/index.{mjs,cjs} — works from plain tailwind.config.js, not just TypeScript configs",
+        "Performance — fixed the entry bundle preloading ~1.3 MB of lazy editor/chart code; initial JavaScript is now 656 kB raw (−67%)",
+        "SEO — PNG social image (og-image.png, 1200×630), single language-aware canonical, hreflang consistent with the sitemap, localized (EN/ID) per-section meta descriptions, auto-generated sitemap.xml, and a web app manifest",
+        "Changed — recharts and react-resizable-panels are now optional peer dependencies: install them yourself if you use Chart or Resizable",
+        "Fixed — CountdownTimer stale seconds in aria-label; live-data demos abort fetches on unmount and check HTTP status; release scripts run via tsx (Node 20 compatible)"
+      ]
+    },
+    {
       "version": "v1.1.0",
       "date": "February 26, 2026",
       "items": [

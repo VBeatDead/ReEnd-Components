@@ -90,7 +90,13 @@ function OperatorAvatar({
       }}
     >
       {src ? (
-        <img src={src} alt={name} className="w-full h-full object-cover" />
+        <img
+          src={src}
+          alt={name}
+          loading="lazy"
+          decoding="async"
+          className="w-full h-full object-cover"
+        />
       ) : (
         <span>{initials ?? name.slice(0, 2)}</span>
       )}

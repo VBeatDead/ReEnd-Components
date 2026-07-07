@@ -3,12 +3,23 @@ export interface ComponentEntry {
   displayName: string;
   type: "core" | "signature";
   files: string[];
+  /** Hook files fetched from src/hooks, written to <outputDir>/../../hooks */
+  hooks?: string[];
   deps: string[];
   description: string;
 }
 
-const GITHUB_RAW_BASE =
-  "https://raw.githubusercontent.com/VBeatDead/ReEnd-Components/main/src/components/ui";
+/** Single source of truth for the CLI version — kept in sync by scripts/sync-release.ts */
+export const CLI_VERSION = "1.2.0";
+
+const GITHUB_RAW_ROOT =
+  "https://raw.githubusercontent.com/VBeatDead/ReEnd-Components";
+
+/**
+ * Base deps required by every component: `cn()` uses clsx + tailwind-merge,
+ * and most components define variants with class-variance-authority.
+ */
+export const BASE_DEPS = ["clsx", "tailwind-merge", "class-variance-authority"];
 
 export const REGISTRY: Record<string, ComponentEntry> = {
   // ── Core (Tier 1) ───────────────────────────────────────────────────────
@@ -280,8 +291,8 @@ export const REGISTRY: Record<string, ComponentEntry> = {
     name: "session-timeout-modal",
     displayName: "SessionTimeoutModal",
     type: "core",
-    files: ["session-timeout-modal.tsx"],
-    deps: [],
+    files: ["session-timeout-modal.tsx", "dialog.tsx", "button.tsx"],
+    deps: ["@radix-ui/react-dialog", "@radix-ui/react-slot"],
     description: "Session expiry modal with CountdownTimer",
   },
   "file-upload": {
@@ -442,7 +453,7 @@ export const REGISTRY: Record<string, ComponentEntry> = {
     displayName: "TacticalPanel",
     type: "signature",
     files: ["signature/tactical-panel.tsx"],
-    deps: [],
+    deps: ["lucide-react"],
     description: "HUD-style panel with status, headerAction, collapsible",
   },
   "holo-card": {
@@ -458,7 +469,7 @@ export const REGISTRY: Record<string, ComponentEntry> = {
     displayName: "DataStream",
     type: "signature",
     files: ["signature/data-stream.tsx"],
-    deps: ["framer-motion"],
+    deps: ["framer-motion", "lucide-react"],
     description: "Scrolling data feed terminal with speed/messageType",
   },
   "tactical-badge": {
@@ -474,7 +485,7 @@ export const REGISTRY: Record<string, ComponentEntry> = {
     displayName: "WarningBanner",
     type: "signature",
     files: ["signature/warning-banner.tsx"],
-    deps: [],
+    deps: ["lucide-react"],
     description: "Alert banner with caution/alert/critical severity",
   },
   "scan-divider": {
@@ -620,13 +631,27 @@ export const REGISTRY: Record<string, ComponentEntry> = {
     displayName: "ThemeSwitcher",
     type: "core",
     files: ["theme-switcher.tsx"],
-    deps: [],
+    deps: ["lucide-react"],
     description: "Light/dark theme toggle with localStorage persistence",
+  },
+  toast: {
+    name: "toast",
+    displayName: "Toast",
+    type: "core",
+    files: ["toast.tsx", "toaster.tsx"],
+    hooks: ["use-toast.ts"],
+    deps: ["@radix-ui/react-toast", "lucide-react"],
+    description:
+      "Radix toast primitives + Toaster portal + useToast hook (imperative API)",
   },
 };
 
 export function getFileUrl(filePath: string, ref = "main"): string {
-  return `${GITHUB_RAW_BASE.replace("main", ref)}/${filePath}`;
+  return `${GITHUB_RAW_ROOT}/${ref}/src/components/ui/${filePath}`;
+}
+
+export function getHookUrl(filePath: string, ref = "main"): string {
+  return `${GITHUB_RAW_ROOT}/${ref}/src/hooks/${filePath}`;
 }
 
 export function getComponentNames(type?: "core" | "signature"): string[] {
