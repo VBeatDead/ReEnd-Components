@@ -8,7 +8,7 @@ import {
 import { CHART_COLORS } from "../ui/chart";
 import SignatureDataSection from "./signature/SignatureDataSection";
 
-const API_BASE = import.meta.env.DEV ? "/ef-api" : "https://api.infgame.site";
+import { EF_API_BASE } from "@/config/api";
 
 const FALLBACK_ELEMENT_DATA = [
   { name: "PHYSICAL", value: 6 },
@@ -129,7 +129,7 @@ export function DataDisplaySection() {
   useEffect(() => {
     const controller = new AbortController();
     const fetchJson = (path: string) =>
-      fetch(`${API_BASE}${path}`, { signal: controller.signal }).then((r) =>
+      fetch(`${EF_API_BASE}${path}`, { signal: controller.signal }).then((r) =>
         r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)),
       );
 

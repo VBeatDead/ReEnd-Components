@@ -4,7 +4,7 @@ import { ComponentPreview } from "../../docs/ComponentPreview";
 import { CoordinateTag } from "./primitives";
 import RadarChart from "./RadarChart";
 
-const API_BASE = import.meta.env.DEV ? "/ef-api" : "https://api.infgame.site";
+import { EF_API_BASE } from "@/config/api";
 
 const EMBER_ATTRS = [
   { label: "STR", value: 100 },
@@ -49,7 +49,7 @@ function SignatureDataSection() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch(`${API_BASE}/api/meta`, { signal: controller.signal })
+    fetch(`${EF_API_BASE}/api/meta`, { signal: controller.signal })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
       .then((data) => {
         if (data.data) {

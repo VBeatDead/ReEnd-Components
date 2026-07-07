@@ -3,8 +3,11 @@ import { ViewToggle } from "../../ui/view-toggle";
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { ComponentPreview } from "../../docs/ComponentPreview";
-
-const API_BASE = import.meta.env.DEV ? "/ef-api" : "https://api.infgame.site";
+import {
+  EF_API_BASE,
+  cdnCharacterAsset,
+  cdnElementIcon,
+} from "@/config/api";
 
 interface CharacterListItem {
   slug: string;
@@ -21,13 +24,30 @@ interface CharacterListItem {
   };
 }
 
+const fallbackOperator = (
+  slug: string,
+  name: string,
+  rarity: number,
+  cls: string,
+  element: string,
+): CharacterListItem => ({
+  slug,
+  name,
+  rarity,
+  class: cls,
+  element,
+  card_image_url: cdnCharacterAsset(slug, "card.webp"),
+  small_image_url: cdnCharacterAsset(slug, "icon.webp"),
+  icons: { element: cdnElementIcon(element.toLowerCase()) },
+});
+
 const FALLBACK_OPERATORS: CharacterListItem[] = [
-  { slug: "laevatain", name: "Laevatain", rarity: 6, class: "Guard", element: "Heat", card_image_url: "https://cdn.infgame.site/characters/laevatain/card.webp", small_image_url: "https://cdn.infgame.site/characters/laevatain/icon.webp", icons: { element: "https://cdn.infgame.site/icons/elements/heat.webp" } },
-  { slug: "ardelia", name: "Ardelia", rarity: 6, class: "Caster", element: "Electric", card_image_url: "https://cdn.infgame.site/characters/ardelia/card.webp", small_image_url: "https://cdn.infgame.site/characters/ardelia/icon.webp", icons: { element: "https://cdn.infgame.site/icons/elements/electric.webp" } },
-  { slug: "ember", name: "Ember", rarity: 6, class: "Defender", element: "Heat", card_image_url: "https://cdn.infgame.site/characters/ember/card.webp", small_image_url: "https://cdn.infgame.site/characters/ember/icon.webp", icons: { element: "https://cdn.infgame.site/icons/elements/heat.webp" } },
-  { slug: "chen-qianyu", name: "Chen Qianyu", rarity: 6, class: "Striker", element: "Physical", card_image_url: "https://cdn.infgame.site/characters/chen-qianyu/card.webp", small_image_url: "https://cdn.infgame.site/characters/chen-qianyu/icon.webp", icons: { element: "https://cdn.infgame.site/icons/elements/physical.webp" } },
-  { slug: "lifeng", name: "Lifeng", rarity: 6, class: "Supporter", element: "Nature", card_image_url: "https://cdn.infgame.site/characters/lifeng/card.webp", small_image_url: "https://cdn.infgame.site/characters/lifeng/icon.webp", icons: { element: "https://cdn.infgame.site/icons/elements/nature.webp" } },
-  { slug: "akekuri", name: "Akekuri", rarity: 4, class: "Vanguard", element: "Heat", card_image_url: "https://cdn.infgame.site/characters/akekuri/card.webp", small_image_url: "https://cdn.infgame.site/characters/akekuri/icon.webp", icons: { element: "https://cdn.infgame.site/icons/elements/heat.webp" } },
+  fallbackOperator("laevatain", "Laevatain", 6, "Guard", "Heat"),
+  fallbackOperator("ardelia", "Ardelia", 6, "Caster", "Electric"),
+  fallbackOperator("ember", "Ember", 6, "Defender", "Heat"),
+  fallbackOperator("chen-qianyu", "Chen Qianyu", 6, "Striker", "Physical"),
+  fallbackOperator("lifeng", "Lifeng", 6, "Supporter", "Nature"),
+  fallbackOperator("akekuri", "Akekuri", 4, "Vanguard", "Heat"),
 ];
 
 function OperatorCardDemo() {
@@ -38,7 +58,7 @@ function OperatorCardDemo() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch(`${API_BASE}/api/characters?page_size=6&sort=rarity&order=desc`, {
+    fetch(`${EF_API_BASE}/api/characters?page_size=6&sort=rarity&order=desc`, {
       signal: controller.signal,
     })
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`))))
@@ -89,7 +109,7 @@ const [view, setView] = useState("grid");
       name="Laevatain"
       faction="Guard"
       rarity={6}
-      imageSrc="https://cdn.infgame.site/characters/laevatain/card.webp"
+      imageSrc="https://cdn.vallov.com/characters/laevatain/card.webp"
       selected={selected === "Laevatain"}
       onClick={() => setSelected("Laevatain")}
     />

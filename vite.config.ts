@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => ({
     },
     proxy: {
       "/ef-api": {
-        target: "https://api.infgame.site",
+        target: process.env.VITE_EF_API_BASE ?? "https://api.vallov.com",
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/ef-api/, ""),
       },
