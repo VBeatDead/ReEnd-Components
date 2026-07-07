@@ -34,18 +34,16 @@ bun add reend-components
 
 ### Peer Dependencies
 
-| Package         | Version                   | Required for          |
-| --------------- | ------------------------- | --------------------- |
-| `react`         | ^18.0.0 \|\| ^19.0.0     | All components        |
-| `react-dom`     | ^18.0.0 \|\| ^19.0.0     | All components        |
-| `tailwindcss`   | ≥3.4.0 *(optional)*      | Tailwind preset       |
-| `framer-motion` | ≥10.0.0 *(optional)*     | Signature components  |
-| `lucide-react`  | ≥0.400.0 *(optional)*    | Signature components  |
+| Package       | Version               | Required for                     |
+| ------------- | --------------------- | -------------------------------- |
+| `react`       | ^18.0.0 \|\| ^19.0.0 | All components                   |
+| `react-dom`   | ^18.0.0 \|\| ^19.0.0 | All components                   |
+| `tailwindcss` | ≥3.4.0 *(optional)*  | Tailwind preset                  |
+| `recharts`    | ≥3.0.0 *(optional)*  | Chart primitives (`LineChart` …) |
 
-```bash
-# For Signature components (GlitchText, RadarChart, TacticalPanel, etc.)
-npm install framer-motion lucide-react
-```
+Everything else (`framer-motion`, `lucide-react`, `react-resizable-panels`,
+Radix UI primitives) is installed automatically as a regular dependency —
+`npm install reend-components` is all you need.
 
 ---
 
@@ -228,12 +226,9 @@ const containerRef = useFocusTrap<HTMLDivElement>(isOpen);
 
 ## Signature Components
 
-> Endfield-exclusive HUD components. Requires `framer-motion` and/or `lucide-react`.
+> Endfield-exclusive HUD components. `framer-motion` and `lucide-react` ship with
+> the package — no extra install needed.
 > Add `./node_modules/reend-components/dist/**/*.{js,mjs}` to your Tailwind `content` array.
-
-```bash
-npm install framer-motion lucide-react
-```
 
 | Component        | Description                                                  |
 | ---------------- | ------------------------------------------------------------ |

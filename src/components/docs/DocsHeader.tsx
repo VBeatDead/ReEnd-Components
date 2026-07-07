@@ -20,7 +20,7 @@ export const DocsHeader = ({ onNavigate, activeId }: DocsHeaderProps) => {
   const { theme, toggleTheme } = useTheme();
   const [isAnimating, setIsAnimating] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const animTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const animTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const navigate = useNavigate();
   const location = useLocation();
   const [mobileFilter, setMobileFilter] = useState("");

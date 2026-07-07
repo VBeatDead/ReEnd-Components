@@ -1,6 +1,6 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import { cn } from "../../../lib/utils";
 
 export const tacticalBadgeVariants = cva(
   "inline-flex items-center gap-1.5 clip-corner-sm border px-3 py-1 font-display text-[10px] font-bold tracking-[0.15em] uppercase",

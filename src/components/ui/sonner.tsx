@@ -10,7 +10,6 @@ const Toaster = ({ theme = "dark", ...props }: ToasterProps) => (
     closeButton
     duration={4000}
     visibleToasts={3}
-    pauseWhenPageIsHidden
     toastOptions={{
       classNames: {
         toast:

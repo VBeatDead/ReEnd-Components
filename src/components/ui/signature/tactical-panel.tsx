@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Crosshair } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn } from "../../../lib/utils";
 
 /* ── Status config ───────────────────────────────────────────────────────── */
 

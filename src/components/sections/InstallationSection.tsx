@@ -143,10 +143,9 @@ export function InstallationSection() {
                 </span>
                 <span className="h-px flex-1 bg-border/50" />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {[
                   { pkg: "tailwindcss", ver: "≥3.4.0", desc: "Preset & utilities" },
-                  { pkg: "framer-motion", ver: "≥10.0.0", desc: "Signature animations" },
                   { pkg: "recharts", ver: "≥3.0.0", desc: "Chart components" },
                 ].map(({ pkg, ver, desc }) => (
                   <div

@@ -227,7 +227,7 @@ export const ComponentPreview = ({
     useState<Record<string, string | number | boolean>>(defaultValues);
   const [codeCopied, setCodeCopied] = useState(false);
   const [viewport, setViewport] = useState<"desktop" | "mobile">("desktop");
-  const copyTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   useEffect(() => () => clearTimeout(copyTimerRef.current), []);
 
   // Auto-generate code from playground values

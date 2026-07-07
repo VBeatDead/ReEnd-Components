@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2026-07-07
+
+### Fixed
+
+- **Bare install could not be imported** — `import "reend-components"` crashed with
+  `Cannot find module 'lucide-react'` unless optional peers were installed manually.
+  `framer-motion`, `lucide-react`, and `react-resizable-panels` are imported
+  unconditionally by the library barrel, so they are now regular dependencies —
+  `npm install reend-components` works out of the box
+- **CJS build unconditionally required `recharts`** — dead recharts re-exports removed
+  from the chart module; `recharts` remains a truly optional peer (only needed when
+  using chart primitives directly)
+- **Tailwind preset silently inactive with plain `require()`** —
+  `require("reend-components/tailwind")` returned `{ default: preset }`; the CJS build
+  now exports the preset object directly
+- **CLI-copied components did not compile without a path alias** — 22 components
+  imported `cn` from `@/lib/utils`; all imports normalized to relative paths matching
+  the CLI's scaffolded `lib/utils.ts`
+- **React 19 types compatibility** — `useRef<ReturnType<typeof setTimeout>>()` without
+  an initial value is an error under `@types/react` 19 (`CopyClipboard`,
+  `ThemeSwitcher`, and docs internals)
+- **sonner v2 compatibility** — removed the `pauseWhenPageIsHidden` prop (deleted in
+  sonner 2.0); the Toaster wrapper now compiles against both sonner 1.x and 2.x
+
+---
+
 ## [1.2.0] - 2026-07-07
 
 ### Security
@@ -373,7 +399,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.2.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/VBeatDead/ReEnd-Components/releases/tag/v0.1.0
 
-[Unreleased]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.2.1...HEAD
+[1.2.1]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/VBeatDead/ReEnd-Components/compare/v0.4.0...v1.0.0

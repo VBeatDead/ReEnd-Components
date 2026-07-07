@@ -3,6 +3,17 @@
   "latest": "LATEST",
   "versions": [
     {
+      "version": "v1.2.1",
+      "date": "July 7, 2026",
+      "items": [
+        "Fixed bare install — import \"reend-components\" no longer crashes without manually installing framer-motion, lucide-react, and react-resizable-panels; they are now regular dependencies",
+        "Fixed CJS build unconditionally requiring recharts — dead re-exports removed from the chart module; recharts stays an optional peer",
+        "Fixed Tailwind preset being silently ignored with plain require() — the CJS build now exports the preset object directly",
+        "Fixed CLI-copied components failing to compile without a path alias — all cn imports normalized from @/lib/utils to relative paths",
+        "React 19 types + sonner v2 compatibility — useRef without initial value fixed in CopyClipboard/ThemeSwitcher; removed pauseWhenPageIsHidden prop"
+      ]
+    },
+    {
       "version": "v1.2.0",
       "date": "July 7, 2026",
       "items": [

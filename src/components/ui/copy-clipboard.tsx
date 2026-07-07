@@ -11,7 +11,7 @@ export interface CopyClipboardProps
 const CopyClipboard = React.forwardRef<HTMLButtonElement, CopyClipboardProps>(
   ({ text, resetDelay = 2000, onCopy, className, ...props }, ref) => {
     const [copied, setCopied] = React.useState(false);
-    const timerRef = React.useRef<ReturnType<typeof setTimeout>>();
+    const timerRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
     React.useEffect(() => () => clearTimeout(timerRef.current), []);
 

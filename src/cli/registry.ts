@@ -10,7 +10,7 @@ export interface ComponentEntry {
 }
 
 /** Single source of truth for the CLI version — kept in sync by scripts/sync-release.ts */
-export const CLI_VERSION = "1.2.0";
+export const CLI_VERSION = "1.2.1";
 
 const GITHUB_RAW_ROOT =
   "https://raw.githubusercontent.com/VBeatDead/ReEnd-Components";
@@ -333,7 +333,8 @@ export const REGISTRY: Record<string, ComponentEntry> = {
     type: "core",
     files: ["chart.tsx"],
     deps: ["recharts"],
-    description: "Recharts wrapper with Endfield palette (--chart-1 to --chart-8)",
+    description:
+      "Endfield chart palette + theme tokens (--chart-1 to --chart-8) for recharts primitives",
   },
   footer: {
     name: "footer",

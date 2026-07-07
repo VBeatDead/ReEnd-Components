@@ -125,7 +125,7 @@
       "WarningBanner": "Tactical warning strip with alert level (Signature)",
       "ScanDivider": "Animated scan-line section divider (Signature)",
       "CoordinateTag": "Grid coordinate reference tag (Signature)",
-      "RadarChart": "Polar area chart with axes/datasets/showLegend — requires framer-motion (Signature)",
+      "RadarChart": "Polar area chart with axes/datasets/showLegend (Signature)",
       "HUDOverlay": "HUD screen overlay — showNoise/showScanlines/bracketSize (Signature)",
       "Tooltip": "Radix Tooltip root (controlled/uncontrolled)",
       "TooltipTrigger": "Element that triggers the tooltip on hover/focus",

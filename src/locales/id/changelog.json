@@ -3,6 +3,17 @@
   "latest": "TERBARU",
   "versions": [
     {
+      "version": "v1.2.1",
+      "date": "7 Juli 2026",
+      "items": [
+        "Perbaikan instalasi polos — import \"reend-components\" tidak lagi crash tanpa memasang framer-motion, lucide-react, dan react-resizable-panels manual; ketiganya kini dependensi reguler",
+        "Perbaikan build CJS yang selalu me-require recharts — re-export mati dihapus dari modul chart; recharts tetap peer opsional",
+        "Perbaikan preset Tailwind yang diam-diam terabaikan dengan require() polos — build CJS kini mengekspor objek preset secara langsung",
+        "Perbaikan komponen hasil CLI yang gagal compile tanpa path alias — semua import cn dinormalisasi dari @/lib/utils ke path relatif",
+        "Kompatibilitas @types/react 19 + sonner v2 — useRef tanpa nilai awal diperbaiki di CopyClipboard/ThemeSwitcher; prop pauseWhenPageIsHidden dihapus"
+      ]
+    },
+    {
       "version": "v1.2.0",
       "date": "7 Juli 2026",
       "items": [

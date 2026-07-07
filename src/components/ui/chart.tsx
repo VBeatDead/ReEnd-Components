@@ -1,24 +1,10 @@
-export {
-  LineChart,
-  BarChart,
-  AreaChart,
-  PieChart,
-  RadarChart as RechartsRadarChart,
-} from "recharts";
-export {
-  Line,
-  Bar,
-  Area,
-  Pie,
-  Radar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  Cell,
-} from "recharts";
+/*
+ * This module must not import recharts: the library barrel re-exports it,
+ * and any recharts import here becomes an unconditional require in the CJS
+ * build — breaking `require("reend-components")` for consumers without the
+ * optional recharts peer installed. Import chart primitives from recharts
+ * directly; this file only provides the Endfield theme tokens.
+ */
 
 export const CHART_COLORS = [
   "var(--chart-1)",

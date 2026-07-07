@@ -96,7 +96,7 @@ function PlaygroundInner({
 }: PlaygroundInnerProps) {
   const { sandpack } = useSandpack();
   const [shareCopied, setShareCopied] = useState(false);
-  const shareTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const shareTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const handleShare = () => {
     const currentCode = sandpack.files["/App.tsx"]?.code ?? defaultCode;

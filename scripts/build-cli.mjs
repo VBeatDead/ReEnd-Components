@@ -69,6 +69,15 @@ for (const [format, ext] of [
     external: ["tailwindcss", "tailwindcss/plugin.js", "tailwindcss-animate"],
     minify: false,
     sourcemap: false,
+    // Flatten the ESM default export so a plain `require(...)` returns the
+    // preset itself — otherwise `presets: [require("reend-components/tailwind")]`
+    // passes `{ default: preset }` and Tailwind silently ignores it.
+    footer:
+      format === "cjs"
+        ? {
+            js: "module.exports = module.exports.default;\nmodule.exports.default = module.exports;",
+          }
+        : undefined,
   });
 }
 

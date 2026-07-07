@@ -125,7 +125,7 @@
       "WarningBanner": "Strip peringatan taktis dengan tingkat alert (Signature)",
       "ScanDivider": "Pembagi bagian garis-scan animasi (Signature)",
       "CoordinateTag": "Tag referensi koordinat grid (Signature)",
-      "RadarChart": "Grafik area polar dengan axes/datasets/showLegend — memerlukan framer-motion (Signature)",
+      "RadarChart": "Grafik area polar dengan axes/datasets/showLegend (Signature)",
       "HUDOverlay": "Overlay layar HUD — showNoise/showScanlines/bracketSize (Signature)",
       "Tooltip": "Root Radix Tooltip (terkontrol/tidak terkontrol)",
       "TooltipTrigger": "Elemen yang memicu tooltip saat hover/fokus",
